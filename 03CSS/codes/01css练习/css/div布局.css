@@ -1,0 +1,106 @@
+body{
+  background-image: url(../img/black-earth.jpg);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.header{
+  width: 1100px;
+  height: 90px;
+  margin: 0 auto;
+}
+
+.logo{
+  float: left;
+  margin-top: 12px;
+  width: 500px;
+  height: 90px;
+}
+
+.nav{
+  float: left;
+  width: 600px;
+  height: 90px;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li{
+  float: left;
+  width: 120px;
+  height: 90px;
+}
+
+li img{
+  width: 30px;
+  vertical-align: middle;
+}
+
+li a{
+  text-decoration: none;
+  color: white;
+  line-height: 90px;
+}
+
+.br{
+  background-color: white;
+  width: 100%;
+  height: 1px;
+}
+
+.content{
+  width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+.content img{
+  height: 50px;
+  margin: 25px 0;
+}
+
+.des li{
+  width: 230px;
+  height: 300px;
+  padding: 5px;
+}
+
+.des img{
+  margin: 0;
+  width: 150px;
+  height: 150px;
+}
+
+.footer{
+  margin: 0 auto;
+  width: 660px;
+  overflow: hidden;
+}
+
+.btn{
+  float: left;
+  margin: 0 20px;
+  height: 60px;
+}
+button{
+  width: 180px;
+  height: 45px;
+  color: white;
+}
+
+.pink{
+  background-color: #eb3980;
+}
+
+.blue{
+  background-color: #1daee9;
+}
+
+.orange{
+  background-color: #ff8b00;
+}
