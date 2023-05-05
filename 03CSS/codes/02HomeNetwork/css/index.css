@@ -31,40 +31,94 @@
 }
 
 .banner{
-  height: 666px;
+  /* height: 666px; */
   background-color: aquamarine;
+}
+
+.image{
+  display: block;
+  width: 100%;
 }
 
 .wrapper{
   margin: 0 auto;
   height: 380px;
   width: 840px;
-  background-color: pink;
+  background-color: white;
+}
+
+.wrapper .item{
+  float: left;
+  margin-top: 15px;
+  margin-left: 15px;
+  width: 260px;
+  height: 350px;
+  /* background-color: orange; */
 }
 
 .content{
   margin: 0 auto;
-  width: 1160px;
+  width: 1126px;
   background-color: tomato;
 }
 
 .title{
   height: 95px;
-  background-color: yellowgreen;
+  background-color: white;
+  overflow: hidden;
+}
+
+.title img{
+  display: block;
+  margin: 0 auto;
+  margin-top: calc((95px - 36px) / 2);
+  width: 810px;
 }
 
 .con{
-  height: 1000px;
-  background-color: aqua;
+  overflow: hidden;
+  background-color: white;
 }
 
+.con .item{
+  float: left;
+  margin: 0 18px 23px 0;
+  width: 268px;
+  height: 320px;
+  background-color: white;
+}
+.con .item:nth-child(4n){
+  margin-right: 0;
+}
+
+.con .item:hover{
+  box-shadow: 0 0 10px #757575;
+}
+
+.con .item img{
+  display: block;
+}
+
+.con .name{
+  margin: 8px 0;
+  text-align: center;
+  font-size: 12px;
+}
+
+.con .price{
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #a10000;
+}
+ 
 .footer{
   background-color: pink;
 }
 
 .footer-top{
   margin: 0 auto;
-  width: 1160px;
+  width: 1190px;
   height: 113px;
   background-color: aquamarine;
 }
