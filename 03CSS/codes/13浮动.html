@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        display: block;
+      }
+
+      .wrapper {
+        width: 1160px;
+        /* box-shadow: 0 0 10px #abc; */
+        /* background-color: antiquewhite; */
+        /* background: -webkit-linear-gradient(top,#abc,skyblue); */
+        margin: 0 auto;
+        overflow: hidden;
+
+        display: none;
+      }
+
+      .title {
+        height: 62px;
+        text-align: center;
+      }
+
+      .title img {
+        display: inline-block;
+      }
+
+      .item {
+        width: 374px;
+        float: left;
+        margin-bottom: 19px;
+      }
+
+      .itemW {
+        width: 767px;
+        margin: 0 19px 19px 0;
+      }
+
+      .item-center {
+        margin: 0 19px;
+      }
+
+      p {
+        margin: 8px 0 18px;
+        font-size: 12px;
+      }
+      span {
+        font-size: 16px;
+        color: #a10000;
+      }
+
+      .clearfix::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .fl {
+        background-color: #abc;
+      }
+      .left {
+        float: left;
+        height: 200px;
+        background-color: #ac9;
+      }
+      .right {
+        float: right;
+        background-color: #caa;
+      }
+      .boxClear {
+        clear: right;
+      }
+
+      p{
+        text-decoration: underline;
+        text-indent: 2em;
+        line-height: 3;
+        /* letter-spacing: 20px; */
+        word-spacing: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="title">
+        <img src="./02HomeNetwork/img/tit04.jpg" alt="" />
+      </div>
+      <div class="item itemW">
+        <img src="./02HomeNetwork/img/sec401.jpg" alt="" />
+      </div>
+      <div class="item">
+        <img src="./02HomeNetwork/img/sec402.jpg" alt="" />
+      </div>
+
+      <div class="item">
+        <img src="./02HomeNetwork/img/sec403.jpg" alt="" />
+        <p>新中式客厅山水装饰画墙壁挂画</p>
+        <span>299.90</span>
+      </div>
+      <div class="item item-center">
+        <img src="./02HomeNetwork/img/sec404.jpg" alt="" />
+        <p>新中式客厅山水装饰画墙壁挂画</p>
+        <span>299.90</span>
+      </div>
+      <div class="item">
+        <img src="./02HomeNetwork/img/sec405.jpg" alt="" />
+        <p>新中式客厅山水装饰画墙壁挂画</p>
+        <span>299.90</span>
+      </div>
+    </div>
+
+    <div class="fl">
+      <div class="left">left</div>
+      <div class="right">right</div>
+      <div class="boxClear"></div>
+    </div>
+    <div>
+      123
+      <div style="float: left; background-color: #a10000; height: 100px">
+        ffff
+      </div>
+    </div>
+    <p>
+      一 般 在 开 发 中经常让父元素高度由内容决定，一旦子元素设置了浮动后，父元素的高度就塌陷了。原因在于：子元素设置浮动后，脱离文档流，原来的空间不再占用，子元素的高度就不会参与父元素高度的计算。解决方案：给父盒子设置高度，不能让父盒子根据内容来自动计算。给父盒子设置`overflow:hidden;`：将盒子变成了一个bfc容器，这个容器里面的元素的排列不会影响外面，而且浮动的子元素会参与父元素高度的计算
+    </p>
+  </body>
+</html>

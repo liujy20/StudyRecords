@@ -1,34 +1,99 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-.header{
+.header {
   width: 100%;
   height: 140px;
-  background-color: pink;
+  /* background-color: pink; */
 }
 
-.container{
+.container {
   margin: 0 auto;
   width: 1160px;
   height: 140px;
-  background-color: tomato;
+  /* background-color: tomato; */
 }
 
-.header-top{
+.header-top {
   height: 100px;
-  background-color: yellowgreen;
+  /* background-color: yellowgreen; */
 }
 
-.header-bottom{
+.logo{
+  float: left;
+  /* background-color: #acc; */
+  height: 100px;
+}
+
+.header-top .logo img{
+  margin-top: 20px;
+  height: 60px;
+}
+
+.login{
+  margin-top: 47px;
+  float: right;
+  overflow: hidden;
+  /* background-color: orange; */
+}
+
+.login .item{
+  float: right;
+}
+
+.login .item img{
+  margin-left: 21px;
+}
+
+.login .itemS{
+  margin-left: 21px;
+  border-bottom: 1px solid #262626;
+}
+
+.login .itemS input{
+  float: left;
+  margin-top: 4px;
+  border: 0;
+}
+
+.login .itemS input:focus{
+  border: 0;
+}
+
+.login .item-register{
+  font-size: 13px;
+  padding-left: 14px;
+  margin-top: 4px;
+  border-left: 1px solid #dbdbdb;
+}
+
+.login .item-login{
+  font-size: 13px;
+  margin-top: 4px;
+  padding-right: 11px;
+}
+
+.header-bottom {
   height: 40px;
-  background-color: antiquewhite;
+  text-align: center;
+  /* background-color: antiquewhite; */
 }
 
-.main{
-  background-color: skyblue;
+.header-bottom a{
+  display: inline-block;
+  margin: 0 21px;
+  line-height: 40px;
+  font-size: 13px;
+  color: #333;
+  text-decoration: none;
 }
+
+
+/* .main{
+  background-color: skyblue;
+} */
 
 .banner{
   /* height: 666px; */
@@ -112,19 +177,48 @@
   color: #a10000;
 }
  
-.footer{
-  background-color: pink;
+.footer {
+  /* background-color: pink; */
+  border-top: 1px solid #dbdbdb;
 }
 
-.footer-top{
+.footer-top {
   margin: 0 auto;
-  width: 1190px;
-  height: 113px;
-  background-color: aquamarine;
+  width: 1163px;
+  height: 114px;
+  /* background-color: aquamarine; */
 }
 
-.footer-bottom{
+.footer-top .item{
+  float: left;
+  margin-top: 30px;
+  width: 290px;
+  border-right: 1px solid #dbdbdb;
+}
+
+.footer-top .item:last-child{
+  border-right: none;
+}
+
+.footer-top .item img{
+  float: left;
+  margin: 0 12px 0 71px;
+}
+.footer-top .item span{
+  float: left;
+  line-height: 53px;
+}
+
+.footer-bottom {
   height: 87px;
   color: white;
   background-color: black;
+  overflow: hidden;
+}
+
+.footer-bottom p{
+  margin-top: 31px;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
 }
