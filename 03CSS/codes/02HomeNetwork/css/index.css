@@ -3,6 +3,12 @@
   padding: 0;
 }
 
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 .header {
   width: 100%;
   height: 140px;
@@ -21,55 +27,56 @@
   /* background-color: yellowgreen; */
 }
 
-.logo{
+.logo {
   float: left;
   /* background-color: #acc; */
   height: 100px;
 }
 
-.header-top .logo img{
+.header-top .logo img {
   margin-top: 20px;
   height: 60px;
 }
 
-.login{
+.login {
   margin-top: 47px;
   float: right;
   overflow: hidden;
   /* background-color: orange; */
 }
 
-.login .item{
+.login .item {
   float: right;
 }
 
-.login .item img{
+.login .item img {
   margin-left: 21px;
 }
 
-.login .itemS{
+.login .itemS {
   margin-left: 21px;
   border-bottom: 1px solid #262626;
 }
 
-.login .itemS input{
+.login .itemS input {
   float: left;
   margin-top: 4px;
+  padding-left: 5px;
   border: 0;
 }
 
-.login .itemS input:focus{
-  border: 0;
+.login .itemS input:focus {
+  outline: none;
 }
 
-.login .item-register{
+.login .item-register {
   font-size: 13px;
   padding-left: 14px;
   margin-top: 4px;
   border-left: 1px solid #dbdbdb;
 }
 
-.login .item-login{
+.login .item-login {
   font-size: 13px;
   margin-top: 4px;
   padding-right: 11px;
@@ -81,7 +88,26 @@
   /* background-color: antiquewhite; */
 }
 
-.header-bottom a{
+.header-bottom ul {
+  list-style: none;
+  margin: 0 auto;
+  width: 632px;
+}
+
+.header-bottom li {
+  float: left;
+  border-bottom: 1px solid transparent;
+}
+
+.header-bottom li:hover {
+  border-bottom: 1px solid #a10000;
+}
+
+.header-bottom li:hover a {
+  color: #a10000;
+}
+
+.header-bottom a {
   display: inline-block;
   margin: 0 21px;
   line-height: 40px;
@@ -90,29 +116,33 @@
   text-decoration: none;
 }
 
-
 /* .main{
   background-color: skyblue;
 } */
 
-.banner{
+.banner {
   /* height: 666px; */
   background-color: aquamarine;
 }
 
-.image{
+.image {
   display: block;
   width: 100%;
 }
 
-.wrapper{
+.wrapper {
+  position: relative;
   margin: 0 auto;
   height: 380px;
   width: 840px;
+  margin-top: -44px;
   background-color: white;
+  background-image: url(../img/bg.jpg);
+  background-position: bottom;
+  background-repeat: repeat-x;
 }
 
-.wrapper .item{
+.wrapper .item {
   float: left;
   margin-top: 15px;
   margin-left: 15px;
@@ -121,62 +151,62 @@
   /* background-color: orange; */
 }
 
-.content{
+.content {
   margin: 0 auto;
   width: 1126px;
   background-color: tomato;
 }
 
-.title{
+.title {
   height: 95px;
   background-color: white;
   overflow: hidden;
 }
 
-.title img{
+.title img {
   display: block;
   margin: 0 auto;
   margin-top: calc((95px - 36px) / 2);
   width: 810px;
 }
 
-.con{
+.con {
   overflow: hidden;
   background-color: white;
 }
 
-.con .item{
+.con .item {
   float: left;
   margin: 0 18px 23px 0;
   width: 268px;
   height: 320px;
   background-color: white;
 }
-.con .item:nth-child(4n){
+.con .item:nth-child(4n) {
   margin-right: 0;
 }
 
-.con .item:hover{
+.con .item:hover {
   box-shadow: 0 0 10px #757575;
 }
 
-.con .item img{
+.con .item img {
   display: block;
 }
 
-.con .name{
+.con .name {
   margin: 8px 0;
   text-align: center;
   font-size: 12px;
 }
 
-.con .price{
+.con .price {
   text-align: center;
   font-size: 14px;
   font-weight: 700;
   color: #a10000;
 }
- 
+
 .footer {
   /* background-color: pink; */
   border-top: 1px solid #dbdbdb;
@@ -184,27 +214,50 @@
 
 .footer-top {
   margin: 0 auto;
-  width: 1163px;
+  width: 1160px;
   height: 114px;
   /* background-color: aquamarine; */
 }
 
-.footer-top .item{
+.footer-top .item {
   float: left;
   margin-top: 30px;
   width: 290px;
   border-right: 1px solid #dbdbdb;
+  box-sizing: border-box;
 }
 
-.footer-top .item:last-child{
+.footer-top .item:last-child {
   border-right: none;
 }
 
-.footer-top .item img{
+.footer-top .item img {
   float: left;
   margin: 0 12px 0 71px;
 }
-.footer-top .item span{
+
+.footer-top .item div{
+  float: left;
+  margin: 0 12px 0 71px;
+  width: 53px;
+  height: 53px;
+  background-image: url(../img/footer-xuebitu.png);
+}
+
+/* .footer-top .item .img1{
+
+} */
+.footer-top .item .img2{
+  background-position: -63px 0;
+}
+.footer-top .item .img3{
+  background-position: -126px 0;
+}
+.footer-top .item .img4{
+  background-position: -189px 0;
+}
+
+.footer-top .item span {
   float: left;
   line-height: 53px;
 }
@@ -216,7 +269,7 @@
   overflow: hidden;
 }
 
-.footer-bottom p{
+.footer-bottom p {
   margin-top: 31px;
   font-size: 12px;
   line-height: 16px;
