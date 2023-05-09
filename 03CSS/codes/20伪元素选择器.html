@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      border: 1px solid red;
+      width: 500px;
+      height: 500px;
+    }
+
+    .box::first-letter{
+      color: red;
+    }
+
+    .box::first-line{
+      color: aqua;
+    }
+
+    .box::before{
+      content: '123';
+      display: block;
+      background-color: antiquewhite;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"> 
+    CSS（Casacding Style Sheets）层叠样式表，用来控制网页的样式，不能直接使用，作用在页面上的标签上的，控制标签的样式层叠：css样式代码可以书写在多个地方，首先检查代码中有没有css样式，如果有将内联样式、内部样式、外部样式、浏览器默认样式、用户自定义的样式叠加在一起，形成最终的一套样式，相同的属性进行层叠，不同的属性直接作用在标签上。样式表：指的是css样式代码，页面中在标签上`style`属性中书写的代码、`style`标签中通过选择器书写的代码、外部的css文件中通过选择器来书写的代码。
+  </div>
+</body>
+</html>

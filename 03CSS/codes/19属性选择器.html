@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* [class]{
+      color: red;
+    } */
+
+    /* [class="box1"]{
+      color: blue;
+    } */
+
+    /* 必须匹配所有的属性值 */
+    /* [class="box2 ob abcd"]{
+      color: yellow;
+    } */
+
+    [class*=abc]{
+      color: aqua;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">box1</div>
+  <div class="box2 ob abcd">box2</div>
+  <div class="box3 ob abcdefg">box3</div>
+</body>
+</html>
