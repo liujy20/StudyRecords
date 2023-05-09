@@ -1,0 +1,153 @@
+/* .main{
+  min-height: 200px;
+  background-color: antiquewhite;
+} */
+
+.main .wrapper {
+  height: 42px;
+  line-height: 40px;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.main .center {
+  margin: 0 auto;
+  width: 1160px;
+}
+
+.main a {
+  font-size: 12px;
+  color: #666;
+  text-decoration: none;
+}
+
+.main span {
+  font-size: 12px;
+  margin: 0 20px;
+  color: #666;
+}
+
+.main a:last-child {
+  color: #333;
+}
+
+.main .content {
+  padding-top: 28px;
+}
+
+.main .content .bigI {
+  float: left;
+  width: 580px;
+}
+
+.main .content .info {
+  float: right;
+  margin: 14px 0 0;
+  width: 500px;
+}
+
+.main .content .title {
+  font-size: 22px;
+  line-height: 22px;
+  color: #262626;
+}
+.main .content .productInfo {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #666;
+  line-height: 16px;
+}
+
+.main .content .price {
+  padding: 15px 0 40px;
+  font-size: 20px;
+  line-height: 15px;
+  color: #a10000;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.main .content .type {
+  font-size: 12px;
+  line-height: 12px;
+  margin: 30px 0;
+  color: #262626;
+}
+
+.main .content .smallList img {
+  float: left;
+  margin: 0 13px;
+  width: 50px;
+  box-sizing: border-box;
+}
+.main .content .smallList img:hover {
+  border: 1px solid #a10000;
+}
+
+.main .content .number {
+  margin: 45px 0 25px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #262626;
+}
+
+.main .content .number span {
+  color: #a10000;
+  margin: 0;
+}
+
+.main .content .add-reduce div {
+  float: left;
+  width: 27px;
+  height: 27px;
+  line-height: 27px;
+  text-align: center;
+  font-size: 12px;
+  color: #262626;
+}
+
+.reduce,
+.add {
+  border: 1px solid #dadada;
+}
+
+.main .content .btns {
+  margin-top: 20px;
+  border-top: 1px solid #dbdbdb;
+  padding-top: 35px;
+}
+
+.main .btns button {
+  width: 170px;
+  height: 40px;
+  border: none;
+  line-height: 40px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.main .btns .pay {
+  float: left;
+  background-color: #a10000;
+  color: white;
+}
+.main .btns .shopping {
+  float: right;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+.main .imgList{
+  margin: 20px 0 50px;
+}
+
+.main .imgList img{
+  float: left;
+  margin-right: 20px;
+  border: 1px solid transparent;
+}
+
+
+.main .imgList img:hover{
+  border: 1px solid #a10000;
+}
+
