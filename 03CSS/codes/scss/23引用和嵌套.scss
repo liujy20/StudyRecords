@@ -1,0 +1,12 @@
+@import "./22test.scss";
+
+.main{
+  background-color: pink;
+  li{
+    color: #a99;
+    font-size: 20px;
+    &:hover{
+      color: #abc;
+    }
+  }
+}

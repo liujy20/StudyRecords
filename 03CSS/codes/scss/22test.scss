@@ -1,0 +1,12 @@
+$myColor:#acc;
+$myBorder: 1px solid #99a;
+
+.box1{
+  color: $myColor;
+  width: 200px;
+  height: 200px;
+}
+
+.box2{
+  border: $myBorder;
+}

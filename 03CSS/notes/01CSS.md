@@ -928,11 +928,127 @@ HTML目前为止学习的标签，比如
     }
     ```
 
+## CSS继承
 
+继承的概念更多出现在编程语言中，`JavaScript`就要学习基础继承概念
 
+CSS继承：子元素可以获取到父元素的样式
 
+- 自动继承：子元素不需要任何的操作，可以自动将父标签处获取到的对应样式作用在子元素上
 
+- 手动继承：子元素需要设置对应的代码来从父元素上继承该属性的值
 
+  `css属性名:inherit`：inherit代表从父元素上继承该属性的值
+
+### 1、可以被子元素自动继承的CSS属性
+
+- 文本样式默认是可以被自动继承
+
+  - color
+  - text-align
+  - line-height
+  - text-decoration
+  - letter-spacing
+  - worde-spacing
+  - text-indent
+  - text-transform
+
+- font系列的字体样式是可以被自动继承
+
+  - font-size
+  - font-family
+  - font-weight
+  - font-style
+
+- list-style属性：li标签可以从ul或ol标签上自动继承
+
+- 鼠标样式：cursor 可以从父元素上自动继承
+
+  `cursor: pointer;`：抓手
+
+### 2、不可以被子元素自动继承的属性
+
+- width、height、border、background、padding、margin等
+
+## 表格标签及样式
+
+### 1、表格的标签
+
+- 用于在页面中绘制表格
+
+- 语法:
+
+  - `<table></table>`：代表一个表格，一个table就代表一个表格
+  - `<tr></tr>`：代表行，一个tr就代表一行，不可以设置宽度，但是可以设置高度，会影响整行的高度
+  - `<td></td>`：代表列，单元格，一个td就代表一个单元格，设置宽度会影响整列的宽度，设置高度会影响整行的高度
+  - `<th></th>`：代表表头，内容会加粗并水平居中显示
+  - `<thead></thead>`：代表表格的头部
+  - `<tbody></tbody>`：代表表格的内容区域
+  - `<tfoot></tfoot>`：代表表格的尾部
+
+  ```html
+  <!-- 绘制一个3行4列表格 --><!-- 代表表格 -->
+  <table>  
+    <!-- 代表表格的头部 -->   
+    <thead>    
+      <tr class="tr1">    
+        <th class="td1">姓名12</th>     
+        <td>年龄</td>    
+        <td>性别</td>          
+        <td>爱好</td>    
+      </tr>  
+    </thead> 
+    <!-- 代表表格内容区域 -->  
+    <tbody>    
+      <tr>      
+        <td>张三</td>     
+        <td>18</td>       
+        <td>男</td>       
+        <td>女</td>      
+      </tr>  
+      <tr>       
+        <td>李四</td>     
+        <td>18</td>          
+        <td>男</td>        
+        <td>男</td>   
+      </tr>  
+    </tbody>
+    <!-- 代表表格的尾部 --> 
+    <tfoot>  
+      <tr>     
+        <td></td>      
+        <td></td>         
+        <td></td>        
+        <td></td>  
+    </tr>   
+    </tfoot></table>
+  ```
+
+### 2、表格标签的属性（了解）
+
+- 设置table标签的属性
+- `cellpacing`：设置单元格之间的间距（不推荐使用，可以使用border-spacing解决）
+- `cellpadding`：设置单元格内容和边框的间距（不推荐使用，使用padding解决）
+
+### 3、表格标签的css样式
+
+- `border-spacing`：设置单元格之间的间距
+- `border-collapse:collapse;`：将表格边框合并为一条
+
+### 4、单元格合并
+
+- `rowspan`：跨行合并，垂直方向上合并单元格
+- `colspan`：跨列合并，水平方向上合并单元格
+
+注意：是单元格标签上的属性，不管跨行还是跨列，合并几个单元格，对应属性值就写几。
+
+### 5、单元格样式（了解）
+
+- 设置单元格中文本水平方向的对齐方式：`text-align`
+- 设置单元格中文本垂直方向的对齐方式：`vertical-align`
+  - `middle`：默认值，居中对齐
+  - `top`：顶部对齐
+  - `bottom`：底部对齐
 
 
 
