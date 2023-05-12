@@ -1,3 +1,7 @@
+body{
+  padding-top: 140px;
+}
+
 /* .main{
   background-color: skyblue;
 } */
@@ -53,7 +57,7 @@
 }
 
 .con {
-  overflow: hidden;
+  /* overflow: hidden; */
   background-color: white;
 }
 
@@ -88,3 +92,6 @@
   font-weight: 700;
   color: #a10000;
 }
+
+
+

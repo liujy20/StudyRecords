@@ -1050,6 +1050,354 @@ CSS继承：子元素可以获取到父元素的样式
   - `top`：顶部对齐
   - `bottom`：底部对齐
 
+## 表单标签
 
+- 表单元素主要用于进行前后端数据交互
+
+### 1、表单组件
+
+#### （1）普通输入框
+
+- 语法：
+
+  ```html
+  <input type="text"   placeholder="设置文本框中提示性的信息"  value="设置文本框中的默认值">
+  ```
+
+#### （2）密码框
+
+- 密码框中的内容是不可见的
+
+- 语法：
+
+  ```html
+  <input type="password"   placeholder="设置文本框中提示性的信息"  value="设置文本框中的默认值">
+  ```
+
+#### （3）下拉列表
+
+- 语法：
+
+  ```html
+  <select name="" id="">  
+    <option value="">身份证</option>
+    <option value="">学生证</option> 
+    <option value="">结婚证</option>
+  </select>
+  ```
+
+- 注意：
+
+  - 一个选项就是一个option标签
+  - 下拉列表中默认选中第一个选项，可以在`option`标签上添加`selected`属性控制默认选中
+  - 下拉列表默认只能选择一个选项，可以在`select`标签上添加`multiple`属性控制多选
+
+#### （4）单选框
+
+- 语法：
+
+  ```html
+  <input type="radio" name="gender">男
+  <input type="radio" name="gender">女
+  ```
+
+- 注意：
+
+  - 单选需要设置相同的name值进行绑定，才可以实现单选的功能
+
+#### （5）多选框
+
+- 语法：
+
+  ```html
+   <input type="checkbox">
+  ```
+
+- 注意：
+
+  - 单选框和多选框上设置`checked`属性控制默认选中
+
+#### （6）文本域
+
+- 语法：
+
+  ```html
+  <textarea  rows="控制显示的行数"  cols="设置一行显示的字符个数"></textarea>
+  ```
+
+- 注意：rows和cols变相控制了文本域的大小，一般使用css的样式来控制宽度和高度
+
+#### （7）按钮
+
+- 语法：
+
+  ```html
+  input:
+  <input type="button" value="普通按钮">
+  <input type="reset" value="重置按钮">
+  <input type="submit" value="提交按钮">
+  
+  button:
+  <button>按钮</button>
+  <button type="button">普通按钮</button>
+  <button type="reset">重置按钮</button>
+  <button type="submit">提交按钮</button>
+  ```
+
+- 注意：
+
+  - 提交和重置按钮需要配合form标签一起使用
+  - 推荐使用button
+
+#### （8）文件上传—-H5
+
+- 语法：
+
+  ```html
+   <input type="file">
+  ```
+
+- 注意：默认只能上传一个文件，可以在标签上添加`multiple`属性实现上传多个文件
+
+#### （9）H5新增表单元素
+
+- HTML5.0提出，不同的浏览器的显示效果是一样的，不同的浏览器的兼容性不一样
+
+- 语法：
+
+  ```html
+  1. 数字输入框：只能输入数字
+  <input type="number">
+  
+  2. 网址输入框：可以提供在提交数据时验证网址
+  <input type="url">
+  
+  3. 邮箱输入框：可以提供邮箱的验证，以后通过js进行验证
+  <input type="email">
+  
+  4. 时间控件 
+  <!-- 年/月/日 -->
+  <input type="date">
+  <!-- 年/月 -->
+  <input type="month">
+  <!-- 某年第几周 -->
+  <input type="week">
+  <!-- 时间 -->
+  <input type="time">
+  ```
+
+### 2、label标签
+
+- 语法：
+
+  ```html
+  <label for="">文本</label>
+  
+  例子：
+  性别：
+  <input type="radio" name="gender" id="man"> <label for="man">男</label>
+  <input type="radio" name="gender" id="woman"><label for="woman">女 </label>
+  ```
+
+  - `label`是可以同行显示的，是一个行内元素
+
+- 注意：`label`的特殊用法
+
+  - `label`标签通过标签上的`for`属性指定表单元素的`id`名，可以实现点击`label`中的内容控制对应的表单元素获取焦点
+
+## CSS定位
+
+### 1、静态定位
+
+- 所有的元素==默认==都是静态定位，元素在标准文档流中
+
+- 语法:
+
+  ```css
+  position:static;
+  ```
+
+### 2、固定定位
+
+- 可以让元素固定在页面上，不会随着滚动条滚动
+
+- 语法：
+
+  ```css
+  position:fixed;
+  ```
+
+- 设置偏移量（移动量）：
+
+  - `top`：距离参考位置上边缘的间距
+  - `bottom`：距离参考位置下边缘的间距
+  - `left`：距离参考位置左边缘的间距
+  - `right`：距离参考位置右边缘的间距
+
+- 特点：
+
+  - 固定定位的元素会脱离文档流，固定在页面上，不会随着滚动条滚动
+  - 原来的空间不再占用
+  - 如果只设置固定定位，元素会在当前位置脱离文档流，一旦设置偏移量，元素会参考整个显示区域（视口）进行移动
+
+## SASS
+
+### 1、基本概念
+
+- less和sass是一个CSS预处理器，可以减少css代码重复编写，节省开发时间，加快开发效率
+  - CSS预处理器是一种脚本语言，可以扩展css语法并编译成常规的css代码，以便浏览器可以正常渲染
+  - SASS是对css的扩展，可以提供嵌套、变量等等语法来提供css代码的开发效率
+- less和sass都是css预处理，但是less更新得太慢
+- [SASS官网](https://www.sass.hk/)
+
+### 2、基本使用
+
+#### （1）使用vs code中`easy sass`插件
+
+1. 利用`easy sass`插件来编写sass代码
+   - 安装`easy sass`插件
+   - 新建以`.scss`为后缀名的文件，在里面可以编写sass代码
+   - 保存文件时，`easy sass`会自动将sass代码编译为css文件，在页面中引入css文件即可
+
+#### （2）手动更改自动保存的css文件的文件路径
+
+注意：路径从工作区出发，工作区必须有名字
+
+![image-20230510165846194](C:\StudyRecords\03CSS\notes\01CSS.assets\20230510165853.png)
+
+### 3、嵌套
+
+- SASS支持父选择器里面嵌套子选择器
+
+- 好处：让css代码层级结构更加清晰，减少了重复的选择器的书写，不会出现父子标签的权重的问题
+
+- 语法：
+
+  ```css
+  父选择器{ 
+    css代码  
+    子选择器{      
+      css代码   
+    }
+  }
+  
+  sass代码：
+  .header {   
+    width: 100%; 
+    height: 140px;   
+    background-color: pink; 
+    .header-top {      
+      width: 1160px;    
+      height: 100px;     
+      background-color: tomato; 
+    }  
+    .header-bottom {  
+      width: 1160px;      
+      height: 40px;       
+      background-color: yellowgreen; 
+      ul {        
+        margin: 0;    
+        padding: 0;          
+        list-style: none;      
+        >li {             
+          width: 100px;         
+          height: 40px;         
+          // &代表父选择器         
+          &:hover{            
+            color: red;       
+          }         
+        }     
+      }       
+      &::after{   
+        content: "";    
+      }    
+      +div{     
+        width: 100px;    
+      }  
+    }
+  }
+  
+  编译后的css代码：
+  .header {  
+    width: 100%;   
+    height: 140px;   
+    background-color: pink;
+  }
+  .header .header-top {  
+    width: 1160px;   
+    height: 100px;   
+    background-color: tomato;
+  }
+  .header .header-bottom {  
+    width: 1160px;   
+    height: 40px;   
+    background-color: yellowgreen;
+  }
+  .header .header-bottom ul {   
+    margin: 0;   
+    padding: 0;   
+    list-style: none;
+  }
+  .header .header-bottom ul > li {
+    width: 100px;   
+    height: 40px;
+  }
+  .header .header-bottom ul > li:hover { 
+    color: red;
+  }
+  .header .header-bottom::after { 
+    content: "";
+  }
+  .header .header-bottom + div { 
+    width: 100px;
+  }
+  ```
+
+### 4、变量
+
+- 概念：变量可以看作一个保存数据的容器，可以在代码中重复使用
+
+- 用途：可以达到一处改处处改的效果
+
+- 语法：
+
+  ```css
+  1. 定义变量$变量名:数据;
+  2. 使用变量css属性名: $变量名;
+  ```
+
+  - 变量名的命名规范可以参考id的命名规范
+  - 数据可以是任意的css属性的属性值，比如100px，red，还可以是复合属性的属性值，比如`1px solid red`
+
+- 注意：变量需要先在页面开头定义，再使用变量
+
+### 5、数学运算
+
+- sass支持数学运算
+
+- css中如果需要进行运算，使用`calc()`函数来进行运算
+
+- 语法：
+
+  ```css
+  .box1{   
+    width: 100px - 50px;  
+    height: 100px +10px;
+  }
+  ```
+
+- 注意：`%`和`px`不能混合使用
+
+### 6、导入sass文件
+
+- 可以在一个sass文件中导入另外一个sass文件
+
+- 可以将移入的sass文件和当前的sass文件合并编译为一个css文件
+
+- 语法:
+
+  ```css
+  @import "sass文件的文件路径"
+  ```
 
 ## end

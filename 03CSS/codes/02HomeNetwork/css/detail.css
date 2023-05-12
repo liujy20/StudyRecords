@@ -3,7 +3,7 @@
   background-color: antiquewhite;
 } */
 
-.main .wrapper {
+.main>.wrapper {
   height: 42px;
   line-height: 40px;
   border-top: 1px solid #dbdbdb;
@@ -160,3 +160,145 @@
   border: 1px solid #a10000;
 }
 
+/* .main .pros{
+  background-color: #a10000;
+} */
+
+.main .proImg{
+  float: left;
+  width: 945px;
+  /* background-color: #acc; */
+  text-align: center;
+}
+
+.main .proImg .tit{
+  height: 42px;
+  line-height: 42px;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.main .proImg .tit .item{
+  float: left;
+  width: 85px;
+  font-size: 12px;
+  
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.main .proImg .tit .item:hover{
+  border-bottom: 1px solid #a10000;
+  color: #a10000;
+}
+
+.main .pros .proImg .imgs{
+  padding-top: 20px;
+}
+
+.main .pros .proImg img{
+  margin-top: 6px;
+  display: block;
+}
+
+.main .pros .proList{
+  float: right;
+  width: 200px;
+  /* background-color:skyblue; */
+}
+
+.main .pros .proList .tit{
+  height: 40px;
+  background-color: #f6f6f6;
+  color: #333;
+  font-size: 12px;
+  text-align: center;
+  line-height: 40px;
+  margin-bottom: 20px;
+  
+}
+
+.main .pros .proList .item{
+  width: 160px;
+  margin: 0 auto 30px;
+}
+
+.main .pros .proList .item img{
+  display: block;
+}
+.main .pros .proList .item h3{
+  margin: 15px 0;
+  font-size: 12px;
+}
+
+.main .pros .proList .item p{
+  margin: 0;
+  color: #666;
+  font-size: 12px;
+}
+
+.main .more{
+  margin-top: 20px;
+  background-color: #fbfbfb;
+  /* height: 100px; */
+  padding-bottom: 40px;
+  overflow: hidden;
+}
+
+.main .more .wrapper{
+  margin: 0 auto;
+  width: 1300px;
+}
+.main .more .wrapper p{
+  font-size: 16px;
+  margin:11px 0 26px;
+  line-height: 16px;
+  text-align: center;
+}
+
+/* .main .more .other{
+  background-color: skyblue;
+} */
+
+.main .more .other .item{
+  float: left;
+  width: 216px;
+}
+
+.main .more .other .toZuo,
+.main .more .other .toYou{
+  width: 69px;
+  margin-top: 90px;
+}
+
+/* .main .more .other .toZuo{
+  margin-top: 90px;
+} */
+
+.main .more .other .toYou{
+  text-align: right;
+}
+
+.main .more .other .toZuo img,
+.main .more .other .toYou img{
+  width: 20px;
+}
+
+.main .more .other .imgs{
+  margin-right: 20px;
+}
+
+.main .more .other .imgs:nth-last-child(2){
+  margin-right: 0;
+}
+
+.main .more .other .imgs h3{
+  margin: 19px 0 17px;
+  font-size: 12px;
+}
+
+.main .more .other .imgs p{
+  margin: 0;
+  font-size: 14px;
+  color: #a10000;
+  text-align: left;
+}

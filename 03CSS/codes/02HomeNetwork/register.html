@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/register.css" />
+  </head>
+  <body>
+    <form action="" class="clearfix">
+      <div class="title">
+        <img src="./img/logo.png" alt="" />
+      </div>
+      <div class="content clearfix">
+        <h3>用户注册</h3>
+        <div class="rows clearfix">
+          <div class="name">*用户名:</div>
+          <div class="value">
+            <input type="text" />
+          </div>
+          <div class="warning">6-10位字母、数字、下划线</div>
+        </div>
+        <div class="rows clearfix">
+          <div class="name">*密码:</div>
+          <div class="value">
+            <input type="text" />
+          </div>
+          <div class="warning">6位纯数字</div>
+        </div>
+        <div class="rows clearfix">
+          <div class="name">*确认密码:</div>
+          <div class="value">
+            <input type="text" />
+          </div>
+          <div class="warning">两次密码不一致</div>
+        </div>
+        <div class="rows clearfix">
+          <div class="name">*证件类型:</div>
+          <div class="value">
+            <select>
+              <option value="">身份证</option>
+              <option value="">学生证</option>
+            </select>
+          </div>
+          <div class="warning">两次密码不一致</div>
+        </div>
+        <div class="rows clearfix">
+          <div class="name">*性别:</div>
+          <div class="value">
+            <input type="radio" name="gender" id="man">
+            <label for="man">男</label>
+            &nbsp;
+            <input type="radio" name="gender" id="woman">
+            <label for="woman">女</label>
+          </div>
+          <div class="warning">性别不能为空</div>
+        </div>
+        <div class="rows clearfix">
+          <div class="name">*学历:</div>
+          <div class="value">
+            <input type="checkbox" name="education" id="d">
+            <label for="d">大专</label>
+            <input type="checkbox" name="education" id="b">
+            <label for="b">本科</label>
+            <input type="checkbox" name="education" id="y">
+            <label for="y">研究生</label>
+          </div>
+          <div class="warning">学历不能为空</div>
+        </div>
+        <div class="rows clearfix">
+          <div class="name">*年龄:</div>
+          <div class="value">
+            <input type="number">
+          </div>
+          <div class="warning">年龄不能为空</div>
+        </div>
+        <div class="rows clearfix">
+          <div class="name">*出生日期:</div>
+          <div class="value">
+            <input type="date">
+          </div>
+          <div class="warning">日期不能为空</div>
+        </div>
+      </div>
+      <div class="footer">
+        <a href="#">已有账号登录</a>
+        <div class="btns clearfix">
+          <button type="reset" class="reset">重置</button>
+          <button type="submit" class="submit">注册</button>
+        </div>
+        <p>
+          完成此注册，即表明您同意了我们的
+          <span>《使用条款和隐私策略》</span>
+        </p>
+      </div>
+    </form>
+  </body>
+</html>

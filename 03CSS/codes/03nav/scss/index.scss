@@ -1,0 +1,71 @@
+.box{
+  width: 200px;
+  border: 1px solid #ffcece;
+  margin: 0 auto;
+  background-color: #fafafa;
+  .tit{
+    color: white;
+    line-height: 35px;
+    font-size: 12px;
+    padding-left: 25px;
+    background-image: url(../img/bg-index-sort-v211.png);
+  }
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li{
+      padding-left: 25px;
+      height: 35px;
+      line-height: 35px;
+      font-size: 12px;
+      border-bottom: 1px solid #f1f0f0;
+      i{
+        float: left;
+        width: 20px;
+        height: 25px;
+        margin-top: 5px;
+        background-image: url(../img/ico-index-sort.png);
+        background-position: -5px -6px;
+      }
+      span{
+        float: left;
+        margin-left: 10px;
+      }
+      .more{
+        float: right;
+        width: 6px;
+        height: 9px;
+        margin: 15px 15px 0 0;
+        background-image: url(../img/bg-index-sort-v211.png);
+        background-position: -7px -94px;
+      }
+      .icon2{
+        background-position: -5px -106px;
+      }
+      .icon3{
+        background-position: -5px -204px;
+      }
+      .icon4{
+        background-position: -5px -304px;
+      }
+      .icon5{
+        background-position: -4px -403px;
+      }
+      .icon6{
+        background-position: -5px -502px;
+      }
+      .icon7{
+        background-position: -5px -606px;
+      }
+      .icon8{
+        background-position: -5px -703px;
+      }
+    }
+  }
+}
+.clearfix::after{
+  content: '';
+  display: block;
+  clear: both;
+}

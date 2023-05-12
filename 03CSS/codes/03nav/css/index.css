@@ -1,0 +1,85 @@
+.box {
+  width: 200px;
+  border: 1px solid #ffcece;
+  margin: 0 auto;
+  background-color: #fafafa;
+}
+
+.box .tit {
+  color: white;
+  line-height: 35px;
+  font-size: 12px;
+  padding-left: 25px;
+  background-image: url(../img/bg-index-sort-v211.png);
+}
+
+.box ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.box ul li {
+  padding-left: 25px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 12px;
+  border-bottom: 1px solid #f1f0f0;
+}
+
+.box ul li i {
+  float: left;
+  width: 20px;
+  height: 25px;
+  margin-top: 5px;
+  background-image: url(../img/ico-index-sort.png);
+  background-position: -5px -6px;
+}
+
+.box ul li span {
+  float: left;
+  margin-left: 10px;
+}
+
+.box ul li .more {
+  float: right;
+  width: 6px;
+  height: 9px;
+  margin: 15px 15px 0 0;
+  background-image: url(../img/bg-index-sort-v211.png);
+  background-position: -7px -94px;
+}
+
+.box ul li .icon2 {
+  background-position: -5px -106px;
+}
+
+.box ul li .icon3 {
+  background-position: -5px -204px;
+}
+
+.box ul li .icon4 {
+  background-position: -5px -304px;
+}
+
+.box ul li .icon5 {
+  background-position: -4px -403px;
+}
+
+.box ul li .icon6 {
+  background-position: -5px -502px;
+}
+
+.box ul li .icon7 {
+  background-position: -5px -606px;
+}
+
+.box ul li .icon8 {
+  background-position: -5px -703px;
+}
+
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}

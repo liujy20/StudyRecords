@@ -1,0 +1,145 @@
+.clearfix::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/19.jpg);
+  background-position: top center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+form {
+  background-color: #fff;
+  width: 600px;
+  position: fixed;
+  top: calc((100% - 740px) / 2);
+  right: 10%;
+  border: 1px solid #dbdbdb;
+}
+
+form .title {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+form .title img {
+  width: 123px;
+}
+
+form .content {
+  line-height: 42px;
+}
+
+form .content h3 {
+  margin: 0;
+  line-height: 50px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+form .content .rows{
+  margin-bottom: 13px;
+}
+
+form .content .name {
+  float: left;
+  height: 42px;
+  width: 140px;
+  font-size: 16px;
+  text-align: right;
+  color: #333;
+}
+
+form .content .value {
+  float: left;
+  width: 256px;
+  margin: 0 15px;
+}
+
+form .content .value input[type=text],
+form .content .value input[type=password],
+form .content .value input[type=number],
+form .content .value input[type=date]{
+  box-sizing: border-box;
+  width: 256px;
+  height: 42px;
+  padding: 14px 0 14px 10px;
+}
+
+form .content .value select{
+  width: 256px;
+  height: 42px;
+}
+
+form .content .value input[type=date]{
+  font-size: 16px;
+}
+
+form .content .warning {
+  float: left;
+  font-size: 12px;
+  color: #c20000;
+}
+
+form .footer{
+  margin-top: 12px;
+  padding-left: 155px;
+}
+
+form .footer a{
+  text-decoration: none;
+  color: black;
+  line-height: 12px;
+  font-size: 12px;
+  margin-left: 180px;
+}
+
+form .footer .btns{
+  margin-top: 16px;
+  line-height: 40px;
+  font-size: 14px;
+  text-align: center;
+}
+
+form .footer .btns .reset{
+  float: left;
+  width: 120px;
+  height: 40px;
+  margin-right: 15px;
+  border: none;
+  background-color: #747474;
+  color: #fff;
+  border-radius: 3px;
+}
+form .footer .btns .submit{
+  float: left;
+  width: 120px;
+  height: 40px;
+  border: none;
+  background-color: #c20000;
+  color: #fff;
+  border-radius: 3px;
+}
+
+form .footer p{
+  margin: 12px 0 36px;
+  font-size: 12px;
+
+}
+
+form .footer p span{
+  color: #c20000;
+}
