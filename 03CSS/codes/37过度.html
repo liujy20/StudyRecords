@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        height: 500px;
+        width: 500px;
+        border: 1px solid #aca;
+      }
+      .so{
+        width: 100px;
+        height: 100px;
+        background-color: #cfc;
+      }
+      .so1 {
+        transition: margin-left 2s ease;
+      }
+      .so2 {
+        transition: margin-left 2s linear;
+      }
+      .so3 {
+        transition: margin-left 2s ease-in;
+      }
+      .so4 {
+        transition: margin-left 2s ease-out;
+      }
+      .so5 {
+        transition: margin-left 2s cubic-bezier(.61,.17,0,1);
+      }
+      .box:hover .so{
+        margin-left: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="so1 so">ease</div>
+      <div class="so2 so">linear</div>
+      <div class="so3 so">ease-in</div>
+      <div class="so4 so">ease-out</div>
+      <div class="so5 so"></div>
+    </div>
+  </body>
+</html>
