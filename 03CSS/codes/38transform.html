@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      margin: 200px auto;
+      width: 200px;
+      height: 200px;
+      background-image: linear-gradient(lightblue, lightpink);
+      transition: 1s cubic-bezier(.7,1.6,.6,.7);
+    }
+    .box:hover{
+      /* 缩放 */
+      /* transform: scaleX(2);
+      transform: scaleY(2);
+      transform: scale(2); */
+
+      /* 移动 */
+      /* transform: translateX(100px);
+      transform: translateY(100px);
+      transform: translate(100px, 100px);  */
+
+      /* 旋转 */
+      /* transform: rotate(45deg);
+      transform: rotateX(45deg);
+      transform: rotate(45deg); */
+
+      /* 倾斜 */
+      transform: skew(45deg);
+      transform: skewX(45deg);
+      transform: skewY(45deg);
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>

@@ -34,7 +34,16 @@ body{
   margin-left: 15px;
   width: 260px;
   height: 350px;
+  overflow: hidden;
   /* background-color: orange; */
+}
+
+.wrapper .item img{
+  transition: .3s;
+}
+
+.wrapper .item img:hover{
+  transform: scale(1.05);
 }
 
 .content {
@@ -62,18 +71,83 @@ body{
 }
 
 .con .item {
+ 
   float: left;
   margin: 0 18px 23px 0;
   width: 268px;
   height: 320px;
   background-color: white;
+  overflow: hidden;
 }
+
+/* .con .item .mask{
+  overflow: hidden;
+  position: relative;
+}
+
+.con .item .mask::before{
+  content: '';
+  position: absolute;
+  top: -268px;
+  left: -268px;
+  width: 268px;
+  height: 268px;
+  background-color: #7fffd422;
+  transition: .5s;
+}
+.con .item .mask::after{
+  content: '';
+  position: absolute;
+  top: 268px;
+  left: 268px;
+  width: 268px;
+  height: 268px;
+  background-color: #7fffd422;
+  transition: .5s;
+}
+.con .item:hover .mask::before,
+.con .item:hover .mask:after{
+  top: 0;
+  left: 0;
+} */
+
+.con .item .mask{
+  position: relative;
+}
+
+.con .item .mask::before,
+.con .item .mask::after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 268px;
+  height: 268px;
+  background-color: #7fffd422;
+  transition: .5s;
+}
+
+.con .item .mask::before{
+  transform-origin: top left;
+  transform: scale(0);
+}
+.con .item .mask::after{
+  transform-origin: right bottom;
+  transform: scale(0);
+}
+
+.con .item .mask:hover:before,
+.con .item .mask:hover:after{
+  transform: scale(1);
+}
+
+
 .con .item:nth-child(4n) {
   margin-right: 0;
 }
 
 .con .item:hover {
-  box-shadow: 0 0 10px #757575;
+  box-shadow: 0 0 10px 0 #757575;
 }
 
 .con .item img {

@@ -1,0 +1,82 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-image: url(./img/bg1.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.big{
+  position: absolute;
+  top: 50px;
+  left: 1000px;
+  width: 345px;
+  height: 345px;
+  background-image: url(./img/logo_1ie.png);
+  background-repeat: no-repeat;
+  animation: rotate 5s linear infinite;
+}
+
+.small{
+  position: absolute;
+  top: 50px;
+  left: 1000px;
+  width: 345px;
+  height: 345px;
+  background-image: url(./img/logo_2ie.png);
+  background-repeat: no-repeat;
+  animation: rotate 5s linear infinite reverse;
+}
+img{
+  position: absolute;
+  top: 50px;
+  left: 1000px;
+}
+
+[class*=icon]{
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  background-image: url(./img/flash.png);
+}
+.icon1{
+  top: 10px;
+  left: 280px;
+  animation: flicker 1s infinite alternate;
+}
+.icon2{
+  top: 240px;
+  left: 230px;
+  animation: flicker 1s 1.2s infinite alternate;
+}
+.icon3{
+  top: 420px;
+  left: 870px;
+  animation: flicker 1s .6s infinite alternate;
+}
+.icon4{
+  top: 420px;
+  right: 180px;
+  animation: flicker 1s .3s infinite alternate;
+}
+
+
+@keyframes rotate {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes flicker {
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}

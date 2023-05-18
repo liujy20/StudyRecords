@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      position: relative;
+      margin: 100px auto;
+      width: 268px;
+      height: 268px;
+    }
+    img{
+      position: absolute;
+      transition: .5s cubic-bezier(.7,1.6,.6,.7);
+    }
+    img:nth-child(1){
+      z-index: 4;
+    }
+    .box:hover img:nth-child(1){
+      transform: scale(.5) translate(0, 150px);
+    }
+    img:nth-child(2){
+      z-index: 2;
+    }
+    .box:hover img:nth-child(2){
+      transform: scale(.5) translate(-200px, 0);
+    }
+    img:nth-child(3){
+      z-index: 3;
+    }
+    .box:hover img:nth-child(3){
+      transform: scale(.5) translate(0, -150px);
+    }
+    img:nth-child(4){
+      z-index: 1;
+    }
+    .box:hover img:nth-child(4){
+      transform: scale(.5) translate(200px, 0);
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <img src="./02HomeNetwork/img/s1.jpg" alt="">
+    <img src="./02HomeNetwork/img/s2.jpg" alt="">
+    <img src="./02HomeNetwork/img/s3.jpg" alt="">
+    <img src="./02HomeNetwork/img/s4.jpg" alt="">
+  </div>
+</body>
+</html>
