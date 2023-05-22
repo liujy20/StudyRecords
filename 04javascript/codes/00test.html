@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script>
+      let arr = ["小明","小红","小天","小李","小赵"];
+      let index = Math.floor(Math.random()*arr.length);
+      console.log(arr[index]);
+    </script> -->
+
+    <!-- <script>
+      let num = 1;
+      for (let i = 0; i < 10; i++) {
+        num += 1;
+        num *= 2;
+      }
+      console.log(num);
+    </script> -->
+
+    <!-- <script>
+      let arr = [18, 4, 32, 42, 23, 344, 12];
+      //1
+      let sum = arr.reduce((prev,cur)=>{
+        return prev+cur;
+      },0)
+      console.log(sum);
+
+      //2
+      let arr1 = arr.filter((item)=>{
+          return item>20;
+      })
+      console.log(arr1);
+
+      //3
+      let num = +prompt("请输入一个数")
+      if(arr.indexOf(num) >0){
+        console.log("存在这个数");
+      }else{
+        console.log("不存在这个数");
+      }
+
+      //4
+      let max = Math.max(...arr);
+      console.log(max);
+
+      //5
+      let index = +prompt("请输入索引");
+      let num1 = +prompt("请输入一个数")
+      arr.splice(index,0,num1)
+      console.log(arr);
+    </script> -->
+
+    <script>
+      let num = +prompt("请输入一个数");
+      let flag = true;
+      for (let i = 2; i < Math.sqrt(num); i++) {
+        if (num % i === 0) {
+          flag = false;
+          break;
+        }
+      }
+      if (flag) {
+        console.log("质数");
+      } else {
+        console.log("非质数");
+      }
+    </script>
+  </body>
+</html>

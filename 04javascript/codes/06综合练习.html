@@ -50,10 +50,17 @@
   </script> -->
 
     <script>
+      // let sum = 0;
+      // for (let i = 1; i <= 100; i++) {
+      //   sum += i;
+      // }
+      // console.log(sum);
+      let num = "1234";
+      let arr = num.split('');
       let sum = 0;
-      for (let i = 1; i <= 100; i++) {
-        sum += i;
-      }
+      arr.forEach((item)=>{
+        sum += +item;
+      })
       console.log(sum);
     </script>
   </body>

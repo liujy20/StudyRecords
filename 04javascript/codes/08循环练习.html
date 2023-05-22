@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // for(let i=100;i<=500;i=i+100){
+      //   console.log(i);
+      // }
+
+      // let sum = 0;
+      // for (let i = 1; i <= 10; i++) {
+      //   sum += i;
+      // }
+      // console.log(sum);
+
+      let num = +prompt("请输入数字");
+      let a = [];
+      for (let i = 0; i < num; i++) {
+        a[i] = prompt("请输入快递");
+      }
+      for (let i = num - 1; i >= 0; i--) {
+        console.log(a[i]);
+      }
+
+      let del = prompt("需要删除的快递");
+      for (let i = del; i <num; i++) {
+        a[i - 1] = a[i];
+      }
+      a.length--;
+      console.log(a);
+    </script>
+  </body>
+</html>
