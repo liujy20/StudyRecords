@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script>
+      let a = 1;
+      let sum = 0;
+      while (a <= 10) {
+        sum +=a;
+        a++;
+      }
+      console.log(sum);
+    </script> -->
+    <!-- <script>
+      let num = 1;
+      while (num != 0) {
+        num = prompt("输入一个数");
+        if (num != 0) {
+          let arr = num.split("");
+          arr.reverse();
+          let n = 0;
+          let sum = 0;
+          while (n < arr.length) {
+            sum += +arr[n];
+            n++;
+          }
+          num = arr.join(",");
+          console.log(num);
+          console.log(sum);
+        }
+      }
+    </script> -->
+    <script>
+      let num = 1234;
+      while(num!=0){
+        let a = num%10;
+        console.log(a);
+        num = parseInt(num/10);
+      }
+    </script>
+  </body>
+</html>

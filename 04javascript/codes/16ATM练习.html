@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script>
+      let users = [];
+      while (1) {
+        let op = +prompt("1.登录 2. 注册 3. 退出");
+        switch (op) {
+          case 1:
+            alert("登录");
+            if (users.length == 0) {
+              alert("请先注册");
+              break;
+            }
+            let name = prompt("请输入账户");
+            let pwd = prompt("请输入密码");
+            if (name == users[0] && pwd == users[1]) {
+              alert("登陆成功");
+            } else {
+              if (name != users[0]) {
+                alert("账户错误");
+              } else {
+                alert("密码错误");
+              }
+            }
+            break;
+          case 2:
+            alert("注册");
+            users[0] = prompt("请输入账户");
+            users[1] = prompt("请输入密码");
+            break;
+        }
+        if (op == 3) {
+          alert("感谢使用");
+          break;
+        }
+      }
+    </script> -->
+    <script>
+      let num = 15;
+      let foot = 40;
+      for (let i = 1; i <= num; i++) {
+        if (i * 4 + (num - i) * 2 == 40) {
+          console.log(`${num - i}只鸡,${i}只兔子`);
+        }
+      }
+    </script>
+  </body>
+</html>

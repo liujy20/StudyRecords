@@ -417,3 +417,426 @@ var、let、const都可以用于定义变量
   console.log(Boolean(undefined));//false
   console.log(Boolean(null));//false
   ```
+
+## 运算符
+
+### 一、算术运算符
+
+- `+`：加法
+
+  - 如果`+`两边都是数字，就进行加法运算
+  - 如果`+`的其中一边是字符串类型，那么直接拼接字符串，拼接成一个大的字符串
+
+  ```javascript
+  console.log(2 + 3);//5
+  console.log("2" + 3);//23
+  // 隐式转换，将数字转为字符串let num = 3 +"" ;
+  ```
+
+- `-`：减法
+
+  - 无论`-`前后是数字或字符串，都是进行减法运算
+  - 如果`-`前后有字符串，会将字符串转为数字，再进行减法运算，如果无法转换，则得到`NaN`
+
+  ```javascript
+  console.log(2 - 3);//-1
+  console.log("2" - "3");//-1
+  console.log(2 - "abc");//NaN 
+  // 隐式转换let str = "123" - 0;
+  ```
+
+- `*`：乘法
+
+- `/`：除法
+
+- `%`：取余，取模，进行整除后，取得是余数
+
+### 二、赋值运算符
+
+- `=`：对变量进行赋值，将等号右边的数据赋值给等号左边的变量
+
+  ```javascript
+  let num = 4;
+  let sum = 4 * (2 + 1);
+  console.log(sum);
+  ```
+
+- `+=`：在变量原来的基础上加上指定的数据，并把结果赋值给变量
+
+  ```javascript
+  let num = 2;
+  num += 3;//等价于 num = num +3console.log(num);//5
+  ```
+
+- `-=`：在变量原来的基础上减去指定的数据，并把结果赋值给变量
+
+  ```javascript
+  let num = 12;
+  num -= 5;// num = num -5console.log(num);//7
+  ```
+
+- `*=`：在变量原来的基础上乘以指定的数据，并把结果赋值给变量
+
+  ```javascript
+  let num = 12;
+  num *= 5;// num = num *5console.log(num);//60
+  ```
+
+- `/=`：在变量原来的基础上除以指定的数据，并把结果赋值给变量
+
+  ```javascript
+  let num = 12;
+  num /= 5;// num = num /5console.log(num);//2.4
+  ```
+
+- `%=`：在变量原来的基础上对指定的数据进行取余，并把结果赋值给变量
+
+  ```javascript
+  let num = 12;
+  num %= 5;// num = num %5console.log(num);//2
+  ```
+
+### 三、关系运算符
+
+- 用于判断数据之间的关系的运算符，得到的是一个布尔类型的值
+
+- `>`：判断连个数据是否是大于的关系，不考虑数据类型，得到布尔类型的值
+
+  ```javascript
+  console.log(1 > 2);//false
+  console.log(3 > 2);//true
+  console.log(3 > "2");//true
+  ```
+
+- `<`：判断两个数据是否是小于于的关系，不考虑数据类型，得到布尔类型的值
+
+  ```javascript
+   console.log(1 < 2);//true
+  console.log(3 < 2);//false
+  console.log(3 < "2");//false
+  console.log(1 < "2");//true
+  ```
+
+- `>=`：判断两个数据是否是大于或等于的关系，不考虑数据类型，得到布尔类型的值
+
+  ```javascript
+  console.log(2 >= 3);//false
+  console.log(2 >= 2);//false
+  console.log(1 >= "2");//false
+  console.log(2 >= "2");//true
+  ```
+
+- `<=`：判断两个数据是否是小于或等于的关系，不考虑数据类型，得到布尔类型的值
+
+  ```javascript
+  console.log(2 <= 3);//true
+  console.log(2 <= 2);//true
+  console.log(1 <= "2");//true
+  console.log(2 <= "2");//true
+  ```
+
+- `==`：判断两个数据是否是等于关系，不考虑数据类型，得到布尔值
+
+  ```javascript
+  console.log( 2 == 2);//true
+  console.log( 2 == "2");//true
+  console.log( 2 == 3);//false
+  ```
+
+- `!=`：判断两个数据是否是不等于关系，不考虑数据类型，得到布尔值
+
+  ```javascript
+  console.log( 2 != 2);//false
+  console.log( 2 != "3");//true
+  console.log( 2 != 3);//true
+  ```
+
+- `===`：判断两个数据是否是等于关系（全等），考虑数据类型，得到布尔值
+
+  ```javascript
+  console.log(2 === 2);//true
+  console.log(2 === "2");//false
+  console.log(2 === 3);//false
+  ```
+
+#### =、\==、\===之间的区别
+
+- `=`是赋值运算符，`==`和`===`是关系运算符
+- `==`：只判断两个数据是否相等，不考虑数据类型，`===`：判断两个数据是否全等，需要考虑数据类型
+
+### 四、逻辑运算符
+
+- `&&`：代表并且的意思，前后的条件都满足时则为true，否则为false【全真则真，一假则假】
+
+  ```javascript
+  console.log(3 > 2 && 4 > 3);//true
+  console.log(3 > 2 && 4 < 3);//false
+  ```
+
+- `||`：代表或者的意思，前后的条件只要满足一个则为true，全部都不满足才为false【一真则真，全假则假】
+
+  ```javascript
+  console.log(3 > 2 || 4 > 3);//true
+  console.log(3 > 2 || 4 < 3);//true
+  console.log(3 < 2 || 4 < 3);//false
+  ```
+
+- `!`：代表非，不是的意思，可以对结果进行取反
+
+  ```javascript
+  console.log(!(2 > 1));//false
+  ```
+
+## 数组
+
+### 1、概念
+
+- 数组是多个数据的”仓库”，一个仓库中可以保存并管理多个数据。
+- 官方：数组是一堆有序数据的集合。数组中的每个数据都有自己的编号——`下标（索引）`，用来快速查找数组中的数据。
+
+### 2、定义数组
+
+- 语法：
+
+  ```javascript
+  1. 定义空的数组let 
+  数组变量名 = new Array();
+  let  数组变量名 =[]; //字面量形式，推荐使用
+  
+  2. 定义带有默认数据的数组let 
+  数组变量名 = new Array(数据1,数据2,数据3,...,数据n);
+  let  数组变量名 =[数据1,数据2,数据3,...,数据n]; //字面量形式，推荐使用
+  ```
+
+### 3、基本使用
+
+#### （1）数组的长度
+
+- 指的是数组有几个数据
+
+- 语法：
+
+  ```javascript
+  数组变量名.length
+  ```
+
+#### （2）下标（索引）
+
+- 概念：本质上就是一个数字，数组中的每个数据对应了自己的下标，下标决定了数据在数组中的位置，同时我们可以通过下标来访问对应位置上的数据。
+- 原理：下标是从`0`开始，后面的数据的下标依次递增，最后一个数据的下标为`数组的长度-1`
+
+#### （3）查询数据
+
+- 通过下标来获取对应位置的数据
+
+- 语法：
+
+  ```javascript
+  数组变量名[下标]
+  ```
+
+- 注意：如果查找的下标是不存在的，得到的是`undefined`
+
+#### （4）修改数据
+
+- 通过下标来修改数据
+
+- 语法：
+
+  ```javascript
+  数组变量名[下标] = 新数据;
+  例子：
+  let arr = [2,6,3,5];
+  arr[2]=7;
+  console.log(arr)；// [2,6,7,5]
+  ```
+
+#### （5）新增数据
+
+- 数组末尾新增数据
+
+- 中间指定位置插入数据：指定下标及之后的数据都需要向后移动一位，再在指定的下标插入数据
+
+- 语法：
+
+  ```javascript
+  1. 在末尾新增数据数组变量名[下标] = 新数据;
+  数组变量名[数组变量名.length] = 新数据;
+  例子：
+  let students = [89, 90, 70, 78, 56, 45, 87, 56, 79];
+  students[9]=98;
+  students[10]=96;
+  students[11]=76;
+  students[students.length]=87;
+  students[students.length]=88;
+  ```
+
+#### （6）删除数据
+
+- 数组末尾删除数据：控制数组的长度
+
+- 在指定位置删除数据：将指定位置后面的所有数据向前移动一位，删除最后一个数据
+
+- 语法：
+
+  ```javascript
+  1. 删除最后一个数据数组变量名.length = 数组变量名.length-1;数组变量名.length -=1;数组变量名.length--;2. 清空数组数组变量名.length = 0;
+  ```
+
+#### （7）遍历数组
+
+- 依次获取数组中的每个数据
+
+- 语法：
+
+  ```javascript
+  let students = [89, 90, 70, 78, 56, 45, 87, 56, 79];
+  console.log(students[0]);
+  console.log(students[1]);
+  console.log(students[2]);// ...console.log(students[students.length-1]);
+  
+  for循环进行遍历for (var i = 0; i <= 数组变量名.length - 1; i++) {    console.log(arr[i]);
+  }
+  for (var i = 0; i < 数组变量名.length ; i++) {   
+    console.log(arr[i]);
+  }
+  ```
+
+## 循环结构
+
+- 概念：循环结构指的是可以重复执行指定的代码的代码结构
+
+![image-20230519141116297](C:\StudyRecords\04javascript\notes\JavaScript.assets\20230519141116.png)
+
+### 1、for循环
+
+- 概念：for循环是循环结构中的一种，比较常用的循环结构
+
+- 语法：
+
+  ```javascript
+  for(循环变量的初始化语句;继续循环的条件;控制条件语句){  
+    每次循环执行的代码---循环体
+  }
+  例子：
+  for (var i = 1; i <= 10; i = i + 1) { 
+    console.log("抄写"+i+"遍代码");//循环体
+  }
+  ```
+
+  - 循环变量的初始化语句：在循环开始之前，循环变量初始化语句对变量进行赋值，这个语句只在循环前执行一次
+  - 继续循环的条件语句：当条件为true时，执行循环体中的代码；当条件为false时，则结束循环
+  - 控制条件语句：每次执行完循环体后，都会对变量进行操作（变量自增自减等等）；在继续循环条件的判断
+
+- 执行流程
+
+  ![image-20230519142733646](C:\StudyRecords\04javascript\notes\JavaScript.assets\20230519142733.png)
+
+### 2、while循环
+
+- 概念：也是循环结构中 的一种，完成代码的重复执行
+
+- 语法：
+
+  ```javascript
+  while(继续循环的条件){  
+    条件为true时执行的代码----循环体
+  }
+  例子：
+  let i=1;
+  while (i <= 10) {   
+    console.log("抄写第" + i + "遍代码");  
+    i++;
+  }
+  ```
+
+- 执行流程：
+
+  ![image-20230522143910118](C:\StudyRecords\04javascript\notes\JavaScript.assets\20230522143910.png)
+
+- while循环与for循环的起步
+
+  - 语法上，for循环提供了变量初始化和变量控制条件语句的书写位置，while循环没有
+  - 应用场景上，for循环更多用于循环次数比较明确和循环条件明确的情况，while循环更多适用于循环条件明确，循环次数不明确的情况
+
+### 3、do…while循环
+
+- 也是循环结构中的一种，完成重复执行指定的代码，先执行一次循环体的代码，再判断继续循环的条件
+
+- 语法：
+
+  ```javascript
+  do{ 
+    循环体
+  }while(继续循环的条件)
+  ```
+
+- 注意：无论继续循环的条件是否满足，循环体至少执行一次
+
+- 执行流程：
+
+  ![image-20230522162254048](C:\StudyRecords\04javascript\notes\JavaScript.assets\20230522162254.png)
+
+- 三种循环之间的区别
+
+  - 三者都是循环结构，都是用于完成重复执行指定的代码，for和while可以相互替代，do…while不能
+  - 语法上不同
+  - 应用场景：
+    - for循环更适用于循环条件和循环次数都明确的情况
+    - while循环更适用于循环条件明确，循环次数不明确的情况
+    - do…while更使用于先执行一次循环体的代码，再进行判断情况
+
+## 分支结构
+
+### 1、if结构
+
+- if结构师分支结构中的一种，可以根据某个条件的判断（true或false）来决定执行不同的代码
+
+- 语法：
+
+  ```javascript
+  方式一：
+  if(条件){ 
+    条件为true时执行的代码
+  }
+  
+  方式二：
+  if(条件){  
+    条件为true时执行的代码
+  }else{ 
+    条件为false时执行的代码
+  }
+  
+  方式三：
+  if(条件1){    
+    条件1为true时执行的代码
+  }else if(条件2){ 
+    条件1为false，条件2为true时执行的代码
+  }else if(条件3){  
+    条件1和条件2都不满足时，条件3为true时执行的代码
+  }else if(条件n){   
+    以上所有条件都不满足，条件n为true时执行的代码
+  }else{  
+    以上所有的条件都不满足时执行的代码
+  }
+  ```
+
+- 执行流程
+
+![image-20230522111610037](C:\StudyRecords\04javascript\notes\JavaScript.assets\20230522111610.png)
+
+### 2、switch结构
+
+- 属于分支结构，一般用于当有固定的分支的情况时，结构更加简单
+
+- 语法：
+
+  ```
+  switch(要判断的数据){    case 值1: 当数据的值为值1时需要执行的代码;break;    case 值2: 当数据的值为值3时需要执行的代码;break;    case 值3: 当数据的值为值3时需要执行的代码;break;        ...    case 值n: 当数据的值为值n时需要执行的代码;break;    default:         以上所有的值都不满足时执行的代码;break;}let input = prompt("1.登录  2.注册  3.退出");console.log(input);switch(input){    case "1":        alert("登录");        break;    case "2":        alert("注册");        break;//跳转整个switch结构    case "3":        alert("退出");        break;    default://前面所有的值都不满足时        alert("无效选项");        break;}
+  ```
+
+- 注意：`break`：跳出switch分支结构
+
+- switch和if的区别
+
+  - switch结构更多用于条件是固定值的情况，if使用任何情况
