@@ -7,9 +7,10 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- <script>
+    <script>
       let users = [];
-      while (1) {
+      let flag = true;
+      do {
         let op = +prompt("1.登录 2. 注册 3. 退出");
         switch (op) {
           case 1:
@@ -35,14 +36,16 @@
             users[0] = prompt("请输入账户");
             users[1] = prompt("请输入密码");
             break;
+          case 3:
+            alert("感谢使用");
+            flag = false;
+            break;
+          default:
+            alert("输入错误");
         }
-        if (op == 3) {
-          alert("感谢使用");
-          break;
-        }
-      }
-    </script> -->
-    <script>
+      } while (flag);
+    </script>
+    <!-- <script>
       let num = 15;
       let foot = 40;
       for (let i = 1; i <= num; i++) {
@@ -50,6 +53,6 @@
           console.log(`${num - i}只鸡,${i}只兔子`);
         }
       }
-    </script>
+    </script> -->
   </body>
 </html>

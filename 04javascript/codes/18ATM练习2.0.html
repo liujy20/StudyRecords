@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let users = [];
+      let flag = true;
+      do {
+        let op = +prompt("1.登录 2. 注册 3. 退出");
+        switch (op) {
+          case 1:
+            login();
+            break;
+          case 2:
+            register();
+            break;
+          case 3:
+            exit();
+            break;
+          default:
+            alert("输入错误");
+        }
+      } while (flag);
+
+      function menu(index) {
+        let flag = true;
+        let user = users[index];
+        do {
+          let op = +prompt(
+            "1. 查询 2. 存钱 3. 取钱 4. 转账 5. 修改密码 6. 返回上一步"
+          );
+          switch (op) {
+            // 查询
+            case 1:
+              alert(`账户余额:${user[2]}`);
+              break;
+            // 存款
+            case 2:
+              let save = +prompt("请输入存款金额");
+              user[2] += save;
+              alert(`账户余额:${user[2]}`);
+              break;
+            // 取款
+            case 3:
+              let draw = +prompt("请输入取款金额");
+              user[2] -= draw;
+              alert(`账户余额:${user[2]}`);
+              break;
+            // 转账
+            case 4:
+              let name = prompt("请输入转账人");
+              let tag = false;
+              let nameI = -1;
+              for (let i = 0; i < users.length; i++) {
+                if (users[i][0] == name) {
+                  tag = true;
+                  nameI = i;
+                  break;
+                }
+              }
+              if (tag) {
+                let money = +prompt("请输入金额");
+                if (user[2] > money) {
+                  user[2] -= money;
+                  users[nameI][2] += money;
+                  alert("转账成功");
+                } else {
+                  alert("金额不足");
+                }
+              } else {
+                alert("用户名错误");
+              }
+              break;
+            // 修改密码
+            case 5:
+              let pwd = prompt("请输入密码");
+              user[1] = pwd;
+              alert("修改密码成功");
+              break;
+            // 退出
+            case 6:
+              alert("返回上一步");
+              flag = false;
+              break;
+          }
+        } while (flag);
+      }
+
+      function login() {
+        alert("登录");
+        if (users.length == 0) {
+          alert("请先注册");
+          return;
+        }
+        let name = prompt("请输入账户");
+        let pwd = prompt("请输入密码");
+        let fName = false;
+        let fPwd = false;
+        let index = 0;
+        for (let i = 0; i < users.length; i++) {
+          let user = users[i];
+          if (name == user[0]) {
+            fName = true;
+            if (pwd == user[1]) {
+              fPwd = true;
+              index = i;
+              break;
+            }
+          }
+        }
+        if (fName) {
+          if (fPwd) {
+            alert("登陆成功");
+            menu(index);
+          } else {
+            alert("密码错误");
+          }
+        } else {
+          alert("未注册账号");
+        }
+      }
+      function register() {
+        alert("注册");
+        let user = [];
+        user[0] = prompt("请输入账户");
+        user[1] = prompt("请输入密码");
+        user[2] = 1000;
+        let f = true;
+        for (let i = 0; i < users.length; i++) {
+          if (user[0] == users[i][0]) {
+            f = false;
+          }
+        }
+        if (f) {
+          users[users.length] = user;
+        } else {
+          alert("用户名已注册");
+        }
+      }
+      function exit() {
+        alert("感谢使用");
+        flag = false;
+      }
+    </script>
+  </body>
+</html>
