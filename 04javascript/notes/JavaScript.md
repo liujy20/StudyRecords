@@ -831,8 +831,41 @@ var、let、const都可以用于定义变量
 
 - 语法：
 
-  ```
-  switch(要判断的数据){    case 值1: 当数据的值为值1时需要执行的代码;break;    case 值2: 当数据的值为值3时需要执行的代码;break;    case 值3: 当数据的值为值3时需要执行的代码;break;        ...    case 值n: 当数据的值为值n时需要执行的代码;break;    default:         以上所有的值都不满足时执行的代码;break;}let input = prompt("1.登录  2.注册  3.退出");console.log(input);switch(input){    case "1":        alert("登录");        break;    case "2":        alert("注册");        break;//跳转整个switch结构    case "3":        alert("退出");        break;    default://前面所有的值都不满足时        alert("无效选项");        break;}
+  ```javascript
+  switch(要判断的数据){  
+    case 值1:
+      当数据的值为值1时需要执行的代码;
+      break;   
+    case 值2:
+      当数据的值为值3时需要执行的代码;
+      break;   
+    case 值3:
+      当数据的值为值3时需要执行的代码;
+      break;    
+      ...   
+    case 
+      值n:
+      当数据的值为值n时需要执行的代码;
+      break; 
+    default:       
+      以上所有的值都不满足时执行的代码;break;
+  }
+  let input = prompt("1.登录  2.注册  3.退出");
+  console.log(input);
+  switch(input){   
+    case "1":     
+      alert("登录");    
+      break;    
+    case "2":  
+      alert("注册");     
+      break;//跳转整个switch结构   
+    case "3":     
+      alert("退出");
+      break;   
+    default://前面所有的值都不满足时   
+      alert("无效选项");     
+      break;
+  }
   ```
 
 - 注意：`break`：跳出switch分支结构
@@ -840,3 +873,151 @@ var、let、const都可以用于定义变量
 - switch和if的区别
 
   - switch结构更多用于条件是固定值的情况，if使用任何情况
+
+## 模版字符串
+
+- 是ES 6新增的，用于快速进行字符串拼接的方式
+
+- 语法：
+
+  ```javascript
+  `字符串${变量名或表达式}`
+  
+  例子：
+  console.log(`鸡是${i}只,兔子是${j}只`);
+  ```
+
+## 二维数组
+
+### 1、概念
+
+- 一维数组：即一个数组中里面的每个数据都是基本数据类型
+
+  ```javascript
+  let arr = ["张三",18,"男",undefined,null,true]
+  ```
+
+- 二维数组：即一个数组里面，每个数据是一个一维数组
+
+### 2、二维数组的基本使用
+
+#### （1）定义二维数组
+
+```javascript
+方式一：
+字面量形式，推荐使用
+let users = [  
+  ["admin1", "ad123"],  
+  ["admin2", "ad123"],  
+  ["admin3", "ad123"]
+]
+
+方式二：
+let user1 = ["admin1", "ad123"];
+let user2 = ["admin2", "ad123"];
+let user3 = ["admin3", "ad123"];
+let users = [user1, user2, user3];//二维数组
+
+方式三：
+let users = new Array( 
+  new Array("admin1", "ad123"),   
+  new Array("admin2" "ad123"), 
+  new Array("admin3", "ad123"),
+)
+```
+
+#### （2）获取数据
+
+- 通过下标来获取数组中数据
+
+- 语法：
+
+  ```javascript
+  1. 获取某个一维数组数组变量名[一维数组的下标]
+  2. 获取某个一维数组中的某个数据数组变量名[一维数组的下标][下标]
+  
+  例子：// 获取下标为1的数据
+  console.log(users[1]);// ["admin2", "ad123"]
+  // 获取下标为1的用户名
+  console.log(users[1][0]);//"admin2"
+  ```
+
+#### （3）修改数据
+
+- 根据下标来修改数据
+
+- 语法：
+
+  ```javascript
+  1. 修改某个一维数组数组变量名[一维数组的下标]=新数据；//新数据是一个一维数组
+  2. 修改某个一维数组中的某个数据数组变量名[一维数组的下标][下标]=新数据；
+  ```
+
+#### （4）新增数据
+
+- 在末尾新增一个数据
+
+- 语法：
+
+  ```javascript
+  数组变量名[数组变量名.length]=新数据;//新数据是一个一维数组
+  ```
+
+#### （5）删除数据
+
+- 在末尾删除一个数据
+
+- 语法：
+
+  ```javascript
+  数组变量名.length --;
+  数组变量名.length=数组变量名.length-1;
+  数组变量名.length-=1;
+  ```
+
+#### （6）数组遍历
+
+- 通过for循环来遍历数组
+
+- 语法：
+
+  ```javascript
+  for(let i=0;i<=users.length-1;i++){   
+    console.log(users[i]);//获取到的是二维数组中的每个一维数组 
+    for(let j=0;j<users[i].length;j++){    
+      console.log(users[i][j]);//获取到的是二维数组中的某个一维数组的每个数据  
+    }
+  }
+  ```
+
+## 函数
+
+### 1、函数基础
+
+- 概念：函数是一大段代码的容器，一个函数里面包含了一大段代码，代码可以在页面中任何地方使用。
+
+- 语法：
+
+  ```javascript
+  1. 定义函数
+  （1）函数表达式
+  let  函数名=function(){  
+    被执行的一段代码——函数体
+  }
+  （2）函数声明式——推荐使用
+  function 函数名(){   
+    被执行的一段代码——函数体
+  }
+  
+  2. 调用函数
+  函数名();
+  ```
+
+- 注意：
+
+  - 如果不调用函数，函数体中的代码是不会执行
+  - 每调用一次函数，函数体中的代码会执行一次
+  - 函数声明式可以在定义函数之前调用函数，函数表达式在定义之前不能调用，只能在定义函数之后使用函数
+  - 函数内部定义的变量不能在函数外使用，函数外定义的变量，后续都可以使用
+
+## END
