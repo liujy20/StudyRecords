@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let letters = [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        0,
+        "Q",
+        "W",
+        "E",
+        "R",
+        "T",
+        "Y",
+        "U",
+        "I",
+        "O",
+        "P",
+        "A",
+        "S",
+        "D",
+        "F",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "Z",
+        "X",
+        "C",
+        "V",
+        "B",
+        "N",
+        "M",
+      ];
+      let myPlate = [];
+      let flag = true;
+      do {
+        let op = +prompt("1.开始选号2.查看我的车牌3.删除我的车牌4.退出");
+        switch (op) {
+          case 1:
+            select();
+            break;
+          case 2:
+            get();
+            break;
+          case 3:
+            del();
+            break;
+          case 4:
+            exit();
+            break;
+          default:
+            alert("错误输入");
+        }
+      } while (flag);
+
+      function select() {
+        let arr = [];
+        for (let i = 1; i <= 5; i++) {
+          let temp = "川A ";
+          for (let j = 0; j < 5; j++) {
+            let index = parseInt(Math.random() * letters.length);
+            temp += letters[index];
+          }
+          arr[arr.length] = temp;
+        }
+        let s = "";
+        for (let i = 0; i < 5; i++) {
+          s += `${i + 1}-${arr[i]}\n`;
+        }
+        let no = prompt(s);
+        if (no) {
+          myPlate[myPlate.length] = arr[no-1];
+        } else {
+          alert("请选择车牌");
+        }
+      }
+
+      function get() {
+        let s = "";
+        for (let i = 0; i < myPlate.length; i++) {
+          s += `${i + 1}-${myPlate[i]}\n`;
+        }
+        alert(s);
+      }
+
+      function del() {
+        let s = "";
+        for (let i = 0; i < myPlate.length; i++) {
+          s += `${i + 1}-${myPlate[i]}\n`;
+        }
+        let no = prompt(s) - 1;
+        myPlate.splice(no, 1);
+      }
+
+      function exit() {
+        alert("感谢使用");
+        flag = false;
+      }
+    </script>
+  </body>
+</html>
