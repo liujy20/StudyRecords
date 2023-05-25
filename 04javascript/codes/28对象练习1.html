@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let maxId = 6;
+      let students = [
+        {
+          id: 1,
+          name: "aa",
+          age: 22,
+          education: "本科",
+          type: "WEB",
+        },
+        {
+          id: 2,
+          name: "bb",
+          age: 22,
+          education: "大专",
+          type: "WEB",
+        },
+        {
+          id: 3,
+          name: "cc",
+          age: 33,
+          education: "大专",
+          type: "WEB",
+        },
+        {
+          id: 4,
+          name: "dd",
+          age: 33,
+          education: "本科",
+          type: "WEB",
+        },
+        {
+          id: 5,
+          name: "ee",
+          age: 22,
+          education: "大专",
+          type: "JAVA",
+        },
+        {
+          id: 6,
+          name: "ff",
+          age: 23,
+          education: "大专",
+          type: "JAVA",
+        },
+      ];
+      function less(students) {
+        let temp = [];
+        for (let i in students) {
+          let age = students[i].age;
+          if (age < 25) {
+            temp.push(students[i]);
+          }
+        }
+        return temp;
+      }
+      function average(students) {
+        let sum = 0;
+        for (let i in students) {
+          sum += students[i].age;
+        }
+        return sum / students.length;
+      }
+      function add(name, age, education, type) {
+        let obj = {};
+        obj.id = ++maxId;
+        obj.name = name;
+        obj.age = age;
+        obj.education = education;
+        obj.type = type;
+        students.push(obj);
+      }
+      // console.log(add("xwg",12,"aa","wg"),students);
+      function allWeb(students){
+        let sum=0;
+        for(let i in students){
+          if(students[i].type=="WEB"){
+            sum++;
+          }
+        }
+        return sum;
+      }
+      function selectEdu(students,edu){
+        let temp=[];
+        for(let i in students){
+          if(students[i].education==edu){
+            temp.push(students[i])
+          }
+        }
+        return temp;
+      }
+      console.log(selectEdu(students,"大专"));
+    </script>
+  </body>
+</html>

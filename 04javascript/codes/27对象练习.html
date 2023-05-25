@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let prodect = [
+        {
+          id: 001,
+          name: "卫龙辣条",
+          price: 5.9,
+          des: "好吃还不贵",
+        },
+        {
+          id: 002,
+          name: "薯片",
+          price: 9.9,
+          des: "好吃又不贵",
+        },
+        {
+          id: 003,
+          name: "AD钙奶",
+          price: 6,
+          des: "好吃真不贵",
+        },
+      ];
+      for (let item of prodect) {
+        item.name = "【特价】"+item.name;
+        item.price = (item.price*.9).toFixed(2);
+        // console.log(item);
+      }
+      console.log(prodect);
+    </script>
+  </body>
+</html>
