@@ -67,9 +67,9 @@
             alert("错误输入");
         }
       } while (flag);
-
-      function select() {
-        let arr = [];
+      
+      function randomPlate(){
+        let arr=[];
         for (let i = 1; i <= 5; i++) {
           let temp = "川A ";
           for (let j = 0; j < 5; j++) {
@@ -78,6 +78,12 @@
           }
           arr[arr.length] = temp;
         }
+        return arr;
+      }
+
+      function select() {
+        let arr = randomPlate();
+        
         let s = "";
         for (let i = 0; i < 5; i++) {
           s += `${i + 1}-${arr[i]}\n`;

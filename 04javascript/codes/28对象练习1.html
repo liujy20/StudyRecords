@@ -72,7 +72,7 @@
       }
       function add(name, age, education, type) {
         let obj = {};
-        obj.id = ++maxId;
+        obj.id = maxID();
         obj.name = name;
         obj.age = age;
         obj.education = education;
@@ -80,25 +80,38 @@
         students.push(obj);
       }
       // console.log(add("xwg",12,"aa","wg"),students);
-      function allWeb(students){
-        let sum=0;
-        for(let i in students){
-          if(students[i].type=="WEB"){
+      function allWeb(students) {
+        let sum = 0;
+        for (let i in students) {
+          if (students[i].type == "WEB") {
             sum++;
           }
         }
         return sum;
       }
-      function selectEdu(students,edu){
-        let temp=[];
-        for(let i in students){
-          if(students[i].education==edu){
-            temp.push(students[i])
+      function selectEdu(students, edu) {
+        let temp = [];
+        for (let i in students) {
+          if (students[i].education == edu) {
+            temp.push(students[i]);
           }
         }
         return temp;
       }
-      console.log(selectEdu(students,"大专"));
+      function maxID(array) {
+        // let max = students[0].id;
+        // for(let i in students){
+        //   if(max<students[i].id){
+        //     max=id;
+        //   }
+        // }
+        // return max++;
+        array.sort(function (a, b) {
+          return b.id - a.id;
+        });
+        return array[0].id;
+      }
+      console.log(maxID(students));
     </script>
   </body>
 </html>
