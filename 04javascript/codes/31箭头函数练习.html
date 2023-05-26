@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let students = [
+    {id: 1, name: "小王", grade: 55},
+    {id: 2, name: "小李", grade: 75},
+    {id: 3, name: "小赵", grade: 85},
+    {id: 4, name: "小张", grade: 55},
+    {id: 5, name: "小周", grade: 33},
+    {id: 6, name: "小吴", grade: 88},
+    ];
+    // 低于60的人
+    function less60(){
+      let less=[];
+      less = students.filter(item=>{
+        return item.grade<60;
+      })
+      return less;
+    }
+    // 所有低于60的分数
+    function all(){
+      let sum=0;
+      students.forEach(item=>{
+        if(item.grade<60){
+          sum+=item.grade;
+        }
+      })
+      return sum;
+    }
+    // 第一个及格的人
+    function first(){
+      let first={};
+      first = students.find(item=>{
+        return item.grade>=60;
+      })
+      return first;
+    }
+    // 所有及格分减5
+    function reduce(){
+      let newArr=[];
+      newArr = students.map(item=>{
+        if(item.grade>=60){
+          return item.grade-5;
+        }
+        return item.grade;
+      })
+      return newArr;
+    }
+    console.log(reduce());
+  </script>
+</body>
+</html>
