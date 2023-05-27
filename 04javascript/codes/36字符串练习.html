@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = [
+        {
+          id: 1,
+          name: "xiaowang",
+          age: 23,
+          phone: "18234827367",
+          address: "武侯区孵化园 5-1-301",
+          gender: 1,
+        },
+        {
+          id: 2,
+          name: "xiaoli",
+          age: 16,
+          phone: "18223427368",
+          address: "高新区孵化园 6-1-503",
+          gender: 0,
+        },
+      ];
+
+      arr.forEach((item) => {
+        let age="";
+        if(item.age>=7&&item.age<=17){
+          age="少年";
+        }else if(item.age>=18&&item.age<=44){
+          age="青年";
+        }else if(item.age>=45&&item.age<=59){
+          age="中年";
+        }else if(item.age>=60){
+          age="老年";
+        }
+        let phone ="****";
+        let phoneF = item.phone.slice(0,3);
+        let phoneE = item.phone.slice(-4);
+        phone = phoneF+phone+phoneE;
+        let ads  = item.address.split(" ");
+        let gender;
+        if(item.gender){
+          gender="男";
+        }else{
+          gender="女";
+        }
+        let s = `编号:${item.id} 姓名:${item.name} 年龄:${age} 电话:${phone} 地址：${ads[0]} 门牌号：${ads[1]}  性别:${gender}`;
+        console.log(s);
+      });
+    </script>
+  </body>
+</html>

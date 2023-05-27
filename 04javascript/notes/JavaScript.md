@@ -1322,5 +1322,145 @@ let 变量名=数组变量名.slice(开始下标,结束下标【不包含】)
     ```
   
 
+## 原生对象
+
+### 1、对象的概念
+
+- 原生对象是JavaScript中专门针对用来描述复合类型的数据的数据类型（即对象）
+- 复合类型的数据本身是一个整体，该数据包含了很多歌基本数据类型。（万物皆对象）
+
+```javascript
+电脑：
+——name：华为
+——price:2000
+——cpu：intel
+
+女朋友：
+——name:小红
+——gender：男
+——height：170
+——weight：100
+```
+
+### 2、对象的创建
+
+- 语法：
+
+  ```javascript
+  1. 创建一个空的对象let   
+  对象变量名=new Object()；
+  let   对象变量名 = {}; //字面量形式，推荐使用
+  
+  2. 创建一个带有默认值的对象
+  let   对象变量名 = {   
+    属性名1:属性值1, 
+    属性名2:属性值2, 
+    属性名3:属性值3, 
+    ... 
+    属性名n:属性值n
+  };
+  例子：let student = { 
+    name:"宋光明", 
+    "age":18,  
+    "gender":"女"
+  }
+  ```
+
+- 注意：
+
+  - `属性名1:属性值1`：又称为键值对，属性名是键，属性值是值
+  - 属性值可以是任意类型的数据
+  - 对象的属性名是字符串类型（引号可以省略不写）
+
+### 3、对象中的属性
+
+- 对象中的属性指的就是对象中一个数据，属性名是该数据的名字，属性值是该数据本身。
+
+#### （1）获取对象中的某个属性
+
+- 语法：
+
+  ```javascript
+  对象变量名.属性名对象变量名["属性名"]
+  
+  例子：
+  let student = { 
+    name: "宋光明",  
+    "age": 18,   
+    gender: "女"}// 获取对象中的某个属性
+  console.log(student.name);
+  //"宋光明"console.log(student.age);//18
+  console.log(student["age"]);//18
+  console.log(student.height);//undefined
+  ```
+
+- 注意：如果访问对象中不存在的属性，得到的结果是`undefined`；
+
+#### （2）修改或添加一个属性
+
+- 语法：
+
+  ```javascript
+  对象变量名.属性名 = 新数据;
+  对象变量名["属性名"] = 新数据;
+  
+  例子：
+  student.gender = "男";
+  student["age"] = 20;
+  student.height = 170;
+  student["weight"] = 160;
+  ```
+
+- 注意：如果属性名已存在，那么就是修改数据，如果属性名不存在，那么则新增属性和对应的值
+
+#### （3）对象的遍历
+
+- 获取对象中每个属性的值，通过`for-in`来遍历对象
+
+- 语法：
+
+  ```javascript
+  for(let 变量名 in 对象变量名){  
+    // for-in 每次将对象中的当前遍历的属性的属性名赋值给该变量 prop  
+    console.log(prop);//拿到的是对象中的每个属性名  
+    // console.log(typeof prop);//变量拿到的字符串类型  "name"   
+    console.log(对象变量名[prop]);//拿到对象中每个属性名对应的属性值}
+    
+  例子： for (let prop in student) {   
+    // for-in 每次将对象中的当前遍历的属性的属性名赋值给该变量 prop    
+    console.log(prop);//拿到的是对象中的每个属性名    
+    // console.log(typeof prop);//变量拿到的字符串类型  "name"   
+    console.log(student[prop]);//拿到对象中每个属性名对应的属性值 
+  }
+  ```
+
+#### 对象的嵌套
+
+- ### 是指一个一维数组中的每个数据都是一个对象，对象的属性值也可能是一个数组或一个对象
+
+```javascript
+let students = [  
+  {     
+    id: 1,     
+    name: "小红",    
+    age: 18,  
+    teacher: { id: 7, name: "bobo", message: "前端讲师" },      
+    study: ["第一阶段", "第二阶段"]  
+  },
+  {     
+    id: 2,   
+    name: "小明",
+    age: 20,    
+    teacher: { id: 8, name: "倩倩", message: "Java讲师" },    
+    study: ["第一阶段", "第二阶段", "第三阶段"]  
+  }
+]
+console.log(students[0].teacher.name);//bobo
+console.log(students[0].study[1]);//"第二阶段"
+```
+
+
+
 
 ## END
+
