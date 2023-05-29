@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .con-left {
+        width: 580px;
+      }
+
+      .big-image {
+        width: 580px;
+        height: 580px;
+        margin-bottom: 20px;
+      }
+
+      .big-image img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .small-image {
+        height: 85px;
+        display: flex;
+      }
+
+      .small-image img {
+        width: 85px;
+        height: 85px;
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="con-left">
+      <div class="big-image">
+        <img src="./imgs/proDet01_big.jpg" alt="" id="bigImg" />
+      </div>
+      <div class="small-image">
+        <img src="./imgs/proDet01_big.jpg" alt="" id="img1" />
+        <img src="./imgs/proDet02_big.jpg" alt="" id="img2" />
+        <img src="./imgs/proDet03_big.jpg" alt="" id="img3" />
+        <img src="./imgs/proDet04_big.jpg" alt="" id="img4" />
+      </div>
+    </div>
+
+    <script>
+      // let img1=document.querySelector('#img1')
+      // let img2=document.querySelector('#img2')
+      // let img3=document.querySelector('#img3')
+      // let img4=document.querySelector('#img4')
+      let small=document.querySelector('.small-image')
+      let big = document.querySelector("#bigImg")
+      // img1.addEventListener('click',()=>{
+      //   big.src="./imgs/proDet01_big.jpg"
+      // })
+      // img2.addEventListener('click',()=>{
+      //   big.src="./imgs/proDet02_big.jpg"
+      // })
+      // img3.addEventListener('click',()=>{
+      //   big.src="./imgs/proDet03_big.jpg"
+      // })
+      // img4.addEventListener('click',()=>{
+      //   big.src="./imgs/proDet04_big.jpg"
+      // })
+      small.addEventListener('click',(e)=>{
+        if(e.target.tagName=="IMG"){
+        big.src = e.target.getAttribute('src');
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img src="./imgs/id1.jpg" alt="" />
+    <p>id1.jpg</p>
+    <script>
+      let src = prompt("输入图片名称");
+      let img = document.querySelector("img");
+      let p = document.querySelector("p");
+      img.src = "./imgs/" + src;
+      p.innerText = src;
+    </script>
+  </body>
+</html>

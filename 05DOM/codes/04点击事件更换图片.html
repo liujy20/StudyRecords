@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button class="c1">图片1</button>
+  <button class="c2">图片2</button>
+  <button class="c3">图片3</button>
+  <br>
+  
+  <img src="./imgs/id1.jpg" alt="">
+  <script>
+    let c1 = document.querySelector(".c1")
+    let c2 = document.querySelector(".c2")
+    let c3 = document.querySelector(".c3")
+    let img =document.querySelector('img')
+    c1.addEventListener('click',()=>{
+      img.src="./imgs/id1.jpg"
+    })
+    c2.addEventListener('click',()=>{
+      img.src="./imgs/id2.jpg"
+    })
+    c3.addEventListener('click',()=>{
+      img.src="./imgs/id3.jpg"
+    })
+  </script>
+</body>
+</html>

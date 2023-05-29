@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .con-left {
+        width: 580px;
+      }
+
+      .big-image {
+        width: 580px;
+        height: 580px;
+        margin-bottom: 20px;
+      }
+
+      .big-image img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .small-image {
+        height: 85px;
+        display: flex;
+      }
+
+      .small-image img {
+        width: 85px;
+        height: 85px;
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="con-left">
+      <div class="big-image">
+        <img src="./imgs/proDet01_big.jpg" alt="" id="bigImg" />
+      </div>
+      <div class="small-image"></div>
+    </div>
+    <script>
+      let bigImg = document.querySelector("#bigImg");
+      let con = document.querySelector(".small-image");
+
+      let arr = [
+        [
+          "./imgs/proDet01_big.jpg",
+          "./imgs/proDet02_big.jpg",
+          "./imgs/proDet03_big.jpg",
+          "./imgs/proDet04_big.jpg",
+        ],
+        [
+          "./imgs/id1.jpg",
+          "./imgs/id2.jpg",
+          "./imgs/id3.jpg",
+          "./imgs/id4.jpg",
+          "./imgs/id5.jpg",
+          "./imgs/id6.jpg",
+        ],
+      ];
+      function main() {
+        render();
+        changeImg();
+      }
+
+      function render() {
+        let imgArr = arr[0];
+        bigImg.src = imgArr[0];
+        let s = "";
+        imgArr.forEach((item) => {
+          s += `<img src="${item}" alt="" id="img1" />`;
+        });
+
+        con.innerHTML = s;
+      }
+
+      function changeImg() {
+        let imgs = con.querySelectorAll("img");
+        // console.log(imgs);
+        imgs.forEach((item) => {
+          console.log(item.getAttribute("src"));
+          item.onclick = function () {
+            bigImg.src = item.getAttribute("src");
+          };
+        });
+      }
+
+      main();
+    </script>
+  </body>
+</html>

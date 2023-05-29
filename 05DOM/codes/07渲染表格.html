@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border: 1px solid #000;
+      }
+      th {
+        border: 1px solid #000;
+      }
+      td {
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <table></table>
+    <script>
+      const arr = [
+        {
+          id: 1,
+          name: "小米耳机",
+          price: 99,
+        },
+        {
+          id: 2,
+          name: "小米手环",
+          price: 299,
+        },
+        {
+          id: 3,
+          name: "小米台灯",
+          price: 199,
+        },
+        {
+          id: 4,
+          name: "小米平衡车",
+          price: 1999,
+        },
+      ];
+      let table = document.querySelector("table");
+
+      main();
+      function main() {
+        render();
+      }
+
+      function render() {
+        let s = "";
+        s += `<tr>
+      <th>编号</th>
+      <th>姓名</th>
+      <th>价格</th>
+      </tr>`;
+        arr.forEach((item) => {
+          s += `<tr>
+        <td>${item.id}</td>
+        <td>${item.name}</td>
+        <td>${item.price}</td>
+        </tr>`;
+        });
+        table.innerHTML = s;
+      }
+    </script>
+  </body>
+</html>
