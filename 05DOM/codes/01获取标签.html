@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="con">
+    <div class="box" id="box1">box1</div>
+  <div class="box" id="box2">box2</div>
+  <div class="box" id="box3">box3</div>
+  <div class="box" id="box4">box4</div>
+  </div>
+  <script>
+    const boxById = document.getElementById('box1')
+    console.log(boxById);
+    const boxByClass = document.getElementsByClassName('box')
+    console.log(boxByClass);
+    const box = document.getElementsByTagName('div')
+    console.log(box);
+    const boxs = document.querySelectorAll('.con .box')
+    console.log(boxs);
+  </script>
+</body>
+</html>
