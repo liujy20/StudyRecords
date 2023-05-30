@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li>a</li>
+      <li>b</li>
+      <li>c</li>
+      <li>d</li>
+    </ul>
+    <script>
+      const ul = document.querySelector("ul");
+      const li2 = document.querySelector("ul li:nth-child(2)");
+      const s = prompt("输入一个评论");
+      const l1 = document.createElement("li");
+      const l2 = document.createElement("li");
+      l1.innerText=s;
+      l2.innerText=s+s;
+      ul.appendChild(l1);
+      ul.insertBefore(l2,li2);
+    </script>
+  </body>
+</html>
