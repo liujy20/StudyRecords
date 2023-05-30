@@ -230,7 +230,7 @@
   - 鼠标移出
 - 事件处理程序：当事件发生时，需要执行的执行代码或操作。指定的代码一般会放在一个函数中。
 
-## 二、事件的基本使用
+## 事件的基本使用
 
 ### 1、DOM发展
 
@@ -359,5 +359,82 @@ DOM提供了三种条件事件的方式：
   
   删除事件标签变量名.removeEventListener("事件类型",函数名)
   ```
+
+## 事件流
+
+### 1、概念：
+
+- 概念：事件流是指某个事件在触发时，该事件在嵌套标签之间的触发顺序。也就是说，当父子标签设置同类型的事件时，当触发了子标签的事件，父子标签之间的触发顺序。
+- 分类：根据流向不同分为：冒泡和捕获
+
+### 2、冒泡
+
+- 事件触发的顺序是从具体的子标签开始触发，之后父标签触发事件，一直到顶层的html标签触发事件，之后JavaScript还会触发document对象和window进行触发【从子到父】
+
+```javascript
+完整冒泡的顺序：span ->div-->body-->html-->document--->window
+// DOM 0级
+document.querySelector("span").onclick = function () {   
+  console.log("span被点击了");
+}
+document.querySelector("div").onclick = function () {   
+  console.log("div被点击了");
+}
+document.body.onclick = function () {   
+  console.log("body被点击了");
+}
+document.documentElement.onclick = function () { 
+  console.log("html被点击了");
+}
+document.onclick = function () {   
+  console.log("document被点击了");
+}
+window.onclick = function () {  
+  console.log("window被点击了");
+}
+```
+
+### 3、捕获
+
+- 事件触发的顺序跟冒泡顺序完全相反，从window对象到document对象，再到最顶层html标签，依次找到具体的子标签【从父到子】
+
+  ```javascript
+  完整捕获的顺序：window-->document-->html-->body-->div-->span
+  ```
+
+![image-20230530174102882](C:\StudyRecords\05DOM\notes\DOM.assets\20230530174102.png)
+
+## 事件处理程序
+
+DOM 0级和DOM 2级默认都是冒泡
+
+### 1、DOM 0级
+
+DOM 0级**只支持冒泡**，不支持捕获
+
+### 2、DOM 2级
+
+DOM 2级既可以支持冒泡，也可以支持捕获。
+
+#### （1）添加事件处理程序
+
+- 语法：
+
+  ```javascript
+  标签变量名.addEventListener("事件类型",函数名,是否捕获阶段处理)
+  function 函数名(){}
+  第三个参数：true代表捕获，false代表冒泡，不写默认是冒泡
+  ```
+
+#### （2）删除事件处理程序
+
+- 语法：
+
+  ```javascript
+  标签变量名.removeEventListener("事件类型",函数名,是否捕获阶段处理)
+  第三个参数：true代表捕获，false代表冒泡，不写默认是冒泡
+  ```
+
+总结：**如果同时存在冒泡和捕获，先执行捕获，再执行冒泡。**
 
 ## END
