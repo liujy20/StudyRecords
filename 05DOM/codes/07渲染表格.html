@@ -42,11 +42,13 @@
           price: 1999,
         },
       ];
+      let head = ["姓名", "编号", "价格"];
       let table = document.querySelector("table");
 
       main();
       function main() {
         render();
+        // render1();
       }
 
       function render() {
@@ -56,14 +58,36 @@
       <th>姓名</th>
       <th>价格</th>
       </tr>`;
+      table.innerHTML = s;
         arr.forEach((item) => {
-          s += `<tr>
+          let tr = document.createElement("tr");
+          tr.innerHTML= `<tr>
         <td>${item.id}</td>
         <td>${item.name}</td>
         <td>${item.price}</td>
         </tr>`;
+        table.appendChild(tr);
         });
-        table.innerHTML = s;
+        
+      }
+
+      function render1() {
+        let tr = document.createElement("tr");
+        head.forEach((item) => {
+          let th = document.createElement("th");
+          th.innerText = item;
+          tr.appendChild(th);
+        });
+        table.appendChild(tr);
+        arr.forEach((item) => {
+          let tr = document.createElement("tr");
+          for (k in item) {
+            let td = document.createElement("td");
+            td.innerText = item[k];
+            tr.appendChild(td);
+          }
+          table.appendChild(tr);
+        });
       }
     </script>
   </body>
