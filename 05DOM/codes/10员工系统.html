@@ -118,39 +118,93 @@
                     <button class="switchStatus">切换</button>
                 </td>`;
           tbody.appendChild(tr);
-          let del = tr.querySelector(".del");
-          let change = tr.querySelector(".change");
-          let switchStatus = tr.querySelector(".switchStatus");
-          del.addEventListener("click", () => {
+
+          // let del = tr.querySelector(".del");
+          // let change = tr.querySelector(".change");
+          // let switchStatus = tr.querySelector(".switchStatus");
+          // del.addEventListener("click", () => {
+          //   emps.forEach((val, i) => {
+          //     if (val.id == item.id) {
+          //       emps.splice(i, 1);
+          //     }
+          //   });
+          //   tr.remove();
+          // });
+          // change.addEventListener("click", () => {
+          //   let age = +prompt("请输入年龄");
+          //   emps.forEach((val, i) => {
+          //     if (val.id == item.id) {
+          //       emps[i].age = age;
+          //     }
+          //   });
+          //   tr.querySelector(".uAge").innerHTML = age;
+          // });
+          // switchStatus.addEventListener("click", () => {
+          //   let statues;
+          //   emps.forEach((val, i) => {
+          //     if (val.id == item.id) {
+          //       emps[i].statues = +!emps[i].statues;
+          //       statues = emps[i].statues;
+          //     }
+          //   });
+          //   tr.querySelector(".uStatus").innerText =
+          //     statues == 0 ? "离职" : "在职";
+          // });
+        });
+        del();
+        change();
+        switchStatus();
+      }
+
+      function del() {
+        let dataId = document.querySelectorAll("[data-id]");
+        // console.log(dataId);
+        dataId.forEach((item) => {
+          item.querySelector(".del").onclick = function () {
+            let id = item.getAttribute("data-id");
             emps.forEach((val, i) => {
-              if (val.id == item.id) {
+              if (val.id == id) {
                 emps.splice(i, 1);
+                render(emps);
               }
             });
-            tr.remove();
-          });
-          change.addEventListener("click", () => {
-            let age = +prompt("请输入年龄");
-            emps.forEach((val, i) => {
-              if (val.id == item.id) {
-                emps[i].age = age;
-              }
-            });
-            tr.querySelector(".uAge").innerHTML = age;
-          });
-          switchStatus.addEventListener("click", () => {
-            let statues;
-            emps.forEach((val, i) => {
-              if (val.id == item.id) {
-                emps[i].statues = +!emps[i].statues;
-                statues = emps[i].statues;
-              }
-            });
-            tr.querySelector(".uStatus").innerText =
-              statues == 0 ? "离职" : "在职";
-          });
+          };
         });
       }
+      function change() {
+        let dataId = document.querySelectorAll("[data-id]");
+        console.log(dataId);
+        dataId.forEach((item) => {
+          item.querySelector(".change").onclick = function () {
+            let age = +prompt("请输入年龄");
+            let id = item.getAttribute("data-id");
+            emps.forEach((val, i) => {
+              if (val.id == id) {
+                emps[i].age = age;
+                render(emps);
+              }
+            });
+          };
+        });
+      }
+      function switchStatus() {
+        let dataId = document.querySelectorAll("[data-id]");
+        console.log(dataId);
+        dataId.forEach((item) => {
+          item.querySelector(".switchStatus").onclick = function () {
+            let statues;
+            let id = item.getAttribute("data-id");
+            emps.forEach((val, i) => {
+              if (val.id == id) {
+                emps[i].statues = +!emps[i].statues;
+                statues = emps[i].statues;
+                render(emps);
+              }
+            });
+          };
+        });
+      }
+    
 
       function renderAll() {
         render(emps);
@@ -171,9 +225,26 @@
       }
 
       function addListener() {
-        all.addEventListener("click", renderAll);
-        lizhi.addEventListener("click", renderLizhi);
-        zaizhi.addEventListener("click", renderZaizhi);
+        let filterData = document.querySelector(".filterData");
+        filterData.addEventListener("click", (e) => {
+          let name = e.target.className;
+          switch (name) {
+            case "all":
+              renderAll();
+              break;
+            case "lizhi":
+              renderLizhi();
+              break;
+            case "zaizhi":
+              renderZaizhi();
+              break;
+            default:
+            // console.log(123, name);
+          }
+        });
+        // all.addEventListener("click", renderAll);
+        // lizhi.addEventListener("click", renderLizhi);
+        // zaizhi.addEventListener("click", renderZaizhi);
       }
     </script>
   </body>
