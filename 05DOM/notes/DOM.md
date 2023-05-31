@@ -437,4 +437,157 @@ DOM 2级既可以支持冒泡，也可以支持捕获。
 
 总结：**如果同时存在冒泡和捕获，先执行捕获，再执行冒泡。**
 
+## 事件委托/代理
+
+- 概念：事件委托指的是多个子标签需要添加同类型的事件，可以将该事件直接添加父标签上，也就是说将子标签的事件委托父标签
+- 原理：借助冒泡机制和event对象中even.target
+- 流程：
+  1. 给父标签添加事件处理程序
+  2. 当触发事件时，在实际处理程序中可以通过`event.target`可以获取到当前触发事件的标签
+  3. 可以通过当前触发事件标签的id名或class名或内容等来判断执行不同的代码
+- 好处：
+  - 减少了添加事件处理程序的操作
+  - 统一管理子标签的事件处理程序
+  - 维护比较方便
+
+### event对象
+
+- 所有事件绑定都会自动生产一个对象，这个对象中包含了事件传递的所有所有信息，通常使用`event`或`e`来接收
+
+### 获取event对象
+
+- 语法：
+
+  ```javascript
+  DOM 0级
+  标签变量名.on事件类型=function(event){
+    
+  }
+  DOM 2级
+  标签变量名.addEventListener("事件类型",function(event){})
+  ```
+
+- 注意：形参一般采用`e`或`event`表示
+
+### event对象的属性
+
+| 属性名            | 描述                                                     |
+| ----------------- | -------------------------------------------------------- |
+| **`target`**      | 获取用户当前操作的标签（即触发事件的标签）               |
+| `currentTarget`   | 指的是当前事件执行阶段正在处理的标签                     |
+| `pageX/pageY`     | 获取鼠标相对于页面的坐标                                 |
+| `clientX/clientY` | 获取鼠标相对于视口的坐标                                 |
+| `offsetX/offsetY` | 获取鼠标相对于触发事件的标签的左上角的坐标（不包含边框） |
+
+### event对象的属性
+
+| 方法名                  | 描述                                                         |
+| ----------------------- | ------------------------------------------------------------ |
+| **`stopPropagation()`** | 阻止事件传播                                                 |
+| **`preventDefault()`**  | 阻止标签上的默认行为（比如a标签的跳转或button按钮的提供功能） |
+
+## 关于 DOM 操作表单元素
+
+### 1、value
+
+- `value`针对表单标签，用于获取`input`、`select`以及具有value属性的表单标签的值
+
+- 语法：
+
+  ```javascript
+  1. 获取值标签变量名.value
+  2. 设置值标签变量名.value = 新数据;
+  ```
+
+### 2、输入框事件类型
+
+- `blur`：当标签失去焦点时触发事件
+- `focus`：当标签获取焦点时触发事件
+
+### 3、下拉列表
+
+- 可以`value`来获取到标签当前选中的`option`标签上的value值
+
+- 语法：
+
+  ```javascript
+  1. 获取值标签变量名.value
+  例子：
+  <select name="" id="sel">     
+  	<option value="身份">身份证</option>       
+  	<option value="学生">学生证</option>    
+  	<option value="军官">军官证</option>
+  </select>
+  
+  let select = document.querySelector("#sel");
+  console.log(select.value);
+  ```
+
+### 4、change事件
+
+- `change`：当表单元素的值发生改变时来触发该事件
+
+- 常用于下拉列表
+
+- 语法：
+
+  ```javascript
+  let select = document.querySelector("#sel");
+  select.onchange = function () {  
+    console.log(select.value);
+  }
+  ```
+
+### 5、单选框&多选框
+
+- 页面中一般不只一个单选框或多选框，我们可以通过选择器来获取到这些标签，通过遍历或事件委托来添加事件。一般使用`click`或`change`事件都可以
+
+#### （1）选中状态
+
+- 可以在单选框或多选框上设置`checked`属性来设置标签是否默认选中
+
+- 语法：
+
+  ```javascript
+  1. 获取单选框&多选框选中状态
+  标签变量名.checked; // true代表选中状态，false代表未选中状态
+  
+  2. 设置单选框&多选框选中状态
+  标签变量名.checked = true 或false; // true代表选中状态，false代表未选中状态
+  ```
+
+## DOM 操作 CSS 样式
+
+### 1、获取&设置CSS样式
+
+- 语法：
+
+  ```javascript
+  1. 获取css样式
+  标签变量名.style.css属性名；
+  2. 设置css样式
+  标签变量名.style.css属性名 = "属性值";
+  ```
+
+- 注意：
+
+  - css属性名如果是多个单词构成，使用小驼峰命名法
+  - 设置或获取的是标签的内联样式，也就是标签上style属性里面的值
+  - 无法获取到内部样式和外部样式
+
+### 2、获取所有的css属性值
+
+- 通过`getComputedStyle()`方法来获取指定标签上所有最终的css样式
+
+- 语法：
+
+  ```javascript
+  //1. 调用`getComputedStyle()`来获取指定标签上最终的css样式
+  let style变量名 = getComputedStyle(标签变量名, null);
+  //获取指定标签的伪元素的样式
+  let style变量名 = getComputedStyle(标签变量名, "after");//获取的是指定标签的::after的样式
+  //2. 通过css属性名来获取指定的CSS样式 
+  style变量名.css属性名;//css属性名如果是多个单词构成，使用小驼峰命名法
+  ```
+
 ## END
