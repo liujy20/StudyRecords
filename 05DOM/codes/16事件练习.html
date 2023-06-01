@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      p {
+        color: red;
+      }
+      input{
+        outline: none;
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    输入内容:
+    <input type="text" />
+    <p>请输入6-10位数字</p>
+    <script>
+      let inp = document.querySelector("input");
+      let p = document.querySelector("p");
+      inp.addEventListener("input", function () {
+        console.log(inp.value.length);
+        if (inp.value.length > 10 || inp.value.length < 6) {
+          p.style.display = "block";
+          inp.style.border='2px solid red'
+        } else {
+          p.style.display = "none";
+          inp.style.border='2px solid green'
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .big{
+      width: 400px;
+      height: 400px;
+      background-color: antiquewhite;
+      overflow: hidden;
+    }
+    .small{
+      width: 200px;
+      height: 200px;
+      margin: 100px;
+      background-color: aqua;
+    }
+  </style>
+</head>
+<body>
+  <div class="big">
+    <div class="small"></div>
+  </div>
+  <script>
+    let big =document.querySelector('.big')
+    let small =document.querySelector('.small')
+    big.addEventListener('mouseover',function(){
+      console.log('mouseover');
+    })
+    big.addEventListener('mouseout',function(){
+      console.log('mouseout');
+    })
+    big.addEventListener('mouseenter',function(){
+      console.log('mouseenter');
+    })
+    big.addEventListener('mouseleave',function(){
+      console.log('mouseleave');
+    })
+  </script>
+</body>
+</html>
