@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log(location);
+    // 获取页面信息
+
+    // console.log(location.href);
+    // let result = decodeURIComponent(location.href);//http://127.0.0.1:5500/11-location对象.html?username=张三&password=123&mytype=身份&gender=1&hobby=lol&hobby=cj&des=123456
+    // console.log(result);
+    // console.log(decodeURIComponent(location.search));//?username=张三&password=123&mytype=身份&gender=1&hobby=lol&hobby=cj&des=123456
+
+
+    // let result = confirm("是否跳转页面")
+    // if (result) {
+    //     // location.href = "https://www.woniuxy.com";
+    //     // location.assign("https://www.woniuxy.com")
+    //     location.replace("https://www.woniuxy.com")
+    // }
+
+
+    //页面刷新
+    let result = confirm("是否刷新页面")
+    if (result) {
+        location.reload()
+    }
+</script>
+</body>
+</html>
