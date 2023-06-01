@@ -102,6 +102,7 @@
         renderDot();
         addClick();
         changeImg();
+        interval();
       }
 
       /**
@@ -170,6 +171,13 @@
         dots[index].className = "";
         dots[(index - 1 + dots.length) % dots.length].className = "active";
         dots[(index - 1 + dots.length) % dots.length].click();
+      }
+
+      function interval() {
+        let nextImg = document.querySelector(".next");
+        let time = setInterval(function () {
+          nextImg.click();
+        }, 1000);
       }
 
       /**
