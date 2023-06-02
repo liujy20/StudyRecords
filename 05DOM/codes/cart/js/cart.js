@@ -53,8 +53,9 @@ function render() {
   tbody.innerHTML = "";
   let sumPrice = 0;
   let sumNum = 0;
+  notToPay()
   carProducts.forEach((item, i) => {
-    notToPay()
+    
     if (item.checked) {
       sumPrice += item.price * item.num;
       sumNum += item.num;
@@ -227,11 +228,11 @@ function addSelectAllBox(){
 function toPay(){
   let pay=document.querySelector('tfoot .submit')
   pay.classList.add('active')
-  console.log(pay);
+  // console.log(pay);
 }
 
 function notToPay(){
   let pay=document.querySelector('tfoot .submit')
   pay.classList.remove('active')
-  console.log(pay);
+  // console.log(pay);
 }
