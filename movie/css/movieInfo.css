@@ -1,0 +1,144 @@
+.navs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  height: 60px;
+  font-size: 16px;
+  line-height: 60px;
+  color: #999;
+  background-color: #47464a;
+}
+
+.navs .nav {
+  margin: 0 40px;
+}
+
+.navs .active {
+  position: relative;
+  color: #f99135;
+}
+
+.navs .active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 25px;
+  border: 9px solid transparent;
+  border-bottom: 9px solid #fff;
+}
+
+.main .wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 1200px;
+}
+
+.main .wrapper .left {
+  width: 732px;
+}
+
+.main .wrapper .left .title1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 18px;
+  height: 26px;
+  color: #f99135;
+}
+
+.main .wrapper .left .title1 .new {
+  height: 26px;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.main .wrapper .left .title1 .new span {
+  font-size: 20px;
+}
+
+.main .wrapper .left .title1 .more {
+  font-size: 14px;
+}
+
+.main .wrapper .left .new-content {
+  margin-bottom: 55px;
+}
+
+.main .wrapper .left .new-content ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.main .wrapper .left .new-content ul li {
+  margin-bottom: 19px;
+  width: 230px;
+}
+
+.main .wrapper .left .new-content ul li img {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.main .wrapper .left .new-content ul li p {
+  color: #333;
+  font-size: 14px;
+}
+
+.main .wrapper .left .new-content ul li .other {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.main .wrapper .left .new-content ul li .other .company {
+  color: #999;
+}
+
+.main .wrapper .left .new-content ul li .other .watch {
+  color: #aaa;
+}
+
+.main .wrapper .left .title2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 18px;
+  height: 26px;
+  color: #2d98f3;
+}
+
+.main .wrapper .left .title2 .new {
+  height: 26px;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.main .wrapper .left .title2 .new span {
+  font-size: 20px;
+}
+
+.main .wrapper .left .title2 .more {
+  font-size: 14px;
+}
+
+.main .wrapper .left .advance-content ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.main .wrapper .left .advance-content ul li img {
+  display: block;
+}
+
+.main .wrapper .left .advance-content ul .item {
+  margin-bottom: 20px;
+}
+
+.main .wrapper .right {
+  width: 362px;
+  background-color: pink;
+}

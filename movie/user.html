@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/user.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-top">
+        <div class="wrapper">
+          <a href="#" class="download">下载APP</a>
+          <div class="login-reg">
+            <button class="login">登录</button>
+            <span>|</span>
+            <button class="reg">注册</button>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom">
+        <div class="wrapper">
+          <div class="logo">
+            <img src="./img/logo.png" alt="" />
+          </div>
+          <select name="" id="" class="area">
+            <option value="">全国</option>
+          </select>
+
+          <ul>
+            <li>
+              <a href="#">首页</a>
+            </li>
+            <li>
+              <a href="#">影片</a>
+            </li>
+            <li>
+              <a href="#">影城</a>
+            </li>
+            <li>
+              <a href="#">影视资讯</a>
+            </li>
+            <li>
+              <a href="#">会员中心</a>
+            </li>
+          </ul>
+          <div class="search">
+            <input type="text" placeholder="佩奇 白蛇2 我是猫" />
+            <button></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="nav">
+        <div class="title">会员中心</div>
+        <ul>
+          <li id="user-order" class="active">我的订单</li>
+          <li id="user-information" class="">基本信息</li>
+          <li id="user-change-pwd" class="">修改密码</li>
+        </ul>
+      </div>
+      <div class="container order">
+        <div class="title">我的订单</div>
+        <div class="divider"></div>
+        <div class="content">
+          <div class="item">
+            <div class="iheader">
+              <div class="time">2021-08-11</div>
+              <div class="order-id">蜗牛订单号:22538083977</div>
+              <span class="del"></span>
+            </div>
+            <div class="ibody">
+              <img src="./img/movies04.png" alt="" />
+              <div class="des">
+                <div class="name">《盛夏未来》</div>
+                <div class="address">太平洋影城（北欧知识城店）</div>
+                <div class="sub">2号厅 4排1座</div>
+                <div class="time">今天 8月11日 22:00</div>
+              </div>
+              <div class="price">￥34</div>
+              <div class="status">待支付</div>
+              <div class="op">
+                <button class="pay">付款</button>
+                <a href="#">查看详情</a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="iheader">
+              <div class="time">2021-08-11</div>
+              <div class="order-id">蜗牛订单号:22538083977</div>
+              <span class="del"></span>
+            </div>
+            <div class="ibody">
+              <img src="./img/movies04.png" alt="" />
+              <div class="des">
+                <div class="name">《盛夏未来》</div>
+                <div class="address">太平洋影城（北欧知识城店）</div>
+                <div class="sub">2号厅 4排1座</div>
+                <div class="time">今天 8月11日 22:00</div>
+              </div>
+              <div class="price">￥34</div>
+              <div class="status">待使用</div>
+              <div class="op">
+                <button class="pay">取票</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container information">
+        <div class="title">基本信息</div>
+        <div class="divider"></div>
+        <div class="content">
+          <div class="left">
+            <img src="./img/avatar.png" alt="" class="avatar" />
+            <button class="cahnge-img">更换头像</button>
+            <p>支持JPG,JPEG,PNG格式,且文件需 小于1M</p>
+          </div>
+          <div class="right">
+            <div class="neckName item">
+              <div class="name">昵称：</div>
+              <input type="text" placeholder="海绵宝宝" />
+            </div>
+            <div class="gender item">
+              <div class="name">性别：</div>
+              <input type="radio" name="gender" id="man" />
+              <label for="man">男</label>
+              &nbsp;&nbsp;
+              <input type="radio" name="gender" id="woman" />
+              <label for="woman">女</label>
+            </div>
+            <div class="birthday item">
+              <div class="name">生日：</div>
+              <select name="" id="year">
+                <option value=""></option></select
+              >年
+              <select name="" id="month">
+                <option value=""></option></select
+              >月
+              <select name="" id="day">
+                <option value=""></option></select
+              >日
+            </div>
+            <div class="status item">
+              <div class="name">生活状态：</div>
+              <input type="radio" name="status" id="danshen" />
+              <label for="danshen">单身</label>
+              &nbsp;&nbsp;
+              <input type="radio" name="status" id="relian" />
+              <label for="relian">热恋</label>
+              &nbsp;&nbsp;
+              <input type="radio" name="status" id="yihun" />
+              <label for="yihun">已婚</label>
+              &nbsp;&nbsp;
+              <input type="radio" name="status" id="fumu" />
+              <label for="fumu">为人父母</label>
+            </div>
+            <div class="industry item">
+              <div class="name">从事行业：</div>
+              <select name="" id="career1">
+                <option value=""></option></select
+              >&nbsp;
+              <select name="" id="career2">
+                <option value=""></option>
+              </select>
+            </div>
+            <div class="info item">
+              <div class="name">个性签名：</div>
+              <input type="text" placeholder="20个字以内" />
+            </div>
+            <button class="save">保存</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container change">
+        <div class="title">我的订单</div>
+        <div class="divider"></div>
+        <div class="content">
+          <div class="old item">
+            <div class="name">旧密码：</div>
+            <input type="password" placeholder="请输入密码" />
+          </div>
+          <div class="new1 item">
+            <div class="name">新密码：</div>
+            <input type="password" placeholder="请输入密码" />
+          </div>
+
+          <div class="new2 item">
+            <div class="name">确认密码：</div>
+            <input type="password" placeholder="请输入密码" />
+          </div>
+          <button class="save">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-top">
+        <div class="list">
+          <h3>新手上路</h3>
+          <div class="divider"></div>
+          <ul>
+            <li>
+              <a href="#">注册登录问题</a>
+            </li>
+            <li>
+              <a href="#">用户绑定会员卡问题</a>
+            </li>
+            <li>
+              <a href="#">影票相关问题</a>
+            </li>
+            <li>
+              <a href="#">票价和支付问题</a>
+            </li>
+            <li>
+              <a href="#">取票凭证吗和取票问题</a>
+            </li>
+          </ul>
+        </div>
+        <div class="list">
+          <h3>购票指南</h3>
+          <div class="divider"></div>
+          <ul>
+            <li>
+              <a href="#">用户购票流程</a>
+            </li>
+            <li>
+              <a href="#">取票观影指南</a>
+            </li>
+            <li>
+              <a href="#">会员卡支付相关说明</a>
+            </li>
+            <li>
+              <a href="#">网银支付相关说明</a>
+            </li>
+          </ul>
+        </div>
+        <div class="list">
+          <h3>会员权益</h3>
+          <div class="divider"></div>
+          <ul>
+            <li>
+              <a href="#">会员订票权益</a>
+            </li>
+            <li>
+              <a href="#">会员积分权益</a>
+            </li>
+            <li>
+              <a href="#">入会资格</a>
+            </li>
+            <li>
+              <a href="#">会员卡折扣说明</a>
+            </li>
+          </ul>
+        </div>
+        <div class="list">
+          <h3>联系我们</h3>
+          <div class="divider"></div>
+          <ul>
+            <li>
+              <a href="#">手机客户端介绍与下载</a>
+            </li>
+            <li>
+              <a href="#">影片信息查询</a>
+            </li>
+            <li>
+              <a href="#">手机自助购票</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="footer-bottom">
+        <div class="link">
+          <a href="#">公司介绍</a> - <a href="#">合作咨询</a> -
+          <a href="#">友情链接 </a> - <a href="#">网站地图</a> -
+          <a href="#">站长统计</a> - <a href="#">网站声明</a>
+        </div>
+        <div class="copyright">Copyright © 2021 ed by woniuxy</div>
+      </div>
+    </div>
+  </body>
+</html>
