@@ -1,0 +1,150 @@
+img.status {
+  display: block;
+  margin: 57px auto 48px;
+}
+
+.wrap {
+  margin: 0 auto;
+  width: 1200px;
+}
+
+.wrap .tips {
+  display: flex;
+  padding: 37px 0 32px 27px;
+  margin-bottom: 40px;
+  height: 110px;
+  background-color: #fff3f3;
+  box-sizing: border-box;
+}
+
+.wrap .tips img {
+  margin-right: 15px;
+}
+
+.wrap .tips .msgs {
+  color: #333;
+}
+
+.wrap .tips .msgs .msg1 {
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.wrap .tips .msgs .msg2 {
+  font-size: 14px;
+}
+
+.wrap .warning {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #333;
+}
+
+.wrap .warning i {
+  margin-right: 5px;
+  width: 12px;
+  height: 12px;
+  background-image: url(../img/warning.png);
+}
+
+.wrap .order {
+  margin-bottom: 60px;
+  border: 1px solid #e5e5e5;
+}
+
+.wrap .order .iheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  font-size: 14px;
+  background-color: #f7f7f7;
+}
+
+.wrap .order .iheader .time {
+  padding-left: 20px;
+  color: #333;
+}
+
+.wrap .order .iheader .order-id {
+  padding-left: 36px;
+  flex-grow: 1;
+  color: #999;
+}
+
+.wrap .order .iheader .del {
+  width: 16px;
+  height: 16px;
+  padding-right: 20px;
+  background-image: url(../img/del.png);
+  background-repeat: no-repeat;
+}
+
+.wrap .order .ibody {
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-size: 14px;
+  padding: 20px;
+}
+
+.wrap .order .ibody img {
+  display: block;
+}
+
+.wrap .order .ibody .des {
+  flex-grow: 1;
+  padding-left: 15px;
+  color: #999;
+  font-size: 12px;
+}
+
+.wrap .order .ibody .des .name {
+  font-size: 16px;
+  color: #333;
+}
+
+.wrap .order .ibody .des .address {
+  margin: 5px 0;
+}
+
+.wrap .order .ibody .des .sub {
+  margin-bottom: 5px;
+}
+
+.wrap .order .ibody .des .time {
+  color: #f99135;
+}
+
+.wrap .order .ibody .price {
+  margin-right: 77px;
+}
+
+.wrap .order .ibody .status {
+  margin-right: 104px;
+}
+
+.wrap .order .ibody .op {
+  width: 80px;
+  text-align: center;
+}
+
+.wrap .order .ibody .op .pay {
+  width: 80px;
+  height: 30px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #f99135;
+  border-radius: 15px;
+  box-shadow: 0px 2px 6px 0px rgba(255, 157, 71, 0.65);
+  border: none;
+}
+
+.wrap .order .ibody .op a {
+  display: block;
+  margin-top: 10px;
+  color: #333;
+}

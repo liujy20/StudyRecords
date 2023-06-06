@@ -98,14 +98,14 @@
   color: #f99135;
 }
 
-.mian .wrapper .left .title .newPlaying,
+.mian .wrapper .left .title .nowPlaying,
 .mian .wrapper .left .title .upcoming {
   height: 26px;
   font-size: 26px;
   line-height: 1;
 }
 
-.mian .wrapper .left .title .newPlaying span,
+.mian .wrapper .left .title .nowPlaying span,
 .mian .wrapper .left .title .upcoming span {
   font-size: 20px;
 }
@@ -129,6 +129,7 @@
 .mian .wrapper .left .content li img {
   display: block;
   width: 160px;
+  height: 220px;
 }
 
 .mian .wrapper .left .content li .des,
@@ -146,7 +147,13 @@
 
 .mian .wrapper .left .content li .des .name,
 .mian .wrapper .left .content li .movie-des .name {
-  margin-left: 10px;
+  position: relative;
+  padding-left: 10px;
+  width: 100%;
+  z-index: 1;
+  background-color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .mian .wrapper .left .content li .des .level,
@@ -159,16 +166,17 @@
 .mian .wrapper .left .content li .des .reservation,
 .mian .wrapper .left .content li .movie-des .reservation {
   position: absolute;
-  top: -40px;
-  display: none;
+  top: 0px;
+  display: flex;
   justify-content: space-between;
-  height: 40px;
+  height: 38px;
   width: 100%;
   text-align: center;
   font-size: 14px;
   color: #fff;
   background-color: #f99135;
   opacity: 0.8;
+  transition: top .3s;
 }
 
 .mian .wrapper .left .content li .des .reservation .res1,
@@ -182,17 +190,23 @@
   flex-grow: 1;
 }
 
-.mian .wrapper .left .content li:hover .des::after {
+.mian .wrapper .left .content li .des::after {
   content: "立即购票";
   position: absolute;
   bottom: 40px;
-  height: 40px;
+  height: 0px;
   width: 100%;
   text-align: center;
   font-size: 14px;
   color: #fff;
   background-color: #f99135;
   opacity: 0.8;
+  overflow: hidden;
+  transition: all .3s;
+}
+
+.mian .wrapper .left .content li:hover .des::after {
+  height: 40px;
 }
 
 .mian .wrapper .left .content li .time {
@@ -211,7 +225,7 @@
 }
 
 .mian .wrapper .left .content li:hover .reservation {
-  display: flex;
+  top: -40px;
 }
 
 .mian .wrapper .left .content .coming-item {
@@ -426,8 +440,29 @@
   border: none;
 }
 
+.login-box .mian .phone {
+  position: relative;
+}
+
+.login-box .mian .phone .phone-warning {
+  display: none;
+  position: absolute;
+  bottom: -20px;
+  color: #f03d37;
+  font-size: 12px;
+}
+
 .login-box .mian .password {
+  position: relative;
   margin: 24px 0 40px 0;
+}
+
+.login-box .mian .password .password-warning {
+  display: none;
+  position: absolute;
+  bottom: -20px;
+  color: #f03d37;
+  font-size: 12px;
 }
 
 .login-box .mian .login {
@@ -488,13 +523,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 444px;
-  height: 532px;
   background-color: rgba(0, 0, 0, 0.371);
 }
 
 .reg-box .mian {
   position: relative;
-  margin: 10px 10px 0 10px;
+  margin: 10px;
   padding: 50px 40px;
   background-color: #fff;
   overflow: hidden;
@@ -535,11 +569,62 @@
   border: none;
 }
 
+.reg-box .mian .phone {
+  position: relative;
+}
+
+.reg-box .mian .phone .phone-warning {
+  display: none;
+  position: absolute;
+  bottom: -20px;
+  color: #f03d37;
+  font-size: 12px;
+}
+
 .reg-box .mian .password {
+  position: relative;
   margin-top: 24px;
 }
 
-.reg-box .mian .login {
+.reg-box .mian .password .password1-warning {
+  display: none;
+  position: absolute;
+  bottom: -20px;
+  color: #f03d37;
+  font-size: 12px;
+}
+
+.reg-box .mian .password .password2-warning {
+  display: none;
+  position: absolute;
+  bottom: -20px;
+  color: #f03d37;
+  font-size: 12px;
+}
+
+.reg-box .mian .re {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.reg-box .mian .re .re-inp {
+  width: 50%;
+}
+
+.reg-box .mian .re .code {
+  width: 40%;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  font-size: 20px;
+  color: #f99135;
+  background-color: #f4f4f4;
+  border-radius: 6px;
+  border: solid 1px #d8d8d8;
+}
+
+.reg-box .mian .register {
   margin-top: 40px;
   height: 46px;
   width: 100%;

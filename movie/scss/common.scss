@@ -48,6 +48,24 @@ ol {
           color: #9a9a9a;
         }
       }
+      .online{
+        display: none;
+        float: right;
+        .username {
+          border: none;
+          background-color: transparent;
+          color: #f99135;
+        }
+        span{
+          color: #9a9a9a;
+          margin: 0 20px;
+        }
+        .out{
+          border: none;
+          background-color: transparent;
+          color: #9a9a9a;
+        }
+      }
     }
   }
   .header-bottom{
@@ -88,6 +106,7 @@ ol {
         }
       }
       .search{
+        position: relative;
         display: flex;
         justify-content: space-between;
         width: 340px;
@@ -116,6 +135,26 @@ ol {
           background-position: center center;
           border: none;
           border-radius: 20px;
+        }
+        .s-list{
+          display: block;
+          position: absolute;
+          z-index: 999;
+          top: 42px;
+          left: 20px;
+          width: 260px;
+          background-color: #fff;
+          border: 1px solid #f99135;
+          li{
+            padding: 10px 0 ;
+            margin: 0 10px 0;
+            height: 20px;
+            width: 240px;
+            color: #333;
+            text-align: left;
+            line-height: 20px;
+            border-bottom: 1px solid #e5e5e5;
+          }
         }
       }
     }

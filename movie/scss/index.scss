@@ -87,7 +87,7 @@
         margin-bottom: 22px;
         height: 26px;
         color: #f99135;
-        .newPlaying,
+        .nowPlaying,
         .upcoming {
           height: 26px;
           font-size: 26px;
@@ -111,6 +111,7 @@
           img {
             display: block;
             width: 160px;
+            height: 220px;
           }
           .des,
           .movie-des {
@@ -124,7 +125,13 @@
             box-sizing: border-box;
             border: 1px solid #e8e8e8;
             .name {
-              margin-left: 10px;
+              position: relative;
+              padding-left: 10px;
+              width: 100%;
+              z-index: 1;
+              background-color: #fff;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
             .level {
               margin-right: 10px;
@@ -133,16 +140,17 @@
             }
             .reservation {
               position: absolute;
-              top: -40px;
-              display: none;
+              top: 0px;
+              display: flex;
               justify-content: space-between;
-              height: 40px;
+              height: 38px;
               width: 100%;
               text-align: center;
               font-size: 14px;
               color: #fff;
               background-color: #f99135;
               opacity: 0.8;
+              transition: top .3s;
               .res1 {
                 flex-grow: 1;
                 border-right: 1px solid #ccc;
@@ -152,17 +160,22 @@
               }
             }
           }
-          &:hover .des::after {
+          .des::after{
             content: "立即购票";
             position: absolute;
             bottom: 40px;
-            height: 40px;
+            height: 0px;
             width: 100%;
             text-align: center;
             font-size: 14px;
             color: #fff;
             background-color: #f99135;
             opacity: 0.8;
+            overflow: hidden;
+            transition: all .3s;
+          }
+          &:hover .des::after {
+            height: 40px;
           }
           .time {
             position: absolute;
@@ -177,7 +190,7 @@
           &:hover {
             box-shadow: 0 0 3px 2px #eee;
             .reservation {
-              display: flex;
+              top: -40px;
             }
           }
         }
@@ -304,14 +317,13 @@
             font-size: 16px;
             color: #acacac;
             font-style: italic;
-            
           }
           .rank {
             color: #f99135;
           }
           .name {
             font-size: 14px;
-            &:hover{
+            &:hover {
               color: #f99135;
               cursor: pointer;
             }
@@ -367,8 +379,26 @@
         border: none;
       }
     }
+    .phone{
+      position: relative;
+      .phone-warning{
+        display: none;
+        position: absolute;
+        bottom: -20px;
+        color: #f03d37;
+        font-size: 12px;
+      }
+    }
     .password {
+      position: relative;
       margin: 24px 0 40px 0;
+      .password-warning{
+        display: none;
+        position: absolute;
+        bottom: -20px;
+        color: #f03d37;
+        font-size: 12px;
+      }
     }
     .login {
       height: 46px;
@@ -425,11 +455,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 444px;
-  height: 532px;
   background-color: rgba(0, 0, 0, 0.371);
   .mian {
     position: relative;
-    margin: 10px 10px 0 10px;
+    margin: 10px;
     padding: 50px 40px;
     background-color: #fff;
     overflow: hidden;
@@ -463,10 +492,54 @@
         border: none;
       }
     }
-    .password {
-      margin-top: 24px;
+    .phone {
+      position: relative;
+      .phone-warning {
+        display: none;
+        position: absolute;
+        bottom: -20px;
+        color: #f03d37;
+        font-size: 12px;
+      }
     }
-    .login {
+    .password {
+      position: relative;
+      margin-top: 24px;
+      .password1-warning {
+        display: none;
+        position: absolute;
+        bottom: -20px;
+        color: #f03d37;
+        font-size: 12px;
+      }
+      .password2-warning {
+        display: none;
+        position: absolute;
+        bottom: -20px;
+        color: #f03d37;
+        font-size: 12px;
+      }
+    }
+    .re {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 24px;
+      .re-inp {
+        width: 50%;
+      }
+      .code {
+        width: 40%;
+        height: 45px;
+        line-height: 45px;
+        text-align: center;
+        font-size: 20px;
+        color: #f99135;
+        background-color: #f4f4f4;
+        border-radius: 6px;
+        border: solid 1px #d8d8d8;
+      }
+    }
+    .register {
       margin-top: 40px;
       height: 46px;
       width: 100%;
@@ -482,7 +555,7 @@
       font-size: 14px;
       color: #f99135;
     }
-    
+
     .close {
       position: absolute;
       top: -40px;

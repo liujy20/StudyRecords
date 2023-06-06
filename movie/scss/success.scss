@@ -1,0 +1,129 @@
+img.status {
+  display: block;
+  margin: 57px auto 48px;
+}
+
+.wrap {
+  margin: 0 auto;
+  width: 1200px;
+
+  .tips {
+    display: flex;
+    padding: 37px 0 32px 27px;
+    margin-bottom: 40px;
+    height: 110px;
+    background-color: #fff3f3;
+    box-sizing: border-box;
+    img{
+      margin-right: 15px;
+    }
+    .msgs{
+      color: #333;
+      .msg1{
+        margin-bottom: 5px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .msg2{
+        font-size: 14px;
+      }
+    }
+  }
+
+  .warning{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #333;
+    i{
+      margin-right: 5px;
+      width: 12px;
+      height: 12px;
+      background-image: url(../img/warning.png);
+    }
+  }
+  .order {
+    margin-bottom: 60px;
+    border: 1px solid #e5e5e5;
+    .iheader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 50px;
+      font-size: 14px;
+      background-color: #f7f7f7;
+      .time {
+        padding-left: 20px;
+        color: #333;
+      }
+      .order-id {
+        padding-left: 36px;
+        flex-grow: 1;
+        color: #999;
+      }
+      .del {
+        width: 16px;
+        height: 16px;
+        padding-right: 20px;
+        background-image: url(../img/del.png);
+        background-repeat: no-repeat;
+      }
+    }
+    .ibody {
+      display: flex;
+      align-items: center;
+      color: #333;
+      font-size: 14px;
+      padding: 20px;
+      img {
+        display: block;
+      }
+      .des {
+        flex-grow: 1;
+        padding-left: 15px;
+        color: #999;
+        font-size: 12px;
+        .name {
+          font-size: 16px;
+          color: #333;
+        }
+        .address {
+          margin: 5px 0;
+        }
+        .sub {
+          margin-bottom: 5px;
+        }
+        .time {
+          color: #f99135;
+        }
+      }
+      .price {
+        margin-right: 77px;
+      }
+      .status {
+        margin-right: 104px;
+      }
+      .op {
+        width: 80px;
+        text-align: center;
+        .pay {
+          width: 80px;
+          height: 30px;
+          font-size: 14px;
+          color: #fff;
+          background-color: #f99135;
+          border-radius: 15px;
+          box-shadow: 0px 2px 6px 0px 
+		rgba(255, 157, 71, 0.65);
+          border: none;
+        }
+        a {
+          display: block;
+          margin-top: 10px;
+          color: #333;
+        }
+      }
+    }
+  }
+}

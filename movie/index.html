@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer">
     <title>Document</title>
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/index.css" />
+    <script src="./js/movieData.js"></script>
   </head>
   <body>
     <div class="header">
@@ -18,6 +20,12 @@
             <span>|</span>
             <button class="reg">注册</button>
           </div>
+          <div class="online">
+            <button class="username">欢迎您~aaa</button>
+            <span>|</span>
+            <button class="out">注销</button>
+          </div>
+
         </div>
       </div>
       <div class="header-bottom">
@@ -49,6 +57,13 @@
           <div class="search">
             <input type="text" placeholder="佩奇 白蛇2 我是猫" />
             <button></button>
+            <ul class="s-list">
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -76,13 +91,13 @@
       <div class="wrapper">
         <div class="left">
           <div class="title">
-            <div class="newPlaying">
+            <div class="nowPlaying">
               正在热映
               <span>(73部)</span>
             </div>
             <div class="more">查看更多>></div>
           </div>
-          <ul class="content">
+          <ul class="content now-playing-movie">
             <li>
               <img src="./img/movies01.png" alt="" />
               <div class="des">
@@ -147,7 +162,7 @@
             </div>
             <div class="more">查看更多>></div>
           </div>
-          <ul class="content">
+          <ul class="content up-coming-moive">
             <li class="coming-item">
               <img src="./img/movies01.png" alt="" />
               <div class="movie-des">
@@ -427,14 +442,29 @@
         </div>
         <div class="phone inp">
           <input type="text" placeholder="请输入手机号">
+          <div class="phone-warning">
+            用户名为11位的手机号码
+          </div>
         </div>
         <div class="password inp" id="pwd1">
           <input type="password" placeholder="请输入密码">
+          <div class="password1-warning">
+            首字母大写,密码为6~16位的字母,数字或_组成
+          </div>
         </div>
         <div class="password inp" id="pwd2">
           <input type="password" placeholder="请输入密码">
+          <div class="password2-warning">
+            首字母大写,密码为6~16位的字母,数字或_组成
+          </div>
         </div>
-        <button class="login">登录</button>
+        <div class="re">
+          <div class="re-inp inp">
+            <input type="text" placeholder="请输入验证码">
+          </div>
+          <div class="code">acdf2</div>
+        </div>
+        <button class="register">注册</button>
         <div class="other">
           立即登录
         </div>
@@ -450,14 +480,20 @@
         </div>
         <div class="phone inp">
           <input type="text" placeholder="请输入手机号">
+          <div class="phone-warning">
+            用户名为11位的手机号码
+          </div>
         </div>
         <div class="password inp">
           <input type="password" placeholder="请输入密码">
+          <div class="password-warning">
+            首字母大写,密码为6~16位的字母,数字或_组成
+          </div>
         </div>
         <button class="login">登录</button>
         <div class="other">
           <div class="auto">
-            <input type="checkbox" name="auto" id="">
+            <input type="checkbox" name="auto" id="" checked>
             下次自动登录
           </div>
           <div class="forget">
@@ -465,11 +501,13 @@
           </div>
         </div>
         <div class="agreement">
-          <input type="checkbox" name="agree" id="">
+          <input type="checkbox" name="agree" id="" checked>
           已阅读并同意《服务设计启发式线上工具服务协议》
         </div>
         <div class="close"></div>
       </div>
     </div>
+
+    <script src="./js/index.js"></script>
   </body>
 </html>
