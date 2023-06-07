@@ -38,13 +38,20 @@
 .bg .wrapper .des .title1 {
   font-size: 26px;
   margin-bottom: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .bg .wrapper .des .title2 {
   font-size: 18px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .bg .wrapper .des .space {
+  max-height: 28px;
   margin-top: 12px;
 }
 
@@ -179,6 +186,7 @@
   margin-bottom: 40px;
   font-size: 18px;
   border-bottom: 1px solid #e5e5e5;
+  cursor: pointer;
 }
 
 .content .left .navs .nav1 {
@@ -195,10 +203,6 @@
 .content .left .navs .active {
   color: #f99135;
   border-bottom: 1px solid #f99135;
-}
-
-.content .left .container1 {
-  display: none;
 }
 
 .content .left .container1 .title {
@@ -339,6 +343,12 @@
   background-image: url(../img/star-4.png);
 }
 
+.content .left .container1 .mark ul li .mark-header .info .mark-time .item {
+  width: 8px;
+  height: 16px;
+  background-image: url(../img/star-4.png);
+}
+
 .content .left .container1 .mark ul li .mark-header .info .mark-time .y-l {
   background-image: url(../img/star-4.png);
 }
@@ -383,6 +393,10 @@
 
 .content .left .container1 .mark ul li:last-child p {
   border: none;
+}
+
+.content .left .container2 {
+  display: none;
 }
 
 .content .left .container2 .director {
@@ -597,6 +611,7 @@
 
 .rate {
   position: fixed;
+  display: none;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -633,6 +648,7 @@
 .rate .main .star ul .item {
   width: 15px;
   height: 30px;
+  pointer-events: none;
 }
 
 .rate .main .star ul .y-l {

@@ -29,11 +29,18 @@
       .title1 {
         font-size: 26px;
         margin-bottom: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       .title2 {
         font-size: 18px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       .space {
+        max-height: 28px;
         margin-top: 12px;
       }
       .btns {
@@ -152,6 +159,7 @@
       font-size: 18px;
 
       border-bottom: 1px solid #e5e5e5;
+      cursor: pointer;
       .nav1 {
         margin-right: 30px;
         padding-bottom: 9px;
@@ -167,7 +175,7 @@
       }
     }
     .container1 {
-      display: none;
+      // display: none;
       .title {
         display: flex;
         justify-content: space-between;
@@ -283,6 +291,11 @@
                     height: 16px;
                     background-image: url(../img/star-4.png);
                   }
+                  .item{
+                    width: 8px;
+                    height: 16px;
+                    background-image: url(../img/star-4.png);
+                  }
                   .y-l {
                     background-image: url(../img/star-4.png);
                   }
@@ -330,6 +343,7 @@
       }
     }
     .container2 {
+      display: none;
       .director {
         font-size: 16px;
         color: #333;
@@ -514,6 +528,7 @@
 
 .rate {
   position: fixed;
+  display: none;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -541,6 +556,7 @@
         .item {
           width: 15px;
           height: 30px;
+          pointer-events: none;
         }
         .y-l {
           background-image: url(../img/star-4.png);

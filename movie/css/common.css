@@ -127,6 +127,14 @@ ol {
   color: #fff;
 }
 
+.header .header-bottom .wrapper ul .active {
+  background-color: #f99135;
+}
+
+.header .header-bottom .wrapper ul .active a {
+  color: #fff;
+}
+
 .header .header-bottom .wrapper .search {
   position: relative;
   display: flex;
@@ -164,7 +172,7 @@ ol {
 }
 
 .header .header-bottom .wrapper .search .s-list {
-  display: block;
+  display: none;
   position: absolute;
   z-index: 999;
   top: 42px;
@@ -182,7 +190,10 @@ ol {
   color: #333;
   text-align: left;
   line-height: 20px;
+  white-space: nowrap;
   border-bottom: 1px solid #e5e5e5;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .footer {

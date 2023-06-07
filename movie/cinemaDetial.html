@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
     <title>Document</title>
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/cinemaDetial.css" />
+    <script src="./js/movieData.js"></script>
   </head>
   <body>
     <div class="header">
@@ -36,7 +38,7 @@
             <li>
               <a href="#">影片</a>
             </li>
-            <li>
+            <li class="active">
               <a href="#">影城</a>
             </li>
             <li>
@@ -106,7 +108,7 @@
 
         <div class="movie-img-list">
           <ul>
-            <li>
+            <li class="active">
               <img src="./img/movies01.png" alt="" />
             </li>
             <li>
@@ -141,15 +143,15 @@
               </div>
             </div>
             <div class="bottom">
-              <div class="item">
+              <div class="item" id="time">
                 <div class="key">时长:</div>
                 <div class="val">115分钟</div>
               </div>
-              <div class="item">
+              <div class="item" id="type">
                 <div class="key">类型:</div>
                 <div class="val">剧情</div>
               </div>
-              <div class="item">
+              <div class="item" id="actor">
                 <div class="key">主演:</div>
                 <div class="val">张子枫 吴磊 郝蕾</div>
               </div>
@@ -214,51 +216,7 @@
                 <button>停止售票</button>
               </div>
             </li>
-            <li class="item">
-              <div class="time">
-                <div class="start">14:45</div>
-                <div class="end">16:40散场</div>
-              </div>
-              <div class="lang">国语2D</div>
-              <div class="type">2厅</div>
-              <div class="price">
-                ¥
-                <span>26.9</span>
-              </div>
-              <div class="choose">
-                <button>停止售票</button>
-              </div>
-            </li>
-            <li class="item">
-              <div class="time">
-                <div class="start">14:45</div>
-                <div class="end">16:40散场</div>
-              </div>
-              <div class="lang">国语2D</div>
-              <div class="type">2厅</div>
-              <div class="price">
-                ¥
-                <span>26.9</span>
-              </div>
-              <div class="choose">
-                <button>停止售票</button>
-              </div>
-            </li>
-            <li class="item">
-              <div class="time">
-                <div class="start">14:45</div>
-                <div class="end">16:40散场</div>
-              </div>
-              <div class="lang">国语2D</div>
-              <div class="type">2厅</div>
-              <div class="price">
-                ¥
-                <span>26.9</span>
-              </div>
-              <div class="choose">
-                <button>停止售票</button>
-              </div>
-            </li>
+            
           </ul>
         </div>
       </div>
@@ -349,5 +307,6 @@
         <div class="copyright">Copyright © 2021 ed by woniuxy</div>
       </div>
     </div>
+    <!-- <script src="./js/cinemaDetial.js"></script> -->
   </body>
 </html>

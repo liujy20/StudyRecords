@@ -42,18 +42,48 @@
       border-radius: 0 22px 22px 0;
     }
     .select {
+      position: relative;
       box-sizing: border-box;
       padding-left: 23px;
+      padding-right: 30px;
       width: 200px;
       height: 40px;
       font-size: 16px;
-      line-height: 40px;
+      line-height: 38px;
       color: #8c8c8c;
       border: 2px solid #ccc;
       border-radius: 20px;
       background-image: url(../img/icon-4.png);
       background-repeat: no-repeat;
       background-position: 165px center;
+      // overflow: hidden;
+      // white-space: nowrap;
+      // text-overflow: ellipsis;
+      .list{
+        display: none;
+        position: absolute;
+        left: 10px;
+        z-index: 999;
+        width: 170px;
+        max-height: 200px;
+        background-color: #fff;
+        border: 2px solid #f99135;
+        li{
+          margin: 0 10px;
+          padding: 5px 0;
+          height: 20px;
+          font-size: 14px;
+          line-height: 20px;
+          border-bottom: 1px solid #e5e5e5;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          &:hover{
+            background-color: #f99135;
+            color: #fff;
+          }
+        }
+      }
     }
     .buy {
       width: 120px;

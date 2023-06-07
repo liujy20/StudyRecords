@@ -101,8 +101,17 @@ const users = { 13112341234: "ASDFASDF" };
 
 // 搜索
 const search = document.querySelector(".search");
-const searchInp = search.querySelector('input')
+const searchInp = search.querySelector("input");
 const searchList = search.querySelector(".s-list");
+const searchBtn = search.querySelector("button");
+let selectId;
+
+// 影院选择
+const cinema = document.querySelector(".fastPay .cinema");
+const cinemaOptins = cinema.querySelector(".list");
+const moive = document.querySelector(".fastPay .moive");
+const moiveOptions = moive.querySelector(".list");
+let selectMovies = [];
 
 main();
 
@@ -114,6 +123,7 @@ function main() {
 function render() {
   renderNowPlaying();
   renderUpComing();
+  renderOpera();
 }
 
 /**
@@ -160,17 +170,113 @@ function renderUpComing() {
       </div>
     </div>
     <div class="time">8月6日上映</div>`;
+    li.className = "coming-item"
     li.setAttribute("data-id", item.id);
     upComingMoive.appendChild(li);
   });
 }
 
+/**
+ * 渲染影院
+ */
+function renderOpera() {
+  cinemaOptins.innerHTML = "";
+  opera.forEach((item) => {
+    let li = document.createElement("li");
+    li.innerHTML = item.name;
+    li.setAttribute("data-id", item.id);
+    cinemaOptins.appendChild(li);
+  });
+  addCinemaChoose();
+  addMovieChoose();
+  addOpenList();
+}
+
+/**
+ * 打开选择列表
+ */
+function addOpenList() {
+  cinema.addEventListener("click", (e) => {
+    // console.log(e.target.className);
+    // console.log(cinemaOptins);
+    if (e.target.className == "cinema select") {
+      cinemaOptins.style.display = "block";
+    }
+  });
+  moive.addEventListener("click", (e) => {
+    console.log(e.target.className);
+    if (selectMovies.length != 0&&e.target.className == "moive select") {
+      addOperaChange();
+      moiveOptions.style.display = "block";
+    }
+  });
+}
+
+/**
+ * 选择影院
+ */
+function addCinemaChoose() {
+  cinemaOptins.addEventListener("click", (e) => {
+    let ele = e.target;
+    if(ele.innerText.length>8){
+      cinema.innerText = ele.innerText.slice(0, 8) + "...";
+    }else{
+      cinema.innerText = ele.innerText
+    }
+    cinema.appendChild(cinemaOptins)
+    opera.forEach((item) => {
+      if (ele.getAttribute("data-id") == item.id) {
+        selectMovies = item.movies;
+      }
+    });
+    cinemaOptins.style.display = "none";
+    moive.innerText = '选择电影'
+  });
+}
+
+/**
+ * 监听影院修改
+ */
+function addOperaChange() {
+  moiveOptions.innerHTML = "";
+  // console.log(selectMovies);
+  // console.log(moiveOptions);
+  selectMovies.forEach((item) => {
+    nowPlaying.forEach((val) => {
+      if (item == val.id) {
+        let li = document.createElement("li");
+        li.innerHTML = val.title;
+        moiveOptions.appendChild(li);
+      }
+    });
+  });
+  moive.appendChild(moiveOptions);
+}
+
+/**
+ * 选择电影
+ */
+function addMovieChoose() {
+  moiveOptions.addEventListener("click", (e) => {
+    let ele = e.target;
+    if(ele.innerText.length>8){
+      moive.innerText = ele.innerText.slice(0, 8) + "...";
+    }else{
+      moive.innerText = ele.innerText
+    }
+    moive.appendChild(moiveOptions);
+    moiveOptions.style.display = "none";
+  });
+}
+
 function addListener() {
-  // addBannerchange();
+  addBannerchange();
   addLoginAndReg();
   addLoginRe();
   addRegRe();
   addSearch();
+  addChooseResult();
+  addSearchBtn();
 }
 
 /**
@@ -358,7 +464,7 @@ function addBannerchange() {
   changeBannerImg(0);
   setInterval(() => {
     changeBannerImg(++bannerIndex % bannerArr.length);
-  }, 1000);
+  }, 3000);
 }
 
 /**
@@ -380,19 +486,43 @@ function changeBannerImg(index) {
  * 搜索事件绑定
  */
 function addSearch() {
-
-  
   searchInp.addEventListener("input", () => {
     searchList.innerHTML = "";
     let val = searchInp.value;
-    console.log(val);
     nowPlaying.forEach((item) => {
-      
-      if (item.title.startsWith(val)&&val!='') {
+      if (item.title.startsWith(val) && val != "") {
+        searchList.style.display = "block";
         let li = document.createElement("li");
         li.innerHTML = item.title;
+        li.setAttribute("data-id", item.id);
         searchList.appendChild(li);
+        // console.log(searchList);
+      } else if (val == "") {
+        searchList.style.display = "none";
       }
     });
+  });
+}
+
+/**
+ * 绑定选择的搜索结果
+ */
+function addChooseResult() {
+  searchList.onclick = function (e) {
+    let ele = e.target;
+    searchInp.value = ele.innerText;
+    selectId = ele.getAttribute("data-id");
+    searchList.style.display = "none";
+  };
+}
+
+/**
+ * 绑定搜索按钮
+ */
+function addSearchBtn() {
+  searchBtn.addEventListener("click", () => {
+    if (selectId != undefined) {
+      location.href = "detail.html?id=" + selectId;
+    }
   });
 }
