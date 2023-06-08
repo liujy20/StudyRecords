@@ -93,6 +93,8 @@ img.status {
 
 .wrap .order .ibody img {
   display: block;
+  width: 70px;
+  height: 95px;
 }
 
 .wrap .order .ibody .des {

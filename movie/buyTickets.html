@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/buyTickets.css">
+    <script src="./js/movieData.js"></script>
   </head>
   <body>
     <div class="header">
@@ -36,7 +37,7 @@
             <li>
               <a href="#">影片</a>
             </li>
-            <li>
+            <li class="active">
               <a href="#">影城</a>
             </li>
             <li>
@@ -78,138 +79,140 @@
             <div class="title">
               银幕中央
             </div>
-            <div class="item">
-              <div class="line-num">1</div>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-            </div>
-            <div class="item">
-              <div class="line-num">1</div>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-            </div>
-            <div class="item">
-              <div class="line-num">1</div>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-              <span class="seat1"></span>
-            </div>
-            <div class="item">
-              <div class="line-num">1</div>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-            </div>
-            <div class="item">
-              <div class="line-num">1</div>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-            </div>
-            <div class="item">
-              <div class="line-num">1</div>
-              <span></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span ></span>
-              <span ></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div class="item">
-              <div class="line-num">1</div>
-              <span></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span ></span>
-              <span ></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span class="seat0"></span>
-              <span></span>
-              <span></span>
+            <div class="wrap">
+              <div class="item">
+                <div class="line-num">1</div>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+              </div>
+              <div class="item">
+                <div class="line-num">1</div>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+              </div>
+              <div class="item">
+                <div class="line-num">1</div>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+                <span class="seat1"></span>
+              </div>
+              <div class="item">
+                <div class="line-num">1</div>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+              </div>
+              <div class="item">
+                <div class="line-num">1</div>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+              </div>
+              <div class="item">
+                <div class="line-num">1</div>
+                <span></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span ></span>
+                <span ></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="item">
+                <div class="line-num">1</div>
+                <span></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span ></span>
+                <span ></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span class="seat0"></span>
+                <span></span>
+                <span></span>
+              </div>
             </div>
             
             
@@ -239,7 +242,7 @@
         </div>
         <div class="yingting line-item">
           影厅:
-          <span>4号厅</span>
+          <span>2号厅</span>
         </div>
         <div class="banben line-item">
           版本:
@@ -255,7 +258,9 @@
         </div>
         <div class="vote">
           <div class="tit">座位:</div>
+          <span>请选择电影票</span>
           <ul>
+            
             <li>5排3座</li>
             <li>5排3座</li>
             <li>5排3座</li>
@@ -268,7 +273,9 @@
           <span>¥<span>165</span></span>
         </div>
         <input type="text" class="phone" placeholder="输入手机号">
-        <input type="password" class="psd" placeholder="填写验证码">
+        <div class="phone-warning">请输入正确的手机号码</div>
+        <input type="text" class="code" placeholder="填写验证码">
+        <div class="psd-warning">请输入正确的验证码</div>
         <button class="confirm">确认选票</button>
         <div class="yzm">
           <button class="get">获取验证码</button>
@@ -361,5 +368,6 @@
         <div class="copyright">Copyright © 2021 ed by woniuxy</div>
       </div>
     </div>
+    <script src="./js/buyTickets.js"></script>
   </body>
 </html>

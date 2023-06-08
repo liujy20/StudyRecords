@@ -29,7 +29,7 @@
     }
   }
   .container.order {
-    display: none;
+    // display: none;
     flex-grow: 1;
     box-sizing: border-box;
     padding: 30px 35px 0 40px;
@@ -234,6 +234,7 @@
   }
 
   .container.change {
+    display: none;
     flex-grow: 1;
     box-sizing: border-box;
     padding: 30px 35px 0 40px;

@@ -33,7 +33,6 @@
 }
 
 .main .container.order {
-  display: none;
   flex-grow: 1;
   box-sizing: border-box;
   padding: 30px 35px 0 40px;
@@ -266,6 +265,7 @@
 }
 
 .main .container.change {
+  display: none;
   flex-grow: 1;
   box-sizing: border-box;
   padding: 30px 35px 0 40px;

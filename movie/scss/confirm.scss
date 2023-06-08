@@ -62,7 +62,11 @@ img.status {
         width: 200px;
         text-align: center;
       }
+      .name {
+        width: 240px;
+      }
     }
+
     .order-header {
       height: 49px;
       background-color: #f7f7f7;
@@ -75,6 +79,11 @@ img.status {
       }
       .time {
         color: #f99135;
+      }
+      .seat {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
       }
     }
   }
@@ -99,6 +108,7 @@ img.status {
         color: #333;
         background-color: #ffffff;
         border: solid 1px #dbdbdb;
+        cursor: pointer;
       }
       .active {
         border: 1px solid #f99135;

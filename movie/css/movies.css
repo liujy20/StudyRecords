@@ -66,6 +66,13 @@
   text-align: center;
 }
 
+.main .wrapper .navs-box .item ul li:hover {
+  color: #fff;
+  background-color: #f99135;
+  border-radius: 23px;
+  cursor: pointer;
+}
+
 .main .wrapper .navs-box .item ul .active {
   color: #fff;
   background-color: #f99135;
@@ -89,22 +96,84 @@
 .main .wrapper .movies .container ul {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .main .wrapper .movies .container ul li {
+  margin-right: 30px;
   text-align: center;
   margin-bottom: 35px;
+  width: 160px;
 }
 
-.main .wrapper .movies .container ul li img {
+.main .wrapper .movies .container ul li .img {
+  position: relative;
+  width: 160px;
+  height: 220px;
+  color: #333;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.main .wrapper .movies .container ul li .img img {
   display: block;
+  width: 160px;
+  height: 220px;
+}
+
+.main .wrapper .movies .container ul li .img .desc {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding-left: 14px;
+  height: 0;
+  width: 400%;
+  background-color: #fff;
+  text-align: left;
+  font-size: 12px;
+  line-height: 1;
+  color: #999;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+.main .wrapper .movies .container ul li .img:hover {
+  transform: scale(1.36);
+}
+
+.main .wrapper .movies .container ul li .img:hover .desc {
+  padding-top: 14px;
+  height: 110px;
+}
+
+.main .wrapper .movies .container ul li .img:hover .desc .item {
+  margin-bottom: 10px;
+}
+
+.main .wrapper .movies .container ul li .img:hover .desc .item span {
+  color: #333;
+}
+
+.main .wrapper .movies .container ul li .img:hover .desc .title {
+  font-size: 16px;
+  color: #333;
+}
+
+.main .wrapper .movies .container ul li .img:hover .desc .title span {
+  margin-left: 16px;
+  color: #f99135;
+  font-style: italic;
+  font-size: 18px;
 }
 
 .main .wrapper .movies .container ul li .name {
   margin: 10px 0 15px;
   font-size: 16px;
   color: #033;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .main .wrapper .movies .container ul li .score {
@@ -112,6 +181,10 @@
   color: #f99135;
   font-size: 24px;
   line-height: 1;
+}
+
+.main .wrapper .movies .container ul li:nth-child(6n) {
+  margin-right: 0;
 }
 
 .main .wrapper .movies .pages {

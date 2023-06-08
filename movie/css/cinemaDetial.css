@@ -113,6 +113,7 @@
   margin: 4px;
   width: 132px;
   height: 185px;
+  pointer-events: none;
 }
 
 .main .wrap .movie-img-list ul li:hover {

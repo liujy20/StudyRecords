@@ -116,6 +116,7 @@ ol {
 }
 
 .header .header-bottom .wrapper ul li a {
+  display: block;
   color: #333;
 }
 

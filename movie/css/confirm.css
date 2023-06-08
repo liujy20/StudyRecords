@@ -75,6 +75,10 @@ img.status {
   text-align: center;
 }
 
+.wrap .order .item .name {
+  width: 240px;
+}
+
 .wrap .order .order-header {
   height: 49px;
   background-color: #f7f7f7;
@@ -91,6 +95,12 @@ img.status {
 
 .wrap .order .order-body .time {
   color: #f99135;
+}
+
+.wrap .order .order-body .seat {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .wrap .pay .tit {
@@ -115,6 +125,7 @@ img.status {
   color: #333;
   background-color: #ffffff;
   border: solid 1px #dbdbdb;
+  cursor: pointer;
 }
 
 .wrap .pay ul .active {

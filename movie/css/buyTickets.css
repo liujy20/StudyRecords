@@ -174,14 +174,25 @@
 }
 
 .main .right .vote {
+  position: relative;
   display: flex;
   padding: 15px 0 35px;
 }
 
 .main .right .vote .tit {
+  width: 32px;
   color: #999;
   font-size: 14px;
   line-height: 30px;
+}
+
+.main .right .vote span {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  font-size: 14px;
+  color: #f99135;
 }
 
 .main .right .vote ul {
@@ -231,18 +242,40 @@
   box-sizing: border-box;
 }
 
-.main .right input[type="text"]::placeholder {
+.main .right input.phone {
+  margin-bottom: 20px;
+}
+
+.main .right input.phone::placeholder {
   color: #333;
   font-size: 14px;
 }
 
-.main .right input[type="password"] {
+.main .right .phone-warning {
+  display: none;
+  position: absolute;
+  bottom: 205px;
+  left: 80px;
+  color: #f04e39;
+  font-size: 12px;
+}
+
+.main .right input.code {
   margin-bottom: 50px;
 }
 
-.main .right input[type="password"]::placeholder {
+.main .right input.code::placeholder {
   color: #333;
   font-size: 14px;
+}
+
+.main .right .psd-warning {
+  display: none;
+  position: absolute;
+  bottom: 145px;
+  left: 80px;
+  color: #f04e39;
+  font-size: 12px;
 }
 
 .main .right .confirm {

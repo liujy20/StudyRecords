@@ -96,6 +96,7 @@
             margin: 4px;
             width: 132px;
             height: 185px;
+            pointer-events: none;
           }
           &:hover{
             transform: scale(1.2);

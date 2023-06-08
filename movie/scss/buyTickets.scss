@@ -144,12 +144,22 @@
       }
     }
     .vote {
+      position: relative;
       display: flex;
       padding: 15px 0 35px;
       .tit {
+        width: 32px;
         color: #999;
         font-size: 14px;
         line-height: 30px;
+      }
+      span{
+        display: none;
+        position: absolute;
+        top: 20px;
+        left: 50px;
+        font-size: 14px;
+        color: #f99135;
       }
       ul {
         width: 300px;
@@ -193,18 +203,37 @@
       outline: none;
       box-sizing: border-box;
     }
-    input[type="text"] {
+    input.phone {
+      margin-bottom: 20px;
       &::placeholder {
         color: #333;
         font-size: 14px;
       }
     }
-    input[type="password"] {
+    .phone-warning{
+      display: none;
+      position: absolute;
+      bottom: 205px;
+      left: 80px;
+      color: #f04e39;
+      font-size: 12px;
+
+    }
+    input.code {
       margin-bottom: 50px;
       &::placeholder {
         color: #333;
         font-size: 14px;
       }
+    }
+    .psd-warning{
+      display: none;
+      position: absolute;
+      bottom: 145px;
+      left: 80px;
+      color: #f04e39;
+      font-size: 12px;
+
     }
     .confirm {
       margin-left: 40px;
