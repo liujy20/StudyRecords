@@ -86,6 +86,7 @@ const codeArr = [
 let code = "";
 
 // banner
+const banner = document.querySelector(".banner");
 const bannerImg = document.querySelector(".banner img");
 const bannerDot = document.querySelectorAll(".banner li");
 const bannerArr = [
@@ -95,6 +96,7 @@ const bannerArr = [
   "./img/banner/slider04.png",
 ];
 let bannerIndex = 0;
+let timer;
 
 // 账号
 const users = { 13112341234: "ASDFASDF" };
@@ -170,7 +172,7 @@ function renderUpComing() {
       </div>
     </div>
     <div class="time">8月6日上映</div>`;
-    li.className = "coming-item"
+    li.className = "coming-item";
     li.setAttribute("data-id", item.id);
     upComingMoive.appendChild(li);
   });
@@ -205,7 +207,7 @@ function addOpenList() {
   });
   moive.addEventListener("click", (e) => {
     console.log(e.target.className);
-    if (selectMovies.length != 0&&e.target.className == "moive select") {
+    if (selectMovies.length != 0 && e.target.className == "moive select") {
       addOperaChange();
       moiveOptions.style.display = "block";
     }
@@ -218,19 +220,19 @@ function addOpenList() {
 function addCinemaChoose() {
   cinemaOptins.addEventListener("click", (e) => {
     let ele = e.target;
-    if(ele.innerText.length>8){
+    if (ele.innerText.length > 8) {
       cinema.innerText = ele.innerText.slice(0, 8) + "...";
-    }else{
-      cinema.innerText = ele.innerText
+    } else {
+      cinema.innerText = ele.innerText;
     }
-    cinema.appendChild(cinemaOptins)
+    cinema.appendChild(cinemaOptins);
     opera.forEach((item) => {
       if (ele.getAttribute("data-id") == item.id) {
         selectMovies = item.movies;
       }
     });
     cinemaOptins.style.display = "none";
-    moive.innerText = '选择电影'
+    moive.innerText = "选择电影";
   });
 }
 
@@ -259,10 +261,10 @@ function addOperaChange() {
 function addMovieChoose() {
   moiveOptions.addEventListener("click", (e) => {
     let ele = e.target;
-    if(ele.innerText.length>8){
+    if (ele.innerText.length > 8) {
       moive.innerText = ele.innerText.slice(0, 8) + "...";
-    }else{
-      moive.innerText = ele.innerText
+    } else {
+      moive.innerText = ele.innerText;
     }
     moive.appendChild(moiveOptions);
     moiveOptions.style.display = "none";
@@ -271,6 +273,7 @@ function addMovieChoose() {
 
 function addListener() {
   addBannerchange();
+  addChooseImg();
   addLoginAndReg();
   addLoginRe();
   addRegRe();
@@ -462,9 +465,17 @@ function regUser() {
  */
 function addBannerchange() {
   changeBannerImg(0);
-  setInterval(() => {
+  timer = setInterval(() => {
     changeBannerImg(++bannerIndex % bannerArr.length);
   }, 3000);
+  banner.addEventListener("mouseover", () => {
+    clearInterval(timer);
+  });
+  banner.addEventListener("mouseout", () => {
+    timer = setInterval(() => {
+      changeBannerImg(++bannerIndex % bannerArr.length);
+    }, 3000);
+  });
 }
 
 /**
@@ -472,7 +483,7 @@ function addBannerchange() {
  * @param {*} index 图片下标
  */
 function changeBannerImg(index) {
-  console.log(index);
+  // console.log(index);
   if (index < bannerDot.length && index >= 0) {
     bannerDot.forEach((item) => {
       item.className = "";
@@ -480,6 +491,19 @@ function changeBannerImg(index) {
   }
   bannerDot[index].className = "active";
   bannerImg.src = bannerArr[index];
+}
+
+/**
+ * 选择图片
+ */
+function addChooseImg() {
+  bannerDot.forEach((item) => {
+    item.addEventListener("click", function () {
+      let index = this.getAttribute("id");
+      bannerIndex = index;
+      changeBannerImg(bannerIndex);
+    });
+  });
 }
 
 /**

@@ -21,6 +21,7 @@
   width: 40px;
   height: 3px;
   background-color: #ddd;
+  cursor: pointer;
 }
 
 .banner ul .active {
