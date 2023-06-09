@@ -91,6 +91,8 @@
 
 .main .container.order .content .item .ibody img {
   display: block;
+  width: 70px;
+  height: 95px;
 }
 
 .main .container.order .content .item .ibody .des {

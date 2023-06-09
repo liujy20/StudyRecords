@@ -15,6 +15,9 @@ const sub = document.querySelector('.des .sub')
 const time = document.querySelector('.des .time')
 const price = document.querySelector('.ibody .price')
 
+// 查看订单
+const toUser = document.querySelector('.to-user')
+
 main();
 
 function main(){
@@ -45,5 +48,12 @@ function renderMovieMSg(){
 }
 
 function addListener(){
+  addToUser()
+}
 
+function addToUser(){
+  toUser.addEventListener('click',(e)=>{
+    e.preventDefault()
+    location.href='user.html?order='+JSON.stringify(obj)
+  })
 }

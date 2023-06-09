@@ -142,11 +142,65 @@
 
 .main .wrapper .left .advance-content ul .item p {
   position: absolute;
-  left: 15px;
   bottom: 30px;
+  padding: 0 44px 0 16px;
+  width: 100%;
   color: #fff;
   font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.main .wrapper .left .advance-content ul .item .played {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.main .wrapper .left .advance-content ul .item .played .tri {
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+  border-left: 4px solid #c6c6c6;
+}
+
+.main .wrapper .left .advance-content ul .item .played .num {
+  padding-left: 5px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.main .wrapper .left .advance-content ul .item .running {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background-color: #161616;
+  border-radius: 50%;
+  border: 2px solid #777;
+  opacity: .8;
+  transition: all .2s;
+}
+
+.main .wrapper .left .advance-content ul .item .running .tri {
+  margin-left: 5px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-left: 6px solid #c6c6c6;
+}
+
+.main .wrapper .left .advance-content ul .item:hover .running {
+  transform: scale(1.4);
 }
 
 .main .wrapper .right {
