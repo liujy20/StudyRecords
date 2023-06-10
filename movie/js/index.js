@@ -443,6 +443,7 @@ function regUser() {
               return;
             }
           }
+          alert("注册成功")
           users[phoneInp.value] = pwd1Inp.value;
           closeReg();
         } else {
