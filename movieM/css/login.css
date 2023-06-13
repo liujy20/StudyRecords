@@ -1,0 +1,36 @@
+header {
+  position: relative;
+  height: 290px;
+  background-image: url(../img/bg1.jpg);
+}
+
+header .icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+header .back {
+  position: absolute;
+  top: 125px;
+  left: 44px;
+}
+
+header .tit {
+  position: absolute;
+  top: 193px;
+  left: 38px;
+  font-size: 36px;
+  color: #f2f2f2;
+}
+
+main {
+  margin: 45px 40px;
+}
+
+main .item .tip {
+  margin-bottom: 18px;
+  color: #666;
+  font-size: 24px;
+  line-height: 1;
+}

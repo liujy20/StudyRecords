@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        display: flex;
+        width: 1000px;
+      }
+      .item {
+        margin-left: 20px;
+        margin-bottom: 20px;
+        width: 220px;
+        height: 360px;
+        background-image: linear-gradient(#acc,#caa);
+      }
+      @media screen and (min-width: 450px) {
+        .item {
+          width: 180px;
+          height: 260px;
+        }
+        .i4,.i5{
+          display: none;
+        }
+      }
+      @media screen and (min-width: 950px) {
+        .item {
+          display: block;
+          width: 200px;
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item i4"></div>
+      <div class="item i5"></div>
+    </div>
+  </body>
+</html>
