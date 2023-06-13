@@ -1,0 +1,161 @@
+header {
+  height: 290px;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+main {
+  position: relative;
+  height: 1335px;
+  .movie {
+    display: flex;
+    padding: 0 40px;
+    height: 270px;
+    img {
+      position: relative;
+      top: -70px;
+      display: block;
+      width: 208px;
+      height: 310px;
+      background-color: #d1d1d1;
+      border-radius: 14px;
+    }
+    .desc {
+      margin-left: 35px;
+      .tit {
+        margin-top: 30px;
+        font-size: 32px;
+        line-height: 1;
+        color: #000018;
+      }
+      .item {
+        margin-top: 23px;
+        color: #8890a3;
+        font-size: 24px;
+        span {
+          margin-left: 93px;
+          color: #263153;
+        }
+      }
+    }
+  }
+  .divider {
+    height: 14px;
+    background-color: #edf0f9;
+  }
+  .cinema {
+    overflow: hidden;
+    nav {
+      display: flex;
+      padding: 0 55px;
+      height: 80px;
+      border-bottom: 1px solid #ccc;
+      .item {
+        width: 300px;
+        text-align: center;
+        font-size: 28px;
+        line-height: 80px;
+        color: #00001d;
+        box-sizing: border-box;
+      }
+      .active {
+        border-bottom: 8px solid #4073ff;
+      }
+    }
+    .time {
+      display: flex;
+      padding: 30px 40px;
+      width: 300%;
+      border-bottom: 1px solid #ccc;
+      li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: 25px;
+        width: 106px;
+        height: 121px;
+        border-radius: 24px;
+        border: solid 2px #d1dfff;
+        box-sizing: border-box;
+      }
+      .active {
+        color: #fff;
+        background-color: #4073ff;
+        border: none;
+      }
+    }
+    .cinemaList {
+      padding: 0 40px;
+      li {
+        margin: 35px 0 45px;
+        .name {
+          margin-bottom: 20px;
+          font-size: 28px;
+          color: #000018;
+        }
+        .address {
+          display: flex;
+          align-items: center;
+          color: #131f44;
+          font-size: 24px;
+          line-height: 1;
+          i {
+            margin-right: 10px;
+            width: 20px;
+            height: 26px;
+            background-image: url(../img/loc-2.png);
+          }
+        }
+        .price {
+          margin: 50px 0 30px;
+          color: #141337;
+          font-size: 24px;
+          line-height: 1;
+        }
+        .timer {
+          display: flex;
+          flex-wrap: wrap;
+          .i {
+            margin-right: 12px;
+            margin-bottom: 10px;
+            width: 124px;
+            height: 54px;
+            line-height: 54px;
+            font-size: 24px;
+            color: #000018;
+            text-align: center;
+            background-color: #edf0f9;
+            border-radius: 8px;
+          }
+          .i:nth-child(5n) {
+            margin-right: 0;
+          }
+          .i1 {
+            border: solid 2px #d1dfff;
+            background-color: #fff;
+            box-sizing: border-box;
+          }
+          .active {
+            background-color: #4073ff;
+            color: #fff;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+  .sumbit {
+    position: absolute;
+    bottom: 35px;
+    left: 40px;
+    width: 670px;
+    height: 96px;
+    font-size: 32px;
+    color: #fff;
+    background-color: #4073ff;
+    border-radius: 16px;
+    border: none;
+  }
+}
