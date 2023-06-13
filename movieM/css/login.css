@@ -28,9 +28,60 @@ main {
   margin: 45px 40px;
 }
 
+main .item {
+  position: relative;
+}
+
 main .item .tip {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 18px;
   color: #666;
   font-size: 24px;
   line-height: 1;
+}
+
+main .item .tip span {
+  color: #fd1c1c;
+}
+
+main .item input {
+  display: block;
+  padding: 0 0 0 27px;
+  width: 670px;
+  height: 96px;
+  font-size: 28px;
+  line-height: 28px;
+  color: #0b193f;
+  border-radius: 16px;
+  border: solid 1px #cccccc;
+  box-sizing: border-box;
+}
+
+main .item .eyes {
+  position: absolute;
+  top: 75px;
+  right: 28px;
+}
+
+main .pwd {
+  margin-top: 50px;
+}
+
+main .login {
+  margin-top: 60px;
+  width: 670px;
+  height: 96px;
+  color: #fff;
+  font-size: 32px;
+  background-color: #4073ff;
+  border-radius: 16px;
+  border: none;
+}
+
+main .toReg {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 24px;
+  color: #4073ff;
 }

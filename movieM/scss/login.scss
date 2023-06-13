@@ -1,18 +1,18 @@
-header{
+header {
   position: relative;
   height: 290px;
   background-image: url(../img/bg1.jpg);
-  .icon{
+  .icon {
     position: absolute;
     top: 0;
     right: 0;
   }
-  .back{
+  .back {
     position: absolute;
     top: 125px;
     left: 44px;
   }
-  .tit{
+  .tit {
     position: absolute;
     top: 193px;
     left: 38px;
@@ -20,17 +20,56 @@ header{
     color: #f2f2f2;
   }
 }
-main{
+main {
   margin: 45px 40px;
-  .item{
-    .tip{
+  .item {
+    position: relative;
+    .tip {
+      display: flex;
+      justify-content: space-between;
       margin-bottom: 18px;
       color: #666;
       font-size: 24px;
       line-height: 1;
+      span {
+        color: #fd1c1c;
+      }
     }
-    input{
-      
+    input {
+      display: block;
+      padding: 0 0 0 27px;
+      width: 670px;
+      height: 96px;
+      font-size: 28px;
+      line-height: 28px;
+      color: #0b193f;
+      border-radius: 16px;
+      border: solid 1px #cccccc;
+      box-sizing: border-box;
     }
+    .eyes {
+      position: absolute;
+      top: 75px;
+      right: 28px;
+    }
+  }
+  .pwd {
+    margin-top: 50px;
+  }
+  .login {
+    margin-top: 60px;
+    width: 670px;
+    height: 96px;
+    color: #fff;
+    font-size: 32px;
+    background-color: #4073ff;
+    border-radius: 16px;
+    border: none;
+  }
+  .toReg{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 24px;
+    color: #4073ff;
   }
 }
