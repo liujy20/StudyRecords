@@ -1,5 +1,5 @@
 header {
-  height: 290px;
+  height: 2.9rem;
   overflow: hidden;
 }
 
@@ -9,49 +9,49 @@ header img {
 
 main {
   position: relative;
-  height: 1335px;
+  height: 13.35rem;
 }
 
 main .movie {
   display: flex;
-  padding: 0 40px;
-  height: 270px;
+  padding: 0 .4rem;
+  height: 2.7rem;
 }
 
 main .movie img {
   position: relative;
-  top: -70px;
+  top: -0.7rem;
   display: block;
-  width: 208px;
-  height: 310px;
+  width: 2.08rem;
+  height: 3.1rem;
   background-color: #d1d1d1;
-  border-radius: 14px;
+  border-radius: .14rem;
 }
 
 main .movie .desc {
-  margin-left: 35px;
+  margin-left: .35rem;
 }
 
 main .movie .desc .tit {
-  margin-top: 30px;
-  font-size: 32px;
+  margin-top: .3rem;
+  font-size: .32rem;
   line-height: 1;
   color: #000018;
 }
 
 main .movie .desc .item {
-  margin-top: 23px;
+  margin-top: .23rem;
   color: #8890a3;
-  font-size: 24px;
+  font-size: .24rem;
 }
 
 main .movie .desc .item span {
-  margin-left: 93px;
+  margin-left: .93rem;
   color: #263153;
 }
 
 main .divider {
-  height: 14px;
+  height: .14rem;
   background-color: #edf0f9;
 }
 
@@ -61,29 +61,29 @@ main .cinema {
 
 main .cinema nav {
   display: flex;
-  padding: 0 55px;
-  height: 80px;
-  border-bottom: 1px solid #ccc;
+  padding: 0 .55rem;
+  height: .8rem;
+  border-bottom: .01rem solid #ccc;
 }
 
 main .cinema nav .item {
-  width: 300px;
+  width: 3rem;
   text-align: center;
-  font-size: 28px;
-  line-height: 80px;
+  font-size: .28rem;
+  line-height: .8rem;
   color: #00001d;
   box-sizing: border-box;
 }
 
 main .cinema nav .active {
-  border-bottom: 8px solid #4073ff;
+  border-bottom: .08rem solid #4073ff;
 }
 
 main .cinema .time {
   display: flex;
-  padding: 30px 40px;
+  padding: .3rem .4rem;
   width: 300%;
-  border-bottom: 1px solid #ccc;
+  border-bottom: .01rem solid #ccc;
 }
 
 main .cinema .time li {
@@ -91,11 +91,12 @@ main .cinema .time li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 25px;
-  width: 106px;
-  height: 121px;
-  border-radius: 24px;
-  border: solid 2px #d1dfff;
+  margin-right: .25rem;
+  width: 1.06rem;
+  height: 1.21rem;
+  font-size: .16rem;
+  border-radius: .24rem;
+  border: solid .02rem #d1dfff;
   box-sizing: border-box;
 }
 
@@ -106,16 +107,16 @@ main .cinema .time .active {
 }
 
 main .cinema .cinemaList {
-  padding: 0 40px;
+  padding: 0 .4rem;
 }
 
 main .cinema .cinemaList li {
-  margin: 35px 0 45px;
+  margin: .35rem 0 .45rem;
 }
 
 main .cinema .cinemaList li .name {
-  margin-bottom: 20px;
-  font-size: 28px;
+  margin-bottom: .2rem;
+  font-size: .28rem;
   color: #000018;
 }
 
@@ -123,21 +124,22 @@ main .cinema .cinemaList li .address {
   display: flex;
   align-items: center;
   color: #131f44;
-  font-size: 24px;
+  font-size: .24rem;
   line-height: 1;
 }
 
 main .cinema .cinemaList li .address i {
-  margin-right: 10px;
-  width: 20px;
-  height: 26px;
+  margin-right: .1rem;
+  width: .2rem;
+  height: .26rem;
   background-image: url(../img/loc-2.png);
+  background-size: contain;
 }
 
 main .cinema .cinemaList li .price {
-  margin: 50px 0 30px;
+  margin: .5rem 0 .3rem;
   color: #141337;
-  font-size: 24px;
+  font-size: .24rem;
   line-height: 1;
 }
 
@@ -147,16 +149,16 @@ main .cinema .cinemaList li .timer {
 }
 
 main .cinema .cinemaList li .timer .i {
-  margin-right: 12px;
-  margin-bottom: 10px;
-  width: 124px;
-  height: 54px;
-  line-height: 54px;
-  font-size: 24px;
+  margin-right: .12rem;
+  margin-bottom: .1rem;
+  width: 1.24rem;
+  height: .54rem;
+  line-height: .54rem;
+  font-size: .24rem;
   color: #000018;
   text-align: center;
   background-color: #edf0f9;
-  border-radius: 8px;
+  border-radius: .08rem;
 }
 
 main .cinema .cinemaList li .timer .i:nth-child(5n) {
@@ -164,7 +166,7 @@ main .cinema .cinemaList li .timer .i:nth-child(5n) {
 }
 
 main .cinema .cinemaList li .timer .i1 {
-  border: solid 2px #d1dfff;
+  border: solid .02rem #d1dfff;
   background-color: #fff;
   box-sizing: border-box;
 }
@@ -177,13 +179,13 @@ main .cinema .cinemaList li .timer .active {
 
 main .sumbit {
   position: absolute;
-  bottom: 35px;
-  left: 40px;
-  width: 670px;
-  height: 96px;
-  font-size: 32px;
+  bottom: .35rem;
+  left: .4rem;
+  width: 6.7rem;
+  height: .96rem;
+  font-size: .32rem;
   color: #fff;
   background-color: #4073ff;
-  border-radius: 16px;
+  border-radius: .16rem;
   border: none;
 }
