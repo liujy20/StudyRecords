@@ -81,9 +81,11 @@ main .item .tit {
   margin: 0 .4rem .4rem;
   color: #0b193f;
   font-size: .32rem;
+  font-weight: bold;
 }
 
 main .item .tit .more {
+  font-weight: normal;
   font-size: .24rem;
 }
 
