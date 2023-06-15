@@ -213,6 +213,122 @@
   标签变量名.removeAttribute("属性名")
   ```
 
+### 3、添加HTML标签
+
+#### （1）使用innerHTML来添加
+
+【流程】
+
+1. 先在页面上使用`innerHTML`获取到标签中原来的内容
+2. 将新的标签的字符串拼接到原来的内容之后
+3. 再使用`innerHTML`将拼接后的字符串替换掉标签中的内容
+
+```html
+<ul class="list"> 
+  <li>评论一：该商品好吃不贵</li> 
+  <li>评论二: 经济实惠，难吃到死</li>
+</ul>
+<script> 
+  // 用户输入一条评论，在页面添加一条评论   
+  let input = prompt("请输入你的评论");   
+  console.log(input);  
+  let list = document.querySelector(".list"); 
+  // 获取之前的内容，进行字符串拼接，将新数据拼接上去
+  let temp = list.innerHTML; 
+  temp += `<li>${input}</li>`  
+  console.log(temp);
+  list.innerHTML = temp;
+</script>
+```
+
+#### （2）使用api来添加html标签
+
+【流程】
+
+1. 先使用`document.createElement()`来新建一个标签
+2. 设置新标签的内容和标签上的属性（根据实际情况而定）
+3. 再使用`appendChild()`和`insertBefore()`将新标签添加到指定的位置
+
+##### createElements()
+
+- `document.createElement()`：新建一个标签
+
+- 语法：
+
+  ```javascript
+  let 标签变量名=document.createElement("标签名");
+  ```
+
+- 注意：在程序中新建了一个标签，还没有放入页面中，该标签默认是没有内容和标签上的属性。
+
+##### appendChild()
+
+- `appendChild()`：将新标签作为页面中指定标签的最后一个子标签添加到页面中
+
+- 语法：
+
+  ```javascript
+  父标签变量名.appendChild(新标签变量名);
+  ```
+
+##### insertBefore()
+
+- `insertBefore()`：将新标签插入到父标签的指定的兄弟标签之前
+
+- 语法：
+
+  ```javascript
+  父标签变量名.insertBefore(新标签变量名,兄弟标签变量名);
+  ```
+
+### 4、删除HTML标签
+
+#### （1）remove()
+
+- `remove()`：删除指定的HTML标签
+
+- 语法：
+
+  ```javascript
+  待删除的标签.remove();
+  ```
+
+#### （2）removeChild()
+
+- `removeChild()`：删除父标签中指定的子标签
+
+- 流程：
+
+  1. 找到待删除的标签及其父标签
+  2. 通过父标签来调用方法来删除子标签
+
+- 语法：
+
+  ```javascript
+  父标签变量名.removeChild(待删除的子标签);
+  ```
+
+#### （3）批量删除
+
+- 先找到需要删除的所有标签，通过遍历获取到每个标签，每个标签再调用`remove()`或`removeChild()`来进行删除标签的操作
+
+```javascript
+let lis = document.querySelectorAll(".list li");
+console.log(lis);
+lis.forEach(elem=>{   
+  // console.log(elem);   
+  elem.remove()
+})
+```
+
+- 如果删除指定标签里面所有的子标签和内容时，可以使用`innerHTML`或`innerText`来达到快速删除的目的
+
+```javascript
+let box = document.querySelector(".box");
+console.log(box);
+box.innerHTML="";box.innerText="";
+```
+
 ## 事件基础
 
 ### 1、事件概念

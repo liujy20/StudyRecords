@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/jquery-3.5.1.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="beforeBox">beforeBox</div>
+    <div class="box">
+      <h1>
+        <span class="inner">111</span>
+      </h1>
+      <h1>222</h1>
+      <span>333</span>
+    </div>
+    <div class="afterBox">afterBox</div>
+    <script>
+      const box = $(".box");
+      const span = $(".inner");
+      // 所有子元素
+      console.log(box.children());
+      // 选择器子元素
+      console.log(box.find("h1 span"));
+
+
+      // 父元素
+      console.log(span.parent());
+      // 所有父级元素
+      console.log(span.parents());
+
+      // 前一个元素
+      console.log(box.prev());
+      // 后一个元素
+      console.log(box.next());
+    </script>
+  </body>
+</html>

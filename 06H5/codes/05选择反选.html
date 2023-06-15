@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/jquery-3.5.1.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="checkbox" name="language" value="HTML" />HTML
+    <input type="checkbox" name="language" value="CSS" />CSS
+    <input type="checkbox" name="language" value="JavaScript" />JavaScript
+    <input type="checkbox" name="language" value="jQuery" />jQuery
+    <input type="checkbox" name="language" value="BootStrap" />BootStrap
+    <br />
+    <input type="checkbox" id="sel" />选择
+    <input type="button" value="反选" />
+    <script>
+      const langs = $('[name="language"]')
+      const all = $("#sel")
+      const btn = $('[type="button"]')
+
+
+      all.on('click',function(){
+        langs.each((index,item)=>{
+          $(item).prop('checked',all.prop('checked'))
+        })
+      })
+      btn.on('click',()=>{
+        langs.each(function(){
+          const flag = $(this).prop('checked')
+          $(this).prop('checked',!flag)
+        })
+      })
+    </script>
+  </body>
+</html>

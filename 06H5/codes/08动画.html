@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./js/jquery-3.5.1.js"></script>
+  <script src="./js/jquery.color.js"></script>
+  <title>Document</title>
+  <style>
+    .con{
+      height: 300px;
+    }
+    .box{
+      width: 200px;
+      height: 200px;
+      background-color: #acc;
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="con">
+    <div class="box"></div>
+  </div>
+  <div class="wrap"></div>
+  <script>
+    const box = $(".box")
+    const wrap = $(".wrap")
+    // 显示 改变大小
+    box.show(2000,'linear',function(){
+      console.log(123);
+    })
+    // 隐藏 改变大小
+    box.hide(2000,'linear',function(){
+      console.log(123);
+    })
+    // 向下展开 改变高度
+    box.slideDown(2000,'linear',function(){
+      console.log(123);
+    })
+    // 向上收拢 改变高度
+    box.slideUp(2000,'linear',function(){
+      console.log(123);
+    })
+    // 显示 改变透明度
+    box.fadeIn(2000,'linear',function(){
+      console.log(123);
+    })
+    // 隐藏 改变透明度
+    box.fadeOut(2000,'linear',function(){
+      console.log(123);
+    })
+
+    wrap.animate({
+      backgroundColor:'#cac',
+      width:'200px',
+      height:'200px',
+      borderRadius:'50%'
+    },2000,'linear',function(){
+      console.log(111);
+    })
+  </script>
+</body>
+</html>
