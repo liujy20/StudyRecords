@@ -1,3 +1,7 @@
+body {
+  font-size: .16rem;
+}
+
 header {
   height: 2.9rem;
   overflow: hidden;
@@ -178,8 +182,8 @@ main .cinema .cinemaList li .timer .active {
 }
 
 main .sumbit {
-  position: absolute;
-  bottom: .35rem;
+  position: fixed;
+  bottom: .30rem;
   left: .4rem;
   width: 6.7rem;
   height: .96rem;
