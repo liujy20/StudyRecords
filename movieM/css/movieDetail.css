@@ -111,7 +111,7 @@ main .cinema .time .active {
 }
 
 main .cinema .cinemaList {
-  padding: 0 .4rem;
+  padding: 0 .4rem 1.3rem;
 }
 
 main .cinema .cinemaList li {
@@ -130,6 +130,9 @@ main .cinema .cinemaList li .address {
   color: #131f44;
   font-size: .24rem;
   line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 main .cinema .cinemaList li .address i {

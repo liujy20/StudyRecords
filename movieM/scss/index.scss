@@ -22,7 +22,9 @@ header {
     height: 0.4rem;
     color: #f2f2f2;
     font-size: 0.36rem;
+    line-height: 1;
     .ticket {
+      display: block;
       margin-right: 0.17rem;
       width: 0.44rem;
       height: 0.34rem;

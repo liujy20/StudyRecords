@@ -39,9 +39,19 @@ function main() {
 }
 
 function render() {
+  renderUser();
   renderNowPlaying();
   renderUpComing();
   renderMenu();
+}
+// 渲染用户数据
+function renderUser(){
+  if(sessionStorage.getItem('user')){
+    const user = $(".top span")
+    user.text(`您好，${sessionStorage.getItem('user')}！`)
+  }else{
+    location.href='login.html'
+  }
 }
 
 // 渲染正在热映列表

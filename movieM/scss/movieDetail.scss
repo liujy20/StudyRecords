@@ -91,7 +91,7 @@ main {
       }
     }
     .cinemaList {
-      padding: 0 .4rem;
+      padding: 0 .4rem 1.3rem;
       li {
         margin: .35rem 0 .45rem;
         .name {
@@ -105,6 +105,9 @@ main {
           color: #131f44;
           font-size: .24rem;
           line-height: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
           i {
             margin-right: .1rem;
             width: .2rem;
