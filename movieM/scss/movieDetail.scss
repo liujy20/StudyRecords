@@ -153,8 +153,20 @@ main {
         }
       }
     }
+    .detail{
+      display: none;
+      margin: .55rem .4rem 3.3rem;
+      p{
+        font-size: .28rem;
+        line-height: .54rem;
+        color: #000122;
+      }
+      video{
+        width: 6.7rem;
+      }
+    }
   }
-  .sumbit {
+  .submit {
     position: fixed;
     bottom: .30rem;
     left: .4rem;

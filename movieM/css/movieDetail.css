@@ -184,7 +184,22 @@ main .cinema .cinemaList li .timer .active {
   border: none;
 }
 
-main .sumbit {
+main .cinema .detail {
+  display: none;
+  margin: .55rem .4rem 3.3rem;
+}
+
+main .cinema .detail p {
+  font-size: .28rem;
+  line-height: .54rem;
+  color: #000122;
+}
+
+main .cinema .detail video {
+  width: 6.7rem;
+}
+
+main .submit {
   position: fixed;
   bottom: .30rem;
   left: .4rem;
