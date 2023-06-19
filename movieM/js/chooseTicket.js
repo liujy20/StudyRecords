@@ -2,13 +2,15 @@
 const movieId = location.search.slice(1).split("&")[0].split("=")[1];
 // 影院ID
 const cinemaId = location.search.slice(1).split("&")[1].split("=")[1];
+// 时间
+const userDate = decodeURI(location.search.slice(1).split("&")[2].split("=")[1]);
 // 电影数据
 const movie = nowPlaying.find((item) => {
   return item.id == movieId;
 });
 // 影院数据
 const cinema = opera.find((item) => {
-  return item.id ==cinemaId;
+  return item.id == cinemaId;
 });
 // console.log(cinema);
 // 电影名称
@@ -49,7 +51,7 @@ function render() {
 // 渲染电影和影院信息
 function renderDesc() {
   movieName.text(movie.title.split(" ")[0]);
-  cinemaName.text(`${cinema.name} • 2020-04-16 星期一 19：00`);
+  cinemaName.text(`${cinema.name} • ${userDate}`);
 }
 // 渲染座位
 function renderSeat() {
@@ -100,8 +102,8 @@ function addChooseSeat() {
       if (num < 5) {
         seatArr[i][j] = 1;
         renderSeat();
-      }else{
-        alert("一次最多购入5张电影票")
+      } else {
+        alert("一次最多购入5张电影票");
       }
     } else if (seatArr[i][j] == 1) {
       seatArr[i][j] = 0;
@@ -141,11 +143,19 @@ function render_X_Y_Price() {
 
 function addListener() {
   addBack();
+  addRoute();
 }
 
 // 返回上一级
-function addBack(){
-  $(".back").on('click',()=>{
-    history.go(-1)
-  })
+function addBack() {
+  $(".back").on("click", () => {
+    history.go(-1);
+  });
+}
+
+// 导航
+function addRoute() {
+  cinemaName.on("click", function () {
+    location.href = "route.html?name=" + cinema.name;
+  });
 }

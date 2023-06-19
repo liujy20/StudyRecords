@@ -48,7 +48,7 @@ main {
     background-color: #edf0f9;
   }
   .cinema {
-    overflow: hidden;
+    overflow-x: hidden;
     nav {
       display: flex;
       padding: 0 .55rem;
@@ -66,30 +66,37 @@ main {
         border-bottom: .08rem solid #4073ff;
       }
     }
-    .time {
-      display: flex;
-      padding: .3rem .4rem;
-      width: 300%;
-      border-bottom: .01rem solid #ccc;
-      li {
+    .wrap{
+      overflow-x: auto;
+      .time {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-right: .25rem;
-        width: 1.06rem;
-        height: 1.21rem;
-        font-size: .16rem;
-        border-radius: .24rem;
-        border: solid .02rem #d1dfff;
-        box-sizing: border-box;
-      }
-      .active {
-        color: #fff;
-        background-color: #4073ff;
-        border: none;
+        padding: .3rem .4rem;
+        width: 9.1rem;
+        border-bottom: .01rem solid #ccc;
+        li {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-right: .25rem;
+          width: 1.06rem;
+          height: 1.21rem;
+          font-size: .16rem;
+          border-radius: .24rem;
+          border: solid .02rem #d1dfff;
+          box-sizing: border-box;
+          &:last-child{
+            margin-right: 0;
+          }
+        }
+        .active {
+          color: #fff;
+          background-color: #4073ff;
+          border: none;
+        }
       }
     }
+    
     .cinemaList {
       padding: 0 .4rem 1.3rem;
       li {
@@ -114,6 +121,11 @@ main {
             height: .26rem;
             background-image: url(../img/loc-2.png);
             background-size: contain;
+          }
+          .text{
+            width: 6.2rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
         }
         .price {

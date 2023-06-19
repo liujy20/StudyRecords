@@ -60,7 +60,7 @@ main .divider {
 }
 
 main .cinema {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 main .cinema nav {
@@ -83,14 +83,18 @@ main .cinema nav .active {
   border-bottom: .08rem solid #4073ff;
 }
 
-main .cinema .time {
+main .cinema .wrap {
+  overflow-x: auto;
+}
+
+main .cinema .wrap .time {
   display: flex;
   padding: .3rem .4rem;
-  width: 300%;
+  width: 9.1rem;
   border-bottom: .01rem solid #ccc;
 }
 
-main .cinema .time li {
+main .cinema .wrap .time li {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,7 +108,11 @@ main .cinema .time li {
   box-sizing: border-box;
 }
 
-main .cinema .time .active {
+main .cinema .wrap .time li:last-child {
+  margin-right: 0;
+}
+
+main .cinema .wrap .time .active {
   color: #fff;
   background-color: #4073ff;
   border: none;
@@ -141,6 +149,12 @@ main .cinema .cinemaList li .address i {
   height: .26rem;
   background-image: url(../img/loc-2.png);
   background-size: contain;
+}
+
+main .cinema .cinemaList li .address .text {
+  width: 6.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 main .cinema .cinemaList li .price {

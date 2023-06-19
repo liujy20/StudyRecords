@@ -26,6 +26,10 @@ let movieData = {};
 let cinemaId = 0;
 // 视频
 const video = document.querySelector("video");
+// 时间
+const time = $(".time");
+let userDate
+let userTime
 
 main();
 function main() {
@@ -37,6 +41,7 @@ function render() {
   renderDesc();
   renderCinema();
   renderDetial();
+  renderTime();
 }
 // 渲染电影介绍
 function renderDesc() {
@@ -80,24 +85,25 @@ function renderCinema() {
   });
   // console.log(arr);
   let s = "";
+  const newDate = new Date()
+  console.log(newDate.getHours()>11);
   arr.forEach((item) => {
     s += `<li>
     <div class="name">${item.name}</div>
     <div class="address">
       <i></i>
-      54.0km • ${item.address}
+      <div class="text">54.0km • ${item.address}</div>
     </div>
     <div class="price">
       英文 2D • ￥30.00
     </div>
     <div class="timer" data-id=${item.id}>
-      <div class="i">11:00</div>
-      <div class="i">11:00</div>
-      <div class="i i1">11:00</div>
-      <div class="i i1">11:00</div>
-      <div class="i i1">11:00</div>
-      <div class="i i1">11:00</div>
-      <div class="i i1">11:00</div>
+      <div class="i ${newDate.getHours()>11?'':'i1'}">11:00</div>
+      <div class="i ${newDate.getHours()>13?'':'i1'}">13:00</div>
+      <div class="i ${newDate.getHours()>15?'':'i1'}">15:00</div>
+      <div class="i ${newDate.getHours()>17?'':'i1'}">17:00</div>
+      <div class="i ${newDate.getHours()>19?'':'i1'}">19:00</div>
+      <div class="i ${newDate.getHours()>21?'':'i1'}">21:00</div>
     </div>
   </li>`;
   });
@@ -109,8 +115,64 @@ function renderDetial() {
   $(".detail p").text(movieData.desc);
 }
 
+// 渲染时间列表
+function renderTime() {
+  let date = new Date();
+  let s = "";
+  for (let i = 0; i < 7; i++) {
+    let week = getWeek(date.getDay());
+    let month = getMonth(date.getMonth()+1, 2);
+    let day = getDay(date.getDate(), 2);
+
+    s += `<li class="" date-time="${date.getFullYear()}-${month}-${day} ${week}">
+    <div class="week">${week}</div>
+    <div class="day">${month}-${day}</div>
+    </li>`;
+    date.setDate(date.getDate()+1)
+  }
+  time.html(s)
+}
+
+// 获取星期
+function getWeek(week){
+  switch(week){
+    case 0:
+      return '星期天';
+    case 1:
+      return '星期一';
+    case 2:
+      return '星期二';
+    case 3:
+      return '星期三';
+    case 4:
+      return '星期四';
+    case 5:
+      return '星期五';
+    case 6:
+      return '星期六';
+    
+  }
+}
+// 获取月份
+function getMonth(month,num){
+  let s=month
+  for(let i=0;i<num-String(month).length;i++){
+    s='0'+s;
+  }
+  return s;
+}
+// 获取日期
+function getDay(day,num){
+  let s=day
+  for(let i=0;i<num-String(day).length;i++){
+    s='0'+s;
+  }
+  return s;
+}
+
 function addListener() {
   addChangeNav();
+  addDateChoose();
   addTimeChoose();
   addSubmit();
 }
@@ -132,6 +194,17 @@ function addChangeNav() {
     }
   });
 }
+// 时间选择
+function addDateChoose(){
+  $('.cinema .time li').on('click',(e)=>{
+    const date = $(e.currentTarget)
+    $(".cinema .time li").removeClass("active");
+      date.addClass("active");
+      userDate = date.attr('date-time');
+      // console.log(userDate);
+  })
+}
+
 // 影院场次选择
 function addTimeChoose() {
   $(".i").on("click", (e) => {
@@ -140,7 +213,8 @@ function addTimeChoose() {
       $(".i").removeClass("active");
       btn.addClass("active");
       cinemaId = btn.parent().attr("data-id");
-      // console.log(cinemaId);
+      userTime = btn.text()
+      console.log(userTime);
     }
   });
 }
@@ -149,7 +223,7 @@ function addSubmit() {
   $(".submit").on("click", () => {
     // console.log(cinemaId);
     if (cinemaId) {
-      location.href = `chooseTicket.html?movieId=${id}&cinemaId=${cinemaId}`;
+      location.href = `chooseTicket.html?movieId=${id}&cinemaId=${cinemaId}&date=${userDate} ${userTime}`;
     } else {
       alert("请选择场次");
     }
