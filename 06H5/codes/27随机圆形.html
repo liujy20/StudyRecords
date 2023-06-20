@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      canvas {
+        background-color: #acc;
+      }
+    </style>
+  </body>
+  <canvas width="600px" height="600px"> </canvas>
+
+  <script>
+    let can = document.querySelector("canvas");
+    can.width = innerWidth;
+    can.height = innerHeight;
+    let pen = can.getContext("2d");
+
+    setInterval(() => {
+      pen.beginPath()
+      let color = parseInt(Math.random()*256)
+      let x = parseInt(Math.random()*innerWidth)
+      let y = parseInt(Math.random()*innerHeight)
+      pen.arc(x, y, 50, 0, Math.PI * 2);
+      pen.strokeStyle=`rgb(${color},${(color*x)%256},${(color*y)%256})`
+      pen.stroke();
+      pen.fillStyle=`rgb(${color},${(color*x)%256},${(color*y)%256})`
+      pen.fill()
+    }, 500);
+  </script>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        background-color: rgb(205, 216, 226);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="300" height="150"></canvas>
+    <script>
+      const can = document.querySelector("canvas");
+      const pen = can.getContext("2d");
+      const userArr = [];
+      const arr = [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        0,
+        "q",
+        "w",
+        "e",
+        "r",
+        "t",
+        "y",
+        "u",
+        "i",
+        "o",
+        "p",
+        "l",
+        "k",
+        "j",
+        "h",
+        "g",
+        "f",
+        "d",
+        "s",
+        "a",
+        "z",
+        "x",
+        "c",
+        "v",
+        "b",
+        "n",
+        "m",
+        "Q",
+        "W",
+        "E",
+        "R",
+        "T",
+        "Y",
+        "U",
+        "I",
+        "O",
+        "P",
+        "L",
+        "K",
+        "J",
+        "H",
+        "G",
+        "F",
+        "D",
+        "S",
+        "A",
+        "Z",
+        "X",
+        "C",
+        "V",
+        "B",
+        "N",
+        "M",
+      ];
+      code();
+      function code() {
+        render();
+        can.addEventListener("click", () => {
+          pen.clearRect(0, 0, 300, 150);
+          userArr.length = 0;
+          render();
+        });
+      }
+      // 渲染
+      function render() {
+        // 线干扰
+        for (let i = 0; i < 10; i++) {
+          pen.beginPath();
+          pen.moveTo(getRandom(-50, 400), getRandom(-50, 250));
+          pen.lineTo(getRandom(-50, 400), getRandom(-50, 250));
+          pen.strokeStyle = `rgb(${getRandom(0, 255)},${getRandom(
+            0,
+            255
+          )},${getRandom(0, 255)})`;
+          pen.lineWidth = 1;
+          pen.stroke();
+        }
+        // 圆弧干扰
+        for (let i = 0; i < 10; i++) {
+          pen.beginPath();
+          pen.arc(
+            getRandom(-50, 400),
+            getRandom(-50, 250),
+            getRandom(10, 100),
+            0,
+            Math.PI * getRandom(0, 2),
+            getRandom(0, 2)
+          );
+          pen.strokeStyle = `rgb(${getRandom(0, 255)},${getRandom(
+            0,
+            255
+          )},${getRandom(0, 255)})`;
+          pen.lineWidth = 1;
+          pen.stroke();
+        }
+        let tw = 75;
+        // 验证码
+        for (let i = 0; i < 4; i++) {
+          pen.beginPath();
+          pen.textAlign = "center";
+          pen.textBaseline = "middle";
+          pen.font = `${getRandom(30, 70)}px 微软雅黑`;
+          // console.log(pen.font);
+          let t = arr[getRandom(0, arr.length - 1)];
+          pen.fillStyle = `rgb(${getRandom(0, 155)},${getRandom(
+            0,
+            155
+          )},${getRandom(0, 155)})`;
+          pen.fillText(
+            t,
+            getRandom(tw * i + 20, tw * (i + 1) - 20),
+            getRandom(30, 120)
+          );
+
+          userArr.push(t);
+        }
+        console.log(userArr);
+      }
+      // 随机数
+      function getRandom(min, max) {
+        return parseInt(Math.random() * (max + 1 - min)) + min;
+      }
+    </script>
+  </body>
+</html>

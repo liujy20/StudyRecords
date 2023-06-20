@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      margin: auto;
+      width: 600px;
+      height: 600px;
+    }
+    canvas {
+      border: 1px solid #acc;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <canvas width="600px" height="600px"> </canvas>
+  </div>
+    <script>
+      let can = document.querySelector("canvas");
+      let pen = can.getContext("2d");
+      pen.save()
+
+      pen.beginPath()
+      pen.restore()
+
+      pen.moveTo(100,100)
+      pen.lineTo(500,100)
+      pen.lineTo(100,500)
+      // pen.lineTo(100,100)
+      pen.closePath()
+      // pen.strokeStyle='#9cc'
+      // pen.lineWidth=10
+      pen.stroke()
+
+      
+      // 填充
+      // pen.fillStyle='#9cc'
+      // pen.fill()
+    </script>
+</body>
+</html>

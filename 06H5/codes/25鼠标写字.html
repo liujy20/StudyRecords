@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        /* height: 100vh; */
+        overflow: hidden;
+      }
+      /* .box {
+        width: 100%;
+        height: 100%;
+      } */
+      canvas {
+        background-color: antiquewhite;
+      }
+      input{
+        position: fixed;
+        top: 0;
+        left: 50%;
+      }
+      [type=range]{
+        margin-left: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <canvas> </canvas>
+      
+    </div>
+    <input type="color">
+    <input type="range" min="1" max="50" value="10">
+    <script>
+      let box = document.querySelector(".box");
+      let can = document.querySelector("canvas");
+      let color = document.querySelector('[type=color]')
+      let range = document.querySelector('[type=range]')
+      let pen = can.getContext("2d");
+      can.width = innerWidth//parseInt(getComputedStyle(box,null).width)
+      can.height = innerHeight//parseInt(getComputedStyle(box,null).height) 
+      // console.log(parseInt(getComputedStyle(box,null).width));
+      let f = 0;
+      can.addEventListener("mousedown", function (e) {
+        f = 1;
+        pen.beginPath();
+        pen.moveTo(e.offsetX, e.offsetY);
+        // console.log(e.clientX, e.clientY);
+      });
+      can.addEventListener("mousemove", function (e) {
+        if (f) {
+          // console.log(e.clientX, e.clientY);
+          pen.lineTo(e.offsetX, e.offsetY);
+          pen.strokeStyle=color.value
+          pen.lineWidth = range.value
+          pen.stroke();
+        }
+      });
+      can.addEventListener("mouseup", function () {
+        f = 0;
+      });
+      color.addEventListener('change',function(){
+        console.log(this.value);
+      })
+
+    </script>
+  </body>
+</html>

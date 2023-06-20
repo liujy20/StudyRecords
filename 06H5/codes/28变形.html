@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+    <script>
+      let can = document.querySelector("canvas");
+      let pen = can.getContext("2d");
+      can.width = innerWidth;
+      can.height = innerHeight;
+      pen.fillStyle = "#acc";
+      pen.rotate(Math.PI * 0.01);
+      pen.fillRect(100, 100, 200, 200);
+      
+    </script>
+  </body>
+</html>

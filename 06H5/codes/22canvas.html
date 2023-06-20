@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        margin: auto;
+        width: 600px;
+        height: 600px;
+      }
+      canvas {
+        border: 1px solid #acc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <canvas width="600px" height="600px"> </canvas>
+      <script>
+        let can = document.querySelector("canvas");
+        let pen = can.getContext("2d");
+        let x = 100;
+        // 保存画笔属性 默认属性
+        pen.save();
+
+        pen.moveTo(x, 200);
+        for (let i = 0; i < 300; i += 0.1) {
+          pen.lineTo(x + i, Math.sin((x + i) / 5) * 100 + 200);
+        }
+        pen.strokeStyle = "#acc";
+        pen.lineWidth = 10;
+        pen.stroke();
+
+        // 重设画笔属性
+        pen.restore();
+        // 路径隔离
+        pen.beginPath();
+        pen.moveTo(300, 300);
+        pen.lineTo(400, 400);
+        // 颜色
+        pen.strokeStyle="#aca"
+        // 宽度
+        pen.lineWidth=10
+        pen.stroke();
+      </script>
+    </div>
+  </body>
+</html>
