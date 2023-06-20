@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      margin-bottom: 100px;
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+    }
+    .bigBox{
+      width: 500px;
+      height: 500px;
+      background-color: lightcoral;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" draggable="true"></div>
+  <div class="bigBox"></div>
+  <script>
+    const box = document.querySelector('.box')
+    const bigBox = document.querySelector('.bigBox')
+    box.addEventListener('dragstart',(e)=>{
+      console.log('start');
+      e.dataTransfer.setData('id',1)
+    })
+    box.addEventListener('drag',()=>{
+      // console.log('drag');
+    })
+    box.addEventListener('dragend',()=>{
+      console.log('end');
+    })
+
+    bigBox.addEventListener('dragenter',()=>{
+      console.log('enter');
+    })
+    bigBox.addEventListener('dragover',(e)=>{
+      console.log('over');
+      e.preventDefault()
+    })
+    bigBox.addEventListener('dragleave',(e)=>{
+      console.log('leave');
+      
+    })
+    bigBox.addEventListener('drop',(e)=>{
+      console.log('drop');
+      let getId = e.dataTransfer.getData('id')
+      console.log(getId);
+    })
+  </script>
+</body>
+</html>

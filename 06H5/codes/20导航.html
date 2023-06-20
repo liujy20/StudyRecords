@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #myMap {
+        margin: 50px auto;
+        width: 600px;
+        height: 600px;
+      }
+    </style>
+    <script
+      type="text/javascript"
+      src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=BqgQjQonPAf3vTxGcRE3W7aaHXG25qgB"
+    ></script>
+  </head>
+  <body>
+    <div id="myMap"></div>
+    <script>
+      const map = new BMapGL.Map("myMap");
+      const point = new BMapGL.Point(116.404, 39.915);
+      // map.centerAndZoom(point, 15);
+      map.centerAndZoom("成都市", 15);
+      map.enableScrollWheelZoom(true);
+
+      // 城市确定经纬度
+      //创建地址解析器实例
+      var myGeo = new BMapGL.Geocoder();
+      // 将地址解析结果显示在地图上，并调整地图视野
+      myGeo.getPoint(
+        "四川省成都市天府广场",
+        function (pointA) {
+          if (pointA) {
+            myGeo.getPoint(
+              "四川省成都市环球中心",
+              function (pointB) {
+                if (pointB) {
+                  let driving = new BMapGL.DrivingRoute(map, {
+                    renderOptions: {
+                      map: map,
+                      autoViewport: true,
+                    },
+                  });
+                  driving.search(pointA, pointB);
+                } else {
+                  alert("您选择的地址没有解析到结果！");
+                }
+              },
+              "成都市"
+            );
+          } else {
+            alert("您选择的地址没有解析到结果！");
+          }
+        },
+        "成都市"
+      );
+    </script>
+  </body>
+</html>

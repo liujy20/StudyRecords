@@ -21,12 +21,19 @@
     <script>
       const map = new BMapGL.Map("myMap");
       const point = new BMapGL.Point(116.404, 39.915);
-      // map.centerAndZoom(point, 15);
-      map.centerAndZoom("成都市", 15);
+      map.centerAndZoom(point, 15);
+      // map.centerAndZoom("成都市", 15);
       map.enableScrollWheelZoom(true);
 
       var marker = new BMapGL.Marker(point); // 创建标注
+      marker.enableDragging();// 可移动标注
       map.addOverlay(marker); // 将标注添加到地图中
+
+      // 拖拽后将拖拽位置设为中心
+      marker.addEventListener('dragend',(event)=>{
+        let point = new BMapGL.Point(event.latLng.lng, event.latLng.lat);
+        map.centerAndZoom(point,15)
+      })
     </script>
   </body>
 </html>
