@@ -6,6 +6,8 @@
     <title>Document</title>
     <style>
       canvas {
+        /* width: 100px;
+        height: 30px; */
         background-color: rgb(205, 216, 226);
       }
     </style>
@@ -96,10 +98,7 @@
           pen.beginPath();
           pen.moveTo(getRandom(-50, 400), getRandom(-50, 250));
           pen.lineTo(getRandom(-50, 400), getRandom(-50, 250));
-          pen.strokeStyle = `rgb(${getRandom(0, 255)},${getRandom(
-            0,
-            255
-          )},${getRandom(0, 255)})`;
+          pen.strokeStyle = randomColor();
           pen.lineWidth = 1;
           pen.stroke();
         }
@@ -114,10 +113,7 @@
             Math.PI * getRandom(0, 2),
             getRandom(0, 2)
           );
-          pen.strokeStyle = `rgb(${getRandom(0, 255)},${getRandom(
-            0,
-            255
-          )},${getRandom(0, 255)})`;
+          pen.strokeStyle = randomColor();
           pen.lineWidth = 1;
           pen.stroke();
         }
@@ -130,10 +126,7 @@
           pen.font = `${getRandom(30, 70)}px 微软雅黑`;
           // console.log(pen.font);
           let t = arr[getRandom(0, arr.length - 1)];
-          pen.fillStyle = `rgb(${getRandom(0, 155)},${getRandom(
-            0,
-            155
-          )},${getRandom(0, 155)})`;
+          pen.fillStyle = randomColor();
           pen.fillText(
             t,
             getRandom(tw * i + 20, tw * (i + 1) - 20),
@@ -147,6 +140,13 @@
       // 随机数
       function getRandom(min, max) {
         return parseInt(Math.random() * (max + 1 - min)) + min;
+      }
+      // 随机颜色
+      function randomColor() {
+        return `rgb(${getRandom(0, 255)},${getRandom(0, 255)},${getRandom(
+          0,
+          255
+        )})`;
       }
     </script>
   </body>
