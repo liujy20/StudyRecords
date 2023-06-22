@@ -3,7 +3,9 @@ const movieId = location.search.slice(1).split("&")[0].split("=")[1];
 // 影院ID
 const cinemaId = location.search.slice(1).split("&")[1].split("=")[1];
 // 时间
-const userDate = decodeURI(location.search.slice(1).split("&")[2].split("=")[1]);
+const userDate = decodeURI(
+  location.search.slice(1).split("&")[2].split("=")[1]
+);
 // 电影数据
 const movie = nowPlaying.find((item) => {
   return item.id == movieId;
@@ -35,6 +37,9 @@ const ticket = $(".tickets");
 const ticketXY = $(".choose ul");
 // 价格
 const price = $(".price .num");
+
+// 购票
+const submit = $(".submit");
 
 main();
 
@@ -144,6 +149,7 @@ function render_X_Y_Price() {
 function addListener() {
   addBack();
   addRoute();
+  addSubmit();
 }
 
 // 返回上一级
@@ -157,5 +163,16 @@ function addBack() {
 function addRoute() {
   cinemaName.on("click", function () {
     location.href = "route.html?name=" + cinema.name;
+  });
+}
+
+// 购票
+function addSubmit() {
+  submit.on("click", () => {
+    if (ticketNum().length) {
+      location.href = `confirm.html?movieId=${movieId}&cinemaId=${cinemaId}&seat=${ticketNum().join(
+        ","
+      )}&userData=${userDate}`;
+    }
   });
 }
