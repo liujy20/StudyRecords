@@ -1,0 +1,138 @@
+.divider {
+  height: 0.16rem;
+  background-color: #edf0f9;
+}
+header {
+  position: relative;
+  height: 2.9rem;
+  background-color: #0b193f;
+  .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.79rem;
+    height: 2.06rem;
+  }
+  .back {
+    position: absolute;
+    top: 1.25rem;
+    left: 0.44rem;
+    width: 0.35rem;
+    height: 0.3rem;
+  }
+  .text {
+    position: absolute;
+    top: 1.93rem;
+    left: 0.39rem;
+    font-size: 0.36rem;
+    color: #f2f2f2;
+  }
+}
+
+.tit {
+  display: flex;
+  padding: 0.44rem 0 0 0.4rem;
+  height: 3.86rem;
+  box-sizing: border-box;
+  img {
+    margin-right: 0.3rem;
+    width: 2.08rem;
+    height: 3.1rem;
+    border-radius: 0.14rem;
+  }
+  .desc {
+    padding-top: 0.95rem;
+    height: 3.1rem;
+    box-sizing: border-box;
+    .no {
+      font-size: 0.24rem;
+      color: #4073ff;
+    }
+    .name {
+      margin: 0.2rem 0;
+      font-size: 0.32rem;
+      color: #000018;
+    }
+    span{
+      margin: 0 .05rem;
+    }
+    .wrap {
+      display: flex;
+      color: #8890a3;
+      font-size: 0.24rem;
+    }
+  }
+}
+
+.content {
+  display: flex;
+  padding: 0.36rem 0 0 0.4rem;
+  height: 5.35rem;
+  box-sizing: border-box;
+  .item {
+    margin-bottom: 0.5rem;
+    .name {
+      margin-bottom: 0.2rem;
+      font-size: 0.24rem;
+      line-height: 1;
+      color: #000018;
+    }
+    .sub {
+      font-size: 0.28rem;
+      line-height: 1;
+      color: #000018;
+      font-weight: bold;
+    }
+  }
+  .con1 {
+    margin-right: 2.5rem;
+    overflow: hidden;
+    .item:last-child {
+      margin-bottom: 0;
+    }
+    .seat {
+      ul {
+        display: flex;
+        li {
+          margin-right: 0.1rem;
+          width: 0.4rem;
+          height: 0.4rem;
+          background-color: #4073ff;
+          color: #fff;
+          font-size: 0.2rem;
+          line-height: 0.4rem;
+          text-align: center;
+          font-weight: normal;
+          border-radius: 0.08rem;
+        }
+      }
+    }
+    .preferential {
+      .sub {
+        color: #ff3131;
+      }
+    }
+  }
+}
+.total{
+  display: flex;
+  justify-content: space-between;
+  padding: 1.75rem .4rem 0;
+  height: 3.83rem;
+  font-size: .28rem;
+  color: #000018;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+.submit {
+  position: fixed;
+  bottom: 0.35rem;
+  left: 0.4rem;
+  width: 6.7rem;
+  height: 0.96rem;
+  background-color: #4073ff;
+  border-radius: 0.16rem;
+  font-size: 0.32rem;
+  color: #fff;
+  border: none;
+}
