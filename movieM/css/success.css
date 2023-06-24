@@ -1,0 +1,177 @@
+.bg {
+  position: relative;
+  height: 16.25rem;
+  background-color: #0b193f;
+  overflow: hidden;
+}
+
+.bg .icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1.79rem;
+  height: 2.06rem;
+}
+
+.bg .tit {
+  position: absolute;
+  top: 1.22rem;
+  left: 0.39rem;
+  font-size: 0.36rem;
+  color: #f2f2f2;
+}
+
+.bg main {
+  margin: auto;
+  margin-top: 2.48rem;
+  width: 6.82rem;
+  height: 9.52rem;
+  background-image: url(../img/sdf.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 6.82rem 9.52rem;
+}
+
+.bg main .title {
+  display: flex;
+  padding: 0.4rem 0 0.35rem 0.45rem;
+  box-sizing: border-box;
+}
+
+.bg main .title img {
+  margin-right: 0.46rem;
+  width: 1.17rem;
+  height: 2.1rem;
+  border-radius: 0.14rem;
+}
+
+.bg main .title .desc {
+  padding-top: 0.4rem;
+  height: 2.1rem;
+  box-sizing: border-box;
+}
+
+.bg main .title .desc .no {
+  font-size: 0.24rem;
+  color: #4073ff;
+}
+
+.bg main .title .desc .name {
+  margin: 0.2rem 0;
+  font-size: 0.32rem;
+  color: #000018;
+}
+
+.bg main .title .desc span {
+  margin: 0 0.05rem;
+}
+
+.bg main .title .desc .wrap {
+  display: flex;
+  color: #8890a3;
+  font-size: 0.24rem;
+}
+
+.bg main .content {
+  display: flex;
+  padding: 1rem 0 0.5rem 0.4rem;
+  box-sizing: border-box;
+  border-bottom: 1px dashed #ccc;
+}
+
+.bg main .content .item {
+  margin-bottom: 0.5rem;
+}
+
+.bg main .content .item .name {
+  margin-bottom: 0.2rem;
+  font-size: 0.24rem;
+  line-height: 1;
+  color: #000018;
+}
+
+.bg main .content .item .sub {
+  font-size: 0.28rem;
+  line-height: 1;
+  color: #000018;
+  font-weight: bold;
+}
+
+.bg main .content .con1 {
+  margin-right: 2.1rem;
+  overflow: hidden;
+}
+
+.bg main .content .con1 .item:last-child {
+  margin-bottom: 0;
+}
+
+.bg main .content .con1 .seat ul {
+  display: flex;
+}
+
+.bg main .content .con1 .seat ul li {
+  margin-right: 0.1rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  background-color: #4073ff;
+  color: #fff;
+  font-size: 0.2rem;
+  line-height: 0.4rem;
+  text-align: center;
+  font-weight: normal;
+  border-radius: 0.08rem;
+}
+
+.bg main .content .con2 .item:last-child {
+  margin-bottom: 0;
+}
+
+.bg main .use {
+  display: flex;
+  padding: 0.3rem 0 0 0.4rem;
+}
+
+.bg main .use .con1 {
+  margin-right: 2.1rem;
+}
+
+.bg main .use .con1 .name {
+  margin-bottom: 0.75rem;
+  font-size: 0.24rem;
+  color: #000018;
+}
+
+.bg main .use .con1 .code {
+  font-size: 0.48rem;
+  color: #000018;
+  letter-spacing: 0.13rem;
+  font-weight: bold;
+}
+
+.bg main .use .con2 .name {
+  margin-bottom: 0.3rem;
+  font-size: 0.24rem;
+  color: #000018;
+}
+
+.bg main .use .con2 .code {
+  padding: .08rem;
+  width: 1.28rem;
+  height: 1.28rem;
+  background-image: url(../img/er.png);
+  background-size: cover;
+  box-sizing: border-box;
+}
+
+.bg .submit {
+  display: block;
+  margin: 0.78rem auto 0;
+  width: 6.7rem;
+  height: 0.96rem;
+  background-color: #4073ff;
+  border-radius: 0.16rem;
+  font-size: 0.32rem;
+  color: #fff;
+  border: none;
+}

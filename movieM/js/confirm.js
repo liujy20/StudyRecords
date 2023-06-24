@@ -25,7 +25,7 @@ function main(){
 
 function render(){
   renderTit()
-  renderData()
+  renderDate()
   renderSeat()
   renderTime()
 }
@@ -46,7 +46,7 @@ function renderTit(){
 }
 
 // 渲染日期
-function renderData(){
+function renderDate(){
   $('.con1 .data .sub').text(`${userDate[0]} ${userDate[1]}`)
 }
 
@@ -69,5 +69,19 @@ function renderTime(){
 }
 
 function addListener(){
-   
+   addSubmit()
+}
+
+// 支付
+function addSubmit(){
+  $(".submit").on('click',()=>{
+    const ticketInfo={}
+    ticketInfo.id=new Date().getTime()
+    ticketInfo.movieId=movieId
+    ticketInfo.cinemaId=cinemaId
+    ticketInfo.seat=seat
+    ticketInfo.userDate=userDate
+    localStorage.setItem('ticketInfo',JSON.stringify(ticketInfo))
+    location.href=`success.html`
+  })
 }

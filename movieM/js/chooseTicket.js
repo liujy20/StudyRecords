@@ -172,7 +172,7 @@ function addSubmit() {
     if (ticketNum().length) {
       location.href = `confirm.html?movieId=${movieId}&cinemaId=${cinemaId}&seat=${ticketNum().join(
         ","
-      )}&userData=${userDate}`;
+      )}&userDate=${userDate}`;
     }
   });
 }
