@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function outer() {
+        let count = 1;
+        function innerAdd() {
+          console.log(++count);
+        }
+        function innerSub() {
+          console.log(--count);
+        }
+        function innerGet() {
+          console.log(count);
+        }
+        return { add: innerAdd, sub: innerSub, get: innerGet };
+      }
+      let num = outer();
+      num.get();
+      num.add();
+      num.add();
+      num.sub();
+      num.sub();
+    </script>
+  </body>
+</html>
