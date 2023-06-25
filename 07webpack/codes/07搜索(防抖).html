@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function outer() {
+        let arr = [
+          {
+            id: 1,
+            name: "张三",
+            age: 22,
+            tel: "13566668888",
+          },
+          {
+            id: 2,
+            name: "李四",
+            age: 25,
+            tel: "13599998888",
+          },
+          {
+            id: 3,
+            name: "张三三",
+            age: 24,
+            tel: "15566661111",
+          },
+          {
+            id: 4,
+            name: "王五",
+            age: 26,
+            tel: "18877778888",
+          },
+          {
+            id: 5,
+            name: "赵六",
+            age: 27,
+            tel: "13355557777",
+          },
+        ];
+        let timer = null;
+        return function (event) {
+          if (timer) {
+            clearTimeout(timer);
+          }
+          setTimeout(function () {
+            //获取输入内容
+            let searchText = event.target.value;
+            //过滤学生信息(筛选数组符合要求的对象)
+            let newArr = arr.filter(
+              (stu) =>
+                stu.name.indexOf(searchText) != -1 ||
+                stu.tel.indexOf(searchText) != -1 ||
+                stu.age == searchText ||
+                stu.id == searchText
+            );
+            //渲染学生信息
+            let content = "";
+            newArr.forEach((stu) => {
+              content += `<tr>
+                                    <td>${stu.id}</td>
+                                    <td>${stu.name}</td>
+                                    <td>${stu.age}</td>
+                                    <td>${stu.tel}</td>
+                                </tr>`;
+            });
+            document.querySelector("tbody").innerHTML = content;
+          }, 5000);
+        };
+      }
+
+      window.onload = function () {
+        document.querySelector("#search").oninput = outer();
+      };
+    </script>
+  </head>
+
+  <body>
+    <input type="text" id="search" />
+    <table>
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>电话</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </body>
+</html>

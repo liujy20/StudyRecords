@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button{
+      display: block;
+      margin: auto;
+      width: 100px;
+      height: 70px;
+      line-height: 70px;
+      color: aliceblue;
+      font-size: 20px;
+      background-color: red;
+      border: none;
+    }
+    div{
+      margin: auto;
+      width: 200px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <button>抢购</button>
+  <div>您已抢购0件商品</div>
+  <script>
+    function outer(){
+       
+      let count=0
+      let timer=null
+      return function (){
+        if(!timer){
+          timer =setTimeout(function(){
+            document.querySelector('div').innerText=`您已抢购${++count}件商品`
+            timer=null
+          },500)
+        }
+      }
+    }
+    document.querySelector('button').onclick=outer()
+  </script>
+</body>
+</html>

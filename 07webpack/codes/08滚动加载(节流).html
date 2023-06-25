@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .content {
+        width: 1020px;
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+      }
+
+      .content > div {
+        width: 150px;
+        height: 230px;
+        background-color: green;
+        margin: 10px;
+        color: white;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        function outer() {
+          //存储商品编号
+          let number = 1;
+          //渲染商品函数，limit为渲染商品个数
+          function showGoods(limit) {
+            let content = "";
+            for (let i = 0; i < limit; i++) {
+              content += `<div>${number++}</div>`;
+            }
+            document.querySelector(".content").innerHTML += content;
+          }
+          //初始化渲染18个商品(3排)
+          showGoods(18);
+          //存储上次滚动条滚动的垂直距离
+          let y = 0;
+          let timer = null;
+          return function () {
+            if (!timer) {
+              timer=setTimeout(() => {
+                //获取当前页面滚动的垂直距离
+                let sy = window.scrollY;
+                //如果当前滚动条垂直距离小于上次的距离，则说明是向上滚动，不添加渲染新的商品
+                if (sy - y <= 0) {
+                  //向上
+                  return;
+                }
+                //记录当前滚动条滚动的垂直距离，作为下次触发对比距离
+                y = sy;
+                //添加渲染6个新商品数据(1排)
+                showGoods(6);
+                timer=null
+              }, 1000);
+            }
+          };
+        }
+
+        window.onscroll = outer();
+      };
+    </script>
+  </head>
+
+  <body>
+    <div class="content"></div>
+  </body>
+</html>
