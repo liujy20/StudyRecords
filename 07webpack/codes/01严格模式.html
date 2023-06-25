@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    "use strict"
+    // 相同参数名
+    // Duplicate parameter name not allowed in this context
+    // let fn = function(a,a){}
+    // fn()
+
+    // 未声明使用
+    // a=2
+
+    // 使用关键字
+    // Unexpected strict mode reserved word
+    // let interface = 1
+
+    // 非全局this
+    console.log(this);
+    function demo(){
+      console.log(this);
+    }
+    demo()
+  </script>
+</body>
+</html>
