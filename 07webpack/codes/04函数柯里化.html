@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function regTest(reg) {
+        return function(str) {
+          return reg.test(str);
+        };
+      }
+      let reg = /\d/;
+      let test = regTest(reg);
+      console.log(test("1"));
+      console.log(test("a"));
+      console.log(test("+"));
+    </script>
+  </body>
+</html>
