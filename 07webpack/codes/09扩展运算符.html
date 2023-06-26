@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // let arr1=[1,2,3,4,5,6]
+      // let arr2=[...arr1]
+      // arr2[1]=100
+      // console.log(arr1,arr2);
+
+      // let obj1={
+      //   name:'xwg',
+      //   age:12
+      // }
+      // let obj2={
+      //   ...obj1
+      // }
+      // obj2.name='dwg'
+      // console.log(obj1,obj2);
+
+      // let s1='hello'
+      // let s2=[...s1]
+      // console.log(s2.sort((a,b)=>a.localeCompare(b)));
+
+      // 1、新建数组存储str每个字符以及arr中每个元素，并进行升序排列;
+      // let str = "6253";
+      // let arr = ["9", "8", "0", "7"];
+
+      // let newArr = [...str,...arr]
+      // console.log(newArr.sort());
+
+      // 2、新建对象，该对象拥有obj和obj2所有属性以及值;
+      // let obj = { id: 1, name: "admin" };
+      // let obj2 = { age: 22, gender: "男" };
+
+      // let newObj = {
+      //   ...obj,
+      //   ...obj2
+      // }
+      // console.log(newObj);
+
+      // 3、分析以下代码执行结果
+      // function demo1(a) {
+      //   arguments[0] = 2;
+      //   console.log(a);//2
+      // }
+      // demo1(1);
+
+      // function demo2(...a) {
+      //   arguments[0] = 2;
+      //   console.log(a);//[1]
+      // }
+      // demo2(1);
+    </script>
+    <script>
+      // 1. 将下列数组的每个数据赋给不同的变量
+      // a.[1, 2, 3]
+      // const [a,b,c]=[1,2,3]
+      // console.log(a,b,c);
+
+      // b.[1, [2, 3], 4]
+      // const [a,[b,c],d]=[1,[2,3],4]
+      // const [x,y,z]=[1,[2,3],4]
+      // console.log(a,b,c,d);
+      // console.log(x,y,z);
+
+      // c.["张三", 12, "男"]
+      // const [name,age,gender]=["张三", 12, "男"]
+      // console.log(name,age,gender);
+
+      // d.["全班qq号", "10086", "10000", "00777777"](要求将qq号放入一个数组中)
+      // const [tit,...list]=["全班qq号", "10086", "10000", "00777777"]
+      // console.log(tit,list);
+
+      // 2. 用户输入一串只含数字或字母的字符，利用解构赋值对其中每个字符进行排序后输出
+      // let s=prompt('请输入数字或字符')
+      // let arr=[...s]
+      // console.log(arr.sort());
+
+
+      // 3.根据以下数组，获取张三的语文成绩
+      let arr = [
+        { id: 1, name: "admin", score: { math: 98, chinese: 95, english: 85 } },
+        { id: 2, name: "张三", score: { math: 87, chinese: 90, english: 65 } },
+      ];
+      const [,{score:{chinese}}]=arr
+      console.log(chinese);
+    </script>
+  </body>
+</html>
