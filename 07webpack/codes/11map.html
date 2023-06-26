@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <select name="" id="s1">
+      <option value="">请选择</option>
+    </select>
+    <select name="" id="s2">
+      <option value="">请选择</option>
+    </select>
+    <script>
+      // 1、根据学号存储学生信息，后期可根据学号获取学生所有信息。
+      // const myMap = new Map()
+      // myMap.set(123,{name:'xwg1',age:12})
+      // myMap.set(111,{name:'xwg2',age:12})
+      // myMap.set(222,{name:'xwg3',age:12})
+      // myMap.set(333,{name:'xwg4',age:12})
+      // console.log(myMap,myMap.get(123));
+
+      // 2、存储省和市信息，比如`四川省`有`成都市`、`德阳市`、`资阳市`、`乐山市`等，后期可以根据省份名称获取所有城市。
+      const myMap = new Map();
+      myMap.set("四川省", ["成都市", "德阳市", "资阳市", "乐山市"]);
+      myMap.set("云南省", ["昆明市", "大理市", "玉溪市", "昭通市"]);
+      // 3、利用第2题结构实现地址二级联动;
+      const s1 = document.querySelector("#s1");
+      const s2 = document.querySelector("#s2");
+      let str = "<option value='' disabled selected>请选择</option>";
+      myMap.forEach((val, key) => {
+        str += `<option value="${key}">${key}</option>`;
+      });
+      s1.innerHTML = str;
+
+      s1.addEventListener("change", () => {
+        str = "<option value='' disabled selected>请选择</option>";
+        myMap.get(s1.value).forEach((val, index) => {
+          str += `<option value="${val}">${val}</option>`;
+        });
+        s2.innerHTML=str
+      });
+    </script>
+  </body>
+</html>
