@@ -1074,16 +1074,30 @@ console.log(id, newObj);
 
     - 从当前Map中删除指定键对应的键值对。
 
-    ```
-    let arr = [    ['id', 1],    ['name', 'admin'],    ['age', 22],    [true, 13]];let myMap = new Map(arr);myMap.delete(true);
+    ```javascript
+    let arr = [   
+      ['id', 1], 
+      ['name', 'admin'], 
+      ['age', 22],  
+      [true, 13]
+    ];
+    let myMap = new Map(arr);
+    myMap.delete(true);
     ```
 
   - `clear()`
 
     - 清空当前Map中所有元素。
 
-    ```
-    let arr = [    ['id', 1],    ['name', 'admin'],    ['age', 22],    [true, 13]];let myMap = new Map(arr);myMap.clear();
+    ```javascript
+    let arr = [ 
+      ['id', 1],   
+      ['name', 'admin'],  
+      ['age', 22],   
+      [true, 13]
+    ];
+    let myMap = new Map(arr);
+    myMap.clear();
     ```
 
 ## 数组、Set、Map核心特点
@@ -1094,16 +1108,43 @@ console.log(id, newObj);
 
 ## Map与对象核心区别
 
+==键类型与API==
+
 - Map的键类型不限，可以使用对象或者函数，而对象不行;
 
-  ```
-  let o = { id: 1 };function demo() {    console.log('demo');}let obj = {    o: 2,    demo: 3};let myMap = new Map();myMap.set(o, 2);myMap.set(demo, 3);console.log(obj, myMap);
+  ```javascript
+  let o = { id: 1 };
+  function demo() {  
+    console.log('demo');
+  }
+  let obj = {   
+    o: 2, //o: 2
+    demo: 3//demo: 3
+  };
+  let myMap = new Map();
+  myMap.set(o, 2);//{ id: 1 } => 2
+  myMap.set(demo, 3);//{function demo() { console.log("demo"); } => 3
+  console.log(obj, myMap);
   ```
 
 - Map提供更多API实现数据操作，而对象需要自行实现，比如:遍历或获取元素个数;
 
-```
-  let obj = {      id: 1,      name: 'admin',      age: 22  };  for (let f in obj) {      console.log(f, obj[f]);  }  let myMap = new Map();  myMap.set('id', 1);  myMap.set('name', 'admin');  myMap.set('age', 22);  myMap.forEach(function (v, k) {      console.log(k, v);  })
+```javascript
+let obj = {    
+  id: 1,     
+  name: 'admin', 
+  age: 22 
+}; 
+for (let f in obj) { 
+  console.log(f, obj[f]);  
+}  
+let myMap = new Map(); 
+myMap.set('id', 1); 
+myMap.set('name', 'admin'); 
+myMap.set('age', 22);
+myMap.forEach(function (v, k) {  
+  console.log(k, v);
+})
 ```
 
 # END
