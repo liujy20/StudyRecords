@@ -676,4 +676,434 @@ console.log(r);// Hello World! Hello,woniu!
 - 防抖目标代码执行时间大于等于指定时间，而节流目标代码执行时间等于指定时间;
 - 相同指定时间下，防抖的执行频率比节流低；
 
+# 扩展运算符(ES6)
+
+## 概述
+
+- 扩展运算符又称`REST`运算符，可以是对数组、字符串、对象进行语法层面展开，达到语法简化的目的。
+
+## 语法
+
+- `...数组名称`
+
+  - 罗列目标数组中每个元素，元素与元素之间使用逗号分隔。
+
+    ```javascript
+    let arr = ['a', 'b', 'c', 'd'];
+    // console.log('a', 'b', 'c', 'd');
+    // console.log(...arr);
+    //在当前数组元素基础上添加新的数据，形成新的数组
+    // let arr2 = [];
+    // for (let index = 0; index < arr.length; index++) {
+    //     arr2.push(arr[index]);
+    // }
+    // let arr2=['a', 'b', 'c', 'd'];
+    let arr2 = [...arr, 'e', 'f'];
+    console.log(arr, arr2);
+    arr[0] = 'g';
+    console.log(arr, arr2);
+    ```
+
+  - `...字符串名称`
+
+    - 罗列目标字符串的每个字符，字符与字符之间使用逗号分隔。
+
+      ```javascript
+      let str = '362718';
+      console.log('H', 'e', 'l', 'l', 'o');
+      console.log(...str);//获取存储指定字符串中每个字符的数组
+      let arr = [...str];
+      ```
+
+  - `...对象名称`
+
+    - 罗列目标对象每个属性(属性名和属性值)，属性与属性之间使用逗号分隔。
+
+      ```javascript
+      let obj = {
+        id: 1,  
+        name: 'admin',  
+        age: 22,  
+        gender: '男'
+      };
+      //创建一个新对象，该对象拥有目标对象的所有属性及值(克隆)
+      let obj1 = {    ...obj};
+      console.log(obj, obj1);
+      obj.id = 2;
+      console.log(obj, obj1);
+      ```
+
+## REST参数
+
+- 当REST运算符出现在形参列表中(作为最后一个形参)，会将对应实参值存储REST运算符后指定名称的数组中。
+  - 可以用于解决箭头函数不能使用`arguments`的问题。
+
+```javascript
+function demo(a, ...params) {   
+  arguments[0] = 9;    
+  console.log(params, arguments);
+}
+demo(1, 2, 3, 4, 5)
+let arr = [1];
+// arr.forEach( ()=> {
+//     console.log(arguments);
+// });
+arr.forEach((...p) => {  
+  console.log(p);
+});
+```
+
+# 解构赋值(ES6)
+
+## 概念
+
+- 对数组、字符串、对象进行展开，并将数据赋值给对应变量，达到简化语法的目的。
+
+## 语法
+
+```javascript
+let [变量名称1,.....]=目标数组名称
+```
+
+- 罗列目标数组中所有元素，并将元素值赋值给对应变量。
+
+  ```javascript
+  let arr = [1, 2, 3, 4];
+  // let a=arr[0];
+  // let b=arr[1];
+  // let c=arr[2];
+  
+  //取出所有
+  // let [a, b, c,d] = arr;
+  // console.log(a, b, c,d);
+  
+  //取部分
+  // let [a, , , c] = arr;
+  // console.log(a, c);
+  
+  //取多了
+  // let [, , , , e] = arr;
+  // console.log(e);
+  
+  //取出部分，余下的存储到指定数组
+  let [a, ...newArr] = arr;
+  console.log(a, newArr);
+  
+  let url = 'id=1&name=大话西游&actor=周星驰'
+  let re=url.split('&');
+  let [n,v]=re[0].split('=');
+  ```
+
+  `let [变量名称,.....]=目标字符串名称`
+
+  1. 罗列目标字符串中所有字符，并将字符赋值给对应变量。
+
+```javascript
+  let str = 'Hello';  
+//取出全部 
+// let [a, b, c, d, e] = str;  
+// console.log(a, b, c, d, e);  
+
+//取部分 
+// let [, , , d, e] = str; 
+// console.log(d, e); 
+
+//取多了 
+// let [a, b, c, d, e, f = '默认值'] = str; 
+// console.log(a, b, c, d, e, f);
+
+//存储部分，余下存储到指定数组 
+let [a, ...newArr] = str;
+console.log(a, newArr);
+let {变量名称,......}=目标对象名称
+```
+
+- 罗列目标对象中所有属性，并将属性值赋值给同名变量。
+
+```javascript
+let obj = { 
+  id: 1,   
+  name: '宋光明', 
+  age: 22
+};
+//取出全部
+// let { id, name, age } = obj;
+// console.log(id, name, age);
+
+//取出部分
+// let { name } = obj;
+// console.log(name);
+
+//取出全部
+// let { id, name, age, gender = '默认值' } = obj;
+// console.log(id, name, age, gender);
+
+//取出部分，余下的存储对象中
+let { id, ...newObj } = obj;
+console.log(id, newObj);
+```
+
+- 如果变量名称与赋值目标属性名称不一致，可以使用以下语法
+
+  `let {属性名称:变量名称,......}=目标对象名称`
+
+  ```javascript
+  let obj = { 
+    id: 1, 
+    name: '宋光明', 
+    age: 22
+  };
+  function demo({ name: n }) {   
+    console.log(n);
+  }
+  demo(obj);
+  ```
+
+# Set(ES6)
+
+## 概念
+
+- 一种与数组类似的数据结构，被称为单列集合，`集`。
+
+## 特点
+
+- 元素唯一不重复的;
+- 不支持索引，元素顺序按照插入顺序;
+- 查询效率比数组低，但新增删除数据效率比数组高;
+
+## 语法
+
+- `let 变量名称=new Set()`
+
+  ```javascript
+  let mySet=new Set();
+  ```
+
+- `let 变量名称=new Set(数组)`
+
+  ```javascript
+  let arr = ['a', 'b', 'c', 'a', 'e'];
+  let mySet = new Set(arr);
+  ```
+
+## API
+
+- 属性
+
+  - `size`
+
+    - 获取元素个数。
+
+    ```javascript
+    let arr = ['a', 'b', 'c', 'a', 'e'];
+    let mySet = new Set(arr);
+    console.log(mySet.size);
+    ```
+
+- 函数
+
+  - `当前Set对象 add(value)`
+
+    - 向Set添加一个元素。
+
+      ```javascript
+      let arr = ['a', 'b', 'c', 'a', 'e'];
+      let mySet = new Set(arr);
+      mySet.add('g');
+      ```
+
+  - `boolean has(value)`
+
+    - 判断当前Set是否存在指定元素，如果存在返回true，否则返回false;
+
+      ```javascript
+      let arr = ['a', 'b', 'c', 'a', 'e',{ id: 1 }];
+      let mySet = new Set(arr);
+      console.log(mySet.has({ id: 1 }));
+      ```
+
+  - `forEach(function(value,value,Set对象){函数体})`
+
+    - 遍历当前Set中元素，对每个元素执行指定回调函数内容。
+
+      ```javascript
+      let arr = ['a', 'b', 'c', 'a', 'e'];
+      let mySet = new Set(arr);
+      mySet.forEach(function (v, v1, s) { 
+        console.log(v, v1, s);
+      })
+      ```
+
+  - `boolean delete(value)`
+
+    - 从当前Set中删除指定元素，如果删除成功返回true，否则返回false;
+
+      ```javascript
+      let o={id:1};
+      let arr = ['a', 'b', 'c', 'a', 'e',o];
+      let mySet = new Set(arr);
+      mySet.delete(o);
+      ```
+
+  - `clear()`
+
+    - 清空当前Set中所有数据;
+
+      ```javascript
+      let arr = ['a', 'b', 'c', 'a', 'e'];
+      let mySet = new Set(arr);
+      mySet.clear();
+      ```
+
+# Map(ES6)
+
+## 概述
+
+- 一种存储键值对的数据结构，被称为`双列集合`。
+
+## 特点
+
+- 一个元素由两部分组成，分别为`键`和`值`，且`键`与`值`之间存在映射关系;
+- 类型不限，一般`键`使用字符串类型;
+- `键`是唯一、不重复，`值`可以重复;
+
+## 语法
+
+- `let 变量名称=new Map()`
+
+  ```javascript
+  let myMap=new Map();
+  ```
+
+  1. `let 变量名称=new Map(二维数组)`
+
+  ```javascript
+  let arr = [ 
+    ['id', 1], 
+    ['name', 'admin'],   
+    ['age', 22],   
+    [true, 13]
+  ];
+  let myMap = new Map(arr);
+  ```
+
+## API
+
+- 属性
+
+  - `size`
+
+    - 存储元素个数。
+
+    ```javascript
+    let arr = [  
+      ['id', 1], 
+      ['name', 'admin'],  
+      ['age', 22],
+      [true, 13]
+    ];
+    let myMap = new Map(arr);
+    console.log(myMap.size);
+    ```
+
+- 函数
+
+  - `当前Map对象 set(key,value)`
+
+    - 向当前Map中添加指定键值对。
+
+      ```javascript
+      let arr = [  
+        ['id', 1], 
+        ['name', 'admin'], 
+        ['age', 22],  
+        [true, 13]
+      ];
+      let myMap = new Map(arr);
+      myMap.set('gender', '男');
+      ```
+
+  - `value get(key)`
+
+    - 根据指定键获取对应值。
+
+    ```javascript
+    let arr = [  
+      ['id', 1],   
+      ['name', 'admin'],
+      ['age', 22],  
+      [true, 13]
+    ];
+    let myMap = new Map(arr);
+    console.log(myMap.get('name'));
+    ```
+
+  - `boolean has(key)`
+
+    - 判断当前Map中是否存在指定键，如果存在返回true，否则返回false。
+
+    ```javascript
+    let arr = [  
+      ['id', 1],  
+      ['name', 'admin'],
+      ['age', 22],  
+      [true, 13]
+    ];
+    let myMap = new Map(arr);
+    console.log(myMap.has('a'));
+    ```
+
+  - `forEach(function(value,key,当前Map对象){函数体})`
+
+    - 遍历Map中每个元素，对每个元素执行指定回调函数内容。
+
+    ```javascript
+    let arr = [    
+      ['id', 1], 
+      ['name', 'admin'], 
+      ['age', 22],   
+      [true, 13]
+    ];
+    let myMap = new Map(arr);
+    myMap.forEach(function (v, k, m) {   
+      console.log(v, k, m);
+    })
+    ```
+
+  - `boolean delete(key)`
+
+    - 从当前Map中删除指定键对应的键值对。
+
+    ```
+    let arr = [    ['id', 1],    ['name', 'admin'],    ['age', 22],    [true, 13]];let myMap = new Map(arr);myMap.delete(true);
+    ```
+
+  - `clear()`
+
+    - 清空当前Map中所有元素。
+
+    ```
+    let arr = [    ['id', 1],    ['name', 'admin'],    ['age', 22],    [true, 13]];let myMap = new Map(arr);myMap.clear();
+    ```
+
+## 数组、Set、Map核心特点
+
+- 数组:存在索引，单列集合
+- Set:元素唯一不重复，单列集合
+- Map:双列集合(数据之间有映射关系)
+
+## Map与对象核心区别
+
+- Map的键类型不限，可以使用对象或者函数，而对象不行;
+
+  ```
+  let o = { id: 1 };function demo() {    console.log('demo');}let obj = {    o: 2,    demo: 3};let myMap = new Map();myMap.set(o, 2);myMap.set(demo, 3);console.log(obj, myMap);
+  ```
+
+- Map提供更多API实现数据操作，而对象需要自行实现，比如:遍历或获取元素个数;
+
+```
+  let obj = {      id: 1,      name: 'admin',      age: 22  };  for (let f in obj) {      console.log(f, obj[f]);  }  let myMap = new Map();  myMap.set('id', 1);  myMap.set('name', 'admin');  myMap.set('age', 22);  myMap.forEach(function (v, k) {      console.log(k, v);  })
+```
+
 # END
