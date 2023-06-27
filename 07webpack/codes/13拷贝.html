@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function copy(o){
+      // console.log(o);
+      if(typeof o!="object"||o==null){
+        return o
+      }
+      let newO = o instanceof Array?[]:{}
+      // console.log(newO);
+      for(let k in o){
+        newO[k]= copy(o[k])
+      }
+      return newO
+    }
+    let oldObj={
+      age:12,
+      name:'xwg',
+      arr:[1,2,3],
+      t:null
+    }
+    let oldArr = [1,2,3,4]
+    let newObj = copy(oldObj)
+    let newArr = copy(oldArr)
+    newObj.arr[2]=100
+    newArr[2]=100
+    console.log(oldObj,newObj);
+    console.log(oldArr,newArr);
+  </script>
+</body>
+</html>

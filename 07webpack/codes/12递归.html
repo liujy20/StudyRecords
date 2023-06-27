@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script>
+      function demo(n) {
+        if (n == 1) return 1;
+        return n * demo(n - 1);
+      }
+      let res = demo(1);
+      console.log(res);
+    </script> -->
+    <!-- <script>
+      function demo(n) {
+        if (n == 1) return 1;
+        return  3 + demo(n - 1);
+      }
+      console.log(demo(5));
+    </script> -->
+    <script>
+      function demo(n){
+        if(n==1){
+          return 1
+        }else if(n==2){
+          return 1
+        }else{
+          return demo(n-1)+demo(n-2)
+        }
+      }
+      console.log(demo(7));
+    </script>
+    <!-- <script>
+      function fn(n, a, b, c) {
+        if (n == 1) {
+          console.log(a + "=>" + c);
+        } else {
+          fn(n-1,a,c,b)
+          fn(1,a,b,c)
+          fn(n-1,b,a,c)
+        }
+      }
+      fn(6,'a','b','c')
+    </script> -->
+    <!-- <script>
+      let arr = [1, 2, 3, 4, 5, 5, 5, 6, 7];
+      let arr1 = [1, 2, 3, 4, 6, 7];
+      let arr2 = [0, 1, 2, 3, 4];
+      let arr3 = [7, 8, 9, 11, 22];
+      let i = 0,
+        j = arr.length - 1,
+        target = 5;
+      while (i <= j) {
+        let m = parseInt((i + j) / 2);
+        if (arr[m] < target) {
+          i = m + 1;
+        } else {
+          j = m - 1;
+        }
+      }
+      if(arr[i]!=target||i==length){
+        console.log('g');
+      }
+      let left=i
+      i=0,j=arr.length
+      while (i <= j) {
+        let m = parseInt((i + j) / 2);
+        if (arr[m] < target+1) {
+          i = m + 1;
+        } else {
+          j = m - 1;
+        }
+      }
+      let right=i-1
+      console.log(left,right);
+    </script> -->
+  </body>
+</html>

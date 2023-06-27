@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <body>
+        
+    </body>
+    <script>
+        // 1、利用递归的方式实现数组的求和。
+        // let arr = [22, 13, 9, 2, 15];
+        // function sum(a){
+        //     if(a.length==0){
+        //         return 0
+        //     }
+        //     return a.pop() +sum(a)
+        // }
+        // console.log(sum(arr));
+        // 2、利用递归实现数组数据渲染,效果如body所示(选做);
+        let eleArr = [
+            {
+                id: 1,
+                title: '成都校区',
+                child: [
+                    {
+                        id: 1,
+                        title: 'web',
+                        child: [
+                            {
+                                id: 1,
+                                title: 'W28'
+                            },
+                            {
+                                id: 2,
+                                title: 'W29'
+                            },
+                            {
+                                id: 3,
+                                title: 'W30'
+                            }
+                        ]
+
+                    },
+                    {
+                        id: 2,
+                        title: 'Java',
+                        child: [
+                            {
+                                id: 1,
+                                title: 'J100'
+                            },
+                            {
+                                id: 2,
+                                title: 'J101'
+                            },
+                            {
+                                id: 3,
+                                title: 'J102'
+                            },
+                            {
+                                id: 4,
+                                title: 'J103'
+                            }
+                        ]
+
+                    },
+                    {
+                        id: 3,
+                        title: 'UI',
+                        child: [
+                            {
+                                id: 1,
+                                title: 'U24'
+                            },
+                            {
+                                id: 2,
+                                title: 'U25'
+                            }
+                        ]
+
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: '重庆校区',
+                child: [
+                    {
+                        id: 1,
+                        title: 'web',
+                        child: [
+                            {
+                                id: 1,
+                                title: 'W01'
+                            },
+                            {
+                                id: 2,
+                                title: 'W02'
+                            },
+                            {
+                                id: 3,
+                                title: 'W03'
+                            }
+                        ]
+
+                    },
+                    {
+                        id: 2,
+                        title: 'Java',
+                        child: [
+                            {
+                                id: 1,
+                                title: 'J23'
+                            },
+                            {
+                                id: 2,
+                                title: 'J24'
+                            },
+                            {
+                                id: 3,
+                                title: 'J25'
+                            }
+                        ]
+
+                    }
+                ]
+            },
+            {
+                id: 1,
+                title: '广州校区',
+                child: [
+                    {
+                        id: 1,
+                        title: 'Java',
+                        child: [
+                            {
+                                id: 1,
+                                title: 'J55'
+                            },
+                            {
+                                id: 2,
+                                title: 'J56'
+                            },
+                            {
+                                id: 3,
+                                title: 'J57'
+                            }
+                        ]
+
+                    },
+                    {
+                        id: 3,
+                        title: 'UI',
+                        child: [
+                            {
+                                id: 1,
+                                title: 'U12'
+                            },
+                            {
+                                id: 2,
+                                title: 'U13'
+                            }
+                        ]
+
+                    }
+                ]
+            }
+
+        ];
+        function render(arr){
+            if(!arr){
+                return ''
+            }
+            // console.log(arr);
+            let str='';
+            arr.forEach(item => {
+                str+=`<li>${item.title}${render(item.child)}</li>` 
+            });
+            return `<ul>${str}</ul>`
+        }
+        let s = render(eleArr)
+        document.body.innerHTML=s
+    </script>
+</head>
+
+<!-- <body>
+    <ul>
+        <li>
+            成都校区
+            <ul>
+                <li>
+                    web
+                    <ul>
+                        <li>W28</li>
+                        <li>W29</li>
+                        <li>W30</li>
+                    </ul>
+                </li>
+                <li>
+                    Java
+                    <ul>
+                        <li>J28</li>
+                        <li>J29</li>
+                        <li>J30</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</body> -->
+
+</html>
