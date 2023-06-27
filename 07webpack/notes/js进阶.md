@@ -1147,4 +1147,268 @@ myMap.forEach(function (v, k) {
 })
 ```
 
+# 模块化编程(ES6)
+
+## 概述
+
+- 将每个JS文件作为一个独立的功能模块，每个功能模块之间代码是互相不可见的；
+- 可以通过指定语法引入执行对应模块代码，以及暴露数据到外部;
+
+## 引入语法
+
+- html:
+
+  - 引入:
+
+    ```html
+    <script src="模块文件路径" type="module"></script>
+    ```
+
+    ```html
+    <script src="./js/header.js" type="module"></script>
+    ```
+
+- js
+
+  - 引入:
+
+    ```javascript
+    import '模块文件路径';
+    ```
+
+    ```javascript
+    import './nav.js';
+    ```
+
+## 暴露语法
+
+- html
+
+  - 暴露数据
+
+    ```javascript
+    export{    变量名称,    ......}
+    ```
+
+    ```javascript
+    let name = 'nav';
+    function getParam() {  
+      console.log('getParam');
+    }
+    let num = 66;
+    //暴露数据
+    export {
+    getParam, 
+      num,  
+      name
+    }
+    ```
+
+  - 引入并接收数据
+
+    ```javascript
+    <script type="module"> 
+      import {变量名称,变量名称2 as 别名2,.....} from '模板文件路径';
+    </script>
+    ```
+
+    ```javascript
+    <script type="module">  
+      import { getParam, num, name as n1 } from './nav.js';
+    </script>
+    ```
+
+- js
+
+  - 暴露数据
+
+    ```javascript
+    export{    变量名称,    ......}
+    ```
+
+    ```javascript
+    let name = 'nav';
+    function getParam() { 
+      console.log('getParam');
+    }
+    let num = 66;
+    //暴露数据
+    export {
+    getParam, 
+      num,   
+      name
+    }
+    ```
+
+  - 引入并接收数据
+
+    ```javascript
+    import {变量名称,变量名称2 as 别名2,.....} from '模板文件路径';
+    ```
+
+    ```javascript
+    import { getParam, num, name as n1 } from './nav.js';
+    ```
+
+## 整体暴露语法
+
+- html
+
+  - 暴露数据
+
+  ```javascript
+  export default{    变量名称,    ......}
+  ```
+
+  ```javascript
+  let name = 'nav';
+  function getParam() { 
+    console.log('getParam');
+  }
+  let num = 66;
+  //暴露数据
+  export default { 
+    getParam,  
+    num,  
+    name
+  }
+  ```
+
+  - 引入并接受数据
+
+  ```html
+  <script type="module"> 
+    import 对象名称 from '模板文件路径';
+  </script>
+  ```
+
+  ```html
+  <script type="module"> 
+    import obj from './nav.js';  
+    obj.getParam();    
+    console.log(obj.num);  
+    console.log('header', obj.name);
+  </script>
+  ```
+
+- js
+
+  - 暴露数据
+
+    ```javascript
+    export default{    变量名称,    ......}
+    ```
+
+    ```javascript
+    let name = 'nav';
+    function getParam() {   
+      console.log('getParam');
+    }
+    let num = 66;
+    //暴露数据
+    export default { 
+      getParam, 
+      num,   
+      name
+    }
+    ```
+
+    1. 引入并接收数据
+
+    ```javascript
+    import 对象名称 from '模板文件路径';
+    ```
+
+    ```javascript
+    import obj from './nav.js';
+    obj.getParam();
+    console.log(obj.num);
+    console.log('header', obj.name);
+    ```
+
+## 注意
+
+- 模块文件路径必须以`./`、`/`、`../`开头；
+- 先执行引入文件内容，再执行当前文件内容;
+
+# 对象克隆
+
+## 概念
+
+- 对对象进行拷贝(复制)。
+- 根据克隆深度不同分为==浅克隆==和==深克隆==。
+
+## 分类
+
+- 浅克隆
+
+  - 只对对象的值进行复制拷贝，如果属性值是引用数据类型，复制拷贝引用地址，不会创建新的堆空间;
+
+  - 实现方式
+
+  - 方式一:扩展运算符
+
+    ```javascript
+    let sourceObj = {   
+      id: 1,
+      name: 'admin',
+      age: 22, 
+      score: [123, 132, 59]
+    };
+    let newObj = { ...sourceObj };
+    ```
+
+  - 方式二:`Object.assign()`
+
+    ```javascript
+    let sourceObj = {  
+      id: 1,   
+      name: 'admin',
+      age: 22,    
+      score: [123, 132, 59]
+    };
+    let newObj = {};
+    Object.assign(newObj, sourceObj);
+    ```
+
+- 深克隆
+
+  - 对对象进行完全复制拷贝，如果属性值是引用数据类型，会创建新的堆空间;
+
+  - 方式一:分别取出每个属性以及值，判断属性值类型，做对应复制拷贝操作
+
+    ```javascript
+    function cloneObj(target, source) { 
+      //遍历source对象中所有属性  
+      for (let fieldName in source) {    
+        //获取属性值      
+        let fieldValue = source[fieldName];  
+        //判断属性值类型    
+        if (fieldValue != null && typeof fieldValue == 'object') {   
+          //对象、数组     
+          if (fieldValue instanceof Array) {//判断指定对象是否为指定类的对象   
+            //数组      
+            target[fieldName] = [...source[fieldName]];     
+          } else {            
+            //对象     
+            target[fieldName] = {};   
+            cloneObj(target[fieldName], fieldValue);   
+          }    
+        } else {   
+          //基本数据类型处理   
+          target[fieldName] = fieldValue;  
+        } 
+      }
+    }
+    ```
+
+  - 方式二:JSON
+
+    ```javascript
+    //将目标对象转为JSON
+    let objJSON = JSON.stringify(sourceObj);
+    //将JSON还原为对象
+    let newObj = JSON.parse(objJSON);
+    ```
+
 # END
