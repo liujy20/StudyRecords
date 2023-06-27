@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function getParam() {
+        console.log("getParam");
+      }
+    </script>
+    <script type="module">
+      //在index.html中正常引入index.js，在index.js中正常引入util.js，且保证所有getParam函数都能正常使用
+      import { util, getParam as gP } from "./index.js";
+      console.log(getParam);
+      console.log(util.getParam);
+      console.log(gP);
+    </script>
+  </head>
+
+  <body>
+    <div>123</div>
+  </body>
+</html>
