@@ -1,0 +1,126 @@
+body {
+  font-size: 0.16rem;
+}
+header {
+  position: relative;
+  height: 3.7rem;
+  background-image: url(../img/bg1.jpg);
+  background-size: cover;
+  .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.79rem;
+    height: 2.06rem;
+  }
+  .top {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 1.93rem;
+    left: 0.42rem;
+    height: 0.4rem;
+    color: #f2f2f2;
+    font-size: 0.36rem;
+    line-height: 1;
+    .ticket {
+      display: block;
+      margin-right: 0.17rem;
+      width: 0.44rem;
+      height: 0.34rem;
+    }
+  }
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    padding: 0 0.5rem;
+    width: 100%;
+    height: 0.9rem;
+    background-color: #233052;
+    box-sizing: border-box;
+    .address {
+      width: .3rem;
+      height: .4rem;
+    }
+    .region{
+      flex-grow: 1;
+      margin-left: .24rem;
+      color: #f2f2f2;
+      font-size: .28rem;
+    }
+    .down {
+      width: .25rem;
+      height: .2rem;
+    }
+  }
+}
+main{
+  height: 11.58rem;
+    overflow: hidden;
+  .item{
+    margin: .55rem 0 .63rem;
+    overflow: hidden;
+    .tit{
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin: 0 .4rem .4rem;
+      color: #0b193f;
+      font-size: .32rem;
+      font-weight: bold;
+      .more{
+        font-weight: normal;
+        font-size: .24rem;
+      }
+    }
+    ul{
+      display: flex;
+      padding-left: .4rem;
+      overflow: auto;
+      li{
+        margin-right: .3rem;
+        img{
+          display: block;
+          width: 2.32rem;
+          height: 3.44rem;
+          border-radius: 16px;
+        }
+        .name{margin-top: .15rem;
+          color: #000018;
+          font-size: .24rem;
+          line-height: 1;
+          text-align: center;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 .9rem;
+  height: .97rem;
+  .item{
+    width: .44rem;
+    height: .7rem;
+    text-align: center;
+    img{
+      height: .4rem;
+    }
+    .name{
+      color: #b6bac5;
+      font-size: .2rem;
+      white-space: nowrap;
+    }
+    .active{
+      color: #0b1a40;
+    }
+  }
+}

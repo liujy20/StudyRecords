@@ -1,0 +1,118 @@
+.bg {
+  position: relative;
+  height: 16.25rem;
+  background-color: #0b193f;
+  overflow: hidden;
+  .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.79rem;
+    height: 2.06rem;
+  }
+  .back {
+    position: absolute;
+    top: 1.25rem;
+    left: .44rem;
+    width: .35rem;
+    height: .3rem;
+  }
+  .tit {
+    position: absolute;
+    top: 1.92rem;
+    left: .39rem;
+    font-size: .36rem;
+    color: #f2f2f2;
+  }
+  main {
+    margin: auto;
+    margin-top: 2.9rem;
+    width: 6.82rem;
+    height: 11.34rem;
+    background-image: url(../img/sdf.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 6.82rem 11.34rem;
+    .title {
+      display: flex;
+      padding: .4rem 0 .65rem .45rem;
+      // height: 3.18rem;
+      box-sizing: border-box;
+      // background-color: #8890a3;
+      img {
+        margin-right: .46rem;
+        width: 1.32rem;
+        height: 2.36rem;
+        border-radius: .14rem;
+      }
+      .desc {
+        padding-top: .2rem;
+        height: 2.36rem;
+        box-sizing: border-box;
+        .name {
+          font-size: .32rem;
+          color: #000018;
+          line-height: 1;
+          font-weight: bold;
+        }
+        .region {
+          margin-top: .25rem;
+          font-size: .24rem;
+          color: #000018;
+          line-height: 1;
+        }
+        .date {
+          margin-top: .25rem;
+          font-size: .24rem;
+          color: #000018;
+          line-height: 1;
+        }
+        ul {
+          margin-top: .35rem;
+          display: flex;
+          li {
+            margin-right: .1rem;
+            width: .4rem;
+            height: .4rem;
+            background-color: #4073ff;
+            color: #fff;
+            font-size: .2rem;
+            line-height: .4rem;
+            text-align: center;
+            font-weight: normal;
+            border-radius: .08rem;
+          }
+        }
+      }
+    }
+    .con {
+      margin: .7rem auto 0;
+      width: 3.9rem;
+      text-align: center;
+      .name1 {
+        font-size: .24rem;
+        color: #000018;
+      }
+      .code1 {
+        margin: .5rem 0 .8rem;
+        padding: .24rem;
+        width: 3.9rem;
+        height: 3.9rem;
+        box-sizing: border-box;
+        background-image: url(../img/er.png);
+        background-size: cover;
+      }
+      .name2 {
+        font-size: .24rem;
+        color: #000018;
+      }
+      .code2 {
+        margin-top: .4rem;
+        font-size: .48rem;
+        color: #000018;
+        letter-spacing: .13rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
