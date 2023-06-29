@@ -1,6 +1,5 @@
 const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
-// const miniCssExtractPlugin = require('mini-css-extract-plugin')
 let miniCssExtractPlugin = require('mini-css-extract-plugin');
 const jsArr = ["index", "login"];
 function getEntry(arr) {
@@ -51,6 +50,10 @@ module.exports = {
       {
         test: /\.css$/i,
         use:[miniCssExtractPlugin.loader,'css-loader']
+      },
+      {
+        test: /\.scss$/i,
+        use:[miniCssExtractPlugin.loader,'css-loader','sass-loader']
       }
     ]
   }
