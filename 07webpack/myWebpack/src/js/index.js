@@ -3,8 +3,8 @@ function add(a, b) {
 }
 add(1, 2);
 
-import "../util/util";
-import "../css/header.css";
-import "../css/nav.css";
+import "@util/util";
+import "@css/header.css";
+import "@css/nav.css";
 
-import "../scss/footer.scss";
+import "@scss/footer.scss";
