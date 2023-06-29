@@ -1,6 +1,9 @@
 const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
-let miniCssExtractPlugin = require('mini-css-extract-plugin');
+const miniCssExtractPlugin = require("mini-css-extract-plugin");
+const copyWebpackPlugin = require("copy-webpack-plugin");
+const devServer = require('webpack-dev-server')
+const webpack = require("webpack");
 const jsArr = ["index", "login"];
 function getEntry(arr) {
   let obj = {};
@@ -42,19 +45,66 @@ module.exports = {
   plugins: [
     ...getPlugin(jsArr),
     new miniCssExtractPlugin({
-      filename:'./css/[name].css'
-    })
+      filename: "./css/[name].css",
+    }),
+    new copyWebpackPlugin({
+      patterns: [
+        {
+          from: "./src/video",
+          to: "./video",
+        },
+      ],
+    }),
+    new webpack.ProvidePlugin({
+      "$": "jquery",
+    }),
   ],
-  module:{
-    rules:[
+  module: {
+    rules: [
       {
         test: /\.css$/i,
-        use:[miniCssExtractPlugin.loader,'css-loader']
+        use: [miniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.scss$/i,
-        use:[miniCssExtractPlugin.loader,'css-loader','sass-loader']
+        use: [miniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+
+      {
+        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        type: "javascript/auto",
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 8 * 1024,
+            outputPath: "./img",
+            esModule: false,
+          },
+        },
+      },
+      {
+        test: /\.(htm?l)$/i,
+        use: ["html-withimg-loader"],
+      },
+    ],
+  },
+  resolve: {
+    alias: {
+      "@css": path.resolve(__dirname, "./src/css"),
+      "@scss": path.resolve(__dirname, "./src/scss"),
+      "@js": path.resolve(__dirname, "./src/js"),
+      "@util": path.resolve(__dirname, "./src/util"),
+    },
+  },
+  devServer:{
+    port:'8099',
+    open:{
+      target:'./html/index.html',
+      app:{
+        name:'chrome'
       }
-    ]
+    },
+    // open:'./html/index.html',
+    hot:true
   }
 };
