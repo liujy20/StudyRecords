@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1、定义Random的类函数nextInt(start, end)，实现根据用户传入的起始和结束区间生成随机整数(取前不取后)；
+      class Random {
+        static nextInt(start, end) {
+          console.log(parseInt(Math.random() * (end - start) + start));
+        }
+      }
+      // Random.nextInt(1, 4);
+
+      class RegExp {
+        static phone = /^13\d{9}$/;
+        static password = /^\w{6,16}$/;
+        static test(type, str) {
+          if (type == "phone") {
+            console.log(this.phone.test(str));
+          } else {
+            console.log(this.password.test(str));
+          }
+        }
+        constructor(reg){
+          this.reg=reg
+        }
+        test(str){
+          console.log(this.reg.test(str));
+        }
+      }
+
+      // RegExp.test('phone',13312341234)
+      // let reg = new RegExp(/^\w{4}$/)
+      // reg.test('1__4')
+
+      class Person{
+        constructor(name,age){
+          this.name=name
+          this.age=age
+        }
+        eat(){
+          console.log(this.name,'吃饭');
+        }
+        sleep(){
+          console.log(this.name,'睡觉');
+        }
+      }
+
+      class Student extends Person{
+        constructor(name,age,id,education){
+          super(name,age)
+          this.id=id
+          this.education=education
+        }
+        learn(){
+          console.log(this.name,'学习');
+        }
+        test(){
+          console.log(this.name,'考试');
+        }
+      }
+
+      class Teacher extends Person{
+        constructor(name,age,time,salary){
+          super(name,age)
+          this.time=time
+          this.salary=salary
+        }
+        teach(){
+          console.log(this.name,'授课');
+        }
+        invigilate(){
+          console.log(this.name,'监考');
+        }
+      }
+
+      let student=new Student('小明',18,123,'高中')
+      student.eat()
+      student.sleep()
+      student.learn()
+      student.test()
+      let teather=new Teacher('李老师',48,25,12345)
+      teather.eat()
+      teather.sleep()
+      teather.teach()
+      teather.invigilate()
+      
+    </script>
+  </body>
+</html>

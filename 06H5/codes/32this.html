@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log('this',this);
+
+      function fnThis() {
+        console.log('fn',this);
+      }
+      let FnThis = ()=> {
+        console.log('()=>{}',this);
+      };
+
+      fnThis()
+      FnThis()
+
+      function a(){
+        A=1
+        return function(){
+          console.log(this);
+        }
+      }
+      let aa = a();
+      aa()
+
+
+      function b(){
+        B=1
+        return ()=>{
+          console.log(this);
+        }
+      }
+      let bb = b();
+      bb()
+
+      console.log('===================================');
+
+      function Demo(){
+        console.log(this);
+      }
+      Demo()
+      let d=new Demo()
+
+    </script>
+  </body>
+</html>

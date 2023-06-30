@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Dog{
+      constructor(name,age,color,energy){
+        this.name=name;
+        this.age=age;
+        this.color=color;
+        this.energy=energy;
+      }
+      eat() {
+        this.energy++;
+        console.log('energy:'+this.energy);
+      }
+      sleep(){
+        this.energy++;
+        console.log('energy:'+this.energy);
+      }
+      study(){
+        this.energy--;
+        console.log('energy:'+this.energy);
+      }
+    }
+    const xiaohei=new Dog('小黑',2,'白色',5)
+    xiaohei.sleep()
+    xiaohei.eat()
+    xiaohei.study()
+
+    class Vehicle{
+      constructor(speed,name){
+        this.speed=speed;
+        this.name=name;
+      }
+      move(){
+        console.log(`移动了${this.speed}米`);
+      }
+      speedUp(){
+        this.speed+=10;
+      }
+      speedDown(){
+        this.speed-=10;
+      }
+    }
+    const car=new Vehicle(100,'汽车');
+    car.move()
+    car.speedUp()
+    car.speedUp()
+    car.move()
+  </script>
+</body>
+</html>
