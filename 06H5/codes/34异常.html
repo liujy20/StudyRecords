@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1、自定义正则检查工具类`RegexUtil`，其中有手机号正则类属性，和检查指定字符串是否符合手机号正则功能的函数，
+    //     如果传入的参数不是字符串，抛出`RegexError`对象，异常提示信息为`正则判断目标类型不是字符串。`。
+    class RegexError extends Error{
+      constructor(msg){
+        super(msg);
+        this.name='RegexError'
+      }
+    }
+
+    class RegexUtil{
+      static phone=/^1[2-9]\d{9}$/
+      static test(str){
+        if(typeof str !="string"){
+          throw new RegexError('正则判断目标类型不是字符串。')
+        }
+        return this.phone.test(str)
+      }
+    }
+
+    // console.log(RegexUtil.test('13312341234'));
+    // console.log(RegexUtil.test('13312'));
+    // 2、自定义文件上传工具类`UploadUtil`，其中有上传图片的函数、上传视频的函数(上传代码使用控制台输出占位)，上传时需要传入文件路径， 如果路径不是上传目标的合法路径，
+    //     则抛出`UploadError`异常，并提示`路径不是合法图片`或`路径不是合法视频`。
+
+    class UploadError extends Error{
+      constructor(msg){
+        super(msg);
+        this.name='UploadError'
+      }
+    }
+
+    class UploadUtil{
+      static uploadImg(src){
+        if(!src.includes('.jpg')){
+          throw new UploadError('路径不是合法图片')
+        }
+        console.log(src);
+      }
+      static uploadVideo(src){
+        if(!src.includes('.mp4')){
+          throw new UploadError('路径不是合法视频')
+        }
+        console.log(src);
+      }
+    }
+
+    UploadUtil.uploadImg('./abc.jpg')
+  </script>
+</body>
+</html>
