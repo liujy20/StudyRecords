@@ -550,17 +550,36 @@ npm i mini-css-extract-plugin css-loader@5.1.0 -D
 
   - 配置打包规则
 
-  ```
-  module:{    rules:[        {            test:指定要打包的CSS文件正则,            exclude:排除不打包资源的路径正则,            use: [miniCssExtractPlugin.loader,'css-loader']        }    ]}
+  ```javascript
+  module:{ 
+    rules:[ 
+      {         
+        test:指定要打包的CSS文件正则,      
+        exclude:排除不打包资源的路径正则,   
+        use: [miniCssExtractPlugin.loader,'css-loader'] 
+      }  
+    ]
+  }
   ```
 
-  ```
-  module.exports = {    ......    module: {        rules: [            {                test: /\.css$/i,                exclude: /node_modules/,                use: [miniCssExtractPlugin.loader, 'css-loader']            }        ]    }}
+  ```javascript
+  module.exports = { 
+    ...... 
+    module: {   
+      rules: [      
+        {         
+          test: /\.css$/i,     
+          exclude: /node_modules/,    
+          use: [miniCssExtractPlugin.loader, 'css-loader']     
+        }     
+      ] 
+    }
+  }
   ```
 
 - 在要使用CSS样式的HTML页面对应主JS中使用`import`语法引入目标CSS文件
 
-```
+```javascript
 import '目标CSS文件路径(参照当前主JS查找)'
 import './../css/header.css';import './../css/nav.css';
 ```
@@ -587,16 +606,40 @@ npm i sass-loader sass -D
 
 - 配置`webpack.config.js`，实现SCSS资源打包配置:
 
-```
-module: {    rules: [        ......        //SCSS        {            test:要打包SCSS资源确定的正则,            exclude:排除不打包资源的路径正则,            use: [miniCssExtractPlugin.loader, 'css-loader','sass-loader']        }    ]}
-module.exports = {    ......    module: {        rules: [            ......            //SCSS            {                test: /\.s[ca]ss$/i,                exclude: /node_modules/,                use: [miniCssExtractPlugin.loader, 'css-loader', 'sass-loader']            }        ]    }}
+```javascript
+module: { 
+  rules: [ 
+    ...... 
+    //SCSS     
+    {        
+      test:要打包SCSS资源确定的正则,  
+      exclude:排除不打包资源的路径正则,    
+      use: [miniCssExtractPlugin.loader, 'css-loader','sass-loader']  
+    }  
+  ]
+}
+module.exports = {  
+  ......   
+  module: {  
+    rules: [    
+      ......   
+      //SCSS     
+      {          
+        test: /\.s[ca]ss$/i,
+        exclude: /node_modules/,  
+        use: [miniCssExtractPlugin.loader, 'css-loader', 'sass-loader']    
+      }     
+    ] 
+  }
+}
 ```
 
 - 在要使用SCSS的HTML对应主JS文件中引入目标SCSS文件
 
-```
+```javascript
 import '目标SCSS路径(参照当前主JS文件查找)'
-//引入SCSS资源import './../scss/footer.scss';
+//引入SCSS资源
+import './../scss/footer.scss';
 ```
 
 - 执行打包命令
@@ -621,9 +664,60 @@ npm i url-loader file-loader html-withimg-loader -D
 
 - 配置`webpack.config.js`，实现图片打包配置
 
-```
-module.exports = {    ......    module: {        rules: [            ......            //CSS文件中图片打包配置            {                test:确定要打包的图片资源正则,                type:'javascript/auto',                use:{                    loader:'url-loader',                    options:{                        limit:确定转Base64格式的图片大小限制(单位:字节),                        outputPath:'确定打包后的图片存储在dist的位置',                        esModule:false                    }                }            },            //html文件中图片打包配置            {                test: 确定要打包的图片资源正则,                use: ['html-withimg-loader']            }        ]    }}
-module.exports = {    ......    module: {        rules: [            ......            //图片            //CSS文件中图片打包配置            {                test: /\.(png|jpe?g|gif|svg|webp)$/i,                type: 'javascript/auto',                use: {                    loader: 'url-loader',                    options: {                        limit: 8 * 1024,//8KB                        outputPath: './image/',                        esModule: false                    }                }            },            //html文件中图片打包配置            {                test: /\.(htm?l)$/i,                use: ['html-withimg-loader']            }        ]    }}
+```javascript
+module.exports = {  
+  ......  
+  module: {    
+    rules: [       
+      ......     
+      //CSS文件中图片打包配置   
+      {        
+        test:确定要打包的图片资源正则,  
+        type:'javascript/auto',   
+        use:{            
+          loader:'url-loader',  
+          options:{             
+            limit:确定转Base64格式的图片大小限制(单位:字节),   
+            outputPath:'确定打包后的图片存储在dist的位置',  
+            esModule:false       
+          }       
+        }     
+      }, 
+      //html文件中图片打包配置      
+      {       
+        test: 确定要打包的图片资源正则,      
+        use: ['html-withimg-loader']     
+      }    
+    ]   
+  }
+}
+module.exports = {   
+  ...... 
+  module: {  
+    rules: [      
+      ......    
+      //图片      
+      //CSS文件中图片打包配置       
+      {        
+        test: /\.(png|jpe?g|gif|svg|webp)$/i,  
+        type: 'javascript/auto',         
+        use: {                 
+          loader: 'url-loader',   
+          options: {              
+            limit: 8 * 1024,//8KB    
+            outputPath: './image/',    
+            esModule: false          
+          }            
+        }     
+      },       
+      //html文件中图片打包配置     
+      {         
+        test: /\.(htm?l)$/i,      
+        use: ['html-withimg-loader']     
+      }    
+    ]   
+  }
+}
 ```
 
 - 执行打包命令
@@ -648,8 +742,23 @@ npm i copy-webpack-plugin -D
 
 - 配置`webpack.config.js`，实现文件复制配置
 
-```
-//引入文件复制插件let copyWebpackPlugin = require('copy-webpack-plugin');module.exports = {    ......    plugins: [        ......        new copyWebpackPlugin({            patterns:[                {                    from:'要复制的文件路径(参照当前配置文件查找)',                    to:'复制到那个文件中(参照dist查找)'                }            ]        })    ]}
+```javascript
+//引入文件复制插件
+let copyWebpackPlugin = require('copy-webpack-plugin');
+module.exports = {  
+  ...... 
+  plugins: [ 
+    ......   
+    new copyWebpackPlugin({ 
+      patterns:[   
+        {            
+          from:'要复制的文件路径(参照当前配置文件查找)',     
+          to:'复制到那个文件中(参照dist查找)'   
+        }      
+      ]
+    })    
+  ]
+}
 ```
 
 - 执行打包命令
@@ -668,15 +777,39 @@ npx webpack
 
 - 配置`webpack.config.js`，实现取别名配置
 
-```
-module.exports = {    ......    resolve: {        alias: {            "别名": 值,            ......        }    }}
-module.exports = {    ......    resolve: {        alias: {            "@css": path.resolve(__dirname, './src/css'),            "@scss": path.resolve(__dirname, './src/scss'),            "@js": path.resolve(__dirname, './src/js'),            "@util": path.resolve(__dirname, './src/util')        }    }}
+```javascript
+module.exports = {   
+  ......  
+  resolve: {   
+    alias: {    
+      "别名": 值,      
+      ......    
+  	}   
+  }
+}
+module.exports = { 
+  ...... 
+  resolve: {   
+    alias: {  
+      "@css": path.resolve(__dirname, './src/css'),    
+      "@scss": path.resolve(__dirname, './src/scss'),   
+      "@js": path.resolve(__dirname, './src/js'),   
+      "@util": path.resolve(__dirname, './src/util')  
+    }  
+  }
+}
 ```
 
 - 使用别名
 
-```
-//引入CSS资源import '@css/header.css';import '@css/nav.css';//引入SCSS资源import '@scss/footer.scss';//引入JS资源import '@util/util.js'
+```javascript
+//引入CSS资源
+import '@css/header.css';
+import '@css/nav.css';
+//引入SCSS资源
+import '@scss/footer.scss';
+//引入JS资源
+import '@util/util.js'
 ```
 
 - 执行打包命令
@@ -695,8 +828,17 @@ npm i jquery
 
 - 配置`webpack.config.js`，实现全局使用配置
 
-```
-let webpack=require('webpack');module.exports = {    ......    plugins: [        ......        new webpack.ProvidePlugin({            "$": "jquery"        })    ]}
+```javascript
+let webpack=require('webpack');
+module.exports = {
+  ......  
+  plugins: [   
+    ......  
+    new webpack.ProvidePlugin({    
+      "$": "jquery"  
+    }) 
+  ]
+}
 ```
 
 - 在要使用jquery语法的JS中直接使用`$`语法
@@ -723,15 +865,244 @@ npm i webpack-dev-server -D
 
 - 配置`webpack.config.js`，实现服务器配置
 
-```
-module.exports = {    ......    devServer:{        port:'端口号',        open:'自动打开的页面路径',        hot:布尔值，是否开启热部署(自动检测源码文件改动，重新打包),        proxy:配置代理服务器功能    }}
-module.exports = {    ......    devServer: {        port: '1818',        open: './html/index.html',        hot: true    }}
+```javascript
+module.exports = { 
+  ......
+  devServer:{   
+    port:'端口号',     
+    open:'自动打开的页面路径',   
+    hot:布尔值，是否开启热部署(自动检测源码文件改动，重新打包),     
+    proxy:配置代理服务器功能
+  }
+}
+module.exports = {  
+  ......    
+  devServer: {    
+    port: '1818',
+    open: './html/index.html',  
+    hot: true   
+  }
+}
 ```
 
 - 执行命令，实现服务器启动(自动打包)
 
 ```
 npx webpack serve
+```
+
+# ES6面向对象
+
+## 类
+
+- 关键字:`class`
+- 概念:
+  - 具有相同属性(变量)和行为(函数)的一组实体(对象)集合，为该类的所有实体提供了统一的抽象描述。
+- 案例:
+  - 比如:人类、鸟类、鱼类等。
+  - 描述:
+    - 静态描述(属性、变量)
+      - 姓名
+      - 年龄
+      - 身高
+      - 体重
+      - 等
+    - 动态描述(函数)
+      - 吃饭
+      - 睡觉
+      - 打豆豆
+      - 学习
+      - 思考
+      - 等
+
+## 对象
+
+- 对象是类的实例，是类的具体实现。
+
+## 语法
+
+- 类
+
+```javascript
+class 类名{ 
+  constructor(形参列表){  
+    this.属性名称=属性值;    
+    ......  
+  }  
+  函数名称(形参列表){
+    函数体;
+    ......
+  }
+}
+    
+class Person {    
+  constructor(name, age, height, weight) {  
+    //属性定义
+    this.name = name;   
+    this.age = age;     
+    this.height = height;      
+    this.weight = weight;  
+  } 
+  eat(foodName) {  
+    console.log(`${this.name}正在吃${foodName}`);
+  } 
+  sleep() {   
+    console.log(`${this.name}正在睡觉~`);
+  }
+}
+```
+
+- 对象
+- 创建对象
+
+```javascript
+let 对象变量名称=new 类名(实参列表);
+let wzObj = new Person('汪圳', 21, 180, 120);
+let sgmObj = new Person('宋光明', 20, 181, 119);
+```
+
+- 操作属性
+
+```javascript
+对象变量名称.属性名称=值;
+let 变量名称=对象变量名称.属性名称;
+wzObj.name='无名氏';
+let n=wzObj.name;
+```
+
+- 操作行为
+
+```javascript
+let 变量名称=对象变量名称.行为名称(实参列表);
+wzObj.sleep();
+sgmObj.eat('粽子');
+```
+
+## constructor
+
+- 一个特殊函数，被称为`构造函数`、`构造器`。
+- 特殊:
+  - 结构:没有自定义函数名称，固定为`constructor`;
+  - 数量:每个类有且只有一个(如果未显示声明构造函数，系统会自动创建一个无参空构造);
+  - 作用:对对象的属性进行初始化(属性定义和赋值);
+  - 调用方式:在创建目标类对象时调用，一般在`new`关键字后调用;
+
+## static
+
+- 表示`静态`，该关键字可以用于修饰类属性和行为，表示该属性和行为属于**类**级别，不属于**对象**级别。
+
+- 分类:
+
+  - 类属性
+
+    - 类属性被该类所有对象所共享，属于类级别，可以通过类名直接访问;
+    - 语法:
+
+    ```javascript
+    class 类名{ 
+      //类属性  
+      static 属性名称=值; 
+    	......
+    }
+    ```
+
+    ```javascript
+    class Person { 
+      static waterNum = 90;
+    }
+    Person.waterNum=60;
+    console.log(Person.waterNum);
+    ```
+
+  - 类行为
+
+    - 类行为被该类所有对象所共享，属于类级别，可以通过类名直接调用;
+    - 注意:在类行为中`this`指代`当前类`;
+    - 语法
+
+    ```javascript
+    class 类名{  
+      static 函数名称(形参列表){  
+        函数体; 
+      }
+    }
+    ```
+
+    ```javascript
+    class Person{  
+      static waterNum = '90%';   
+      static water() {   
+        if (this.waterNum > 50) {   
+          this.waterNum -= 50;   
+          console.log(`脱水为:${this.waterNum}`);  
+        } else {       
+          console.log(`缺水!`);  
+        }   
+      }
+    }
+    Person.water();
+    ```
+
+- 有`static`通过类名调用，没有`static`通过对象调用;
+
+## this指向
+
+- 在对象行为(函数)中，`this`指代当前对象(谁调用指代谁);
+- 在类行为(函数)中,`this`指代当前类(谁调用指代谁);
+- 在全局环境中，`this`指代`window`对象;
+- 在监听器函数中，`this`指代绑定事件的元素;
+- 在箭头函数中，`this`指代当前箭头函数的外层函数环境中的`this`指向值;
+- jQuery环境中，`each()`中`this`指代遍历的JS元素;
+- 补充:兼容模式下，非特定环境中，`this`默认指向`window`，而严格模式下，非特定环境中，`this`默认指向`undefined`;
+
+# 继承
+
+## 概念
+
+- 面向对象三大特征:==继承==、==封装==、==多态==。
+- 生活中:
+  - 继承财产;
+  - 继承武功;
+- 程序中:
+  - 继承:从已有类派生出新的类，新的类吸收已有类的属性和行为的同时，在其基础上扩展新的属性和行为;
+    - 如:动物类派生出鱼类、鸟类等。
+  - 其中，`已有类`被称为`父类`、`超类`、`基类`；派生出的`新类`被称为`子类`、`派生类`;
+    - 动物类被称为`父类`，鱼类和鸟类被称为动物类的`子类`;
+
+## 语法
+
+```javascript
+class 子类名称 extends 父类名称{    
+  constructor(形参列表){    
+    super(实参列表);    
+    扩展新的属性 
+  }  
+  扩展新的行为
+}
+class Animal {  
+  constructor(name, color, age) { 
+    this.name = name;      
+    this.color = color;  
+    this.age = age;  
+  }  
+  eat(foodName) { 
+    console.log(`${this.name}正在吃${foodName}`);
+  }
+}
+class Fish extends Animal {  
+  constructor(n, c, a, f) {    
+    //super关键字指代父类   
+    super(n, c, a);     
+    //扩展新的属性     
+    this.fin = f;   
+  } 
+  swimming() {    
+    console.log(`${this.name}正在游泳`); 
+  }
+}
+let fish = new Fish('小黄鱼', '黄色', 1, 4);
+console.log(fish);
+fish.eat('虾');
 ```
 
 # END
