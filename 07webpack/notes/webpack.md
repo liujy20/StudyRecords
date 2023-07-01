@@ -1105,4 +1105,129 @@ console.log(fish);
 fish.eat('虾');
 ```
 
+# 异常
+
+## 概述
+
+- 生活中:
+  - 超出原计划不能正常执行的意外情况，被称为`异常`。
+- 程序中:
+  - 程序不能按原计划正常执行的意外情况，被称为`程序异常`。
+
+## 内置异常对象
+
+- 当JavaScript程序执行过程中，遇到异常情况，导致程序不能正常执行时，系统会自动收集异常数据，并将数据存储到对象中，后期可通过操作该对象，实现异常信息获取，该异常对象被称为系统`内置异常对象`。
+
+- 常见异常对象:
+
+  - 父类:`Error`
+
+  - 子类:
+
+    - `ReferenceError`
+
+      - 引用异常，使用未定义的变量时，会发生该异常。
+
+      ```javascript
+      console.log(b);
+      ```
+
+    - `TypeError`
+
+      - 类型异常，实际类型与预期类型不一致时，会发生该异常。
+
+      ```javascript
+      let a = 1;
+      a();
+      ```
+
+    - `SyntaxError`
+
+      - 语法异常，语法编写有误，会发生该异常。
+
+      ```javascript
+       let 9 = 1;
+      ```
+
+    - `RangeError`
+
+      - 范围异常，指定值不在有效范围内，会发生该异常。
+
+      ```javascript
+      let arr = [];
+      arr.length = -1;
+      ```
+
+    - `URIError`
+
+      - 地址异常，地址不合法时，会发生该异常。
+
+## 异常捕获处理
+
+语法
+
+```javascript
+try{   
+  可能发生异常的代码
+}catch(error){
+  发生异常时要执行的代码
+}finally{  
+  无论是否发生异常都会在最后执行的代码
+}
+```
+
+- ==try==
+  - 必须，但不能单独使用;编写可能发生异常的代码。
+- ==catch==
+  - 可选，编写发生异常时要执行的代码。
+- ==finally==
+  - 可选，无论是否发生异常，中途是否`return`，都会在最后被执行的代码。
+
+异常对象属性
+
+- `name`:异常类名称。
+- `message`:异常文本描述信息。
+- `stack`:异常执行栈。
+
+## 主动抛出异常
+
+- 关键字:`throw`
+- 语法:`throw 异常对象`
+
+```javascript
+class Cal {   
+  static sumPlus() {    
+    let re = 0;    
+    for (let index = 0; index < arguments.length; index++) {   
+      if (typeof arguments[index] != 'number') {     
+        throw new TypeError('参数类型必须为number');   
+      }   
+      re += arguments[index];  
+    }    
+    return re; 
+  }
+}
+console.log(Cal.sumPlus(1, 2, 3));
+```
+
+## 自定义异常
+
+- 系统内置的异常对象，不能满足各种编程环境需求，故提供自定义异常机制。
+- 实现
+
+```javascript
+class 类名 extends Error{  
+  constructor(message){      
+    super(message);    
+    this.name='类名';  
+  }
+}
+class ParameterTypeError extends Error {   
+  constructor(message) {   
+    super(message);     
+    this.name = 'ParameterTypeError'; 
+  }
+}
+```
+
 # END
