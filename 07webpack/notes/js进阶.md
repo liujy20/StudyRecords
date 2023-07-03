@@ -1411,4 +1411,818 @@ myMap.forEach(function (v, k) {
     let newObj = JSON.parse(objJSON);
     ```
 
+# ES6面向对象
+
+## 类
+
+- 关键字:`class`
+- 概念:
+  - 具有相同属性(变量)和行为(函数)的一组实体(对象)集合，为该类的所有实体提供了统一的抽象描述。
+- 案例:
+  - 比如:人类、鸟类、鱼类等。
+  - 描述:
+    - 静态描述(属性、变量)
+      - 姓名
+      - 年龄
+      - 身高
+      - 体重
+      - 等
+    - 动态描述(函数)
+      - 吃饭
+      - 睡觉
+      - 打豆豆
+      - 学习
+      - 思考
+      - 等
+
+## 对象
+
+- 对象是类的实例，是类的具体实现。
+
+## 语法
+
+- 类
+
+```javascript
+class 类名{ 
+  constructor(形参列表){  
+    this.属性名称=属性值;    
+    ......  
+  }  
+  函数名称(形参列表){
+    函数体;
+    ......
+  }
+}
+    
+class Person {    
+  constructor(name, age, height, weight) {  
+    //属性定义
+    this.name = name;   
+    this.age = age;     
+    this.height = height;      
+    this.weight = weight;  
+  } 
+  eat(foodName) {  
+    console.log(`${this.name}正在吃${foodName}`);
+  } 
+  sleep() {   
+    console.log(`${this.name}正在睡觉~`);
+  }
+}
+```
+
+- 对象
+- 创建对象
+
+```javascript
+let 对象变量名称=new 类名(实参列表);
+let wzObj = new Person('汪圳', 21, 180, 120);
+let sgmObj = new Person('宋光明', 20, 181, 119);
+```
+
+- 操作属性
+
+```javascript
+对象变量名称.属性名称=值;
+let 变量名称=对象变量名称.属性名称;
+wzObj.name='无名氏';
+let n=wzObj.name;
+```
+
+- 操作行为
+
+```javascript
+let 变量名称=对象变量名称.行为名称(实参列表);
+wzObj.sleep();
+sgmObj.eat('粽子');
+```
+
+## constructor
+
+- 一个特殊函数，被称为`构造函数`、`构造器`。
+- 特殊:
+  - 结构:没有自定义函数名称，固定为`constructor`;
+  - 数量:每个类有且只有一个(如果未显示声明构造函数，系统会自动创建一个无参空构造);
+  - 作用:对对象的属性进行初始化(属性定义和赋值);
+  - 调用方式:在创建目标类对象时调用，一般在`new`关键字后调用;
+
+## static
+
+- 表示`静态`，该关键字可以用于修饰类属性和行为，表示该属性和行为属于**类**级别，不属于**对象**级别。
+
+- 分类:
+
+  - 类属性
+
+    - 类属性被该类所有对象所共享，属于类级别，可以通过类名直接访问;
+    - 语法:
+
+    ```javascript
+    class 类名{ 
+      //类属性  
+      static 属性名称=值; 
+    	......
+    }
+    ```
+
+    ```javascript
+    class Person { 
+      static waterNum = 90;
+    }
+    Person.waterNum=60;
+    console.log(Person.waterNum);
+    ```
+
+  - 类行为
+
+    - 类行为被该类所有对象所共享，属于类级别，可以通过类名直接调用;
+    - 注意:在类行为中`this`指代`当前类`;
+    - 语法
+
+    ```javascript
+    class 类名{  
+      static 函数名称(形参列表){  
+        函数体; 
+      }
+    }
+    ```
+
+    ```javascript
+    class Person{  
+      static waterNum = '90%';   
+      static water() {   
+        if (this.waterNum > 50) {   
+          this.waterNum -= 50;   
+          console.log(`脱水为:${this.waterNum}`);  
+        } else {       
+          console.log(`缺水!`);  
+        }   
+      }
+    }
+    Person.water();
+    ```
+
+- 有`static`通过类名调用，没有`static`通过对象调用;
+
+## this指向
+
+- 在对象行为(函数)中，`this`指代当前对象(谁调用指代谁);
+- 在类行为(函数)中,`this`指代当前类(谁调用指代谁);
+- 在全局环境中，`this`指代`window`对象;
+- 在监听器函数中，`this`指代绑定事件的元素;
+- 在箭头函数中，`this`指代当前箭头函数的外层函数环境中的`this`指向值;
+- jQuery环境中，`each()`中`this`指代遍历的JS元素;
+- 补充:兼容模式下，非特定环境中，`this`默认指向`window`，而严格模式下，非特定环境中，`this`默认指向`undefined`;
+
+# 继承
+
+## 概念
+
+- 面向对象三大特征:==继承==、==封装==、==多态==。
+- 生活中:
+  - 继承财产;
+  - 继承武功;
+- 程序中:
+  - 继承:从已有类派生出新的类，新的类吸收已有类的属性和行为的同时，在其基础上扩展新的属性和行为;
+    - 如:动物类派生出鱼类、鸟类等。
+  - 其中，`已有类`被称为`父类`、`超类`、`基类`；派生出的`新类`被称为`子类`、`派生类`;
+    - 动物类被称为`父类`，鱼类和鸟类被称为动物类的`子类`;
+
+## 语法
+
+```javascript
+class 子类名称 extends 父类名称{    
+  constructor(形参列表){    
+    super(实参列表);    
+    扩展新的属性 
+  }  
+  扩展新的行为
+}
+class Animal {  
+  constructor(name, color, age) { 
+    this.name = name;      
+    this.color = color;  
+    this.age = age;  
+  }  
+  eat(foodName) { 
+    console.log(`${this.name}正在吃${foodName}`);
+  }
+}
+class Fish extends Animal {  
+  constructor(n, c, a, f) {    
+    //super关键字指代父类   
+    super(n, c, a);     
+    //扩展新的属性     
+    this.fin = f;   
+  } 
+  swimming() {    
+    console.log(`${this.name}正在游泳`); 
+  }
+}
+let fish = new Fish('小黄鱼', '黄色', 1, 4);
+console.log(fish);
+fish.eat('虾');
+```
+
+# 异常
+
+## 概述
+
+- 生活中:
+  - 超出原计划不能正常执行的意外情况，被称为`异常`。
+- 程序中:
+  - 程序不能按原计划正常执行的意外情况，被称为`程序异常`。
+
+## 内置异常对象
+
+- 当JavaScript程序执行过程中，遇到异常情况，导致程序不能正常执行时，系统会自动收集异常数据，并将数据存储到对象中，后期可通过操作该对象，实现异常信息获取，该异常对象被称为系统`内置异常对象`。
+
+- 常见异常对象:
+
+  - 父类:`Error`
+
+  - 子类:
+
+    - `ReferenceError`
+
+      - 引用异常，使用未定义的变量时，会发生该异常。
+
+      ```javascript
+      console.log(b);
+      ```
+
+    - `TypeError`
+
+      - 类型异常，实际类型与预期类型不一致时，会发生该异常。
+
+      ```javascript
+      let a = 1;
+      a();
+      ```
+
+    - `SyntaxError`
+
+      - 语法异常，语法编写有误，会发生该异常。
+
+      ```javascript
+       let 9 = 1;
+      ```
+
+    - `RangeError`
+
+      - 范围异常，指定值不在有效范围内，会发生该异常。
+
+      ```javascript
+      let arr = [];
+      arr.length = -1;
+      ```
+
+    - `URIError`
+
+      - 地址异常，地址不合法时，会发生该异常。
+
+## 异常捕获处理
+
+语法
+
+```javascript
+try{   
+  可能发生异常的代码
+}catch(error){
+  发生异常时要执行的代码
+}finally{  
+  无论是否发生异常都会在最后执行的代码
+}
+```
+
+- ==try==
+  - 必须，但不能单独使用;编写可能发生异常的代码。
+- ==catch==
+  - 可选，编写发生异常时要执行的代码。
+- ==finally==
+  - 可选，无论是否发生异常，中途是否`return`，都会在最后被执行的代码。
+
+异常对象属性
+
+- `name`:异常类名称。
+- `message`:异常文本描述信息。
+- `stack`:异常执行栈。
+
+## 主动抛出异常
+
+- 关键字:`throw`
+- 语法:`throw 异常对象`
+
+```javascript
+class Cal {   
+  static sumPlus() {    
+    let re = 0;    
+    for (let index = 0; index < arguments.length; index++) {   
+      if (typeof arguments[index] != 'number') {     
+        throw new TypeError('参数类型必须为number');   
+      }   
+      re += arguments[index];  
+    }    
+    return re; 
+  }
+}
+console.log(Cal.sumPlus(1, 2, 3));
+```
+
+## 自定义异常
+
+- 系统内置的异常对象，不能满足各种编程环境需求，故提供自定义异常机制。
+- 实现
+
+```javascript
+class 类名 extends Error{  
+  constructor(message){      
+    super(message);    
+    this.name='类名';  
+  }
+}
+class ParameterTypeError extends Error {   
+  constructor(message) {   
+    super(message);     
+    this.name = 'ParameterTypeError'; 
+  }
+}
+```
+
+# ES5面向对象
+
+## 类与对象
+
+- ES5定义类使用函数定义类，如果该函数未使用`new`关键字调用，则该函数为普通函数，如果使用了`new`关键字调用，则该函数为构造函数。
+
+```javascript
+function 类名(形参列表){  
+  this.属性名称=属性值;  
+  ......  
+  this.函数名称=function(形参列表){
+    函数体;  
+  }   
+  .....
+}
+function Person(name, age) {
+  //定义属性  
+  this.name = name;  
+  this.age = age;   
+  //定义行为   
+  this.eat = function (foodName) { 
+    console.log(`${this.name}正在吃${foodName}`);
+  }
+}
+```
+
+- 对象
+
+```javascript
+let 对象变量名称=new 类名(实参列表);
+对象变量名称.属性名称=值;
+let 变量名称=对象变量名称.属性名称;
+let 变量名称=对象变量名称.函数名称(实参列表);
+
+
+let sgm = new Person('宋光明', 22);
+console.log(sgm.age);
+sgm.eat('蛋炒饭');
+```
+
+## 类属性和类行为
+
+- 类属性
+
+```javascript
+类名.属性名称=值;
+Person.gender = '男';
+console.log(Person.gender);
+```
+
+- 类行为
+
+```javascript
+类名.函数名称=function(形参列表){  
+  函数体;
+}
+Person.study = function (content) {  
+  console.log(`${this.name}正在学习${content}`);
+}
+Person.study('JavaScript');
+```
+
+## 原型
+
+- ES5利用函数定义类，而函数本身也是一个对象(函数对象,`function`对象)，函数对象中内置`prototype`属性，该属性引用了一个对象，默认为`Object`类型，该对象被称为该函数的`原型对象`。
+
+```javascript
+function Animal() {   
+  this.name = name;    
+  this.age = age; 
+  this.eat = function (foodName) {  
+    console.log(`${this.name}正在吃${foodName}`);  
+  }
+}
+console.log(Animal.prototype);//控制台输出Animal函数的原型对象，默认为Object对象
+```
+
+- 函数原型对象可以被修改。
+
+```javascript
+function Animal(name, age) { 
+  this.name = name;   
+  this.age = age;   
+  this.eat = function (foodName) {  
+    console.log(`${this.name}正在吃${foodName}`); 
+  }
+}
+function Dog(color) {   
+  this.color = color;  
+  this.catchMouse = function () {   
+    console.log(`${this.name}正在捉老鼠!`);
+  }
+}
+console.log(Dog.prototype);
+
+//控制台输出Dog函数的原型对象，默认为Object对象
+Dog.prototype = new Animal('狗', 1);//修改Dog函数的原型对象
+```
+
+- 每个原型对象又内置`constructor`属性，该属性引用了当前函数。
+
+```javascript
+function Animal(name, age) {   
+  this.name = name;  
+  this.age = age;  
+  this.eat = function (foodName) {   
+    console.log(`${this.name}正在吃${foodName}`);  
+  }
+}
+console.log(Dog.prototype);//控制台输出Dog函数的原型对象，默认为Object对象
+console.log(Dog.prototype.constructor);//控制台输出Dog的constructor属性
+```
+
+- 原型对象中的`constructor`属性可以被修改。
+
+```javascript
+function Animal(name, age) {  
+  this.name = name;  
+  this.age = age;  
+  this.eat = function (foodName) {  
+    console.log(`${this.name}正在吃${foodName}`); 
+  }
+}
+function Dog(color) {  
+  this.color = color;  
+  this.catchMouse = function () {    
+    console.log(`${this.name}正在捉老鼠!`);  
+  }
+}
+Dog.prototype = new Animal('狗', 1);//修改Dog函数的原型对象
+Dog.prototype.constructor = Dog;//修改Dog函数原型对象的constructor属性
+```
+
+- 通过函数创建的对象，该对象内置`__proto__`属性，该属性引用了该函数的原型对象。
+
+  - `__proto__`被称为该对象的隐式原型。
+
+  ```javascript
+  function Animal(name, age) {    
+    this.name = name;   
+    this.age = age;   
+    this.eat = function (foodName) {  
+      console.log(`${this.name}正在吃${foodName}`);  
+    }
+  }
+  function Dog(color) {  
+    this.color = color;  
+    this.catchMouse = function () {    
+      console.log(`${this.name}正在捉老鼠!`);
+    }
+  }
+  Dog.prototype = new Animal('狗', 1);//修改Dog函数的原型对象
+  Dog.prototype.constructor = Dog;//修改Dog函数原型对象的constructor属性
+  let d = new Dog('黄色');//创建Dog对象
+  console.log(d.__proto__);//输出d的隐式原型
+  ```
+
+- 通过函数创建的对象可以访问其原型的属性和行为(对象可以访问`__proto__`的属性和行为)。
+
+```javascript
+function Animal(name, age) {   
+  this.name = name;   
+  this.age = age;   
+  this.eat = function (foodName) {  
+    console.log(`${this.name}正在吃${foodName}`);
+  }
+}
+function Dog(color) { 
+  this.color = color;   
+  this.catchMouse = function () {  
+    console.log(`${this.name}正在捉老鼠!`);  
+  }
+}
+Dog.prototype = new Animal('狗', 1);//修改Dog函数的原型对象
+Dog.prototype.constructor = Dog;//修改Dog函数原型对象的constructor属性
+let d = new Dog('黄色');//创建Dog对象
+console.log(d.name);//d可以访问其隐式原型对象(Animal)的name属性
+d.eat('骨头');//d可以访问其隐式原型对象(Animal)的eat行为
+```
+
+## new
+
+- 分配对象的内存空间;
+- 为对象添加`__proto__`属性，将属性值赋值为构造函数的`prototype`属性值;
+- 改变对象内部`this`指向为当前对象;
+- 指向构造函数内部代码;
+- 如果构造函数返回值为非空对象，则返回该对象，否则返回新创建的对象;
+
+## 原型链
+
+- 每个对象拥有自己的隐式原型对象，而原型对象也是一个对象，也拥有自己的隐式原型，以此类推，这一系列的原型对象的链式引用关系被称为原型链。
+- 原型链决定了对象的属性和行为访问:
+  - 如果调用该对象的属性和行为，会优先在当前对象中查找，如果找到，则直接使用，否则会将查询目标切换为其原型对象;
+  - 如果其原型对象中存在目标属性和行为，则直接使用，否则，将查询目标切换为其原型的原型对象;
+  - 以此类推;
+  - 直到找到`Object`对象为止，如果整个原型链上都不存在目标属性和行为，则属性结果为`undefined`，函数报错;
+- 原型链的最顶端为`null`。
+
+```javascript
+function A() {   
+  this.a = 1;
+}
+let a = new A();
+
+function B() { 
+  this.b = 2;
+}
+B.prototype = a;
+B.prototype.constructor = B;
+let b = new B();
+
+function C() {  
+  this.c = 3;
+}
+C.prototype = b;
+C.prototype.constructor = C;
+let c = new C();
+console.log(c.b);
+```
+
+![img](C:\StudyRecords\07webpack\notes\js进阶.assets\e9a1d6e1eac645b2b721e5f5ad9fb2c1.png)
+
+## API
+
+作用:
+
+- 借用函数;
+- 改变函数内部`this`指向;
+
+分类
+
+- `call(obj,param1,param2,.....)`
+
+  - 将当前函数作为obj对象的函数调用执行，并传入实参列表，并立即执行函数。
+
+  - 参数:
+
+    - `obj`:要调用(借用)函数的对象。
+    - `param1,param2,.....`:调用函数时需要传入的实参列表。
+
+  - 案例:
+
+    - 借调函数:
+
+    ```javascript
+    //b使用a的方法
+    class A {  
+      sum(a, b) {  
+        return a + b;  
+      }
+    }
+    class B {  
+      constructor(a, b) {  
+        this.a = a;   
+        this.b = b;  
+      }
+    }
+    
+    let a = new A();
+    let b = new B();
+    console.log(a.sum.call(b, 1, 2));
+    ```
+
+    - 改变函数内部`this`指向:
+
+    ```javascript
+    class A {   
+      constructor(a, b) {
+        this.a = a;    
+        this.b = b;   
+      }  
+      sum() {
+        console.log(this);    
+        return this.a + this.b;  
+      }
+    }
+    class B {   
+      constructor(a, b) {    
+        this.a = a;  
+        this.b = b;   
+      }
+    }
+    
+    let a = new A(1, 2);
+    let b = new B(3, 4);
+    console.log(a.sum.call(b));
+    ```
+
+- `apply(obj,[param1,param2,.....])`
+
+  - 将当前函数作为obj对象的函数调用执行，并传入实参列表，并立即执行函数。
+
+  - 参数:
+
+    - `obj`:要调用(借用)函数的对象。
+    - `[param1,param2,.....]`:调用函数时需要传入的参数列表数组。
+
+  - 案例:
+
+    - 借调函数:
+
+    ```javascript
+    //b使用a的方法
+    class A {  
+      sum(a, b) {  
+        return a + b;  
+      }
+    }
+    class B {  
+      constructor(a, b) {  
+        this.a = a;   
+        this.b = b;  
+      }
+    }
+    
+    let a = new A();
+    let b = new B();
+    console.log(a.sum.call(b, [1, 2]));
+    ```
+
+    - 改变函数内部`this`指向:
+
+    ```javascript
+    class A {   
+      constructor(a, b) {
+        this.a = a;    
+        this.b = b;   
+      }  
+      sum() {
+        console.log(this);    
+        return this.a + this.b;  
+      }
+    }
+    class B {   
+      constructor(a, b) {    
+        this.a = a;  
+        this.b = b;   
+      }
+    }
+    
+    let a = new A(1, 2);
+    let b = new B(3, 4);
+    console.log(a.sum.apply(b));
+    ```
+
+- `bind(obj)`
+
+  - 将当前函数作为obj对象的函数调用执行，不会立即执行，而是将函数作为返回值返回。
+
+  - 参数:
+
+    - `obj`:要调用(借用)函数的对象。
+
+  - 案例:
+
+    - 借调函数:
+
+    ```javascript
+    class A {  
+      sum(a, b) {   
+        return a + b;  
+      }
+    }
+    class B { 
+      constructor(a, b) {  
+        this.a = a;   
+        this.b = b;
+      }
+    }
+    let a = new A();
+    let b = new B();
+    let method=a.sum.bind(b);
+    console.log(method(1,2));
+    ```
+
+    - 改变函数内部`this`指向:
+
+    ```javascript
+    class A {  
+      constructor(a, b) { 
+        this.a = a;    
+        this.b = b;    
+      }  
+      sum() {  
+        console.log(this);    
+        return this.a + this.b;  
+      }
+    }
+    class B { 
+      constructor(a, b) { 
+        this.a = a;      
+        this.b = b; 
+      }
+    }
+    let a = new A(1, 2);
+    let b = new B(3, 4);
+    let method=a.sum.bind(b);
+    console.log(method());
+    ```
+
+`call`、`apply`与`bind`异同:
+
+- 相同点:
+  - 作用相同，都可以实现函数借调，改变函数内部`this`指向;
+- 不同点:
+  - 传参方式:`call`和`bind`函数实参都是分别传入，而`apply`函数实参是以数组元素形式传入;
+  - 执行:`call`和`apply`是立即执行，而`bind`是将函数结果作为返回值返回，不会立即执行;
+
+## 继承(原型链+API)
+
+```javascript
+function Animal(name, age) {  
+  this.name = name;  
+  this.age = age;   
+  this.eat = function (foodName) {
+    console.log(`${this.name}正在吃${foodName}`);  
+  }
+}
+function Dog(name, age, color) {  
+  this.color = color;  
+  this.catchMouse = function () {   
+    console.log(`${this.name}正在捉老鼠!`); 
+  }
+}
+```
+
+- 修改子类构造函数原型对象(`prototype`)。
+
+```javascript
+Dog.prototype = new Animal('狗', 1);
+```
+
+- 修改子类原型对象的`constructor`指向。
+
+```javascript
+Dog.prototype.constructor = Dog;
+```
+
+- 在子类构造函数中利用API借调父类构造函数。
+
+```javascript
+function Dog(name, age, color) {  
+  //借用父类构造函数，相当于ES6面向对象constructor中的super(实参列表) 
+  Animal.call(this, name, age);  
+  this.color = color;  
+  this.catchMouse = function () {   
+    console.log(`${this.name}正在捉老鼠!`);
+  }
+}
+```
+
+## instanceof
+
+- 背景
+
+  - 通过`typeof`可以实现基本数据类型盘点，但对引用数据类型只能判定`object`或者`function`，不能明确具体额对象类型。
+
+- 语法
+
+  - 判断指定变量是否为指定类及其子类对象，如果是返回`true`，否则返回`false`
+
+  ```javascript
+  变量名称 instanceof 目标类名
+  ```
+
+  ```javascript
+  let v = function () { };
+  console.log(v instanceof Function);
+  ```
+
+- 作用
+
+  - 判断指定变量存储的对象是否为指定类或其子类的对象。
+  - 底层基于原型链实现判断。
+
 # END
