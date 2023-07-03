@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Animal(name){
+      this.name=name
+      this.eat = function(food){
+        console.log(`${this.name}吃${food}`);
+      }
+    }
+
+    function Cat(color){
+      this.color=color
+      this.eat=function(){
+        console.log(`${this.name}吃${food}`);
+      }
+    }
+
+    console.log(Animal.prototype,Cat.prototype);
+
+
+    Cat.prototype=new Animal('猫')
+    Cat.prototype.constructor=Cat
+
+
+    let c=new Cat('white')
+    
+    console.log(Cat.prototype,c.__proto__);
+    console.log(Cat.prototype.constructor==c.__proto__.constructor);
+
+    console.log(c.name);
+  </script>
+</body>
+</html>

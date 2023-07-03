@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1、让B类对象b借用A类对象a的sumPlus函数功能;
+        function A() {
+            this.sumPlus = function () {
+                let re = 0;
+                for (let n of arguments) {
+                    re += n;
+                }
+                return re;
+            }
+        }
+        function B() {
+
+        }
+        let a=new A()
+        let b=new B()
+
+        console.log(a.sumPlus.call(b,1,2,3,4,5));
+        // 2、实现JS选择器选择的元素数组spanArr拥有filter函数功能;
+        window.onload=function(){
+            let spanArr=document.querySelectorAll('span')
+            console.log(spanArr);
+            let newArr=[].filter.call(spanArr,(item)=>{
+                return item.innerText>1
+            })
+            console.log(newArr)
+        }
+    </script>
+</head>
+
+<body>
+<span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+</body>
+
+</html>

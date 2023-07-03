@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        this.eat = function (content) {
+          console.log(`${this.name}正在吃${content}`);
+        };
+      }
+
+      let xm = new Person("小明", 22);
+      console.log(xm.name);
+      xm.name = "小明01";
+      xm.eat("java");
+
+      console.log(Person.name);
+      Person.gender = "man";
+      Person.eat = function (content) {
+        console.log(`${this.gender}正在吃${content}`);
+      };
+      Person.eat("javascript");
+
+
+
+      // class AError extends Error {
+      //   constructor(msg) {
+      //     super(msg);
+      //     this.name = "AError";
+      //   }
+      // }
+      // try {
+      //   let a = [];
+      //   a.length = -1;
+      // } catch {
+      //   throw new AError("111");
+      // }
+
+    
+    </script>
+  </body>
+</html>
