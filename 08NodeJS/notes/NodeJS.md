@@ -434,4 +434,187 @@ npm i nodemon -g
 nodemon app.js
 ```
 
+# HTTP状态码
+
+## 概述
+
+- 由==HTTP==(HyperText Transfer Protocol)协议制定标准，制定了web资源传输要遵循的标准。
+- 是用以表示网页服务器[超文本传输协议](https://baike.baidu.com/item/超文本传输协议/8535513?fromModule=lemma_inlink)响应状态的3位数字代码（表示传输结果状态的代码）。
+
+## 常见的状态码
+
+- `200`:成功。
+- `404`:资源找不到。
+  - 检查资源路径是否正确，请求类型是否正确;
+  - 增加后端接口后，未重启服务器；
+- `403`:身份验证不通过。
+- `500`:服务器错误。
+  - 后端程序出现异常。
+- `304`:资源没有被修改，从本地浏览器缓存中获取的资源内容。
+
+# MVC
+
+## 概述
+
+- 一种软件设计模式。
+- Mode View Controller
+  - Mode
+    - 模型，主要指数据模型，用于存储数据。
+  - View
+    - 视图，主要指页面，用于展示数据。
+  - Controller
+    - 控制器，接收客户端传参，进行业务判断处理，操作数据库数据，生成响应内容。
+
+## 案例
+
+- userModel:
+
+```javascript
+class User {  
+  constructor(account, password) {
+    this.account = account;    
+    this.password = password;  
+  }
+}
+module.exports = User;
+```
+
+- userDB(数据库):
+
+```javascript
+//引入并接收User类
+let User = require('./../mode/userMode');
+//存储用户数据
+let userArr = [  
+  new User('admin', 'ad123')
+];
+module.exports = userArr
+```
+
+- userController:
+
+```javascript
+const userArr = require("../util/userDB");
+const UserMode = require("../mode/userMode");
+class UserController {
+  // 登录
+  login(req, res) {
+    let { account, password } = req.body;
+    console.log("传入用户", req.body);
+    if (
+      userArr.some((val) => val.account == account && val.password == password)
+    ) {
+      res.send({
+        code: 200,
+        msg: "登录成功",
+      });
+    } else {
+      res.send({
+        code: 500,
+        msg: "登录失败",
+      });
+    }
+  }
+}
+module.exports = UserController;
+```
+
+- user(路由):
+
+```javascript
+// 创建路由对象
+let express = require("express");
+let router = express.Router();
+
+let UserController=require('../controller/userController')
+let userController=new UserController()
+
+// 登录
+router.post("/login", (req, res) => {
+  userController.login(req,res)
+});
+
+module.exports = router;
+```
+
+# MongoDB
+
+## 概念
+
+- 背景
+  - 数组存储的数据是`瞬时数据`，程序运行期间数据存在，一旦停止运行，数据则会被销毁，不能实现数据永久保存；
+- 瞬时数据问题解决方案:
+  - 数据库+数据持久化技术
+- 数据库
+  - DataBase 数据库，简称DB，存储数据的仓库。
+  - 将数据以文件的形式存储到计算机本地硬盘中。
+  - 分类:
+    - 关系型数据库:
+      - 以表格形式存储数据。
+      - 优点:
+        - 数据操作效率较高;
+      - 缺点:
+        - 数据需要转换后，才能被程序使用;
+      - 常见关系型数据库:
+        - SQLServer、MySQL、Oracle等。
+    - 非关系型数据库:
+      - 以对象形式存储数据。
+      - 优点:
+        - 数据不需要转换，就能被程序使用;
+      - 缺点:
+        - 数据操作效率相对更低;
+      - 常见非关系型数据:
+        - MongoDB、Redis等
+
+## MongoDB
+
+- 是一个非关系型数据库。
+- 存储数据的方式:
+  - 文档:
+    - 每个对象以一个文档形式存在。
+    - 比如:
+      - admin的数据对象以一个文档形式存在;
+      - zhangsan的数据对象以一个文档形式存在;
+  - 集合:
+    - 一类对象数据以一个集合形式存在。
+    - 比如:
+      - 所有用户对象文档以一个用户集合形式存在;
+      - 所有电影对象文档以一个电影集合形式存在;
+- 环境搭建
+  - 下载:https://www.mongodb.com/try/download/enterprise
+  - 安装:
+    - 一路next;
+    - 取消官方图形化界面安装;
+
+![img](C:\StudyRecords\08NodeJS\notes\NodeJS.assets\0ed7dbc1c94c4dc3b74c0d516f7f33d0.png)
+
+## Navicat
+
+- 一个数据库图形化界面软件。
+
+## MongoDB常用命令
+
+- 判断指定集合是否存在，如果存在，则删除该集合
+
+```javascript
+db.getCollection("集合名称").drop();
+```
+
+- 创建指定名称集合
+
+```javascript
+db.createCollection("集合名称");
+```
+
+- 向指定名称的集合添加对象数据
+
+```javascript
+db.getCollection("集合名称").insert([    对象1,    对象2,    ......]);
+```
+
+## MongoDB数据导入与导出
+
+- 导出:选中目标数据库->右键->转存储脚本文件->数据和结构->保存(选择要保存的位置和文件名称)
+- 导入:选中目标数据库->右键->运行脚本文件->找到目标数据库文件->开始
+
 # END
