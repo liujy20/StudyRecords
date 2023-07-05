@@ -23,8 +23,13 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // -------------------------------------------------------------------
+// 用户
 let user = require('./routes/user')
 app.use('/user',user)
+// -------------------------------------------------------------------
+// 电影
+let movie=require('./routes/movie')
+app.use('/movie',movie)
 // -------------------------------------------------------------------
 
 // catch 404 and forward to error handler
