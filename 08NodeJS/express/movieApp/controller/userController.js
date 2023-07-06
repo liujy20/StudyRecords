@@ -1,16 +1,19 @@
-const userArr = require("../util/userDB");
-const UserMode = require("../mode/userMode");
+require("../mode/userMode");
+const { model } = require("mongoose");
+
 class UserController {
   test(n) {
     console.log(n);
   }
   // 登录
-  login(req, res) {
+  async login(req, res) {
     let { account, password } = req.body;
     console.log("传入用户", req.body);
-    if (
-      userArr.some((val) => val.account == account && val.password == password)
-    ) {
+    let re = await model("userModel").find({
+      account: account,
+      password: password,
+    });
+    if (re.length) {
       res.send({
         code: 200,
         msg: "登录成功",
@@ -23,15 +26,21 @@ class UserController {
     }
   }
   // 注册
-  register(req, res) {
+  async register(req, res) {
     let { account, password } = req.body;
-    if (userArr.some((val) => val.account == account)) {
+    let re = await model("userModel").find({
+      account: account,
+    });
+    if (re.length) {
       res.send({
         code: 500,
         msg: "重复账号!",
       });
     } else {
-      userArr.push(new UserMode(account, password));
+      await model("userModel").create({
+        account: account,
+        password: password,
+      });
       res.send({
         code: 200,
         msg: "注册成功",
@@ -39,21 +48,36 @@ class UserController {
     }
   }
   // 修改密码
-  changePwd(req, res) {
+  async changePwd(req, res) {
     let { account, oldPwd, newPwd } = req.body;
     // console.log(req.body);
-    if (
-      userArr.some((val) => val.account == account && val.password == oldPwd)
-    ) {
-      userArr.forEach((val) => {
-        if (val.account == account) {
-          val.password = newPwd;
-          res.send({
-            code: 200,
-            msg: "修改成功",
-          });
+    let re = await model("userModel").find({
+      account: account,
+      password:oldPwd
+    });
+    // console.log(re);
+    if (re.length) {
+      let re = await model("userModel").updateMany(
+        {
+          account: account,
+          password: oldPwd,
+        },
+        {
+          password: newPwd,
         }
-      });
+      );
+      // console.log(re);
+      if (re.modifiedCount) {
+        res.send({
+          code: 200,
+          msg: "修改成功",
+        });
+      }else{
+        res.send({
+          code: 200,
+          msg: "修改失败,修改密码与原密码相同",
+        });
+      }
     } else {
       res.send({
         code: 500,
@@ -62,10 +86,11 @@ class UserController {
     }
   }
   // 查看用户
-  get(req, res) {
+  async get(req, res) {
+    let re = await model("userModel").find({});
     res.send({
       code: 200,
-      msg: userArr,
+      msg: re,
     });
   }
 }
