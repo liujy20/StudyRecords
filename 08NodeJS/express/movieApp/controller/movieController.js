@@ -32,10 +32,10 @@ class MovieController {
     for (let k in req.body) {
       obj[k] = req.body[k];
     }
-    movieArr.unshift(obj)
+    movieArr.unshift(obj);
     res.send({
       code: 200,
-      msg: '新增成功',
+      msg: "新增成功",
     });
   }
   // 通过id删除电影信息

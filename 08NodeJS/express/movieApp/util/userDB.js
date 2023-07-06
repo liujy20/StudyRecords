@@ -1,4 +1,4 @@
-let  userMode = require("../mode/userMode");
+let userMode = require("../mode/userMode");
 
 let userArr = [
   {
@@ -9,7 +9,7 @@ let userArr = [
     account: "admin2",
     password: "ad222",
   },
-  new userMode('admin3','ad333'),
+  new userMode("admin3", "ad333"),
 ];
 
 module.exports = userArr;
