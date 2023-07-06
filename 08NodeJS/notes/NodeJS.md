@@ -617,4 +617,333 @@ db.getCollection("集合名称").insert([    对象1,    对象2,    ......]);
 - 导出:选中目标数据库->右键->转存储脚本文件->数据和结构->保存(选择要保存的位置和文件名称)
 - 导入:选中目标数据库->右键->运行脚本文件->找到目标数据库文件->开始
 
+# Mongoose
+
+## 概述
+
+- 是Nodejs环境中可以使用的一个第三方包。
+- 该包提供了操作mongodb数据库的数据相关API。
+
+## 下载
+
+```
+npm i mongoose
+```
+
+## 连接数据库
+
+- 新建dbConnect.js，内容如下:
+
+```javascript
+let mongoose = require("mongoose");
+
+let myUrl = "mongodb://127.0.0.1:27017/movieM";
+mongoose.connect(myUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+mongoose.connection.on("connected", function () {
+  console.log("mongodb启动");
+});
+```
+
+## 操作数据库数据
+
+引入mongoose，并接收`Schema`和`model`函数
+
+```javascript
+let {Schema,model} = require('mongoose');
+```
+
+创建目标集合数据模型对象
+
+- 注意:属性名称要与数据库中属性名称对应，数据类型首字母大写，mongodb与JavaScript数据对应关系如下:
+
+|   mongodb    |      JavaScript       |
+| :----------: | :-------------------: |
+| Int32和Int64 |        Number         |
+|    Double    |        Number         |
+|    String    |        String         |
+|     数组     |         Array         |
+|    对象ID    | Schema.Types.ObjectId |
+
+```javascript
+let 变量名称=new Schema({   
+  属性名称:数据类型, 
+  ......
+},{ 
+  versionKey: false 
+});
+
+let operaSchema = new Schema({  
+  name: String,   
+  address: String,  
+  phone: String,  
+  movies: Array,  
+  img_Src: String
+},{ 
+  versionKey: false 
+});
+```
+
+建立数据模型与目标集合对象关系
+
+- 关系名称:在系统中要唯一，不能重复；
+- 目标集合名称:必须与数据库中集合名称一致(不一致会导致查询无结果);
+
+```javascript
+model('关系名称',数据模型对象,'目标集合名称')
+model('operaModel', operaSchema, 'opera');
+```
+
+操作数据库数据
+
+```javascript
+async function(){  
+  let 变量名称=await model('关系名称').find({});
+}
+
+router.get('/test', async function (req, resp) { 
+  //操作数据库   
+  let re = await model('operaModel').find({});   
+  //响应给客户端   
+  resp.send({    
+    code: 200,   
+    message: '查询成功!',  
+    data: re  
+  })
+})
+```
+
+# Mongoose之CRUD
+
+## 概述
+
+- CRUD:`创建`(Create)、`读取`(Read)、`更新`(Update)和`删除`(Delete)。
+
+## 新增
+
+- `create`
+
+  - 新增指定对象到目标集合，并返回该对象。
+
+  ```javascript
+  async function(){  
+    let 变量名称=await model('关系名称').create({ 
+      属性名称:值,   
+      ......
+    });
+  }
+  ```
+
+  ```javascript
+  router.get("/add", async function (req, res) {
+    let re = await model("userModel").create({
+      account: "xwg",
+      password: "112233",
+      age: 44,
+    });
+    res.send({
+      code: 200,
+      msg: "添加成功",
+      data: re,
+    });
+  });
+  ```
+
+## 删除
+
+- `deleteMany`
+
+  - 删除满足指定条件的对象，并返回结果对象，该结果对象中存在`deletedCount`属性，记录了删除的对象个数，可以用于判断是否删除成功。
+
+  ```javascript
+  async function(){  
+    let 变量名称=await model('关系名称').deleteMany({   
+      条件   
+    });
+  }
+  ```
+
+  ```javascript
+  router.get("/del", async function (req, res) {
+    let re = await model("userModel").deleteMany({
+      account: "xwg",
+    });
+    res.send({
+      code: 200,
+      msg: "删除成功",
+      data: re,
+    });
+  });
+  ```
+
+## 修改
+
+- `updateMany()`
+
+  - 更新符合指定条件的对象属性值，并返回修改结果对象，该结果对象中的`modifiedCount`属性，记录了修改的对象个数，可以用于判断是否修改成功。
+
+  ```javascript
+  async function(){ 
+    let 变量名称=await model('关系名称').updateMany({  
+      条件 
+    },{    
+      新的属性值 
+    });
+  }
+  ```
+
+  ```javascript
+  router.get("/update", async function (req, res) {
+    let re = await model("userModel").updateMany(
+      {
+        account: "xwg",
+      },
+      {
+        password: 11111111,
+      }
+    );
+    res.send({
+      code: 200,
+      msg: "修改成功",
+      data: re,
+    });
+  });
+  ```
+
+## 查询
+
+- 查询所有
+
+```javascript
+async function(){ 
+  let 变量名称=await model('关系名称').find({});
+}
+
+async function(){   
+  let re = await model('operaModel').find({});
+}
+```
+
+- 根据指定属性值查询
+
+```javascript
+re=await model('userModel').find({
+  age:33
+})
+```
+
+- 根据属性值是否大于指定值查询
+
+```javascript
+let re=await model('userModel').find({
+  age:{
+    $gt:33
+  }
+})
+```
+
+- 根据属性值是否小于指定值查询
+
+```javascript
+let re=await model('userModel').find({
+  age:{
+    $lt:33
+  }
+})
+```
+
+- 根据属性值是否大于等于指定值查询
+
+```javascript
+let re=await model('userModel').find({
+  age:{
+    $gte:33
+  }
+})
+```
+
+- 根据属性值是否小于等于指定值查询
+
+```javascript
+let re=await model('userModel').find({
+  age:{
+    $lte:33
+  }
+})
+```
+
+- 查找指定属性值在指定值中的任意一个
+
+```javascript
+re=await model('userModel').find({
+  age:{
+    $in:[22,33]
+  }
+})
+```
+
+- 查找指定属性值不在指定值中
+
+```javascript
+re=await model('userModel').find({
+  age:{
+    $nin:[22,33]
+  }
+})
+```
+
+- 查询满足指定的所有条件
+
+```javascript
+// 两个条件都满足
+re = await model("userModel").find({
+  $and: [
+    {
+      age: {
+        $gt: 22,
+      },
+    },
+    {
+      age: {
+        $lt: 44,
+      },
+    },
+  ],
+});
+```
+
+- 查询满足指定条件中任意一个
+
+```javascript
+// 条件满足一个即可
+re = await model("userModel").find({
+  $or: [
+    {
+      age: {
+        $lte: 22,
+      },
+    },
+    {
+      age: {
+        $gt: 44,
+      },
+    },
+  ],
+});
+```
+
+- 查询指定属性值满足指定正则规则
+
+```javascript
+// 正则表达式
+re=await model('userModel').find({
+  account:{
+    $regex:/[2w]/
+  }
+})
+```
+
 # END
