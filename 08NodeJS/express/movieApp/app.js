@@ -38,6 +38,10 @@ app.use('/movie',movie)
 let order=require('./routes/order')
 app.use('/order',order)
 // -------------------------------------------------------------------
+// 影院
+let cinema=require('./routes/cinema')
+app.use('/cinema',cinema)
+// -------------------------------------------------------------------
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
