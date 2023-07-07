@@ -1,4 +1,5 @@
 require('./util/dbConnect')
+require('./util/allMode')
 
 var createError = require('http-errors');
 var express = require('express');
@@ -32,6 +33,10 @@ app.use('/user',user)
 // 电影
 let movie=require('./routes/movie')
 app.use('/movie',movie)
+// -------------------------------------------------------------------
+// 订单
+let order=require('./routes/order')
+app.use('/order',order)
 // -------------------------------------------------------------------
 
 // catch 404 and forward to error handler

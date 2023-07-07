@@ -9,3 +9,4 @@ mongoose.connect(myUrl, {
 mongoose.connection.on("connected", function () {
   console.log("mongodb启动");
 });
+

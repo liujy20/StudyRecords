@@ -1,4 +1,3 @@
-require("../mode/userMode");
 const { model } = require("mongoose");
 
 class UserController {
@@ -53,7 +52,7 @@ class UserController {
     // console.log(req.body);
     let re = await model("userModel").find({
       account: account,
-      password:oldPwd
+      password: oldPwd,
     });
     // console.log(re);
     if (re.length) {
@@ -72,7 +71,7 @@ class UserController {
           code: 200,
           msg: "修改成功",
         });
-      }else{
+      } else {
         res.send({
           code: 200,
           msg: "修改失败,修改密码与原密码相同",
@@ -87,7 +86,7 @@ class UserController {
   }
   // 查看用户
   async get(req, res) {
-    let re = await model("userModel").find({});
+    let re = await model("userModel").find({}).skip(4);
     res.send({
       code: 200,
       msg: re,
