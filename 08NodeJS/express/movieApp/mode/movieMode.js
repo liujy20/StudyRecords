@@ -72,3 +72,4 @@ let nowPlayingSchema = new Schema({
 });
 
 model("nowPlayingModel", nowPlayingSchema, "nowPlaying");
+model("upComingModel", nowPlayingSchema, "upComing");

@@ -19,5 +19,8 @@ router.get("/delMovieById", (req, res) => {
 router.get("/modifyMovieById", (req, res) => {
   movieController.modifyMovieById(req, res);
 });
+router.get('/findMovieSortByScore',(req,res)=>{
+  movieController.findMovieSortByScore(req,res)
+})
 
 module.exports = router;

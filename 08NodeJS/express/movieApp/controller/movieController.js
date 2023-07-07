@@ -1,10 +1,11 @@
-require("../mode/movieMode");
 const { model } = require("mongoose");
 
 class MovieController {
   // 查找所有电影
   async findAll(req, res) {
-    let re = await model("nowPlayingModel").find({});
+    let re1 = await model("nowPlayingModel").find({});
+    let re2 = await model("upComingModel").find({});
+    let re = [...re1, ...re2];
     res.send({
       code: 200,
       msg: re,
@@ -23,10 +24,20 @@ class MovieController {
         msg: re,
       });
     } else {
-      res.send({
-        code: 500,
-        msg: "未找到该电影",
+      let [re] = await model("upComingModel").find({
+        id: id,
       });
+      if (re) {
+        res.send({
+          code: 200,
+          msg: re,
+        });
+      } else {
+        res.send({
+          code: 500,
+          msg: "未找到该电影",
+        });
+      }
     }
   }
   // 添加电影信息
@@ -50,9 +61,9 @@ class MovieController {
   // 通过id删除电影信息
   async delMovieById(req, res) {
     let { id } = req.query;
-    let re=await model('nowPlayingModel').deleteOne({
-      id:id
-    })
+    let re = await model("nowPlayingModel").deleteOne({
+      id: id,
+    });
     res.send({
       code: 200,
       msg: "删除成功",
@@ -62,19 +73,22 @@ class MovieController {
   async modifyMovieById(req, res) {
     // console.log(req.body);
     let { id } = req.body;
-    let re=await model('nowPlayingModel').find({
-      id:id
-    })
+    let re = await model("nowPlayingModel").find({
+      id: id,
+    });
     // console.log(id,movie);
     if (re.length) {
-      await model('nowPlayingModel').updateMany({
-        id:id
-      },{
-        ...req.body
-      })
+      await model("nowPlayingModel").updateMany(
+        {
+          id: id,
+        },
+        {
+          ...req.body,
+        }
+      );
       res.send({
         code: 200,
-        msg: '修改成功',
+        msg: "修改成功",
       });
     } else {
       res.send({
@@ -83,6 +97,31 @@ class MovieController {
       });
     }
   }
+  // 分页查询电影数据,按评分排序
+  async findMovieSortByScore(req, res) {
+    let { page, count } = req.query;
+    let re = await model("nowPlayingModel")
+      .find({})
+      .sort({
+        score: -1,
+      })
+      .select(["title", "imgSrc"])
+      .skip((page - 1) * count)
+      .limit(count);
+
+    res.send({
+      code: 200,
+      msg: re,
+    });
+  }
+  // async findOrderToCinema(req,res){
+  //   let re = await model('orderModel').find({}).populate('cinemaid');
+  //   res.send({
+  //       code: 200,
+  //       message: '查询成功',
+  //       data: re
+  //   })
+  // }
 }
 
 module.exports = MovieController;
