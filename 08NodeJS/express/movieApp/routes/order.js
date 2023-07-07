@@ -9,5 +9,8 @@ router.get('/findAll',(req,res)=>{
 router.get('/findOrderToCinema', function(req, res) {
     orderController.findOrderToCinema(req,res)
 });
+router.get('/findOrderToCinemaTomovie', function(req, res) {
+    orderController.findOrderToCinemaTomovie(req,res)
+});
 
 module.exports = router;
