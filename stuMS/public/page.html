@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./javascripts/jquery.min.js"></script>
+  </head>
+  <body>
+    <h3>findByPage</h3>
+    <table border="1">
+      <tr>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>电话</td>
+      </tr>
+      <tbody id="con"></tbody>
+    </table>
+    <button id="prev">上一页</button>
+    <span id="now">1</span>/<span id="all">2</span>
+    <button id="next">下一页</button>
+    <script>
+      function getPage(num) {
+        $.ajax({
+          url:`http://127.0.0.1:1234/student/findByPage?page=${num}&count=2`,
+          method:'GET',
+          success:function({all,data}){
+            console.log(all,data);
+            let arr=data.map(item=>{
+              return `<tr>
+                <td>${item._id}</td>
+                <td>${item.name}</td>
+                <td>${item.tel}</td>
+              </tr>`
+            })
+            $('#con').html(arr.join(''))
+            $('#now').text(num)
+            $('#all').text(all)
+          }
+        })
+      }
+      getPage(1)
+
+      $('#prev').on('click',()=>{
+        let now=$('#now').text()-0
+        let all=$('#all').text()-0
+        if(now>1){
+          getPage(now-1)
+        }
+      })
+      $('#next').on('click',()=>{
+        let now=$('#now').text()-0
+        let all=$('#all').text()-0
+        if(now<all){
+          getPage(now+1)
+        }
+      })
+    </script>
+  </body>
+</html>

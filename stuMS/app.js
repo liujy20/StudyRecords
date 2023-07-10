@@ -14,6 +14,24 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+
+// CORS 配置跨域
+var allowCrossDomain = function (req, res, next) {
+  // 设置允许跨域访问的请求源（* 表示接受任意域名的请求）   
+  res.header("Access-Control-Allow-Origin", "*");
+  // 设置允许跨域访问的请求头
+  res.header("Access-Control-Allow-Headers", "X-Requested-With,Origin,Content-Type,Accept");
+  // 设置允许跨域访问的请求类型
+  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  // 同意 cookie 发送到服务器（如果要发送cookie，Access-Control-Allow-Origin 不能设置为星号）
+  res.header('Access-Control-Allow-Credentials', 'true');
+  // 当请求头中携带了token之后，这里需要在配置允许该请求头的出现
+  res.header("Access-Control-Allow-Headers", "Authorization");
+  next();
+};
+app.use(allowCrossDomain);
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

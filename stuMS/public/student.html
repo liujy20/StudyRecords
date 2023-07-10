@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./javascripts/jquery.min.js"></script>
+  </head>
+  <body>
+    <h3>findStuClass</h3>
+    <input type="text" /><button id="search">查询</button>
+    <table border="1">
+      <tr>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>电话</td>
+        <td>班级</td>
+      </tr>
+      <tbody id="con"></tbody>
+    </table>
+    <script>
+      function search(s) {
+        $.ajax({
+          url: "http://127.0.0.1:1234/student/findStuClass",
+          method: "POST",
+          data: {
+            str: s,
+          },
+          success: function ({ data }) {
+            console.log(data);
+            let arr = data.map((item) => {
+              return `<tr>
+              <td>${item._id}</td>
+              <td>${item.name}</td>
+              <td>${item.age}</td>
+              <td>${item.tel}</td>
+              <td>${item.classId.name}</td>
+            </tr>`;
+            });
+            // console.log(arr);
+            $("#con").html(arr.join(""));
+          },
+        });
+      }
+      $("#search").on("click", () => {
+        let s = $("input").val();
+        search(s);
+      });
+    </script>
+  </body>
+</html>

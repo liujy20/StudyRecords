@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./javascripts/jquery.min.js"></script>
+  </head>
+  <body>
+    <h3>findStuClassCourse</h3>
+    <table border="1">
+      <tr>
+        <td>编号</td>
+        <td>班级</td>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>电话</td>
+        <td>科目</td>
+        <td>分数</td>
+      </tr>
+      <tbody id="con"></tbody>
+    </table>
+
+    
+    <script>
+      $.ajax({
+        url: "http://127.0.0.1:1234/score/findStuClassCourse",
+        method: "GET",
+        success: function (data) {
+          console.log(data.data);
+          let arr = data.data.map((item) => {
+            return `<tr>
+            <td>${item.studentId._id}</td>
+            <td>${item.studentId.classId.name}</td>
+            <td>${item.studentId.name}</td>
+            <td>${item.studentId.age}</td>
+            <td>${item.studentId.tel}</td>
+            <td>${item.courseId.name}</td>
+            <td>${item.sc}</td>
+          </tr>`;
+          });
+          console.log(arr);
+          $("#con").html(arr.join(''));
+        },
+      });
+    
+      
+    </script>
+  </body>
+</html>

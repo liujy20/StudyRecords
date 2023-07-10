@@ -4,6 +4,8 @@ class StudentControlller {
   // 分页查询学生
   async findByPage(req, res) {
     let { page, count } = req.query;
+    let all =await model('studentModel').countDocuments()
+    all=parseInt(all/count)+1
     let re = await model("studentModel")
       .find({}) // 查找全部数据
       .skip((page - 1) * count) // 确定第page页开始的数据
@@ -12,6 +14,7 @@ class StudentControlller {
     res.send({
       code: 200,
       msg: "查询成功",
+      all:all,
       data: re,
     });
   }
