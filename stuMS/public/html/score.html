@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="./javascripts/jquery.min.js"></script>
+    <script src="../javascripts/jquery.min.js"></script>
   </head>
   <body>
     <h3>findStuClassCourse</h3>
@@ -25,7 +25,7 @@
     <script>
       $.ajax({
         // url: "http://127.0.0.1:1234/score/findStuClassCourse",
-        url:'/score/findStuClassCourse',// http://127.0.0.1:1234可以省略
+        url:'../score/findStuClassCourse',//基于当前路径寻找public路径
         method: "GET",
         success: function (data) {
           console.log(data.data);
