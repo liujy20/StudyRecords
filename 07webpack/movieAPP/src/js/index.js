@@ -1,8 +1,11 @@
 import "@scss/common.scss";
 import "@scss/index.scss";
 import "@js/resize";
-import { nowPlaying, upComing, opera } from "@js/movieData.js";
+// import { nowPlaying, upComing, opera } from "@js/movieData.js";
 // console.log(nowPlaying,upComing);
+let nowPlaying,upComing
+
+
 const nowPlayingList = $(".nowPlaying ul");
 const upComingList = $(".upComing ul");
 const nav = $("nav");
@@ -48,9 +51,25 @@ const menuArr = [
 ];
 main();
 
-function main() {
+async function main() {
+  let nowPlayingRes=await getPromise('http://127.0.0.1:1122/movie/findAll?flag=1','GET',null)
+  let upComingRes=await getPromise('http://127.0.0.1:1122/movie/findAll?flag=2','GET',null)
+  nowPlaying=nowPlayingRes.data
+  upComing=upComingRes.data
   render();
   addListener();
+}
+
+function getPromise(url,method,data){
+  return new Promise(function(res,rej){
+    $.ajax({
+      url,
+      method,
+      data,
+      success:res,
+      error:rej
+    })
+  })
 }
 
 function render() {

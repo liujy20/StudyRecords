@@ -22,6 +22,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+
+
+
+// 设置 CORS 允许跨域
+var allowCrossDomain = function (req, res, next) {
+  // 设置允许哪一个源（域）可以进行跨域访问，* 表示所有源
+  res.header("Access-Control-Allow-Origin", "*");
+  // 设置允许跨域访问的请求头
+  res.header("Access-Control-Allow-Headers", "X-Requested-With,Origin,Content-Type,Accept,Authorization");
+  // 设置允许跨域访问的请求类型
+  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE");
+  // 设置允许 cookie 发送到服务器 
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+};
+app.use(allowCrossDomain);
+
+
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

@@ -1,16 +1,17 @@
-import '@scss/common.scss'
-import '@scss/login.scss'
-import '@js/resize'
+import "@scss/common.scss";
+import "@scss/login.scss";
+import "@js/resize";
+import "@js/jquery-3.5.1.min.js";
 
-import EYE1 from '@img/eye-k.png'
-import EYE2 from '@img/eye.png'
+import EYE1 from "@img/eye-k.png";
+import EYE2 from "@img/eye.png";
 
 const phone = $(".phone input");
 const pwd = $(".pwd input");
 const eye = $(".pwd .eyes");
 const login = $(".login");
-let userInfo = JSON.parse(localStorage.getItem('userInfo'))||[]
-console.log(userInfo);
+// let userInfo = JSON.parse(localStorage.getItem("userInfo")) || [];
+// console.log(userInfo);
 // 验证规则
 const rePhone = /^1[3|4|5|7|8]\d{9}$/;
 const rePwd = /^[a-zA-Z][a-zA-Z0-9]{5,11}$/;
@@ -37,28 +38,57 @@ eye.on("click", () => {
     eye.attr("data-id", "0");
     pwd.attr("type", "text");
   } else {
-    eye.attr("src",EYE2);
+    eye.attr("src", EYE2);
     eye.attr("data-id", "1");
     pwd.attr("type", "password");
   }
 });
 // 登录验证
-login.on('click',()=>{
-  // 验证电话密码格式
-  if(rePhone.test(phone.val())&&rePwd.test(pwd.val())){
-    // 获取用户信息
-    const user = userInfo.filter(item=>phone.val()==item.phone)[0]||{}
-    // 验证密码
-    if(phone.val()==user.phone&&pwd.val()==user.password){
-      alert("登陆成功")
-      // 保存登录状态
-      sessionStorage.setItem('user',phone.val())
-      // 跳转主页
-      location.href='index.html'
-    }else{
-      alert('用户名或密码错误')
-    }
-  }else{
-    alert('用户名或密码格式错误')
+// login.on('click',()=>{
+//   // 验证电话密码格式
+//   if(rePhone.test(phone.val())&&rePwd.test(pwd.val())){
+//     // 获取用户信息
+//     const user = userInfo.filter(item=>phone.val()==item.phone)[0]||{}
+//     // 验证密码
+//     if(phone.val()==user.phone&&pwd.val()==user.password){
+//       alert("登陆成功")
+//       // 保存登录状态
+//       sessionStorage.setItem('user',phone.val())
+//       // 跳转主页
+//       location.href='index.html'
+//     }else{
+//       alert('用户名或密码错误')
+//     }
+//   }else{
+//     alert('用户名或密码格式错误')
+//   }
+// })
+
+login.on("click", async () => {
+  let res = await getPromise("http://127.0.0.1:1122/user/login", "POST", {
+    phone: phone.val(),
+    password: pwd.val(),
+  });
+    console.log(res);
+    if (res.code == 200) {
+    alert("登陆成功");
+    // 保存登录状态
+    sessionStorage.setItem("user", phone.val());
+    // 跳转主页
+    location.href = "index.html";
+  } else {
+    alert("用户名或密码错误");
   }
-})
+});
+
+ function getPromise(url, method, data) {
+  return new Promise(function (res, rej) {
+    $.ajax({
+      url,
+      method,
+      data,
+      success: res,
+      error: rej,
+    });
+  });
+}

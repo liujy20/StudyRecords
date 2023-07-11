@@ -26,9 +26,9 @@ class UserController {
   }
   // 注册
   async register(req, res) {
-    let { account, password } = req.body;
+    let { phone, password } = req.body;
     let re = await model("userModel").find({
-      account: account,
+      phone: phone,
     });
     if (re.length) {
       res.send({
@@ -37,7 +37,7 @@ class UserController {
       });
     } else {
       await model("userModel").create({
-        account: account,
+        phone: phone,
         password: password,
       });
       res.send({
