@@ -3,12 +3,22 @@ const { model } = require("mongoose");
 class MovieController {
   // 查找所有电影
   async findAll(req, res) {
-    let re1 = await model("nowPlayingModel").find({});
-    let re2 = await model("upComingModel").find({});
-    let re = [...re1, ...re2];
+    let { flag } = req.query;
+    let re = null;
+    if (flag == 1) {
+      re = await model("nowPlayingModel").find({});
+    } else if (flag == 2) {
+      re = await model("upComingModel").find({});
+    } else {
+      let re1 = await model("nowPlayingModel").find({});
+      let re2 = await model("upComingModel").find({});
+      re = [...re1, ...re2];
+    }
+
     res.send({
       code: 200,
-      msg: re,
+      msg: "查询成功",
+      data: re,
     });
   }
   // 通过id获取电影信息
@@ -21,7 +31,8 @@ class MovieController {
     if (re) {
       res.send({
         code: 200,
-        msg: re,
+        msg: "查找成功",
+        data: re,
       });
     } else {
       let [re] = await model("upComingModel").find({
@@ -30,7 +41,8 @@ class MovieController {
       if (re) {
         res.send({
           code: 200,
-          msg: re,
+          msg: "查找成功",
+          data: re,
         });
       } else {
         res.send({

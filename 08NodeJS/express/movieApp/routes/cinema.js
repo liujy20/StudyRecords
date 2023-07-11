@@ -9,5 +9,8 @@ router.get('/findAll',(req,res)=>{
 router.get('/findCinemaToMovie',(req,res)=>{
   cinemaController.findCinemaToMovie(req,res)
 })
+router.get('/findCinemaPlayingMovie',(req,res)=>{
+  cinemaController.findCinemaPlayingMovie(req,res)
+})
 
 module.exports=router
