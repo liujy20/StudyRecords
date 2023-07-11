@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let p1=new Promise(function(res){
+      setTimeout(() => {
+        res(1)
+      }, 200);
+    })
+    let p2=new Promise(function(res){
+      setTimeout(() => {
+        res(2)
+      }, 100);
+    })
+
+    p1.then(function(n){
+      console.log('p1',n);
+      return p2
+    }).then(function(n){
+      console.log('p2',n);
+    })
+  </script>
+</body>
+</html>

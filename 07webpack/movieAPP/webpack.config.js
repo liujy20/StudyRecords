@@ -13,7 +13,7 @@ const jsArr = [
   "confirm",
   "success",
   "ticketDetail",
-  "route"
+  "route",
 ];
 function getEntry(arr) {
   let obj = {};
@@ -60,7 +60,7 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       $: "jquery",
-      jQuery:"jquery"
+      jQuery: "jquery",
     }),
   ],
   module: {
@@ -103,12 +103,12 @@ module.exports = {
   },
   devServer: {
     port: "8099",
-    open: {
-      target: "./html/index.html",
-      app: {
-        name: "chrome",
-      },
-    },
+    // open: {
+    //   target: "./html/index.html",
+    //   app: {
+    //     name: "chrome",
+    //   },
+    // },
     // open:'./html/index.html',
     hot: true,
   },

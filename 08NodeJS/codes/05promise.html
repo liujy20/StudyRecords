@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let p=new Promise(function(res,rej){
+      let m= Math.random()
+      if(m>0.5){
+        console.log('p',m);
+        res(m)
+        
+      }else{
+        console.log('p',m);
+        rej(m)
+        
+      }
+    })
+    console.log(1);
+    console.log(p);
+    p.then((m)=>{
+      console.log('成功',m);
+    }).catch(m=>{
+      console.log('失败',m);
+    })
+  </script>
+</body>
+</html>
