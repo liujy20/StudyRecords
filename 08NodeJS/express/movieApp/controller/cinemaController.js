@@ -5,7 +5,8 @@ class CinemaController {
     let re = await model("cinemaModel").find({});
     res.send({
       code: 200,
-      msg: re,
+      msg:'查询成功',
+      data: re,
     });
   }
   // 查询电影院播放的电影

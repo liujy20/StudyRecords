@@ -50,14 +50,14 @@ module.exports = {
     new miniCssExtractPlugin({
       filename: "./css/[name].css",
     }),
-    new copyWebpackPlugin({
-      patterns: [
-        {
-          from: "./src/video",
-          to: "./video",
-        },
-      ],
-    }),
+    // new copyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: "./src/video",
+    //       to: "./video",
+    //     },
+    //   ],
+    // }),
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",
@@ -67,16 +67,20 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
+        exclude: /node_modules/,
         use: [miniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.scss$/i,
+        // exclude: /node_modules/,
+        include: path.resolve(__dirname, "./src/scss"),
         use: [miniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
 
       {
         test: /\.(png|jpe?g|gif|svg|webp)$/i,
         type: "javascript/auto",
+        exclude: /node_modules/,
         use: {
           loader: "url-loader",
           options: {
@@ -88,6 +92,8 @@ module.exports = {
       },
       {
         test: /\.(htm?l)$/i,
+        // exclude: /node_modules/,
+        include: path.resolve(__dirname, "./src/html"),
         use: ["html-withimg-loader"],
       },
     ],
@@ -112,4 +118,5 @@ module.exports = {
     // open:'./html/index.html',
     hot: true,
   },
+  performance: { hints: false },
 };

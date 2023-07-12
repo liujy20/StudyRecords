@@ -23,9 +23,9 @@ class MovieController {
   }
   // 通过id获取电影信息
   async getMovieById(req, res) {
-    let { id } = req.query;
+    let { _id } = req.query;
     let [re] = await model("nowPlayingModel").find({
-      id: id,
+      _id: _id,
     });
     // console.log(id,movie);
     if (re) {
@@ -36,7 +36,7 @@ class MovieController {
       });
     } else {
       let [re] = await model("upComingModel").find({
-        id: id,
+        _id: _id,
       });
       if (re) {
         res.send({
@@ -126,14 +126,6 @@ class MovieController {
       msg: re,
     });
   }
-  // async findOrderToCinema(req,res){
-  //   let re = await model('orderModel').find({}).populate('cinemaid');
-  //   res.send({
-  //       code: 200,
-  //       message: '查询成功',
-  //       data: re
-  //   })
-  // }
 }
 
 module.exports = MovieController;

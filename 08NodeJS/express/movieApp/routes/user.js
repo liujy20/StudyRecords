@@ -21,5 +21,9 @@ router.post("/changePwd", (req, res) => {
 router.get("/getUserArr", (req, res) => {
   userController.get(req, res);
 });
+// 解析token
+router.get("/getOriginToken", (req, res) => {
+  userController.getOriginToken(req, res);
+});
 
 module.exports = router;

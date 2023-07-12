@@ -5,6 +5,7 @@ import "@js/jquery-3.5.1.min";
 
 import EYE1 from "@img/eye-k.png";
 import EYE2 from "@img/eye.png";
+import { getPromise } from "../util/util";
 
 const phone = $(".phone input");
 const pwd = $(".pwd input");
@@ -109,14 +110,3 @@ reg.on("click", async () => {
   }
 });
 
-function getPromise(url, method, data) {
-  return new Promise(function (res, rej) {
-    $.ajax({
-      url,
-      method,
-      data,
-      success: res,
-      error: rej,
-    });
-  });
-}

@@ -41,6 +41,10 @@ var allowCrossDomain = function (req, res, next) {
 };
 app.use(allowCrossDomain);
 
+// 身份验证
+let config=require('./util/auth')
+app.use(config)
+
 
 
 

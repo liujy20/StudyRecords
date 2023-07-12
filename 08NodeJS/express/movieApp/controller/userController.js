@@ -1,21 +1,27 @@
 const { model } = require("mongoose");
-
+const { getMD5, secret } = require("../util/MD5");
+const jwt=require('jsonwebtoken')
+const {expressjwt} = require('express-jwt')
 class UserController {
   test(n) {
     console.log(n);
   }
   // 登录
   async login(req, res) {
-    let { account, password } = req.body;
+    let { phone, password } = req.body;
     console.log("传入用户", req.body);
+    let mpwd=getMD5(password)
     let re = await model("userModel").find({
-      account: account,
-      password: password,
+      phone: phone,
+      password: mpwd,
     });
     if (re.length) {
+      let token=jwt.sign({phone,password},'xwg',{expiresIn:7*24*60*60})
+
       res.send({
         code: 200,
         msg: "登录成功",
+        token
       });
     } else {
       res.send({
@@ -27,6 +33,7 @@ class UserController {
   // 注册
   async register(req, res) {
     let { phone, password } = req.body;
+    let mpwd=getMD5(password)
     let re = await model("userModel").find({
       phone: phone,
     });
@@ -38,7 +45,7 @@ class UserController {
     } else {
       await model("userModel").create({
         phone: phone,
-        password: password,
+        password: mpwd,
       });
       res.send({
         code: 200,
@@ -48,21 +55,23 @@ class UserController {
   }
   // 修改密码
   async changePwd(req, res) {
-    let { account, oldPwd, newPwd } = req.body;
+    let { phone, oldPwd, newPwd } = req.body;
     // console.log(req.body);
+    let mOldpwd=getMD5(oldPwd)
     let re = await model("userModel").find({
-      account: account,
-      password: oldPwd,
+      phone: phone,
+      password: mOldpwd,
     });
     // console.log(re);
+    let mNewpwd=getMD5(newPwd)
     if (re.length) {
       let re = await model("userModel").updateMany(
         {
-          account: account,
-          password: oldPwd,
+          phone: phone,
+          password: mOldpwd,
         },
         {
-          password: newPwd,
+          password: mNewpwd,
         }
       );
       // console.log(re);
@@ -91,6 +100,18 @@ class UserController {
       code: 200,
       msg: re,
     });
+  }
+
+  // 解析token
+  async getOriginToken(req,res){
+    let token=req.get('Authorization').split(' ')[1];
+    let user=jwt.verify(token,secret)
+    // console.log(token);
+    res.send({
+      code:200,
+      msg:'解析成功',
+      data:user
+    }) 
   }
 }
 module.exports = UserController;

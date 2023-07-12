@@ -1,8 +1,10 @@
 import "@scss/common.scss";
 import "@scss/movieDetail.scss";
 import "@js/resize";
-import { nowPlaying, upComing, opera } from "@js/movieData.js";
+import { getPromiseAuth,getPromise } from "../util/util";
+// import { nowPlaying, upComing, opera } from "@js/movieData.js";
 // console.log(nowPlaying,upComing);
+let nowPlaying, upComing, opera
 
 // 获取传入的数据
 function getUserInfo(key) {
@@ -17,9 +19,10 @@ function getUserInfo(key) {
   });
   return val;
 }
-const id = getUserInfo("id");
-console.log("id=", id);
-if (!id) {
+const _id = getUserInfo("_id");
+// console.log("id=", _id);
+// alert(_id)
+if (!_id) {
   location.href = "login.html";
 }
 // 背景图片
@@ -38,11 +41,19 @@ let userDate;
 let userTime;
 
 main();
-function main() {
+async function main() {
+  let nowPlayingRes=await getPromiseAuth('http://127.0.0.1:1122/movie/findAll?flag=1','GET',null)
+  let upComingRes=await getPromise('http://127.0.0.1:1122/movie/findAll?flag=2','GET',null)
+  let operaRes=await getPromise('http://127.0.0.1:1122/cinema/findAll','GET',null)
+  nowPlaying=nowPlayingRes.data
+  upComing=upComingRes.data
+  opera=operaRes.data
   render();
   addListener();
   videoTimeSave();
 }
+
+
 function render() {
   renderDesc();
   renderCinema();
@@ -50,49 +61,53 @@ function render() {
   renderTime();
 }
 // 渲染电影介绍
-function renderDesc() {
-  // 获取id指向的对象数据
-  let movie = nowPlaying.filter((item) => {
-    return id == item.id;
-  })[0];
-  // console.log(movie);
-  // 如果为空.说明id在即将上映数组中
-  if (!movie) {
-    movie = upComing.filter((item) => {
-      return id == item.id;
-    })[0];
-  }
-  movieData = movie;
+async function renderDesc() {
+
+  // // 获取id指向的对象数据
+  // let movie = nowPlaying.filter((item) => {
+  //   return id == item.id;
+  // })[0];
+  // // console.log(movie);
+  // // 如果为空.说明id在即将上映数组中
+  // if (!movie) {
+  //   movie = upComing.filter((item) => {
+  //     return id == item.id;
+  //   })[0];
+  // }
+  let movie=await getPromise(`http://127.0.0.1:1122/movie/getMovieById?_id=${_id}`,'GET',null)
+
+
+  movieData = movie.data;
   // console.log(movie);
   // 修改背景图
-  headerImg.attr("src", movie.imgSrc);
+  headerImg.attr("src", movie.data.imgSrc);
   // 渲染传入电影的数据
-  movieDesc.html(`<img src="${movie.imgSrc}" alt="">
+  movieDesc.html(`<img src="${movie.data.imgSrc}" alt="">
   <div class="desc">
-    <div class="tit">${movie.title.split(" ")[0]}</div>
+    <div class="tit">${movie.data.title.split(" ")[0]}</div>
     <div class="name item">
       类型
-      <span>${movie.movieType}</span>
+      <span>${movie.data.movieType}</span>
     </div>
     <div class="duration item">
       片长
-      <span>${movie.duration}</span>
+      <span>${movie.data.duration}</span>
     </div>
     <div class="score item">
       评分
-      <span>${movie.score}</span>
+      <span>${movie.data.score}</span>
     </div>
   </div>`);
 }
 // 渲染电影列表
 function renderCinema() {
   const arr = opera.filter((item) => {
-    return item.movies.includes(id);
+    return item.movies.includes(_id);
   });
   // console.log(arr);
   let s = "";
   const newDate = new Date();
-  console.log(newDate.getHours() > 11);
+  // console.log(newDate.getHours() > 11);
   arr.forEach((item) => {
     s += `<li>
     <div class="name">${item.name}</div>
@@ -103,7 +118,7 @@ function renderCinema() {
     <div class="price">
       英文 2D • ￥30.00
     </div>
-    <div class="timer" data-id=${item.id}>
+    <div class="timer" data-id=${item._id}>
       <div class="i ${newDate.getHours() > 11 ? "" : "i1"}">11:00</div>
       <div class="i ${newDate.getHours() > 13 ? "" : "i1"}">13:00</div>
       <div class="i ${newDate.getHours() > 15 ? "" : "i1"}">15:00</div>
@@ -229,7 +244,7 @@ function addSubmit() {
   $(".submit").on("click", () => {
     // console.log(cinemaId);
     if (cinemaId) {
-      location.href = `chooseTicket.html?movieId=${id}&cinemaId=${cinemaId}&date=${userDate} ${userTime}`;
+      location.href = `chooseTicket.html?movieId=${_id}&cinemaId=${cinemaId}&date=${userDate} ${userTime}`;
     } else {
       alert("请选择场次");
     }
