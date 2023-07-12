@@ -946,4 +946,935 @@ re=await model('userModel').find({
 })
 ```
 
+# HTTP
+
+## 概述
+
+- HTTP（Hypertext Transfer Protocol）超文本传输协议。
+- 超文本资源(web资源)在网络中传输的标准、规范。
+
+## 流程
+
+- 一个请求只能请求一个资源，只能对应一个响应。
+- 流程:
+  - 浏览器获取服务器资源(确定资源URL)，向服务器发送请求数据包(request，req)，该数据包包含浏览器要告诉给服务器的信息；
+  - 服务器接收到请求数据包后，会解析请求数据包，明确目标资源，根据资源路径，找到目标资源;
+  - 将目标资源内容，作为响应数据包(response,resp)内容发送给浏览器,响应数据包包含服务器要告诉给浏览器的信息;
+
+## mine type
+
+- 互联网中资源类型的通用表示。
+
+![img](C:\StudyRecords\08NodeJS\notes\NodeJS.assets\953d89be55bb4b63b0f5250c5d98b6b3.png)
+
+## 请求(Request)
+
+- 浏览器发送给服务器的数据包，该数据包主要包含浏览器的一些环境信息以及用户相关数据。
+- 结构:
+  - 请求首行:
+    - `请求类型 资源路径 HTTP版本`
+  - 请求头(键值对，Header):
+    - Accept:可以接收处理的资源类型。
+    - Accept-Encoding:可以接收处理的压缩格式。
+    - Accept-Language:可以处理的语言。
+    - Cache-Control:是否使用缓存控制。
+    - Connection:是否保持活连接(不马上注销连接，可以实现多个请求和响应使用同一个连接)。
+    - User-Agent:当前浏览器系统环境信息。
+    - Content-Length:请求正文内容大小。
+    - Content-Type:请求内容的类型。
+    - Referer:发起请求的相关资源URL。
+  - 请求正文(Body):
+    - 浏览器提交给服务器的数据(GET请求没有正文，POST请求可以有正文)。
+
+## 响应
+
+- 服务器发送给浏览器的数据包，该数据包主要包含服务器的一些环境信息以及用户请求的目标相关数据。
+- 结构
+  - 响应首行
+    - `HTTP版本 状态码`
+  - 响应头(键值对，Header)
+    - Content-Type:响应正文内容类型。
+    - Content-Language:响应正文内容类型。
+    - Date:响应时间日期。
+  - 响应正文(Body)
+    - GET:一般为请求的目标资源内容。
+    - POST:一般为请求提交的数据处理结果。
+
+## 缓存
+
+- 浏览器第一次发送请求，从服务器获取到目标资源后，对一些不常修改的资源，会保存到当前浏览器本地文件中(缓存文件)，后期浏览器要使用该资源时，会先从本地文件中查找，如果查找到，并未过期，则直接使用该资源(不会重新从服务器获取);
+- 从而达到可以优化页面加载速度，提高系统性能的目的;
+
+## Http与Https区别
+
+- 端口号:
+  - HTTP默认为80，HTTPS默认为443;
+- 数据传输:
+  - HTTP数据以明文形式传输;
+  - HTTPS数据以密文形式传输;
+- 服务器认证:
+  - HTTP协议不具备认证目标服务器是否合法、正规的能力;
+  - HTTPS协议具备认证目标服务器是否合法、正规的能力;
+- 响应速度:
+  - HTTP比HTTPS响应速度快。
+
+# 前端请求服务器资源方式
+
+## 地址栏输入URL
+
+- `协议://主机:端口号/资源路径`
+
+## 超链接
+
+- `<a href="URL">文本</a>`
+- 当用户点击超链接文本，浏览器会将超链接`href`属性值填充到地址栏，发送请求;
+- 一般请求前端静态资源(HTML文件);
+
+## 表单
+
+```html
+<form></form>
+```
+
+- 通过`action`属性指定请求目标资源路径，`method`属性指定请求方式。
+- 当用户点击提交按钮，浏览器会将该表单标签中的表单内容数据，按照键值对形式发送到目标服务器。
+- 一般请求后端资源(接口)。
+
+## 异步请求
+
+- 表单和超链接都可以向服务器发送请求，但发送的为同步请求，服务器一旦响应数据后，当前页面内容会被响应数据覆盖。
+- 异步请求可以将服务器响应数据异步判断并填充到页面，不会将响应结果整体覆盖到当前页面。
+
+## Ajax
+
+- Asynchronous Javascript And XML（异步JavaScript和XML）
+- 异步特点:
+  - 浏览器发送异步请求时，如果服务器还没有响应数据，浏览器不会等待服务器的响应数据，会继续执行后面代码，当服务器响应数据被接收到到时，再执行响应数据处理代码;
+- 异步请求优点:
+  - 执行效率更高;
+- 原生:
+
+```javascript
+//1.创建请求对象
+let xhr = new XMLHttpRequest()
+//2.开启请求链接
+xhr.open('请求方式','目标资源路径',true)
+//3.设置响应监听
+xhr.onreadystatechange = function(res){  
+  //响应成功时要执行的代码,xhr.response可以获取响应数据  
+  console.log(xhr.response)
+}
+//4.调用send方法发送请求到服务器
+xhr.send()
+//1.创建请求对象
+let xhr = new XMLHttpRequest()
+//2.开启请求链接
+xhr.open('GET','http://127.0.0.1:3001/movies/getMovies',请求类型true表示异步请求false表示同步请求)
+//3.设置响应监听
+xhr.onreadystatechange = function(res){ 
+  console.log(xhr.response)
+}
+//4.调用send方法
+xhr.send()
+```
+
+- jQuery封装的Ajax
+
+```javascript
+$.ajax({  
+  url:'目标资源路径', 
+  method:'请求方式',  
+  async:请求类型true表示异步请求false表示同步请求, 
+  dataType:'响应内容类型', 
+  data:{    
+    参数名称:参数值 
+  },
+  success:function(data){    
+    响应成功时要执行的代码,并将响应数据作为实参传入   
+  }
+})
+$.ajax({  
+  url: 'http://127.0.0.1:3000/users/login', 
+  async: true,   
+  method: 'POST', 
+  dataType:'json',  
+  data:{    
+    acc:'admin',
+    pwd:'ad123'  
+  },  
+  success: function (data) {   
+    console.log('响应数据接收成功', data); 
+  }
+})
+```
+
+# 异步编程
+
+## 目录
+
+- 概念
+- 任务队列与事件循环
+- 回调地狱
+- Promise
+- await与async
+
+## 概念
+
+- JavaScript是单线程的，同一时间只能执行一个指令或代码。
+
+- 同步:按照代码编写顺序执行的过程，被称为`同步执行`，其中被执行的代码被称为`同步代码`。
+
+  - 优点:逻辑清晰，数据加载顺序明确。
+  - 缺点:执行效率较低，系统资源利用不高;
+
+- 异步:未按照代码编写顺序执行的过程，被称为`异步执行`，其中被执行的代码被称为`异步代码`。
+
+  - 优点:执行效率相对较高，系统资源利用率更高；
+  - 缺点:逻辑性相对更低，数据加载顺序明确性更低；
+  - 案例:
+    - setTimeout、setInterval;
+    - ajax的async属性为true时;
+    - jQuery动画:fadeIn、fadeOut、slideDown、slideUp、show、hide、animate;
+
+- 回调函数
+
+  - 将函数作为参数传入另外一个函数内部执行的函数称为回调函数;
+
+  ```javascript
+  function forEachPlus(arr, fn) { 
+    for (let index = 0; index < arr.length; index++) {  
+      fn(arr[index], index, arr); 
+    }
+  }
+  let a = [1, 2, 3, 4];
+  forEachPlus(a, function (v) {  
+    console.log(v);
+  })
+  ```
+
+- 回调函数分类
+
+  - 同步回调函数
+    - 按照代码编写顺序执行的回调函数，被称为`同步回调函数`。
+    - 比如:forEach、filter、map、some、every、reduce等。
+  - 异步回调函数
+    - 未按照代码编写顺序执行的回调函数，被称为`异步回调函数`。
+    - 比如:setTimeout、setInterval、ajax的async属性为true时的success函数、jQuery动画执行完毕时执行的函数;
+
+## 任务队列与事件循环
+
+- 当同步代码与异步代码同时存在时，代码的执行顺序由`任务队列`和`事件循环`决定;
+- 流程:
+  - 当JavaScript代码被编译执行前，会将要执行的代码加载存储到执行栈中(代码容器);
+  - 依次执行同步代码;
+  - 遇到异步代码，会将异步代码存储到`任务队列`中，继续执行后面的同步代码;
+  - 当执行栈中的同步代码执行完毕后，会从任务队列中取出第一个任务代码执行，执行完毕继续取出下一个任务队列中代码执行；
+  - 直到任务队列中不存在待执行代码；
+  - 程序进入等待期;
+- 将反复从任务队列中的代码取出到执行栈中执行的过程，被称为`事件循环`;
+
+```javascript
+console.log(1);
+setTimeout(() => {   
+  console.log(2);  
+  setTimeout(() => { 
+    console.log(3);    
+    setTimeout(() => {    
+      console.log(4);  
+    }, 0)  
+    console.log(5); 
+  }, 0)  
+  console.log(6); 
+  setTimeout(() => {  
+    console.log(7);    
+    setTimeout(() => {  
+      console.log(8);  
+    }, 0)     
+    console.log(9); 
+  }, 0)
+}, 0)
+console.log(10);
+// 1 10 2 6 3 5 7 9 4 8
+```
+
+## 回调地狱
+
+- 背景:
+  - 后一个回调函数需要依赖前一个回调函数的数据结果时，可以使用回调嵌套解决。
+- 概念
+  - 多次回调函数嵌套的现象被称为`回调地狱`。
+- 回调地狱存在问题:
+  - 代码可读性较差;
+  - 可维护性较差;
+- 解决回调地狱问题:
+  - Promise
+
+## Promise
+
+- 背景
+
+  - 存在回调地狱现象。
+
+- 概念
+
+  - Promise表示承诺的意思，在程序中，表示承诺未来的一个结果。
+  - 它是ES6新增的一个构造函数，每个Promise对象可以用于处理一个异步代码结果。
+
+- 语法:
+
+  - `resolve`:类型为函数类型，当异步代码执行成功时要调用执行的函数,可以传入实参到then的回调函数中;
+  - `reject`:类型为函数类型，当异步代码执行失败时要调用执行的函数,可以传入实参到catch的回调函数中;
+
+  ```javascript
+  new Promise(function(resolve,reject){ 
+    //异步代码
+  });
+  ```
+
+  ```javascript
+  let pro = new Promise(function (resovle, reject) {  
+    let num = Math.random();    
+    if (num > 0.5) {  
+      //执行成功  
+      resovle('成功:' + num);  
+    } else {      
+      //执行失败   
+      reject('失败:' + num);  
+    }
+  });
+  ```
+
+- 结果处理
+
+  - `then`:当Promise对象的状态值为`resolve(fulfilled)`时，系统会自动调用then函数，并传入`resolve()`函数实参，如果then函数的回调函数没有返回值，则返回当前Promise的同状态克隆对象，否则返回回调函数返回值。
+  - `catch`:当Promise对象的状态值为`reject`时，系统会自动调用catch函数，并传入`reject()`函数实参，如果catch函数的回调函数没有返回值，返回当前Promise的同状态克隆对象，否则返回回调函数返回值。
+
+```javascript
+目标promise对象.then(function(){  
+  异步执行成功时要执行的代码
+}).catch(function(){   
+  异步执行失败时要执行的代码
+})
+pro.then(function (data) {   
+  console.log('执行成功', data);
+}).catch(function (data) { 
+  console.log('执行失败', data);
+})
+```
+
+- 案例
+
+```javascript
+let pro = new Promise(function (resovle, reject) {  
+  setTimeout(function () {     
+    resovle('成功1:');  
+  }, 200)
+});
+let pro2 = new Promise(function (resovle, reject) { 
+  setTimeout(function () {   
+    resovle('成功2:');  
+  }, 100)
+});
+
+pro.then(function (data) {   
+  console.log('执行成功', data); 
+  return pro2;
+}).then(function (data) {  
+  console.log('执行成功', data);
+})
+```
+
+## Promise状态
+
+- 每个Promise对象中内置了一个状态属性，该属性取值如下:
+  - `pending`:默认值，表示该异步正在进行中(执行过程中),每个Promise对象刚创建时状态取该值;
+  - `resolve`或`fulfilled`:表示异步成功，异步执行成功时，调用`resolve()`函数时，会将状态属性值由`pending`改为`resolve`或`fulfilled`；
+  - `reject`:表示异步失败，异步代码执行失败时，调用`reject()`函数时，会将状态属性值由`pending`改为`reject`；
+- 注意：每个Promise状态属性值，只能改变一次，且只能由`pending`改为`resolve`或者由`pending`改为`reject`;
+
+## Promise.all
+
+- 在指定Promise异步操作都完成后执行then或catch。
+  - 所有的异步都成功时，会执行then。
+  - 否则，执行catch。
+
+```javascript
+Promise.all([promise1,promise2,.....]).then(function(data){  
+  //所有异步代码都执行成功时要执行的代码，data存储了所有异步结果
+}).catch(function(data){  
+  //有一个异步代码执行失败时要执行的代码，data存储失败的异步结果
+})
+
+let pro1 = new Promise(function (resovle, reject) {
+  let num = Math.random();  
+  // console.log(num); 
+  if (num > 0.5) {    
+    //执行成功  
+    resovle('成功1:' + num); 
+  } else {   
+    //执行失败
+    reject('失败1:' + num); 
+  }
+});
+
+let pro2 = new Promise(function (resovle, reject) {  
+  let num = Math.random(); 
+  // console.log(num);  
+  if (num > 0.5) {     
+    //执行成功    
+    resovle('成功2:' + num);
+  } else {    
+    //执行失败  
+    reject('失败2:' + num);  
+  }
+});
+
+Promise.all([pro1, pro2]).then(function (data) { 
+  console.log('then:', data);
+}).catch(function (data) { 
+  console.log('catch', data);
+})
+```
+
+## Promise.race
+
+- 在指定Promise任意一个异步有结果后，执行then或catch。
+
+  ```javascript
+  Promise.race([promise1,promise2,.....]).then(function(data){  
+    最先有结果的promise成功要执行的代码
+  }).catch(function(data){   
+    最先有结果的promise失败要执行的代码
+  })
+  ```
+
+  ```javascript
+  let pro1 = new Promise(function (resovle, reject) { 
+    setTimeout(function () {  
+      let num = Math.random();    
+      // console.log(num);   
+      if (num > 0.5) {      
+        //执行成功       
+        resovle('成功1:' + num);   
+      } else {   
+        //执行失败   
+        reject('失败1:' + num);   
+      }   
+    }, 100)
+  });
+  
+  let pro2 = new Promise(function (resovle, reject) { 
+    setTimeout(function () {        
+      let num = Math.random();   
+      // console.log(num);   
+      if (num > 0.5) {         
+        //执行成功     
+        resovle('成功2:' + num); 
+      } else {          
+        //执行失败 
+        reject('失败2:' + num);    
+      }   
+    }, 100)
+  });
+  
+  Promise.race([pro1, pro2]).then(function (data) { 
+    console.log('then:', data);
+  }).catch(function (data) {  
+    console.log('catch', data);
+  })
+  ```
+
+## async与await
+
+- 概念
+  - ES7新增关键字async、await，用于解决异步代码结果处理问题。
+- ==async==
+  - 用于修饰函数，将目标函数定义为异步函数。
+- ==await==
+  - 表示等待，可以实现代码阻塞，必须要在异步函数中使用。
+  - 阻塞当前异步函数代码执行，直到异步代码有成功结果继续执行当前异步函数后面代码;
+- 语法:
+
+```javascript
+let pro1 = new Promise(function (resovle, reject) { 
+  setTimeout(function () { 
+    let num = Math.random();   
+    resovle('成功1:' + num);  
+  }, 3000)
+});
+console.log(1);
+async function demo() {   
+  console.log(2);  
+  let re = await pro1;
+  //等待目标异步代码执行成功，未成功前代码会阻塞 
+  console.log(re);   
+  console.log(3);
+}
+demo();
+console.log(4);
+```
+
+# 跨域
+
+## 概念
+
+- 浏览器同源策略:
+  - 1995年，网景公司在自家浏览器中引入了一个安全策略，该策略要求资源只能访问同源服务器资源。
+  - 同源服务器资源:
+    - 协议、主机、端口号都一致，被称为同源服务器资源。
+- 跨域
+  - 解决同源策略限制。
+
+## 解决方案
+
+- jsonp(了解)
+
+  - 利用`<script></script>`标签本身自带跨域效果实现跨域。
+
+  - 实现(jQuery的jsonp)：
+
+    - 前端:
+
+    ```javascript
+    $.ajax({ 
+      url:'目标资源路径',  
+      dataType:'jsonp', 
+      success:function(data){  
+        console.log(data)  
+      }
+    })
+    ```
+
+    - 后端
+
+    ```javascript
+    router.get('/demo',function(req,resp){
+      resp.jsonp('数据');
+    })
+    ```
+
+- cors
+
+  - 让服务器告诉给浏览器不做同源策略限制。
+
+  - 实现:
+
+    - 配置后端服务器响应头(修改后端express项目`app.js`，在一级路由配置之前，添加以下内容)
+
+    ```javascript
+    //添加：
+    // 设置 CORS 允许跨域
+    var allowCrossDomain = function (req, res, next) { 
+      // 设置允许哪一个源（域）可以进行跨域访问，* 表示所有源  
+      res.header("Access-Control-Allow-Origin", "*"); 
+      // 设置允许跨域访问的请求头  
+      res.header("Access-Control-Allow-Headers", "X-Requested-With,Origin,Content-Type,Accept,Authorization");
+      // 设置允许跨域访问的请求类型 
+      res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE");  
+      // 设置允许 cookie 发送到服务器 
+      res.header('Access-Control-Allow-Credentials', 'true'); 
+      next();
+    };
+    app.use(allowCrossDomain);
+    ```
+
+- 代理服务器
+
+  - 同源策略只针对浏览器请求服务器资源时的限制，对服务器请求服务器资源无限制，故可以让同源服务器请求非同源服务器资源后，将响应结果发送给浏览器。
+    ![img](C:\StudyRecords\08NodeJS\notes\NodeJS.assets\368d4cc0404041b3ae7a9673ffc3f143.png)
+
+  - 实现:
+
+    - 修改前端项目服务器配置，实现代理服务器功能:(修改`webpack.config.js`)
+
+    ```javascript
+    devServer: {   
+      port: '前端服务器接口',    
+        // open: './html/index.html',   
+        hot: true,  
+          proxy: {   
+            "/": {        
+              target: 'http://目标后端服务器IP:端口号/'   
+            }   
+          }
+    }
+    ```
+
+    ```javascript
+    devServer: {   
+      port: '1818', 
+        // open: './html/index.html',    
+        hot: true,    
+          proxy: {    
+            "/": {        
+              target: 'http://127.0.0.1:3000/'  
+            }       
+          }
+    }
+    ```
+
+# 数据加密算法
+
+## 概念
+
+- 将未加密的数据称为`明文`;
+- 加密后的数据称为`密文`;
+- 明文经过加密算法生成密文的过程被称为`数据加密`;
+
+## 分类
+
+可逆
+
+- 由明文加密成密文后，可以由密文还原成明文(可以解密);
+- 分类
+  - 对称加密
+    - 明文加密成密文时要使用一个密钥(一个字符串);
+    - 密文解密成明文时要使用一个密钥;
+    - 加密和解密时使用的同一个密钥;
+  - 非对称加密
+    - 明文加密成密文时要使用一个密钥(一个字符串)，该密钥被称为`公钥`;
+    - 密文解密成明文时要使用一个密钥，解密的密钥被称为`私钥`;
+    - 加密和解密时使用的不是同一个密钥;
+
+不可逆
+
+- 由明文加密成密文后，不可以由密文还原成明文(不可以解密);
+- 相同的明文加密后形成的密文是一致的。
+- 比如:使用MD5加密算法对用户密码加密。
+
+## Md5加密
+
+- 为不可以加密算法，可以用于对用户密码进行加密，相同明文会生成相同密文。
+- 工具函数`util.js`:
+
+```javascript
+function getMd5(pwd) {  
+  //引入Nodejs内置的加密模块  
+  let crypto = require('crypto'); 
+  //创建md5加密对象   
+  let md5 = crypto.createHash('md5');  
+  //定义变量存储密钥 
+  let secret='xumin';   
+  //加密数据  
+  let mpwd = md5.update(pwd + secret).digest('hex'); 
+  return mpwd;
+}
+module.exports = {  
+  getMd5
+}
+```
+
+- 加密工具函数使用:
+
+```javascript
+//引入加密工具函数
+let { getMd5 } = require('./../util/util');
+//定义变量存储明文
+let pwd='A123456';
+//加密
+let mpwd=getMd5(pwd).digest('hex');
+```
+
+# 身份认证
+
+## 背景
+
+- 一些项目资源需要用户身份认证后才可正常访问。
+
+## 主流实现技术
+
+- cookie+session(了解)
+
+  - cookie:存储在浏览器的本地文件;
+
+  - session:存储在服务器的本地文件;
+
+  - 流程:
+
+    - 当客户端第一次请求服务器时，服务器会为每个客户端创建一个`session文件`，该文件有一个唯一的名称(`sessionId`),并将该名称(sessionId)作为响应头响应给客户端浏览器;
+    - 浏览器接收到sessionId，会将该sessionId存储到本地`cookie`(cookie中的数据会作为`请求头`中的数据发送到服务器)文件中;
+    - 当客户端发起登录请求时，服务器接收到用户登录数据，验证是否合法，如果合法，将用户登录数据，根据请求头中携带的sessionId找到对应session文件，`存储到该session文件中`;
+    - 后期客户端要请求服务器需要身份认证后才可访问资源时，服务器会根据请求头携带的sessionId查找对应session文件，是否存在登录信息，如果存在，则正常响应请求内容，否则响应提示用户登录;
+
+    ![img](C:\StudyRecords\08NodeJS\notes\NodeJS.assets\8e4d7256994244f489378abed85cfa23.png)
+
+  - 存在问题:
+
+    - 服务器会为每个客户端创建一个session文件，服务器内存压力较大;
+
+- 本地存储(了解)
+
+  - 登录成功后，将用户登录数据直接存储到浏览器本地存储中，一旦要请求登录后才可访问的资源时，客户端浏览器先从本地存储获取登录数据，并将登录数据发送到服务器，服务器验证数据无误后，响应请求目标资源，否则响应登录提示;
+  - 存在问题:
+    - 用户登录数据存储在本地浏览器，存在用户数据泄露风险;
+
+- token(掌握)
+
+  - 登录成功后，服务器根据用户登录数据加密形成token(密文)，将token响应给客户端浏览器，客户端浏览器将token本地存储，一旦要请求登录后才可访问的资源时，客户端浏览器先从本地存储获取token，并将token发送到服务器，服务器验证token无误后，响应请求目标资源，否则响应登录提示;
+
+## jwt
+
+- Json Web Token:一种利用JSON生成Token解决Web身份认证问题的技术解决方案。
+- 流程
+
+![img](C:\StudyRecords\08NodeJS\notes\NodeJS.assets\7aca0526450f47998c6b41b6e48f2f17.png)
+
+## jwt实现身份认证
+
+生成Token
+
+- 前端
+
+  - 发送登录请求到服务器，并将服务器响应的Token存储到本地存储;
+
+  ```javascript
+  $.ajax({  
+    url:'登录URL',  
+    method:'请求方式', 
+    data:{    
+      参数 
+    },
+    success:function(data){    
+      操作响应数据获取Token，并将Token存储到本地存储 
+    }
+  })
+  ```
+
+- 后端
+
+  - 处理登录请求，并根据登录数据生成Token，将Token响应给客户端浏览器;
+
+  - 实现:
+
+    - 下载`jsonwebtoken`
+
+    ```
+    npm i jsonwebtoken
+    ```
+
+    - 生成Token
+
+    ```javascript
+    //引入jsonwebtoken模块
+    let jsonwebtoken=require('jsonwebtoken');
+    //定义变量存储用户登录数据
+    let userObj={acc:'admin',pwd:'ad123'};
+    //定义变量存储密钥
+    let secret='xumin';
+    //定义变量存储Token过期时间，单位为秒
+    let secodes=86400;//24*60*60
+    //根据用户登录数据和密钥生成Token，并配置过期时间，单位为秒
+    let token = jsonwebtoken.sign(userObj, secret, { expiresIn: secodes });
+    //将Token响应给前端
+    响应对象.send({ 
+      code:200,   
+      message:'登录成功!', 
+      data:token})
+    ```
+
+验证Token是否合法有效
+
+- 前端
+
+  - 从本地存储获取Token，将Token作为请求头发送给服务器，处理服务器响应的401;
+  - 实现:
+
+  ```javascript
+  function getPromiseAuth(url, method, data) {  
+    //从本地存储获取Token
+    let token = sessionStorage.getItem('token');   
+    if (!token) { 
+      alert('请先登录!');
+      location.href = '/html/login.html';  
+      return; 
+    }
+    return new Promise(function (resolve, reject) {  
+      $.ajax({    
+        url,     
+        method,       
+        data,       
+        // 请求头传递token
+        headers: {    
+          Authorization: 'Bearer ' + token   
+        },         
+        success: function (data) {   
+          resolve(data);      
+        },       
+        error: function (err) {    
+          if (err.status == 401) {  
+            alert('鉴权失败!请重新登录!');   
+            location.href = '/html/login.html';  
+          } else {   
+            reject(err);     
+          }    
+        }      
+      }) 
+    });
+  }
+  //要鉴权的请求发送
+  let movieRe = await getPromiseAuth(`/movie/findById?id=${id}`, 'GET', null);
+  let operaRe = await getPromiseAuth(`/opera/findByMovieId?movieId=${id}`, 'GET', null);
+  ```
+
+- 后端
+
+  - 接收前端发送的Token，验证是否合法有效，如果合法有效正常响应请求内容，否则响应401；
+
+  - 实现
+
+    - 下载`express-jwt`
+
+    ```
+    npm i express-jwt
+    ```
+
+    - 编写鉴权配置文件`auth.js`
+
+    ```javascript
+    //引入express-jwt模块
+    const { expressjwt } = require('express-jwt');
+    //获取配置对象
+    const config = expressjwt({  
+      secret: '密钥', 
+      algorithms: ['HS256'],    
+      credentialsRequired: false
+      //是否对不带Token的请求进行鉴权验证,false:表示对请求头中不存在Token的请求，不进行校验(鉴权);true:无论请求头是否存在Token，都要校验(鉴权)，如果不存在，则响应401
+    }).unless({   
+      //配置白名单，不需要鉴权，可以是字符串类型:直接配置目标URL，也可以是正则:资源URL符合目标正则规则会作为白名单目标 
+      path: [白名单]
+    });
+    module.exports = config;
+    ```
+
+    ```javascript
+    //引入express-jwt模块
+    const { expressjwt } = require('express-jwt');
+    //获取配置对象
+    const config = expressjwt({  
+      secret: 'xumin',   
+      algorithms: ['HS256'],  
+      credentialsRequired: false
+      //是否对不带Token的请求进行鉴权验证,false:表示对请求头中不存在Token的请求，不进行校验(鉴权);true:无论请求头是否存在Token，都要校验(鉴权)，如果不存在，则响应401
+    }).unless({ 
+      // path: ['/user/login', '/user/register']//配置白名单，不需要鉴权，可以是字符串类型:直接配置目标URL，也可以是正则:资源URL符合目标正则规则会作为白名单目标   
+      path: [/\/user\//]
+    });
+    module.exports = config;
+    ```
+
+    - 应用鉴权配置到系统中(修改`app.js`，在一级路由配置代码前添加以下代码)
+
+    ```javascript
+    //引入鉴权代码，参照app.js指定路径
+    let config = require('auth文件路径');
+    //应用到系统
+    app.use(config);
+    ```
+
+    ```javascript
+    //引入鉴权代码
+    let config = require('./util/auth');
+    //应用到系统
+    app.use(config);
+    ```
+
+根据Token获取登录数据
+
+- 前端
+
+  - 从本地存储取出Token发送到后端服务器，接收并处理后端服务器响应的登录数据;
+
+  ```javascript
+  //从本地存储获取
+  Tokenlet token = sessionStorage.getItem('token');
+  if (!token) { 
+    如果本地存储不存在Token要执行的代码 
+    return;
+  }
+  $.ajax({
+    url:'根据Token获取用户数据的后端接口URL', 
+    method:'请求方式', 
+    headers: {     
+      Authorization: 'Bearer ' + token 
+    },
+    success: function (data) {   
+      成功获取用户登录数据后要执行的代码 
+    }, 
+    error: function (err) {    
+      if (err.status == 401) {   
+        用户Token过期失效要执行的代码    
+      } else {        
+        reject(err);
+      }  
+    }
+  })
+  ```
+
+  ```javascript
+  function getUserInfor(url, method, data) { 
+    //从本地存储获取Token 
+    let token = sessionStorage.getItem('token');  
+    if (!token) {     
+      $('header .txt').text('你好!请登录!');  
+      return;  
+    }   
+    return new Promise(function (resolve, reject) { 
+      $.ajax({    
+        url,     
+        method,       
+        data,     
+        headers: {    
+          Authorization: 'Bearer ' + token   
+        },   
+        success: function (data) {  
+          $('header .txt').text(`你好!${data.data.acc}!`);  
+        },    
+        error: function (err) {    
+          if (err.status == 401) {    
+            $('header .txt').text('你好!请登录!'); 
+          } else {        
+            reject(err);    
+          }          
+        }   
+      })  
+    });
+  }
+  import { getUserInfor } from '@util/util.js'
+  getUserInfor('/user/getUserInfor', 'GET', null);
+  ```
+
+- 后端
+
+  - 接收前端发送额Token，根据Token解密得到明文登录数据，并将解密结果响应给前端;
+
+  ```javascript
+  router.get('/配置二级路由', function (req, resp) {
+    //获取客户端传入的Token 
+    let token = req.get('Authorization').split(' ')[1];
+    //根据Token获取登录数据(解密)  
+    let userObj = jsonwebtoken.verify(token, '密钥');  
+    //解密后的登录数据响应给客户端 
+    resp.send({     
+      code: 200,  
+      message: '获取成功!',     
+      data: userObj   
+    })
+  })
+  ```
+
+  ```javascript
+  router.get('/getUserInfor', function (req, resp) { 
+    //获取客户端传入的Token  
+    let token = req.get('Authorization').split(' ')[1]; 
+    //根据Token获取登录数据(解密)    
+    let userObj = jsonwebtoken.verify(token, 'xumin'); 
+    //解密后的登录数据响应给客户端 
+    resp.send({ 
+      code: 200,    
+      message: '获取成功!',
+      data: userObj 
+    })
+  })
+  ```
+
 # END
