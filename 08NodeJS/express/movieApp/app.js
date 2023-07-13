@@ -68,6 +68,10 @@ app.use('/order',order)
 let cinema=require('./routes/cinema')
 app.use('/cinema',cinema)
 // -------------------------------------------------------------------
+// 图片
+let upload=require('./routes/upload')
+app.use('/upload',upload)
+// -------------------------------------------------------------------
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
