@@ -1,0 +1,124 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 1.2rem;
+  background-color: #726fff;
+  .logo {
+    margin-left: 0.37rem;
+    height: 0.4rem;
+  }
+  .menu {
+    margin-right: 0.42rem;
+    height: 0.47rem;
+  }
+}
+main {
+  margin: 0.3rem 0.4rem 0;
+  width: 6.7rem;
+  .path {
+    margin-bottom: 0.25rem;
+    font-size: 0.24rem;
+    color: #333;
+    span {
+      color: #726fff;
+    }
+  }
+  .list {
+    box-shadow: 0rem 0rem .1rem 0rem rgba(174, 174, 174, 0.44);
+    border-radius: .08rem;
+    .name{
+      padding: 0 .2rem;
+      height: .8rem;
+      line-height: .8rem;
+      font-size: .28rem;
+      color: #333;
+      border-bottom: .01rem solid #efefef;
+    }
+    .item{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 .2rem;
+      height: 1.65rem;
+      border-bottom: .01rem solid #efefef;
+      .left{
+        margin-right: .15rem;
+        width: 1.68rem;
+      }
+      .center{
+        flex-grow: 1;
+        color: #666;
+        .test-name{
+          display: flex;
+          font-size: .2rem;
+          color: #333;
+          .text{
+            font-size: .24rem;
+          }
+          .tag{
+            margin-left: .1rem;
+            width: .8rem;
+            height: .3rem;
+            font-size: .2rem;
+            color: #fff;
+            text-align: center;
+            background-color: #a2a1e4;
+            border-radius: .02rem;
+            line-height: .3rem;
+          }
+        }
+        .time{
+          font-size: .18rem;
+          line-height: .45rem;
+        }
+        .other{
+          display: flex;
+          align-items: center;
+          img{
+            width: .18rem;
+            height: .18rem;
+          }
+          .text{
+            margin-left: .07rem;
+            font-size: .2rem;
+          }
+        }
+      }
+      .right{
+        width: .8rem;
+        height: .45rem;
+        background-color: #726fff;
+        color: #fff;
+        border: none;
+        border-radius: .04rem;
+        text-align: center;
+        font-size: .24rem;
+      }
+    }
+  }
+  .ing{
+    margin-bottom: .3rem;
+  }
+  .ed{
+   .item{
+    .center{
+      .test-name{
+        .tag{
+          background-color: #7c7c7c;
+        }
+      }
+    }
+   }
+  }
+}
+
+footer {
+  margin-top: 0.8rem;
+  height: 1.2rem;
+  background-color: #726fff;
+  line-height: 1.2rem;
+  color: #fff;
+  font-size: 0.24rem;
+  text-align: center;
+}
