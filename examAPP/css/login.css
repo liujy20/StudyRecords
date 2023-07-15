@@ -55,7 +55,7 @@ main .con .itemP:first-child {
   margin-top: 0;
 }
 
-main .register {
+main .login {
   display: block;
   margin: 0.4rem auto;
   margin-top: 0.95rem;
@@ -68,7 +68,7 @@ main .register {
   border-radius: .16rem;
 }
 
-main .login {
+main .register {
   margin-top: .5rem;
   text-align: center;
   font-size: .24rem;
