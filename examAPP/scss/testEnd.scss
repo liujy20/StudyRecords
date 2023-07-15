@@ -38,7 +38,7 @@ main {
     }
     .score{
       margin: auto;
-      width: 3rem;
+      width: 2rem;
       background-image: url(../img/Tests/stars.png);
       background-size: contain;
       background-repeat: no-repeat;
@@ -50,6 +50,32 @@ main {
       span{
         font-weight: normal;
         font-size: .3rem;
+      }
+    }
+    .finish{
+      margin-top: .3rem;
+      font-size: .24rem;
+      color: #333;
+      text-align: center;
+    }
+    .end{
+      display: flex;
+      justify-content: space-between;
+      margin: .6rem auto 0;
+      width: 3.86rem;
+      text-align: center;
+      .con1,.con2{
+        text-align: center;
+        .num{
+          font-size: .36rem;
+          color: #333;
+        }
+        .name{
+          margin: 0;
+          margin-top: .2rem;
+          font-size: .24rem;
+          color: #666;
+        }
       }
     }
 

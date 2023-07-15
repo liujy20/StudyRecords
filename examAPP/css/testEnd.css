@@ -46,7 +46,7 @@ main .con .name {
 
 main .con .score {
   margin: auto;
-  width: 3rem;
+  width: 2rem;
   background-image: url(../img/Tests/stars.png);
   background-size: contain;
   background-repeat: no-repeat;
@@ -60,6 +60,37 @@ main .con .score {
 main .con .score span {
   font-weight: normal;
   font-size: .3rem;
+}
+
+main .con .finish {
+  margin-top: .3rem;
+  font-size: .24rem;
+  color: #333;
+  text-align: center;
+}
+
+main .con .end {
+  display: flex;
+  justify-content: space-between;
+  margin: .6rem auto 0;
+  width: 3.86rem;
+  text-align: center;
+}
+
+main .con .end .con1, main .con .end .con2 {
+  text-align: center;
+}
+
+main .con .end .con1 .num, main .con .end .con2 .num {
+  font-size: .36rem;
+  color: #333;
+}
+
+main .con .end .con1 .name, main .con .end .con2 .name {
+  margin: 0;
+  margin-top: .2rem;
+  font-size: .24rem;
+  color: #666;
 }
 
 main .con .start {
