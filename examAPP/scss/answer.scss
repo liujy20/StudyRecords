@@ -143,9 +143,12 @@ footer {
     }
   }
   .bottom {
-    display: none;
+    // display: none;
     padding: 0 0.4rem;
-    height: 8.9rem;
+    // height: 8.9rem;
+    height: 0rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
     .choice {
       margin-top: 0.5rem;
       .tit {

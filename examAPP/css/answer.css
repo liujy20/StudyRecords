@@ -172,9 +172,10 @@ footer .top .num .now {
 }
 
 footer .bottom {
-  display: none;
   padding: 0 0.4rem;
-  height: 8.9rem;
+  height: 0rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 footer .bottom .choice {
