@@ -11,27 +11,30 @@ $("main .con .pwd1 img").click(function () {
     img.prev().prop("type", "password");
   }
 });
-
-$(".login").click(async function () {
-  location.href='/html/index.html'
+$('.register').click(function(){
+  location.href='/html/register.html'
 })
+
 // $(".login").click(async function () {
-//   let name = $(".name.itemP input");
-//   let pwd = $(".pwd1.itemP input");
-  // let res = await getPromise("", "POST", {
-//     name:name.val(),
-//     pwd:pwd.val()
-//   });
-//   console.log(res);
-//   if (res.code == 200) {
-//     alert("登陆成功");
-//     // 保存token
-//     localStorage.setItem("token", res.token);
-//     // 保存登录状态
-//     sessionStorage.setItem("user", phone.val());
-//     // 跳转主页
-//     location.href = "index.html";
-//   } else {
-//     alert("用户名或密码错误");
-//   }
-// });
+//   location.href='/html/index.html'
+// })
+$(".login").click(async function () {
+  let name = $(".name.itemP input");
+  let pwd = $(".pwd1.itemP input");
+  let res = await getPromise("http://127.0.0.1:1234/students/login", "POST", {
+    phone:name.val(),
+    password:pwd.val()
+  });
+  console.log(res);
+  if (res.code == 1) {
+    alert("登陆成功");
+    // 保存token
+    localStorage.setItem("token", res.token);
+    // 保存登录状态
+    localStorage.setItem("user", res.data._id);
+    // 跳转主页
+    location.href = "index.html";
+  } else {
+    alert("用户名或密码错误");
+  }
+});
