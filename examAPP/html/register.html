@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="../css/register.css" />
     <link rel="stylesheet" href="../css/common.css" />
     <script src="../util/resize.js"></script>
+    <script src="../js/register.js" defer></script>
+    <script src="../util/jquery.js"></script>
+    <script src="../util/util.js"></script>
   </head>
   <body>
     <header>
@@ -21,17 +24,17 @@
       <div class="con">
         <div class="name itemP">
           <div class="tit">用户名</div>
-          <input type="text" />
+          <input type="text" id="phone" placeholder="请输入13位手机号"/>
         </div>
         <div class="pwd1 itemP">
           <div class="tit">密码</div>
-          <input type="password" />
-          <img src="../img/闭眼睛.png" alt="" />
+          <input type="password" id="pwd1" placeholder="请输入字母开头的6~12位密码"/>
+          <img src="../img/闭眼睛.png" alt="" data-f="0" />
         </div>
         <div class="pwd2 itemP">
           <div class="tit">确认密码</div>
-          <input type="password" />
-          <img src="../img/闭眼睛.png" alt="" />
+          <input type="password" id="pwd2" placeholder="请再次输入密码"/>
+          <img src="../img/闭眼睛.png" alt="" data-f="0" />
         </div>
       </div>
       <button class="register">立即注册</button>
