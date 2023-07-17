@@ -3,6 +3,7 @@ console.log(testId);
 
 let studentId = "62a2ae13f5f8279d44e4f146";
 let TopicId = "";
+let currentTopic = {};
 let data = {};
 let collection = [];
 let exerciseArr = [];
@@ -44,7 +45,7 @@ async function getData() {
     if (
       collection.find((val) => {
         return val.exerciseId == item._id;
-      })!=undefined
+      }) != undefined
     ) {
       item.collected = true;
     }
@@ -61,7 +62,19 @@ async function getData() {
 
 function render() {
   renderList();
-  renderTopic(1, 0);
+  initTopic();
+}
+
+// 初始化
+function initTopic() {
+  let ele = $("footer .bottom .choice1 li")[0];
+  ele = $(ele);
+  currentTopic = ele;
+  // console.log(ele);
+  TopicId = ele.data("id");
+  let arr = ele.data("index").split("-");
+  renderTopic(...arr);
+  // console.log(TopicId);
 }
 
 // 渲染错题列表
@@ -70,9 +83,9 @@ function renderList() {
   // 单选题
   let s = "";
   Sarr.forEach((item, index) => {
-    s += `<li class="${
-      item.answer.toString() == answers[index] ? "t" : "f"
-    } ${item.collected?'collected':''}" data-index="1-${index}" data-id='${item._id}'>${index + 1}</li>`;
+    s += `<li class="${item.answer.toString() == answers[index] ? "t" : "f"} ${
+      item.collected ? "collected" : ""
+    }" data-index="1-${index}" data-id='${item._id}'>${index + 1}</li>`;
   });
   // console.log(s);
   $(".bottom .choice1 ul").html(s);
@@ -82,12 +95,15 @@ function renderList() {
   Darr.forEach((item, index) => {
     s += `<li class="${
       item.answer.toString() == answers[index + 20] ? "t" : "f"
-    } ${item.collected?'collected':''}" data-index="2-${index}" data-id='${item._id}'>${index + 1}</li>`;
+    } ${item.collected ? "collected" : ""}" data-index="2-${index}" data-id='${
+      item._id
+    }'>${index + 1}</li>`;
   });
   // console.log(s);
   $(".bottom .choice2 ul").html(s);
 
   $("footer .top .all").text(answers.length);
+  chooseTopic()
 }
 
 // 渲染题目
@@ -175,6 +191,7 @@ function indexToLetter(arr) {
 function addClick() {
   openList();
   chooseTopic();
+  collect();
 }
 // 打开错题列表
 function openList() {
@@ -197,10 +214,50 @@ function chooseTopic() {
   $(".bottom .choice ul li").click(function () {
     // console.log(this);
     let ele = $(this);
-    TopicId = ele.data("_id");
+    currentTopic = ele;
+    // console.log(currentTopic);
+    TopicId = ele.data("id");
     let arr = ele.data("index").split("-");
     renderTopic(...arr);
     $("footer .top .now").text((arr[0] - 1) * 20 + (arr[1] - 0 + 1));
     $("footer .top .num").click();
+  });
+}
+
+// 添加收藏
+function collect() {
+  $("footer .top .collection").click(async function () {
+    currentTopic=$(`footer .bottom [data-index="${currentTopic.data('index')}"]`)
+    if (currentTopic.hasClass("collected")) {
+      let res = await getPromise(
+        "http://127.0.0.1:1234/collections/delCollection",
+        "GET",
+        {
+          studentId,
+          exerciseId: TopicId,
+        }
+      );
+      if (res.code == 200) {
+        await getData();
+        $("footer .top .collection").remove('click')
+        renderList();
+        console.log('删除');
+      }
+    } else {
+      let res = await getPromise(
+        "http://127.0.0.1:1234/collections/addCollection",
+        "GET",
+        {
+          studentId,
+          exerciseId: TopicId,
+        }
+      );
+      if (res.code == 200) {
+        await getData();
+        $("footer .top .collection").remove('click')
+        renderList();
+        console.log("添加");
+      }
+    }
   });
 }
