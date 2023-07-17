@@ -134,3 +134,42 @@ footer {
   font-size: 0.24rem;
   text-align: center;
 }
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.sub-m {
+  position: fixed;
+  top: 2.75rem;
+  right: 0.4rem;
+  width: 6.7rem;
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+
+.sub-m .close {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background-image: url(../img/Index/popclose.png);
+  background-position: center center;
+  background-size: .16rem .16rem;
+  background-repeat: no-repeat;
+  background-color: #e60012;
+}
+
+.sub-m .con {
+  margin: 1rem auto;
+  text-align: center;
+  font-size: .3rem;
+  line-height: .9rem;
+}
