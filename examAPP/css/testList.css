@@ -142,6 +142,9 @@ footer {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  opacity: 0;
 }
 
 .sub-m {
@@ -151,6 +154,8 @@ footer {
   width: 6.7rem;
   background-color: #ffffff;
   border-radius: 20px;
+  transition: all 0.3s ease;
+  transform: scale(0);
 }
 
 .sub-m .close {
