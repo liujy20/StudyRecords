@@ -1,3 +1,4 @@
+let studentId = localStorage.getItem("user");
 let data = {};
 
 main();
@@ -8,7 +9,7 @@ async function main() {
 }
 
 async function render() {
-  data = await getPromise(
+  data = await getPromiseAuth(
     "http://127.0.0.1:1234/students/indextypes",
     "GET",
     null
@@ -43,12 +44,21 @@ function addClick() {
     $(".mask").css("opacity", "0");
     // $('.mask').css('display','none')
   });
-  // 修改资料
+  // 错题本
   $(".sub-m .item1").click(function () {
+    location.href = `/html/wrong.html?studentId=${studentId}`;
+  });
+  // 收藏夹
+  $(".sub-m .item2").click(function () {
+    location.href = `/html/collection.html?studentId=${studentId}`;
+  });
+  // 修改资料
+  $(".sub-m .item3").click(function () {
     location.href = "/html/user.html";
   });
   // 退出登录
-  $(".sub-m .item2").click(function () {
+  $(".sub-m .item4").click(function () {
+    localStorage.removeItem('token')
     location.href = "/html/login.html";
   });
 }
