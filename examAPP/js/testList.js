@@ -1,3 +1,9 @@
+let studentId=localStorage.getItem('user')
+if(!studentId){
+  alert('请先登录')
+  location.href='/html/login.html'
+}
+
 let allData=[]
 let edData=[]
 let ingData=[]
@@ -19,7 +25,7 @@ async function getData(){
     "http://127.0.0.1:1234/testeds/getAllTesteds",
     "POST",
     {
-      studentId:'62a2ae13f5f8279d44e4f146'
+      studentId
     }
   );
   allData=allData.data
