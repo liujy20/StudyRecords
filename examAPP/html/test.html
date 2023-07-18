@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="../css/test.css" />
     <link rel="stylesheet" href="../css/common.css" />
     <script src="../util/resize.js"></script>
+    <script src="../js/test.js" defer></script>
+    <script src="../util/jquery.js"></script>
+    <script src="../util/util.js"></script>
   </head>
   <body>
     <header>
@@ -19,17 +22,19 @@
         <div class="type">单选题</div>
         <div class="topic">递接文件</div>
       </div>
-      <div class="option">
-        <input type="radio" id="a" name="topic" />
-        <label for="a">A. 正面朝向对方</label>
-      </div>
-      <div class="option active">
-        <input type="radio" id="b" name="topic" checked />
-        <label for="b">B. 正面朝向对方</label>
-      </div>
-      <div class="option">
-        <input type="radio" id="c" name="topic" />
-        <label for="c">C. 正面朝向对方</label>
+      <div class="options">
+        <div class="option">
+          <input type="radio" id="a" name="topic" />
+          <label for="a">A. 正面朝向对方</label>
+        </div>
+        <div class="option active">
+          <input type="radio" id="b" name="topic" checked />
+          <label for="b">B. 正面朝向对方</label>
+        </div>
+        <div class="option">
+          <input type="radio" id="c" name="topic" />
+          <label for="c">C. 正面朝向对方</label>
+        </div>
       </div>
     </main>
     <footer>
@@ -39,7 +44,7 @@
           <div class="text">收藏</div>
         </div>
         <button class="submit">提交试卷</button>
-        <div class="num">
+        <div class="num" data-f=0>
           <img src="../img/错题本2_07.png" alt="" />
           <span class="now">1</span>/<span class="all">10</span>
         </div>
@@ -77,6 +82,10 @@
         </div>
       </div>
     </footer>
+    <div class="mask"></div>
+    <div class="next-topic">
+      &gt;
+    </div>
     <div class="confirm-submit">
       <div class="box">
         <div class="tip">有试题未完成，是否现在交卷？</div>
@@ -86,6 +95,6 @@
         </div>
       </div>
     </div>
-    <div class="mask"></div>
+    <div class="top-mask"></div>
   </body>
 </html>

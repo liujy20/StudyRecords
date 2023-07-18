@@ -1,11 +1,14 @@
+let studentId=localStorage.getItem('user')
+let search = location.search.slice(1);
+let testId = search.split("=")[1];
 let data = {};
 
 main();
 
 async function main() {
-  data = await getPromise("http://127.0.0.1:1234/testeds/getTestMsg", "GET", {
-    studentId: "62a2ae13f5f8279d44e4f146",
-    testId: "62a1a17aec997af332254d52",
+  data = await getPromiseAuth("http://127.0.0.1:1234/testeds/getTestMsg", "GET", {
+    studentId,
+    testId,
   });
   data=data.data
   console.log(data);

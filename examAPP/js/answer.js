@@ -1,7 +1,7 @@
 let testId = location.search.slice(1).split("=")[1];
-console.log(testId);
-
-let studentId = "62a2ae13f5f8279d44e4f146";
+// console.log(testId);
+let studentId=localStorage.getItem('user')
+// let studentId = "62a2ae13f5f8279d44e4f146";
 let TopicId = "";
 let currentTopic = {};
 let data = {};
@@ -200,11 +200,11 @@ function openList() {
     if (btn.data("f") == 0) {
       $("footer .bottom").css("height", "8.9rem");
       btn.data("f", 1);
-      $(".mask").css("display", "block");
+      $(".mask").css("opacity", "1");
     } else {
       $("footer .bottom").css("height", "0rem");
       btn.data("f", 0);
-      $(".mask").css("display", "none");
+      $(".mask").css("opacity", "0");
     }
   });
 }
