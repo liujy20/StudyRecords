@@ -132,7 +132,7 @@ function addMenu() {
     location.href = "/html/user.html";
   });
   // 退出登录
-  $(".sub-m .item4").click(function () {
+  $(".sub-m .item5").click(function () {
     localStorage.removeItem('token')
     location.href = "/html/login.html";
   });
