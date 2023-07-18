@@ -1,17 +1,15 @@
-main()
-function main(){
-  render()
-  addClick()
+let studentId = localStorage.getItem("user");
+
+main();
+function main() {
+  render();
+  addClick();
 }
 
-function render(){
-// TODO:渲染
+function render() {
+  // TODO:渲染
 }
-function addClick(){
-  // 考试跳转
-  $("nav .item").click(function () {
-    location.href = "/html/testList.html";
-  });
+function addClick() {
   // 开启菜单
   $("header .menu").click(function () {
     let ele = $(".sub-m");
@@ -26,12 +24,21 @@ function addClick(){
     $(".mask").css("opacity", "0");
     // $('.mask').css('display','none')
   });
-  // 修改资料
+  // 首页
   $(".sub-m .item1").click(function () {
-    location.href = "/html/user.html";
+    location.href = "/html/index.html";
+  });
+  // 错题本
+  $(".sub-m .item2").click(function () {
+    location.href = `/html/wrong.html?studentId=${studentId}`;
+  });
+  // 收藏夹
+  $(".sub-m .item3").click(function () {
+    location.href = `/html/collection.html?studentId=${studentId}`;
   });
   // 退出登录
-  $(".sub-m .item2").click(function () {
+  $(".sub-m .item4").click(function () {
+    localStorage.removeItem('token')
     location.href = "/html/login.html";
   });
 }
