@@ -1,6 +1,6 @@
 let testId = location.search.slice(1).split("=")[1];
 // console.log(testId);
-let studentId=localStorage.getItem('user')
+let studentId = localStorage.getItem("user");
 // let studentId = "62a2ae13f5f8279d44e4f146";
 let TopicId = "";
 let currentTopic = {};
@@ -63,6 +63,7 @@ async function getData() {
 function render() {
   renderList();
   initTopic();
+  renderInfo();
 }
 
 // 初始化
@@ -103,7 +104,7 @@ function renderList() {
   $(".bottom .choice2 ul").html(s);
 
   $("footer .top .all").text(answers.length);
-  chooseTopic()
+  chooseTopic();
 }
 
 // 渲染题目
@@ -124,7 +125,7 @@ function renderTopic(f, i) {
         return `<div class="option ${flag ? "active" : ""}">
           <input type="${f == 1 ? "radio" : "checkbox"}" id="a" name="topic" ${
           flag ? "checked" : "disabled"
-        } />
+        } disabled/>
           <label for="a">A. ${item}</label>
         </div>`;
       case 1:
@@ -132,7 +133,7 @@ function renderTopic(f, i) {
         return `<div class="option ${flag ? "active" : ""}">
           <input type="${f == 1 ? "radio" : "checkbox"}" id="b" name="topic" ${
           flag ? "checked" : "disabled"
-        } />
+        } disabled/>
           <label for="b">B. ${item}</label>
         </div>`;
       case 2:
@@ -140,7 +141,7 @@ function renderTopic(f, i) {
         return `<div class="option ${flag ? "active" : ""}">
           <input type="${f == 1 ? "radio" : "checkbox"}" id="c" name="topic" ${
           flag ? "checked" : "disabled"
-        }/>
+        } disabled/>
           <label for="c">C. ${item}</label>
         </div>`;
       case 3:
@@ -148,7 +149,7 @@ function renderTopic(f, i) {
         return `<div class="option ${flag ? "active" : ""}">
           <input type="${f == 1 ? "radio" : "checkbox"}" id="d" name="topic" ${
           flag ? "checked" : "disabled"
-        } />
+        } disabled/>
           <label for="d">D. ${item}</label>
         </div>`;
 
@@ -174,7 +175,7 @@ function renderTopic(f, i) {
       <span>${indexToLetter(t.answer).join(" ")}</span>
     </div>
     <div class="more">
-      答案解析：${t.analysis}
+      答案解析：${t.analysis?t.analysis:'略'}
     </div>
   `);
 }
@@ -188,10 +189,26 @@ function indexToLetter(arr) {
   return nArr;
 }
 
+// 渲染考试信息
+function renderInfo() {
+  $("header .score .num").text(data.score);
+
+  let second = data.durations;
+  let s = second % 60;
+  let m = ((second - s) / 60) % 60;
+  let h = (second - s - m * 60) / 60 / 60;
+  $("header .duration .num").text(
+    `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s
+      .toString()
+      .padStart(2, "0")}`
+  );
+}
+
 function addClick() {
   openList();
-  chooseTopic();
+  // chooseTopic();
   collect();
+  toBack();
 }
 // 打开错题列表
 function openList() {
@@ -227,7 +244,9 @@ function chooseTopic() {
 // 添加收藏
 function collect() {
   $("footer .top .collection").click(async function () {
-    currentTopic=$(`footer .bottom [data-index="${currentTopic.data('index')}"]`)
+    currentTopic = $(
+      `footer .bottom [data-index="${currentTopic.data("index")}"]`
+    );
     if (currentTopic.hasClass("collected")) {
       let res = await getPromise(
         "http://127.0.0.1:1234/collections/delCollection",
@@ -239,9 +258,9 @@ function collect() {
       );
       if (res.code == 200) {
         await getData();
-        $("footer .top .collection").remove('click')
+        $("footer .top .collection").remove("click");
         renderList();
-        console.log('删除');
+        console.log("删除");
       }
     } else {
       let res = await getPromise(
@@ -254,10 +273,20 @@ function collect() {
       );
       if (res.code == 200) {
         await getData();
-        $("footer .top .collection").remove('click')
+        $("footer .top .collection").remove("click");
         renderList();
         console.log("添加");
       }
     }
+  });
+}
+
+// 返回
+function toBack() {
+  $("footer .submit").click(function () {
+    location.href = "/html/testList.html";
+  });
+  $('header img').click(function () {
+    location.href = "/html/testList.html";
   });
 }
