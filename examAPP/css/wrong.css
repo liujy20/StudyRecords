@@ -143,9 +143,10 @@ footer .top .num .now {
 }
 
 footer .bottom {
-  display: none;
   padding: 0 0.4rem;
-  height: 8.9rem;
+  height: 0rem;
+  overflow: auto;
+  transition: all 0.3s ease;
 }
 
 footer .bottom .choice {
@@ -190,11 +191,13 @@ footer .bottom .choice ul .f {
 }
 
 .mask {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  opacity: 0;
 }

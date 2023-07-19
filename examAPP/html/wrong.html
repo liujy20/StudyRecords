@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="../css/wrong.css" />
     <link rel="stylesheet" href="../css/common.css" />
     <script src="../util/resize.js"></script>
+    <script src="../js/wrong.js" defer></script>
+    <script src="../util/jquery.js"></script>
+    <script src="../util/util.js"></script>
   </head>
   <body>
     <header>
@@ -46,13 +49,13 @@
     <footer>
       <div class="top">
         <div class="setting">
-          <img src="../img/错题本2_03.png" alt="" />
-          <div class="text space">解析</div>
+          <img src="../img/错题本2_03.png" alt="" class="aya"/>
+          <div class="text space aya">解析</div>
           <img src="../img/错题本2_05.png" alt="" />
-          <div class="text">删除</div>
+          <div class="text del">删除</div>
         </div>
         <button class="submit">重新复习</button>
-        <div class="num">
+        <div class="num" data-f=0>
           <img src="../img/错题本2_07.png" alt="" />
           <span class="now">1</span>/<span class="all">10</span>
         </div>
