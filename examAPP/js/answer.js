@@ -4,11 +4,14 @@ let studentId = localStorage.getItem("user");
 // let studentId = "62a2ae13f5f8279d44e4f146";
 let TopicId = "";
 let currentTopic = {};
-let data = {};
+let data = [];
 let collection = [];
 let exerciseArr = [];
+let ansObj={}
 let Sarr = [];
 let Darr = [];
+let sScore = 0;
+let dScore = 0;
 
 main();
 
@@ -21,7 +24,7 @@ async function main() {
 // 获取试题集
 async function getData() {
   // 获取试题
-  data = await getPromise("http://127.0.0.1:1234/testeds/getAnalysis", "GET", {
+  data = await getPromiseAuth("http://127.0.0.1:1234/testeds/getAnalysis", "GET", {
     studentId,
     testId,
   });
@@ -36,15 +39,20 @@ async function getData() {
     }
   );
   collection = collection.data;
-  // console.log(collection);
+  console.log(collection);
   exerciseArr = data.testId.exerciseId;
+  // 答案列表
+  exerciseArr.forEach((item,index) => {
+    ansObj[item._id] = data.answers[index];
+  });
+  console.log(ansObj);
   // 试题对象添加收藏属性
   exerciseArr = exerciseArr.map((item) => {
     item.collected = false;
     // 收藏中存在试题
     if (
       collection.find((val) => {
-        return val.exerciseId == item._id;
+        return val.exerciseId._id == item._id;
       }) != undefined
     ) {
       item.collected = true;
@@ -84,25 +92,28 @@ function renderList() {
   // 单选题
   let s = "";
   Sarr.forEach((item, index) => {
-    s += `<li class="${item.answer.toString() == answers[index] ? "t" : "f"} ${
+    sScore+=item.score
+    s += `<li class="${item.answer.toString() == ansObj[item._id] ? "t" : "f"} ${
       item.collected ? "collected" : ""
-    }" data-index="1-${index}" data-id='${item._id}'>${index + 1}</li>`;
+    }" data-index="1-${index}" data-id='${item._id}' data-stuAns='${ansObj[item._id]}'>${index + 1}</li>`;
   });
-  // console.log(s);
+    // console.log(s);
   $(".bottom .choice1 ul").html(s);
   // ==================================================
   // 多选题
   s = "";
   Darr.forEach((item, index) => {
+    dScore+=item.score
     s += `<li class="${
-      item.answer.toString() == answers[index + 20] ? "t" : "f"
+      item.answer.toString() == ansObj[item._id] ? "t" : "f"
     } ${item.collected ? "collected" : ""}" data-index="2-${index}" data-id='${
       item._id
-    }'>${index + 1}</li>`;
+    }' data-stuAns='${ansObj[item._id]}'>${index + 1}</li>`;
   });
   // console.log(s);
   $(".bottom .choice2 ul").html(s);
-
+  $('footer .choice1 .tit').text(`单选题（共${Sarr.length}题，合计${sScore}分）`)
+  $('footer .choice2 .tit').text(`多选题（共${Darr.length}题，合计${dScore}分）`)
   $("footer .top .all").text(answers.length);
   chooseTopic();
 }
@@ -159,16 +170,17 @@ function renderTopic(f, i) {
   });
   $("main .options").html(Tarr.join(""));
   // 渲染答案
+  console.log(ansObj[t._id]);
   $("main .ans").html(`
     <div class="tip">
       <img src="../img/解析_03.png" alt="">
       <div class="text">${
-        t.answer.toString() == data.answers[i] ? "答对了" : "答错了"
+        t.answer.toString() == ansObj[t._id] ? "答对了" : "答错了"
       }</div>
     </div>
     <div class="t-ans">
       考生答案：
-      <span class="f">${indexToLetter(data.answers[i]).join(" ")}</span>
+      <span class="f">${indexToLetter(ansObj[t._id]).join(" ")}</span>
     </div>
     <div class="t-ans">
       正确答案：
@@ -237,6 +249,7 @@ function chooseTopic() {
     let arr = ele.data("index").split("-");
     renderTopic(...arr);
     $("footer .top .now").text((arr[0] - 1) * 20 + (arr[1] - 0 + 1));
+    $("footer .top .now").text(Sarr.length*(arr[0]-1)+(arr[1]-0+1))
     $("footer .top .num").click();
   });
 }

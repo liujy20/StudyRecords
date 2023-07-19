@@ -16,7 +16,7 @@ async function main() {
 }
 
 async function getData() {
-  allData = await getPromise(
+  allData = await getPromiseAuth(
     "http://127.0.0.1:1234/testeds/getAll",
     "GET",
     null

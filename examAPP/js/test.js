@@ -11,6 +11,10 @@ let testTime = 0;
 let currentTopicId = "";
 let currentTopic = {};
 
+let sCount = 0;
+let sScore = 0;
+let dCount = 0;
+let dScore = 0;
 main();
 
 async function main() {
@@ -21,7 +25,7 @@ async function main() {
 
 async function getData() {
   // 获取试题
-  data = await getPromise("http://127.0.0.1:1234/tests/beginExam", "POST", {
+  data = await getPromiseAuth("http://127.0.0.1:1234/tests/beginExam", "POST", {
     _id: testId,
   });
   data = data.data[0];
@@ -50,7 +54,7 @@ async function getData() {
     // 收藏中存在试题
     if (
       collection.find((val) => {
-        return val.exerciseId == item._id;
+        return val.exerciseId._id == item._id;
       }) != undefined
     ) {
       item.collected = true;
@@ -92,14 +96,16 @@ function timing() {
         .toString()
         .padStart(2, "0")}`
     );
-    if (second==0) {
+    if (second == 0) {
       // 跳转
-      submit()
+      submit();
     }
   }, 1000);
 }
 // 题目列表
 function renderList() {
+  sCount = 0;
+  dCount = 0;
   let s1 = "",
     s2 = "";
   exerciseArr.forEach((item, index) => {
@@ -107,19 +113,23 @@ function renderList() {
     if (completeObj[`${item._id}`].length != 0) {
       isComplete = true;
     }
-    if (index < 20) {
+    if (item.type == 0) {
+      sScore += item.score;
       s1 += `<li class="${isComplete ? "complete" : ""}  ${
         item.collected ? "collected" : ""
-      }" data-id='${item._id}' data-index="${index}">${index + 1}</li>`;
+      }" data-id='${item._id}' data-index="1-${sCount++}">${sCount}</li>`;
     } else {
+      dScore += item.score;
       s2 += `<li class="${isComplete ? "complete" : ""}  ${
         item.collected ? "collected" : ""
-      }" data-id='${item._id}' data-index="${index}">${index + 1 - 20}</li>`;
+      }" data-id='${item._id}' data-index="2-${dCount++}">${dCount}</li>`;
     }
   });
   // console.log(s1);
   $("footer .bottom .choice1 ul").html(s1);
   $("footer .bottom .choice2 ul").html(s2);
+  $("footer .choice1 .tit").text(`单选题（共${sCount}题，合计${sScore}分）`);
+  $("footer .choice2 .tit").text(`多选题（共${dCount}题，合计${dScore}分）`);
   renderCurrentItem();
 }
 // 初始化
@@ -233,7 +243,16 @@ function chooseTopic() {
     currentTopicId = ele.data("id");
     renderTopic();
     renderCurrentItem();
-    $("footer .top .now").text(currentTopic.data("index") + 1);
+    console.log(currentTopic.data("index"));
+    if (currentTopic.data("index").split("-")[0] == 1) {
+      $("footer .top .now").text(
+        currentTopic.data("index").split("-")[1] - 0 + 1
+      );
+    } else {
+      $("footer .top .now").text(
+        sCount + (currentTopic.data("index").split("-")[1] - 0) + 1
+      );
+    }
     $("footer .top .num").click();
     optionsClick();
   });
@@ -314,14 +333,46 @@ function optionsClick() {
 function toNext() {
   $(".next-topic").click(function () {
     if (
-      $(`footer ul [data-id='${currentTopicId}']`).data("index") <
-      exerciseArr.length - 1
+      $(`footer ul [data-id='${currentTopicId}']`)
+        .data("index")
+        .split("-")[0] == 1
     ) {
-      $(`footer ul [data-id='${currentTopicId}']`).next().click();
-      console.log($(`footer ul [data-id='${currentTopicId}']`));
-      $("footer .top .num").click();
+      // 在单选题中
+      if (
+        $(`footer ul [data-id='${currentTopicId}']`)
+          .data("index")
+          .split("-")[1] <
+        sCount - 1
+      ) {
+        // 不在末尾
+        $(`footer ul [data-id='${currentTopicId}']`).next().click();
+        $("footer .top .num").click();
+      } else {
+        // 在末尾
+        if (dCount == 0) {
+          // 没有多选题
+          $("footer .submit").click();
+        } else {
+          // 有多选题
+          $(`footer ul [data-index='2-0']`).click();
+          $("footer .top .num").click();
+        }
+      }
     } else {
-      $("footer .submit").click();
+      // 在多选题中
+      if (
+        $(`footer ul [data-id='${currentTopicId}']`)
+          .data("index")
+          .split("-")[1] <
+        dCount - 1
+      ) {
+        // 不在末尾
+        $(`footer ul [data-id='${currentTopicId}']`).next().click();
+        $("footer .top .num").click();
+      } else {
+        // 在末尾
+        $("footer .submit").click();
+      }
     }
   });
 }
@@ -334,8 +385,8 @@ function addSubmit() {
     if (ans.length != 0) {
       $(".confirm-submit").css("transform", "scale(1)");
       $(".top-mask").css("opacity", "1");
-    }else{
-      submit()
+    } else {
+      submit();
     }
   });
   $(".cancel").click(function () {
@@ -349,40 +400,61 @@ function addSubmit() {
 
 // 提交
 async function submit() {
-  $(".cancel").click()
-  let score=0
-  let tp=0
-  let all=0
-  let ansArr=exerciseArr.map(item=>{
-    let id= item._id
+  $(".cancel").click();
+  let score = 0;
+  let tp = 0;
+  let all = 0;
+  let ansArr = exerciseArr.map((item) => {
+    let id = item._id;
     // 答案相同
-    if(completeObj[id].sort().toString()==item.answer.toString()){
-      score+=item.score
+    if (completeObj[id].sort().toString() == item.answer.toString()) {
+      score += item.score;
       tp++;
     }
     all++;
-    return completeObj[id].sort()
-  })
+    return completeObj[id].sort();
+  });
   console.log({
-    testId:testId,
-    studentId:stuId,
-    typeId:pointId,
-    answers:ansArr,
-    score:score,
-    accuracy:(tp/all*100).toFixed(2)+'%',
-    durations:testTime
+    testId: testId,
+    studentId: stuId,
+    typeId: pointId,
+    answers: ansArr,
+    score: score,
+    accuracy: ((tp / all) * 100).toFixed(2) + "%",
+    durations: testTime,
   });
-  let res = await getPromiseAuth("http://127.0.0.1:1234/testeds/addTesteds", "POST", {
-    testId:testId,
-    studentId:stuId,
-    typeId:pointId,
-    answers:JSON.stringify(ansArr),
-    score:score,
-    accuracy:(tp/all*100).toFixed(2)+'%',
-    durations:testTime
-  });
+  let res = await getPromiseAuth(
+    "http://127.0.0.1:1234/testeds/addTesteds",
+    "POST",
+    {
+      testId: testId,
+      studentId: stuId,
+      typeId: pointId,
+      answers: JSON.stringify(ansArr),
+      score: score,
+      accuracy: ((tp / all) * 100).toFixed(2) + "%",
+      durations: testTime,
+    }
+  );
   console.log(res);
-  if(res.code==200){
-    location.href=`/html/testEnd.html?testId=${testId}`
+  let errorCount = 0;
+  exerciseArr.forEach(async (item) => {
+    let id = item._id;
+    // 错题
+    if (completeObj[id].sort().toString() != item.answer.toString()) {
+      errorCount++;
+      let re = await getPromise(
+        `http://127.0.0.1:1234/errors/addError?studentId=${stuId}&exerciseId=${id}&errorAnswer=${completeObj[
+          id
+        ].sort()}`,
+        "GET",
+        null
+      );
+    }
+  });
+  console.log("errorCount", errorCount);
+  if (res.code == 200) {
+    // location.href = `/html/testEnd.html?testId=${testId}`;
   }
 }
+//================================================
