@@ -1,14 +1,29 @@
 let studentId = localStorage.getItem("user");
-
+let data = {};
+let path,name,phone,gender;
 main();
-function main() {
-  render();
+async function main() {
+  await render();
   addClick();
   changeImg();
+  change()
 }
 
-function render() {
-  // TODO:渲染
+async function render() {
+  data = await getPromiseAuth(
+    `http://127.0.0.1:1234/user/getUser?stuId=${studentId}`,
+    "GET",
+    null
+  );
+  data = data.data;
+  console.log(data);
+  name=data.name
+  $(".userName").text(name);
+  phone=data.phone
+  $(".phone").text(phone);
+  path=data.avatar
+  $(".bg img").prop("src", path);
+  gender=data.gender
 }
 function addClick() {
   // 开启菜单
@@ -53,6 +68,7 @@ function changeImg() {
     //   event.preventDefault();
     //   event.stopPropagation();
     let file = this.files[0];
+    console.log(file);
     if (!/^image\//.test(file.type)) {
       alert("请上传图片");
       return;
@@ -62,7 +78,8 @@ function changeImg() {
       return;
     }
 
-    formData.append("icon", file);
+    formData.set("icon", file);
+    // console.log(formData.get('icon'));
     $.ajax({
       url: "http://127.0.0.1:1234/user/upload",
       method: "POST",
@@ -70,9 +87,10 @@ function changeImg() {
       success: function (data) {
         alert(data.message);
         console.log(data);
+        path = `http://127.0.0.1:1234${data.data}`;
         if (data.code == 200) {
-          $(".bg img").prop('src',`http://127.0.0.1:1234${data.data}`)
-        }//"http://127.0.0.1234/images/1689682689521-å¡.jpg"
+          $(".bg img").prop("src", path);
+        } //"http://127.0.0.1234/images/1689682689521-å¡.jpg"
       },
       //阻止jQuery传输数据时对数据进行转换处理
       contentType: false,
@@ -80,5 +98,28 @@ function changeImg() {
       cache: false,
     });
     // return false
+  });
+}
+
+// 修改用户信息
+function change() {
+  $(".save").click(async function () {
+  name = $("main .con .name input").val()||name;
+    gender=$('.rad input:checked').prop('id')||gender
+    console.log(name,gender);
+    let re = await getPromiseAuth(
+      `http://127.0.0.1:1234/user/change`,
+      "POST",
+      {
+        tel: data.phone,
+        name,
+        avatar: path,
+        gender,
+      }
+    );
+    console.log(re);
+    alert(re.msg)
+    location.reload()
+    
   });
 }
