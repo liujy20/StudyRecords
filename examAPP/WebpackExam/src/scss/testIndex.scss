@@ -1,0 +1,87 @@
+body {
+  background-image: url(../img/开始考试.png);
+  background-size: cover;
+  background-position: top center;
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  margin: 1.5rem auto 0.85rem;
+  width: 4rem;
+  height: 0.7rem;
+}
+main {
+  margin: 0 auto;
+  width: 6.7rem;
+  background-color: #fff4;
+  overflow: hidden;
+  .con {
+    margin: 0.18rem auto 0.15rem;
+    padding: 0 0.25rem .6rem;
+    width: 6.4rem;
+    background-color: #fff;
+    overflow: hidden;
+    box-sizing: border-box;
+    .tit {
+      margin: 0.65rem auto 0.6rem;
+      text-align: center;
+      font-size: 0.3rem;
+      color: #333;
+      font-weight: bold;
+    }
+    .msg {
+      position: relative;
+      padding: 0.3rem 0 0.3rem 0.38rem;
+      width: 5.9rem;
+      border: solid 1px #d6d6d6;
+      border-radius: 0.1rem;
+      box-sizing: border-box;
+      h3 {
+        position: absolute;
+        padding: 0.1rem;
+        top: -0.3rem;
+        left: 0.28rem;
+        font-size: 0.24rem;
+        color: #333;
+        background-color: #fff;
+      }
+      div {
+        margin: 0.18rem 0;
+        font-size: 0.2rem;
+        color: #666;
+        span {
+          color: #ff0000;
+        }
+      }
+      div:first-of-type {
+        margin: 0;
+      }
+      div:last-child {
+        margin: 0;
+      }
+    }
+    .student-msg {
+      margin-top: 0.5rem;
+    }
+    .start {
+      margin: 0.4rem auto 0.3rem;
+      width: 5.9rem;
+      height: .8rem;
+      color: #fff;
+      font-size: .24rem;
+      background-color: #726fff;
+      border-radius: .04rem;
+      border: none;
+    }
+    .return {
+      width: 5.9rem;
+      height: .8rem;
+      color: #666;
+      font-size: .24rem;
+      background-color: #fff;
+      border-radius: .04rem;
+      border: solid 1px #666666
+    }
+  }
+}

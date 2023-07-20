@@ -5,7 +5,7 @@ let htmlWebpackPlugin = require("html-webpack-plugin");
 //引入CSS打包插件
 let miniCssExtractPlugin = require("mini-css-extract-plugin");
 //存储要打包的页面名称
-let pageArr = ['index','register','login'];
+let pageArr = ['index','register','login','user','collection','wrong','testList','testIndex','test','testEnd','answer'];
 //根据要打包的页面生成entry值
 function getEntry(arr) {
   let entryObj = {};
@@ -95,4 +95,7 @@ module.exports = {
     open: "./html/index.html",
     hot: true,
   },
+  performance:{
+    hints:false
+  }
 };

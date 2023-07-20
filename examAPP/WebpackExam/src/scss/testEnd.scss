@@ -1,0 +1,105 @@
+body {
+  background-image: url(../img/开始考试.png);
+  background-size: cover;
+  background-position: top center;
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  margin: 1.5rem auto 0.85rem;
+  width: 4rem;
+  height: 0.7rem;
+}
+main {
+  margin: 0 auto;
+  width: 6.7rem;
+  background-color: #fff4;
+  overflow: hidden;
+  .con {
+    margin: 0.18rem auto 0.15rem;
+    padding: 0 0.25rem .6rem;
+    width: 6.4rem;
+    background-color: #fff;
+    overflow: hidden;
+    box-sizing: border-box;
+    .userImg{
+      margin: .6rem auto 0;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 50%;
+    }
+    .name{
+      margin: .25rem auto .5rem;
+      text-align: center;
+      font-size: .36rem;
+      color: #333;
+      font-weight: bold;
+    }
+    .score{
+      margin: auto;
+      width: 2rem;
+      background-image: url(../img/Tests/stars.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: top center;
+      font-size: .6rem;
+      text-align: center;
+      font-weight: bold;
+      color: #6966eb;
+      span{
+        font-weight: normal;
+        font-size: .3rem;
+      }
+    }
+    .finish{
+      margin-top: .3rem;
+      font-size: .24rem;
+      color: #333;
+      text-align: center;
+    }
+    .end{
+      display: flex;
+      justify-content: space-between;
+      margin: .6rem auto 0;
+      width: 3.86rem;
+      text-align: center;
+      .con1,.con2{
+        text-align: center;
+        .num{
+          font-size: .36rem;
+          color: #333;
+        }
+        .name{
+          margin: 0;
+          margin-top: .2rem;
+          font-size: .24rem;
+          color: #666;
+        }
+      }
+    }
+
+
+
+
+    .start {
+      margin: 0.7rem auto 0.3rem;
+      width: 5.9rem;
+      height: .8rem;
+      color: #fff;
+      font-size: .24rem;
+      background-color: #726fff;
+      border-radius: .04rem;
+      border: none;
+    }
+    .return {
+      width: 5.9rem;
+      height: .8rem;
+      color: #666;
+      font-size: .24rem;
+      background-color: #fff;
+      border-radius: .04rem;
+      border: solid 1px #666666
+    }
+  }
+}
