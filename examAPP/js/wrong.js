@@ -19,15 +19,15 @@ async function getData() {
     "GET",
     null
   );
-  errorArr = errorArr.data.filter((item) => {
-    return item.studentId._id == studentId;
-  });
-  console.log(errorArr);
   allLength = errorArr.length;
   if(!allLength){
     alert('错题本为空')
     history.go(-1)
   }
+  errorArr = errorArr.data.filter((item) => {
+    return item.studentId._id == studentId;
+  });
+  console.log(errorArr);
   $("footer .top .all").text(allLength);
 }
 
