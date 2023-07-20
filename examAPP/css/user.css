@@ -67,15 +67,6 @@ main .con .itemP .tit {
   font-size: 0.24rem;
 }
 
-main .con .itemP input[type="text"] {
-  padding-left: 0.3rem;
-  width: 100%;
-  height: 0.96rem;
-  border-radius: 0.16rem;
-  border: solid 1px #cccccc;
-  box-sizing: border-box;
-}
-
 main .con .itemP img {
   position: absolute;
   bottom: 0.35rem;
@@ -86,6 +77,15 @@ main .con .itemP img {
 
 main .con .itemP:first-child {
   margin-top: 0;
+}
+
+main .con .name.itemP input {
+  padding-left: 0.3rem;
+  width: 100%;
+  height: 0.96rem;
+  border-radius: 0.16rem;
+  border: solid 1px #cccccc;
+  box-sizing: border-box;
 }
 
 main .con .c-gender {
