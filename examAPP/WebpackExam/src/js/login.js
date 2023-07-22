@@ -4,15 +4,18 @@ import '@js/resize.js'
 import '@js/login.js'
 import {getPromise,getPromiseAuth} from '@util/util.js'
 
+import openEye from "../img/open-eye.png"
+import closeEye from "../img/闭眼睛.png"
+
 $("main .con .pwd1 img").click(function () {
   let img = $(this);
   console.log(img);
   if (img.data("f") == 0) {
-    img.attr("src", "../img/open-eye.png");
+    img.attr("src", openEye);
     img.data("f", 1);
     img.prev().prop("type", "text");
   } else {
-    img.attr("src", "../img/闭眼睛.png");
+    img.attr("src", closeEye);
     img.data("f", 0);
     img.prev().prop("type", "password");
   }

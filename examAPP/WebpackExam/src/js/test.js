@@ -1,8 +1,8 @@
-import '@scss/test.scss'
-import '@scss/common.scss'
-import '@js/resize.js'
-import '@js/test.js'
-import {getPromise,getPromiseAuth} from '@util/util.js'
+import "@scss/test.scss";
+import "@scss/common.scss";
+import "@js/resize.js";
+import "@js/test.js";
+import { getPromise, getPromiseAuth } from "@util/util.js";
 let search = location.search.slice(1).split("&");
 let testId = search[0].split("=")[1];
 let stuId = search[1].split("=")[1];
@@ -81,7 +81,8 @@ function render() {
 function renderBack() {
   $("header .text").text(data.title);
   $("header .text").click(function () {
-    history.go(-1);
+    // history.go(-1);
+    alert('请完成题目后退出')
   });
   $("footer .all").text(exerciseArr.length);
 }
@@ -110,7 +111,9 @@ function timing() {
 // 题目列表
 function renderList() {
   sCount = 0;
+  sScore = 0;
   dCount = 0;
+  dScore = 0;
   let s1 = "",
     s2 = "";
   exerciseArr.forEach((item, index) => {
