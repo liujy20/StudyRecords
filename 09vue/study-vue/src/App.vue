@@ -1,19 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <AsideVue></AsideVue>
+    <div class="main">
+      <HeaderVue></HeaderVue>
+      <ContentVue></ContentVue>
+      <FooterVue></FooterVue>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AsideVue from "./components/Aside.vue";
+import ContentVue from "./components/Content.vue";
+import FooterVue from "./components/Footer.vue";
+import HeaderVue from './components/Header.vue';
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HeaderVue,
+    AsideVue,
+    ContentVue,
+    FooterVue,
+  },
+};
 </script>
 
 <style lang="scss">
@@ -23,6 +33,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  height: 100vh;
+  color: #fff;
+}
+body{
+  margin: 0;
+}
+.main{
+  width: 90%;
 }
 </style>
