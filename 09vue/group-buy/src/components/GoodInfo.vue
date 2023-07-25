@@ -12,6 +12,7 @@
           <span class="s2">香薰</span>
         </div>
       </div>
+      <button>关闭</button>
     </div>
   </div>
 </template>
@@ -41,7 +42,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #000a;
-  .box{
+  .box {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -49,25 +50,25 @@ export default {
     right: 0;
     margin: auto;
     width: 400px;
-    height: 200px;
+    height: 250px;
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
     box-sizing: border-box;
     text-align: left;
-    .tit{
+    .tit {
       font-size: 26px;
       line-height: 50px;
       border-bottom: 3px solid #ccc;
-        font-weight: bold;
-
+      font-weight: bold;
     }
-    .info{
+    .info {
       padding: 10px 0;
-      .id,.name{
+      .id,
+      .name {
         display: flex;
         margin-top: 10px;
-        span{
+        span {
           margin-right: 10px;
           height: 30px;
           width: 120px;

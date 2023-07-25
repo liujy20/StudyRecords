@@ -11,7 +11,7 @@
 
 <script>
 import AsideVue from "./components/Aside.vue";
-import ContentVue from "./components/Content.vue";
+import ContentVue from "./components/GroupContent.vue";
 import GoodInfoVue from "./components/GoodInfo.vue";
 import HeaderVue from "./components/Header.vue";
 export default {

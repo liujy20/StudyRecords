@@ -40,7 +40,7 @@ export default {
 .content {
   background-color: #f5f5f5;
   overflow: auto;
-  height: 100%;
+  height: calc(100% - 50px);
   .bg {
     margin: 20px;
     background-color: #fff;
