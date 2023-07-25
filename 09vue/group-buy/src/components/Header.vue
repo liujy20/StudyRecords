@@ -1,9 +1,9 @@
 <template>
   <div class="header">
     <div class="change"></div>
-    <div class="breadcrumb" v-for="(item,index) in linkArr" :key='item'>
-      <a href="">{{ item }}</a>
-      <span v-if="index!=linkArr.length-1">/</span>
+    <div class="breadcrumb" v-for="(item, index) in linkArr" :key="item">
+      <a href="" :class="{ light: index == linkArr.length - 1 }">{{ item }}</a>
+      <span v-if="index != linkArr.length - 1">/</span>
     </div>
     <!-- <div class="breadcrumb">
       <a href="">主页</a>
@@ -23,49 +23,55 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: "Header",
   mixins: [],
   components: {},
   props: {},
-  data () {
+  data() {
     return {
-      linkArr:['主页','营销','拼团管理']
-    }
+      linkArr: ["主页", "营销", "拼团管理"],
+    };
   },
   computed: {},
   watch: {},
-  created () {},
-  mounted () {},
-  methods: {}
-}
+  created() {},
+  mounted() {},
+  methods: {},
+};
 </script>
 
 <style scoped lang="scss">
-  .header{
-    position: relative;
-    color: #303133;
-    background-color: #fff;
-    height: 50px;
-    display: flex;
-    .change{
-      padding: 0 15px;
-    }
-    .breadcrumb{
-      line-height: 50px;
-      span{
-        padding: 0 10px;
-      }
-    }
-    .space{
-      flex-grow: 1;
-    }
-    .tool,.user{
-      padding: 0 10px;
-      line-height: 50px;
-    }
-    .user{
-      margin-right: 30px;
-    }
-
+.header {
+  color: #303133;
+  background-color: #fff;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  .change {
+    padding: 0 15px;
   }
+  .breadcrumb {
+    line-height: 50px;
+    a {
+      color: #303133;
+    }
+    .light {
+      color: #97a8be;
+    }
+    span {
+      padding: 0 10px;
+    }
+  }
+  .space {
+    flex-grow: 1;
+  }
+  .tool,
+  .user {
+    padding: 0 10px;
+    line-height: 50px;
+  }
+  .user {
+    margin-right: 30px;
+  }
+}
 </style>

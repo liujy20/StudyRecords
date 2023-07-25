@@ -1,7 +1,7 @@
 <template>
   <div class="aside">
     <div class="logo">
-      <img src="" alt="" />
+      <img :src="logo" alt="" />
     </div>
     <div class="type">
       <div class="tit">运营</div>
@@ -21,17 +21,28 @@
 </template>
 
 <script>
-export default {};
+import logo from '../assets/images/woniu.png'
+export default {
+  data(){
+    return {
+      logo
+    }
+  }
+};
 </script>
 
 <style lang='scss'>
 .aside {
   height: 100%;
-  width: 10%;
+  width: 200px;
   background-color: #304156;
   color: #fff;
   .logo {
-    height: 50px;
+    height: 65px;
+    img{
+      margin-top: 10px;
+      width: 160px;
+    }
   }
   .type {
     text-align: left;
@@ -39,8 +50,8 @@ export default {};
     overflow: hidden;
     .tit {
       padding: 0 20px;
-      height: 50px;
-      line-height: 50px;
+      height: 65px;
+      line-height: 65px;
       &:hover {
         background-color: #263445;
       }
@@ -48,7 +59,9 @@ export default {};
     ul {
       height: 0;
       li {
-        line-height: 50px;
+        line-height: 65px;
+        padding: 0 30px;
+        height: 65px;
         &:hover {
           background-color: #263445;
         }
@@ -58,10 +71,10 @@ export default {};
       ul {
         height: inherit;
       }
-      li {
-        padding: 0 30px;
-        height: 50px;
-      }
+      // li {
+      //   padding: 0 30px;
+      //   height: 50px;
+      // }
     }
   }
 }

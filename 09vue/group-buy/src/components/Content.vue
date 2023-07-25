@@ -7,14 +7,14 @@
       </div>
       <TableVue></TableVue>
     </div>
-  <FooterVue></FooterVue>
+    <FooterVue></FooterVue>
   </div>
 </template>
 
 <script>
 import SearchVue from "./Search.vue";
 import TableVue from "./Table.vue";
-import FooterVue from './Footer.vue';
+import FooterVue from "./Footer.vue";
 
 export default {
   name: "Content",
@@ -22,7 +22,7 @@ export default {
   components: {
     TableVue,
     SearchVue,
-    FooterVue
+    FooterVue,
   },
   props: {},
   data() {
@@ -45,7 +45,7 @@ export default {
     margin: 20px;
     background-color: #fff;
     text-align: left;
-  position: relative;
+    position: relative;
 
     .tit {
       padding-bottom: 20px;

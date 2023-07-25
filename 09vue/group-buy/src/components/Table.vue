@@ -1,6 +1,6 @@
 <template>
   <div class="table">
-    <table>
+    <table v-if="spellGoods.every((item) => item.residue == 0)">
       <tr>
         <th>ID</th>
         <th>拼团图片</th>
@@ -11,7 +11,7 @@
         <th>参与人数</th>
         <th>成团数量</th>
         <th>限量</th>
-        <th>限量数量</th>
+        <th>剩余数量</th>
         <th>结束时间</th>
         <th class="f1">拼团状态</th>
         <th class="f2">操作</th>
@@ -25,18 +25,25 @@
         <td class="name">{{ item.name }}</td>
         <td>{{ item.price }}</td>
         <td>{{ item.spellPrice }}</td>
-        <td>3</td>
-        <td>20</td>
-        <td>7</td>
-        <td>20</td>
-        <td>99999</td>
-        <td>2023-07-24</td>
-        <td class="f1">已结束</td>
+        <td>{{ item.spellPeople }}</td>
+        <td>{{ item.joinPeople }}</td>
+        <td>{{ item.spellNumber }}</td>
+        <td>{{ item.limit }}</td>
+        <td>{{ item.residue }}</td>
+        <td>{{ item.endTime }}</td>
+        <td></td>
+        <td></td>
+        <td class="f1">
+          <div class="bg" :class="item.status ? 'end' : 'online'">
+            {{ item.status ? "已结束" : "未结束" }}
+          </div>
+        </td>
         <td class="f2">
-          <button>查看</button>
+          <button>删除</button>
         </td>
       </tr>
     </table>
+    <div v-else>暂无数据</div>
   </div>
 </template>
 
@@ -107,6 +114,12 @@ export default {
       // top: 30px;
       background-color: #fff;
       box-shadow: -4px 0 15px -4px rgba(0, 0, 0, 0.12);
+      .end {
+        margin: auto;
+        width: 60%;
+        background-color: lightblue;
+        color: #fff;
+      }
     }
     .f2 {
       position: absolute;

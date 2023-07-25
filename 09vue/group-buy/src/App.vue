@@ -1,24 +1,26 @@
 <template>
   <div id="app">
-    <AsideVue></AsideVue>
+    <aside-vue></aside-vue>
     <div class="main">
-      <HeaderVue></HeaderVue>
-      <ContentVue></ContentVue>
-      <FooterVue></FooterVue>
+      <header-vue></header-vue>
+      <content-vue></content-vue>
     </div>
+    <!-- <good-info-vue></good-info-vue> -->
   </div>
 </template>
 
 <script>
 import AsideVue from "./components/Aside.vue";
-import ContentVue from './components/Content.vue';
-import HeaderVue from './components/Header.vue';
+import ContentVue from "./components/Content.vue";
+import GoodInfoVue from "./components/GoodInfo.vue";
+import HeaderVue from "./components/Header.vue";
 export default {
   name: "App",
   components: {
     AsideVue,
     ContentVue,
-    HeaderVue
+    HeaderVue,
+    GoodInfoVue,
   },
 };
 </script>
@@ -45,11 +47,11 @@ body {
   margin: 0;
   padding: 0;
 }
-a{
+a {
   text-decoration: none;
 }
 .main {
-  width: 90%;
+  width: calc(100% - 200px);
   height: 100%;
   overflow: auto;
 }

@@ -9,7 +9,7 @@ export let spellGoods = [
     joinPeople: 6, //参与人数
     spellNumber: 2, //成团数量
     limit: 25, //限制数量
-    residue: 20, //剩余数量
+    residue: 0, //剩余数量
     status: true,
     endTime: "2022-12-23 00:00:00",
     payWay: [],
@@ -25,7 +25,7 @@ export let spellGoods = [
     joinPeople: 6, //参与人数
     spellNumber: 2, //成团数量
     limit: 25, //限制数量
-    residue: 20, //剩余数量
+    residue: 0, //剩余数量
     status: true,
     endTime: "2022-12-23 00:00:00",
     payWay: [],
@@ -41,7 +41,7 @@ export let spellGoods = [
     joinPeople: 6, //参与人数
     spellNumber: 2, //成团数量
     limit: 25, //限制数量
-    residue: 20, //剩余数量
+    residue: 0, //剩余数量
     status: false,
     endTime: "2022-12-23 00:00:00",
     payWay: [],
@@ -57,7 +57,7 @@ export let spellGoods = [
     joinPeople: 6, //参与人数
     spellNumber: 2, //成团数量
     limit: 10, //限制数量
-    residue: 4, //剩余数量
+    residue: 0, //剩余数量
     status: false,
     endTime: "2022-12-23 00:00:00",
     payWay: [],
@@ -73,7 +73,7 @@ export let spellGoods = [
     joinPeople: 6, //参与人数
     spellNumber: 2, //成团数量
     limit: 25, //限制数量
-    residue: 20, //剩余数量
+    residue: 0, //剩余数量
     status: false,
     endTime: "2022-12-23 00:00:00",
     payWay: [],
@@ -89,7 +89,7 @@ export let spellGoods = [
     joinPeople: 6, //参与人数
     spellNumber: 2, //成团数量
     limit: 25, //限制数量
-    residue: 20, //剩余数量
+    residue: 0, //剩余数量
     status: false,
     endTime: "2022-12-23 00:00:00",
     payWay: [],
@@ -105,7 +105,7 @@ export let spellGoods = [
     joinPeople: 6, //参与人数
     spellNumber: 2, //成团数量
     limit: 25, //限制数量
-    residue: 20, //剩余数量
+    residue: 0, //剩余数量
     status: false,
     endTime: "2022-12-23 00:00:00",
     payWay: [],
@@ -121,7 +121,7 @@ export let spellGoods = [
     joinPeople: 6, //参与人数
     spellNumber: 2, //成团数量
     limit: 25, //限制数量
-    residue: 20, //剩余数量
+    residue: 0, //剩余数量
     status: false,
     endTime: "2022-12-23 00:00:00",
     payWay: [],
