@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <AsideVue></AsideVue>
+    <!-- <AsideVue></AsideVue>
     <div class="main">
       <HeaderVue></HeaderVue>
       <ContentVue></ContentVue>
       <FooterVue></FooterVue>
-    </div>
+    </div> -->
+  <study-vue></study-vue>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import AsideVue from "./components/Aside.vue";
 import ContentVue from "./components/Content.vue";
 import FooterVue from "./components/Footer.vue";
 import HeaderVue from './components/Header.vue';
+import StudyVue from './components/Study.vue';
 
 export default {
   name: "App",
@@ -22,6 +24,7 @@ export default {
     AsideVue,
     ContentVue,
     FooterVue,
+    StudyVue
   },
 };
 </script>
