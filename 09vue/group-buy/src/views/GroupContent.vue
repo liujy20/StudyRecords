@@ -27,11 +27,11 @@
 </template>
 
 <script>
-import FooterVue from "./Footer.vue";
-import TimeVue from './Time.vue';
+import FooterVue from "../components/Footer.vue";
+import TimeVue from '../components/Time.vue';
 
 import img from '../assets/用户分析.png'
-import TeamTableVue from './TeamTable.vue';
+import TeamTableVue from '../components/TeamTable.vue';
 
 export default {
   name: "Content",
@@ -99,7 +99,6 @@ export default {
     background-color: #fff;
     text-align: left;
     position: relative;
-
     .tit {
       padding-bottom: 20px;
       border-bottom: 1px solid #e6ebf5;

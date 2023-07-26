@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import SearchVue from "./Search.vue";
-import TableVue from "./Table.vue";
-import FooterVue from "./Footer.vue";
+import SearchVue from "../components/Search.vue";
+import TableVue from "../components/Table.vue";
+import FooterVue from "../components/Footer.vue";
 
 export default {
   name: "Content",
