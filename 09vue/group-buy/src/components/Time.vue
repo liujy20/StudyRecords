@@ -3,13 +3,50 @@
     <div class="choiceTime item">
       <div class="name">时间选择：</div>
       <div class="choice">
-        <button class="start">今天</button>
-        <button>今天</button>
-        <button>今天</button>
-        <button>今天</button>
-        <button>今天</button>
-        <button>今天</button>
-        <button class="end">今天</button>
+        <button
+          class="start"
+          :class="currentBtn == 1 ? 'active' : ''"
+          @click="changeCurrent(1)"
+        >
+          今天
+        </button>
+        <button
+          :class="currentBtn == 2 ? 'active' : ''"
+          @click="changeCurrent(2)"
+        >
+          今天
+        </button>
+        <button
+          :class="currentBtn == 3 ? 'active' : ''"
+          @click="changeCurrent(3)"
+        >
+          今天
+        </button>
+        <button
+          :class="currentBtn == 4 ? 'active' : ''"
+          @click="changeCurrent(4)"
+        >
+          今天
+        </button>
+        <button
+          :class="currentBtn == 5 ? 'active' : ''"
+          @click="changeCurrent(5)"
+        >
+          今天
+        </button>
+        <button
+          :class="currentBtn == 6 ? 'active' : ''"
+          @click="changeCurrent(6)"
+        >
+          今天
+        </button>
+        <button
+          class="end"
+          :class="currentBtn == 7 ? 'active' : ''"
+          @click="changeCurrent(7)"
+        >
+          今天
+        </button>
       </div>
       <input type="date" />
     </div>
@@ -31,13 +68,19 @@ export default {
   components: {},
   props: {},
   data() {
-    return {};
+    return {
+      currentBtn: 1,
+    };
   },
   computed: {},
   watch: {},
   created() {},
   mounted() {},
-  methods: {},
+  methods: {
+    changeCurrent: function (num) {
+      this.currentBtn = num;
+    },
+  },
 };
 </script>
 
@@ -71,20 +114,22 @@ export default {
       }
       .start {
         border-radius: 3px 0 0 3px;
-        background-color: #1890ff;
-        color: #fff;
       }
       .end {
         border-radius: 0 3px 3px 0;
       }
+      .active {
+        background-color: #1890ff;
+        color: #fff;
+      }
     }
-    input{
+    input {
       width: 250px;
       height: 32px;
     }
   }
   .status {
-    select{
+    select {
       width: 300px;
       height: 30px;
     }

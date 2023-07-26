@@ -4,14 +4,16 @@
     <div class="main">
       <header-vue></header-vue>
       <content-vue></content-vue>
+      <!-- <all-content-vue></all-content-vue> -->
     </div>
     <!-- <good-info-vue></good-info-vue> -->
   </div>
 </template>
 
 <script>
+import AllContentVue from './views/AllContent.vue';
 import AsideVue from "./components/Aside.vue";
-import ContentVue from "./components/Content.vue";
+import ContentVue from "./views/Content.vue";
 import GoodInfoVue from "./components/GoodInfo.vue";
 import HeaderVue from "./components/Header.vue";
 export default {
@@ -21,6 +23,7 @@ export default {
     ContentVue,
     HeaderVue,
     GoodInfoVue,
+    AllContentVue
   },
   data(){
     return{

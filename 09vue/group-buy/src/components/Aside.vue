@@ -4,14 +4,22 @@
       <img :src="logo" alt="" />
     </div>
     <div class="type">
-      <div class="tit">运营</div>
+      <div class="tit">
+        <img :src="cate" alt="" />
+        <span>运营</span>
+        <img :src="arrow" alt="" />
+      </div>
       <ul>
         <li>商品统计</li>
         <li>用户统计</li>
       </ul>
     </div>
     <div class="type">
-      <div class="tit">商品</div>
+      <div class="tit">
+        <img :src="line" alt="" />
+        <span>商品</span>
+        <img :src="arrow" alt="" />
+      </div>
       <ul>
         <li>秒杀管理</li>
         <li>砍价管理</li>
@@ -21,13 +29,19 @@
 </template>
 
 <script>
-import logo from '../assets/images/woniu.png'
+import logo from "../assets/images/woniu.png";
+import cate from "../assets/images/cate.png";
+import line from "../assets/images/line.png";
+import arrow from "../assets/images/arrow.png";
 export default {
-  data(){
+  data() {
     return {
-      logo
-    }
-  }
+      logo,
+      cate,
+      line,
+      arrow,
+    };
+  },
 };
 </script>
 
@@ -39,7 +53,7 @@ export default {
   color: #fff;
   .logo {
     height: 65px;
-    img{
+    img {
       margin-top: 10px;
       width: 160px;
     }
@@ -49,9 +63,25 @@ export default {
     font-size: 14px;
     overflow: hidden;
     .tit {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 0 20px;
       height: 65px;
       line-height: 65px;
+      span {
+        flex-grow: 1;
+      }
+      img {
+        margin-right: 10px;
+        width: 20px;
+        height: 20px;
+        &:last-child {
+          transition: all 0.3s;
+          width: 15px;
+          height: 15px;
+        }
+      }
       &:hover {
         background-color: #263445;
       }
@@ -68,13 +98,12 @@ export default {
       }
     }
     &:hover {
-      ul {
-        height: inherit;
+      img:last-child {
+        transform: rotate(180deg);
       }
-      // li {
-      //   padding: 0 30px;
-      //   height: 50px;
-      // }
+      ul {
+        height: auto;
+      }
     }
   }
 }

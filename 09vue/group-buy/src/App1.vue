@@ -3,7 +3,9 @@
     <aside-vue></aside-vue>
     <div class="main">
       <header-vue></header-vue>
-      <content-vue></content-vue>
+      <!-- <content-vue></content-vue> -->
+      <all-group-content-vue></all-group-content-vue>
+      <!-- <all-content-vue></all-content-vue> -->
     </div>
     <!-- <good-info-vue></good-info-vue> -->
   </div>
@@ -11,9 +13,12 @@
 
 <script>
 import AsideVue from "./components/Aside.vue";
-import ContentVue from "./components/GroupContent.vue";
+import ContentVue from "./views/GroupContent.vue";
 import GoodInfoVue from "./components/GoodInfo.vue";
 import HeaderVue from "./components/Header.vue";
+import AllGroupContentVue from './views/AllGroupContent.vue';
+import AllContentVue from './views/AllContent.vue';
+
 export default {
   name: "App",
   components: {
@@ -21,6 +26,8 @@ export default {
     ContentVue,
     HeaderVue,
     GoodInfoVue,
+    AllGroupContentVue,
+    AllContentVue
   },
   data(){
     return{
