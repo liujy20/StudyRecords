@@ -24,65 +24,35 @@
             <div class="choice">
               <button
                 class="start"
-                :class="currentBtn == 1 ? 'active' : ''"
-                @click="changeCurrent(1)"
+                :class="currentTime == index ? 'active' : ''"
+                @click="changeCurrentTime(index)"
+                v-for="(item, index) in TimeArr"
+                :key="item"
               >
-                今天
-              </button>
-              <button
-                :class="currentBtn == 2 ? 'active' : ''"
-                @click="changeCurrent(2)"
-              >
-                今天
-              </button>
-              <button
-                :class="currentBtn == 3 ? 'active' : ''"
-                @click="changeCurrent(3)"
-              >
-                今天
-              </button>
-              <button
-                :class="currentBtn == 4 ? 'active' : ''"
-                @click="changeCurrent(4)"
-              >
-                今天
-              </button>
-              <button
-                :class="currentBtn == 5 ? 'active' : ''"
-                @click="changeCurrent(5)"
-              >
-                今天
-              </button>
-              <button
-                :class="currentBtn == 6 ? 'active' : ''"
-                @click="changeCurrent(6)"
-              >
-                今天
-              </button>
-              <button
-                class="end"
-                :class="currentBtn == 7 ? 'active' : ''"
-                @click="changeCurrent(7)"
-              >
-                今天
+                {{ item }}
               </button>
             </div>
             <input type="date" />
           </div>
           <div class="status item">
             <div class="name">拼团状态：</div>
-            <select name="" id="" value='0' @change="switchStatus">
+            <select name="" id="" v-model="currentStatus">
               <option value="0">全部</option>
               <option value="1">进行中</option>
               <option value="2">已结束</option>
             </select>
           </div>
         </div>
+        <button class="delMore" @click="delMore">删除选中</button>
       </div>
+
       <div class="table">
-        <table v-if="products.length > 0">
+        <table v-if="currentList.length > 0">
           <tr>
-            <th class="box"></th>
+            <th class="box">
+              <div class="tip">全选</div>
+              <input type="checkbox" v-model="isChooseAll" />
+            </th>
             <th>ID</th>
             <th>拼团图片</th>
             <th class="name">开团团长</th>
@@ -95,7 +65,9 @@
             <th class="f2">操作</th>
           </tr>
           <tr v-for="item in currentList" :key="item.id">
-            <td class="box"><input type="checkbox" /></td>
+            <td class="box">
+              <input type="checkbox" v-model="item.isChoose" />
+            </td>
             <td>{{ item.id }}</td>
             <td>
               <img width="30" :src="item.img" alt="" />
@@ -145,10 +117,16 @@
         <div class="null"></div>
         <div class="limit">
           <div class="total">
-            共<span>{{ products.length }}</span
+            共<span>{{ currentList.length }}</span
             >条
           </div>
-          <select name="" id="" class="sel" value="1" @change="switchSize">
+          <select
+            name=""
+            id=""
+            class="sel"
+            v-model="pageSize"
+            @change="switchSize"
+          >
             <option value="1">1条/页</option>
             <option value="2">2条/页</option>
             <option value="5">5条/页</option>
@@ -183,16 +161,21 @@ export default {
   props: {},
   data() {
     return {
+      isChooseAll: false,
       img,
       products,
       currentPage: 0,
       isShow: false,
-      currentBtn: 1,
-      pageSize: 1,
-      statusList:products
+      TimeArr: ["全部", "今天", "昨天", "最近7天", "最近30天", "本月", "本年"],
+      currentTime: 0,
+      startTime: "",
+      endTime: "",
+      pageSize: 5,
+      currentStatus: 0,
     };
   },
   computed: {
+    // 团队数量
     groupCount() {
       let count = 0;
       this.products.forEach((item) => {
@@ -200,23 +183,77 @@ export default {
       });
       return count;
     },
+    // 人员数量
     peopleCount() {
       return this.products.reduce((prev, next) => {
         return prev + next.joinPeople;
       }, 0);
     },
+    // 页数
     pageCount() {
       return Math.ceil(this.statusList.length / this.pageSize);
     },
-    currentList(){
-      let start=this.currentPage*this.pageSize
-      return this.statusList.slice(start,start+this.pageSize)
-    }
+    // 当前团队列表
+    currentList() {
+      let start = this.currentPage * this.pageSize;
+      return this.statusList.slice(start, start + this.pageSize);
+    },
+    // 状态筛选列表
+    statusList() {
+      let tempArr = this.products;
+      if (this.currentTime != 0) {
+        tempArr = tempArr.filter((item) => {
+          let tempObj = new Date(item.beginTime);
+          let time = tempObj.getTime();
+          return time >= this.startTime && time < this.endTime;
+        });
+      }
+      if (this.currentStatus == 0) {
+        return tempArr;
+      } else if (this.currentStatus == 1) {
+        return tempArr.filter((item) => {
+          return !item.status;
+        });
+      } else {
+        return tempArr.filter((item) => {
+          return item.status;
+        });
+      }
+    },
   },
-  watch: {},
+  watch: {
+    // 全选
+    isChooseAll(value) {
+      if (value) {
+        this.products.forEach((item) => {
+          item.isChoose = value;
+        });
+      } else {
+        let f = this.products.every((item) => {
+          return item.isChoose;
+        });
+        if (f) {
+          this.products.forEach((item) => {
+            item.isChoose = value;
+          });
+        }
+      }
+    },
+    products: {
+      handler: function (value) {
+        console.log(value);
+        let f = this.products.every((item) => {
+          return item.isChoose;
+        });
+        this.isChooseAll = f;
+      },
+      deep: true,
+    },
+  },
   created() {},
   mounted() {},
   methods: {
+    // 删除数据
     delModel(data) {
       this.products.forEach((item, index) => {
         if (item.id == data) {
@@ -224,33 +261,81 @@ export default {
         }
       });
     },
-    changeCurrent(num) {
-      this.currentBtn = num;
+    // 确定时间
+    changeCurrentTime(num) {
+      this.currentTime = num;
+      let today = new Date(); //当前时间
+      today.setHours(0);
+      today.setMinutes(0);
+      today.setSeconds(0);
+      today.setMilliseconds(0);
+      today.setDate(today.getDate() + 1);
+      switch (num) {
+        case 0:
+          // 全部
+          this.startTime = "";
+          this.endTime = "";
+          break;
+        case 1:
+          // 今天
+          this.endTime = today.getTime();
+          today.setDate(today.getDate() - 1);
+          this.startTime = today.getTime();
+          break;
+        case 2:
+          // 昨天
+          today.setDate(today.getDate() - 1);
+          this.endTime = today.getTime();
+          today.setDate(today.getDate() - 1);
+          this.startTime = today.getTime();
+          break;
+        case 3:
+          // 最近7天
+          this.endTime = today.getTime();
+          today.setDate(today.getDate() - 7);
+          this.startTime = today.getTime();
+          break;
+        case 4:
+          // 最近30天
+          this.endTime = today.getTime();
+          today.setDate(today.getDate() - 30);
+          this.startTime = today.getTime();
+          break;
+        case 5:
+          // 本月
+          this.endTime = today.getTime();
+          today.setDate(1);
+          this.startTime = today.getTime();
+          break;
+        case 6:
+          // 本年
+          this.endTime = today.getTime();
+          today.setMonth(0);
+          today.setDate(1);
+          this.startTime = today.getTime();
+          // console.log(today.toLocaleString());
+          break;
+      }
     },
+    // 页面点击
     changePage(num) {
       this.currentPage = num;
     },
+    // 页面尺寸修改
     switchSize(event) {
       this.pageSize = +event.target.value;
     },
-    jumpPage(event){
-      this.currentPage=event.target.value-1;
+    // 页面跳转
+    jumpPage(event) {
+      this.currentPage = event.target.value - 1;
     },
-    switchStatus(event){
-      let f=event.target.value
-      console.log(f);
-      if(f==0){
-        this.statusList=this.products
-      }else if(f==1){
-        this.statusList=this.products.filter(item=>{
-          return !item.status
-        })
-      }else{
-        this.statusList=this.products.filter(item=>{
-          return item.status
-        })
-      }
-    }
+    // 删除多条数据
+    delMore() {
+      console.log(this.products);
+      this.products = this.products.filter((item) => {
+        return !item.isChoose;
+      });
+    },
   },
 };
 </script>
@@ -353,6 +438,15 @@ export default {
           }
         }
       }
+      .delMore {
+        margin-left: 30px;
+        width: 80px;
+        height: 40px;
+        color: #fff;
+        background-color: lightcoral;
+        border: none;
+        border-radius: 8px;
+      }
     }
     .table {
       height: 100%;
@@ -388,8 +482,8 @@ export default {
           }
           .box {
             min-width: 50px;
-            input:checked {
-              background-color: #1890ff;
+            input {
+              accent-color: #304156;
             }
           }
         }
