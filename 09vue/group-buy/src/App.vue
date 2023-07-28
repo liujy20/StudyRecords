@@ -1,69 +1,36 @@
 <template>
   <div id="app">
-    <aside-vue></aside-vue>
-    <div class="main">
-      <header-vue></header-vue>
-      <content-vue></content-vue>
-      <!-- <all-content-vue></all-content-vue> -->
+    <img src="./assets/logo.png">
+    <div>
+      <p>
+        If Element is successfully added to this project, you'll see an
+        <code v-text="'<el-button>'"></code>
+        below
+      </p>
+      <el-button>el-button</el-button>
     </div>
-    <!-- <good-info-vue></good-info-vue> -->
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import AllContentVue from './views/AllContent.vue';
-import AsideVue from "./components/Aside.vue";
-import ContentVue from "./views/Content.vue";
-import GoodInfoVue from "./components/GoodInfo.vue";
-import HeaderVue from "./components/Header.vue";
+import HelloWorld from './components/HelloWorld.vue'
+
 export default {
-  name: "App",
+  name: 'app',
   components: {
-    AsideVue,
-    ContentVue,
-    HeaderVue,
-    GoodInfoVue,
-    AllContentVue
-  },
-  data(){
-    return{
-      count:0
-    }
-  },
-  methods:{
-    
+    HelloWorld
   }
-};
+}
 </script>
 
-<style lang="scss">
+<style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  display: flex;
-  height: 100%;
-}
-html {
-  height: 100%;
-}
-body {
-  margin: 0;
-  height: 100%;
-}
-* {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-a {
-  text-decoration: none;
-}
-.main {
-  width: calc(100% - 200px);
-  height: 100%;
-  // overflow: auto;
+  margin-top: 60px;
 }
 </style>

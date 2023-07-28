@@ -32,7 +32,11 @@
                 {{ item }}
               </button>
             </div>
-            <input type="date" />
+            <input
+              type="date"
+              :disabled="dateIsDisabled"
+              v-model="searchDate"
+            />
           </div>
           <div class="status item">
             <div class="name">拼团状态：</div>
@@ -51,7 +55,11 @@
           <tr>
             <th class="box">
               <div class="tip">全选</div>
-              <input type="checkbox" v-model="isChooseAll" />
+              <input
+                type="checkbox"
+                v-model="isChooseAll"
+                @change="changeChooseAll"
+              />
             </th>
             <th>ID</th>
             <th>拼团图片</th>
@@ -166,10 +174,21 @@ export default {
       products,
       currentPage: 0,
       isShow: false,
-      TimeArr: ["全部", "今天", "昨天", "最近7天", "最近30天", "本月", "本年"],
+      TimeArr: [
+        "全部",
+        "今天",
+        "昨天",
+        "最近7天",
+        "最近30天",
+        "本月",
+        "本年",
+        "自定义时间",
+      ],
       currentTime: 0,
       startTime: "",
       endTime: "",
+      dateIsDisabled: true,
+      searchDate: "",
       pageSize: 5,
       currentStatus: 0,
     };
@@ -223,32 +242,49 @@ export default {
   },
   watch: {
     // 全选
-    isChooseAll(value) {
-      if (value) {
-        this.products.forEach((item) => {
-          item.isChoose = value;
-        });
-      } else {
-        let f = this.products.every((item) => {
-          return item.isChoose;
-        });
-        if (f) {
-          this.products.forEach((item) => {
-            item.isChoose = value;
-          });
-        }
-      }
-    },
+    // isChooseAll(value) {
+    //   if (value) {
+    //     // 勾选全选
+    //     this.products.forEach((item) => {
+    //       item.isChoose = value;
+    //     });
+    //   } else {
+    //     // 取消全选 判断是否所有多选框勾选
+    //     let f = this.products.every((item) => {
+    //       return item.isChoose;
+    //     });
+    //     if (f) {
+    //       // 多选框全部勾选时,取消全部
+    //       this.products.forEach((item) => {
+    //         item.isChoose = value;
+    //       });
+    //     }
+    //   }
+    // },
+    // 监听更新
     products: {
       handler: function (value) {
-        console.log(value);
-        let f = this.products.every((item) => {
+        // console.log(value);
+        this.isChooseAll = this.products.every((item) => {
           return item.isChoose;
         });
-        this.isChooseAll = f;
       },
       deep: true,
     },
+    // 选择时间范围
+    searchDate(value){
+      console.log(value);
+      let timeObj = new Date(value);
+      timeObj.setHours(0);
+      this.startTime = timeObj.getTime();
+      let today = new Date(); //当前时间
+      today.setHours(0);
+      today.setMinutes(0);
+      today.setSeconds(0);
+      today.setMilliseconds(0);
+      today.setDate(today.getDate() + 1);
+      this.endTime = today.getTime();
+    }
   },
   created() {},
   mounted() {},
@@ -263,6 +299,7 @@ export default {
     },
     // 确定时间
     changeCurrentTime(num) {
+      this.dateIsDisabled = true;
       this.currentTime = num;
       let today = new Date(); //当前时间
       today.setHours(0);
@@ -315,6 +352,9 @@ export default {
           this.startTime = today.getTime();
           // console.log(today.toLocaleString());
           break;
+        case 7:
+          this.dateIsDisabled = false;
+          break;
       }
     },
     // 页面点击
@@ -334,6 +374,13 @@ export default {
       console.log(this.products);
       this.products = this.products.filter((item) => {
         return !item.isChoose;
+      });
+    },
+    // 全选
+    changeChooseAll() {
+      console.log(this.isChooseAll);
+      this.products.forEach((item) => {
+        item.isChoose = this.isChooseAll;
       });
     },
   },

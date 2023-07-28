@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <!-- <study></study> -->
-    <study-v-model></study-v-model>
+    <!-- <study-v-model></study-v-model> -->
+    <my-btn></my-btn>
   </div>
 </template>
 
 <script>
+import MyBtn from './study/MyBtn.vue';
 import Study from "./study/计算属性练习.vue";
 import StudyVModel from "./study/计算属性练习v-model.vue";
 export default {
@@ -13,6 +15,7 @@ export default {
   components: {
     Study,
     StudyVModel,
+    MyBtn
   },
 };
 </script>
