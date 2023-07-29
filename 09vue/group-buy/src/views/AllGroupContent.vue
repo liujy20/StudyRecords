@@ -398,7 +398,6 @@ export default {
     margin: 20px;
     .card {
       display: flex;
-
       width: 240px;
       height: 110px;
       padding: 25px;
