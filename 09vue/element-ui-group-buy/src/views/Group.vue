@@ -54,42 +54,81 @@
         </div>
       </div>
       <div class="body">
-        <el-table :data="products" style="width: 100%">
+        <el-table :data="products" style="width: 100%; font-size: 12px">
           <el-table-column prop="id" label="ID" width="50"> </el-table-column>
           <el-table-column prop="img" label="图片" width="60">
             <template slot-scope="scope">
               <img style="width: 30px; height: 30px" :src="scope.row.img" />
             </template>
           </el-table-column>
-          <el-table-column prop="name" label="开团团长" width="100">
+          <el-table-column prop="name" label="开团团长" width="120">
           </el-table-column>
-          <el-table-column prop="beginTime" label="开始时间" width="130">
+          <el-table-column prop="beginTime" label="开始时间" width="140">
           </el-table-column>
           <el-table-column prop="product.name" label="拼团商品" width="300">
           </el-table-column>
-          <el-table-column prop="spellPeople" label="拼团人数" width="100">
+          <el-table-column prop="spellPeople" label="拼团人数" width="120">
           </el-table-column>
-          <el-table-column prop="joinPeople" label="参与人数" width="100">
+          <el-table-column prop="joinPeople" label="参与人数" width="120">
           </el-table-column>
-          <el-table-column prop="endTime" label="结束时间" width="130">
+          <el-table-column prop="endTime" label="结束时间" width="140">
           </el-table-column>
           <el-table-column
             fixed="right"
             prop="zip"
-            label="status"
+            label="状态"
             width="120"
+            align="center"
           >
+            <template slot-scope="scope">
+              <el-tag
+                :type="scope.row.status ? 'danger' : 'info'"
+                disable-transitions
+                >{{ scope.row.status ? "已结束" : "未结束" }}</el-tag
+              >
+            </template>
           </el-table-column>
           <el-table-column
             fixed="right"
             prop="isChoose"
             label="操作"
-            width="120"
+            width="100"
+            align="center"
           >
-            <el-button type="text" size="small"> 移除 </el-button>
+            <template slot-scope="scope">
+              <el-button
+                size="mini"
+                type="text"
+                @click="handleEdit(scope.$index, scope.row)"
+                >编辑</el-button
+              >
+              <el-button
+                size="mini"
+                type="text"
+                @click="handleDelete(scope.$index, scope.row)"
+                >删除</el-button
+              >
+            </template>
           </el-table-column>
         </el-table>
       </div>
+      <div class="page">
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="1"
+          :page-sizes="[1, 2, 5, 10]"
+          :page-size="2"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="10"
+        >
+        </el-pagination>
+      </div>
+    </div>
+    <div class="footer">
+      <span>官网</span>
+      <span>社区</span>
+      <span>文档</span>
     </div>
   </el-main>
 </template>
@@ -135,6 +174,22 @@ export default {
       currentStatus: "",
     };
   },
+  methods: {
+    // 表格设置
+    handleEdit(index, row) {
+      console.log(index, row);
+    },
+    handleDelete(index, row) {
+      console.log(index, row);
+    },
+    // 页码
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+    },
+  },
 };
 </script>
 
@@ -179,7 +234,9 @@ export default {
     }
   }
   .content {
+    margin: 0 0 20px;
     background-color: #fff;
+    overflow: hidden;
     .header {
       padding: 20px;
       border-bottom: 1px solid #ccc;
@@ -201,6 +258,23 @@ export default {
     }
     .body {
       padding: 20px;
+      .el-table-column {
+        font-size: 12px !important;
+      }
+    }
+    .page {
+      text-align: right;
+      margin: 0 10px 20px 0;
+    }
+  }
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 40px;
+    font-size: 14px;
+    span {
+      padding: 0 10px;
     }
   }
 }

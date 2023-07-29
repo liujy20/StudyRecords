@@ -9,7 +9,7 @@
       </el-breadcrumb>
       <i class="el-icon-search"></i>
       <i class="el-icon-full-screen"></i>
-      <i class="el-icon-chat-square"></i>
+      <i class="el-icon-bell"></i>
       <el-dropdown>
         <span class="el-dropdown-link">
           下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
@@ -32,16 +32,16 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
-       tags: [
+      tags: [
         { name: "标签一", type: "danger" },
         { name: "标签二", type: "success" },
         { name: "标签三", type: "info" },
         { name: "标签四", type: "warning" },
       ],
-    }
-  }
+    };
+  },
 };
 </script>
 
@@ -52,6 +52,7 @@ export default {
     display: flex;
     align-items: center;
     margin-left: 20px;
+    padding-right: 30px;
     height: 50px;
     background-color: #fff;
     i {
@@ -74,5 +75,4 @@ export default {
     }
   }
 }
-
 </style>

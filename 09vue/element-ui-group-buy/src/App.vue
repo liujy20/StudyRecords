@@ -3,11 +3,12 @@
     <el-container>
       <!-- 侧边栏 -->
       <aside-vue></aside-vue>
-      <el-container>
+      <el-container direction="vertical">
         <!-- 头部 -->
         <header-vue></header-vue>
-        <main-vue></main-vue>
-        <el-footer>Footer</el-footer>
+        <!-- <group-vue></group-vue> -->
+        <good-vue></good-vue>
+        <!-- <el-footer>Footer</el-footer> -->
       </el-container>
     </el-container>
   </div>
@@ -17,7 +18,8 @@
 
 import AsideVue from './components/Aside.vue';
 import HeaderVue from './components/Header.vue';
-import MainVue from './components/Main.vue';
+import GoodVue from './views/Good.vue';
+import GroupVue from './views/Group.vue';
 
 export default {
   name: "App",
@@ -25,7 +27,8 @@ export default {
   components: {
     AsideVue,
     HeaderVue,
-    MainVue,
+    GroupVue,
+    GoodVue,
   },
   props: {},
   data() {
