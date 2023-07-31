@@ -6,8 +6,9 @@
       <el-container direction="vertical">
         <!-- 头部 -->
         <header-vue></header-vue>
-        <!-- <group-vue></group-vue> -->
-        <good-vue></good-vue>
+        <group-vue></group-vue>
+        <!-- <good-vue></good-vue> -->
+        <!-- 尾部 -->
         <!-- <el-footer>Footer</el-footer> -->
       </el-container>
     </el-container>

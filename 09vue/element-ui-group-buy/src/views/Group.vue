@@ -5,14 +5,14 @@
         <img :src="img" alt="" />
         <div class="info">
           <div class="tit">参与人数(人)</div>
-          <div class="count">111</div>
+          <div class="count">{{ peopleCount }}</div>
         </div>
       </div>
       <div class="card">
         <img :src="img" alt="" />
         <div class="info">
           <div class="tit">成团人数(个)</div>
-          <div class="count">222</div>
+          <div class="count">{{ groupCount }}</div>
         </div>
       </div>
     </div>
@@ -32,10 +32,11 @@
           </div>
           <div>
             <el-date-picker
+              :disabled="dateIsDisabled"
               v-model="searchDate"
-              type="date"
-              placeholder="选择日期"
+              type="daterange"
               size="small"
+              unlink-panels
             >
             </el-date-picker>
           </div>
@@ -54,7 +55,7 @@
         </div>
       </div>
       <div class="body">
-        <el-table :data="products" style="width: 100%; font-size: 12px">
+        <el-table :data="currentList" style="width: 100%; font-size: 12px">
           <el-table-column prop="id" label="ID" width="50"> </el-table-column>
           <el-table-column prop="img" label="图片" width="60">
             <template slot-scope="scope">
@@ -116,11 +117,11 @@
         <el-pagination
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="1"
+          :current-page="currentPage"
           :page-sizes="[1, 2, 5, 10]"
-          :page-size="2"
+          :page-size="pageSize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="10"
+          :total="totalPage"
         >
         </el-pagination>
       </div>
@@ -154,8 +155,14 @@ export default {
       ],
       // 时间按钮
       currentTime: 0,
+      // 开始时间
+      startTime: "",
+      // 结束时间
+      endTime: "",
+      // 时间是否可选择
+      dateIsDisabled: true,
       // 日历日期
-      searchDate: "",
+      searchDate: [],
       // 状态
       statusArr: [
         {
@@ -171,7 +178,11 @@ export default {
           label: "已结束",
         },
       ],
-      currentStatus: "",
+      currentStatus: "0",
+      // 页码
+      currentPage: 1,
+      // 每页大小
+      pageSize: 5,
     };
   },
   methods: {
@@ -179,15 +190,155 @@ export default {
     handleEdit(index, row) {
       console.log(index, row);
     },
+    // 表格删除cd
     handleDelete(index, row) {
       console.log(index, row);
+      this.products=this.products.filter(item=>{
+        return item.id!=row.id
+      });
     },
-    // 页码
+    // 页面大小
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
+      this.pageSize = val;
     },
+    // 当前页面
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
+      this.currentPage = val;
+    },
+  },
+  computed: {
+    // 团队数量
+    groupCount() {
+      let count = 0;
+      this.products.forEach((item) => {
+        count += Math.ceil(item.joinPeople / item.spellPeople);
+      });
+      return count;
+    },
+    // 人员数量
+    peopleCount() {
+      return this.products.reduce((prev, next) => {
+        return prev + next.joinPeople;
+      }, 0);
+    },
+    // 时间筛选数组
+    timeList() {
+      if (this.currentTime != 0) {
+        return this.products.filter((item) => {
+          let tempObj = new Date(item.beginTime);
+          let time = tempObj.getTime();
+          return time >= this.startTime && time < this.endTime;
+        });
+      }
+      return this.products;
+    },
+    // 状态筛选数组
+    statusList() {
+      if (this.currentStatus == 0) {
+        return this.timeList;
+      } else if (this.currentStatus == 1) {
+        return this.timeList.filter((item) => {
+          return !item.status;
+        });
+      } else {
+        return this.timeList.filter((item) => {
+          return item.status;
+        });
+      }
+    },
+    // 当前团队列表
+    currentList() {
+      let start = (this.currentPage - 1) * this.pageSize;
+      return this.statusList.slice(start, start + this.pageSize);
+    },
+    // 数据条数
+    totalPage() {
+      return this.statusList.length;
+    },
+  },
+  watch: {
+    // 确定时间
+    currentTime(num) {
+      this.dateIsDisabled = true;
+      this.currentTime = num;
+      let today = new Date(); //当前时间
+      today.setHours(0);
+      today.setMinutes(0);
+      today.setSeconds(0);
+      today.setMilliseconds(0);
+      today.setDate(today.getDate() + 1);
+      switch (num) {
+        case 0:
+          // 全部
+          this.startTime = "";
+          this.endTime = "";
+          break;
+        case 1:
+          // 今天
+          this.endTime = today.getTime();
+          today.setDate(today.getDate() - 1);
+          this.startTime = today.getTime();
+          break;
+        case 2:
+          // 昨天
+          today.setDate(today.getDate() - 1);
+          this.endTime = today.getTime();
+          today.setDate(today.getDate() - 1);
+          this.startTime = today.getTime();
+          break;
+        case 3:
+          // 最近7天
+          this.endTime = today.getTime();
+          today.setDate(today.getDate() - 7);
+          this.startTime = today.getTime();
+          break;
+        case 4:
+          // 最近30天
+          this.endTime = today.getTime();
+          today.setDate(today.getDate() - 30);
+          this.startTime = today.getTime();
+          break;
+        case 5:
+          // 本月
+          this.endTime = today.getTime();
+          let endData = today.getDate();
+          if (endData == 1) {
+            today.setMonth(today.getMonth() - 1);
+          }
+          today.setDate(1);
+          console.log(today.toLocaleString());
+          this.startTime = today.getTime();
+          break;
+        case 6:
+          // 本年
+          this.endTime = today.getTime();
+          today.setMonth(0);
+          today.setDate(1);
+          this.startTime = today.getTime();
+          // console.log(today.toLocaleString());
+          break;
+        case 7:
+          this.startTime = "";
+          this.endTime = "";
+          this.dateIsDisabled = false;
+          break;
+      }
+    },
+    // 选择时间范围
+    searchDate(value) {
+      console.log(value);
+      if (!value) {
+        this.startTime = "";
+        this.endTime = "";
+        return;
+      }
+      let day1 = new Date(value[0]);
+      let day2 = new Date(value[1]);
+      this.startTime = day1.getTime();
+      day2.setDate(day2.getDate() + 1);
+      this.endTime = day2.getTime();
     },
   },
 };
