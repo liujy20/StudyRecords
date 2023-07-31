@@ -73,6 +73,7 @@ export default {
   height: 100vh;
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     height: 100%;
+    border: none;
     img {
       width: 160px;
     }
