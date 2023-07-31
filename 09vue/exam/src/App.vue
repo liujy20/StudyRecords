@@ -1,28 +1,66 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="App">
+    <el-container>
+      <!-- 侧边栏 -->
+      <aside-vue></aside-vue>
+      <el-container direction="vertical">
+        <!-- 头部 -->
+        <header-vue></header-vue>
+        <content-vue></content-vue>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import AsideVue from './components/Aside.vue';
+import HeaderVue from './components/Header.vue';
+import ContentVue from './views/Content.vue';
 
 export default {
-  name: 'App',
+  name: "App",
+  mixins: [],
   components: {
-    HelloWorld
-  }
-}
+    AsideVue,
+    HeaderVue,
+    ContentVue
+  },
+  props: {},
+  data() {
+    return {
+     
+    };
+  },
+  computed: {},
+  watch: {},
+  created() {},
+  mounted() {},
+  methods: {
+    
+  },
+};
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  margin: 0;
 }
+.el-footer {
+  // background-color: #b3c0d1;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+}
+
+
+
+
+
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+
 </style>
