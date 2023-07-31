@@ -192,6 +192,7 @@ export default {
     },
   },
   watch: {
+    // 监听删除
     users: {
       handler() {
         this.searchList = this.users.filter((item) => {
@@ -200,6 +201,7 @@ export default {
       },
       deep:true
     },
+    // 删除数据 页面判断
     currentList(){
       let endPage=Math.ceil(this.typeList.length/this.pageSize)
       // 如果currentPage大于真实页数,渲染List为空,需要将currentPage-1
