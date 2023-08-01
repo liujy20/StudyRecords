@@ -1,49 +1,36 @@
 <template>
   <div id="app">
-    <!-- <AsideVue></AsideVue>
-    <div class="main">
-      <HeaderVue></HeaderVue>
-      <ContentVue></ContentVue>
-      <FooterVue></FooterVue>
-    </div> -->
-  <study-vue></study-vue>
+    <img src="./assets/logo.png">
+    <div>
+      <p>
+        If Element is successfully added to this project, you'll see an
+        <code v-text="'<el-button>'"></code>
+        below
+      </p>
+      <el-button>el-button</el-button>
+    </div>
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import AsideVue from "./components/Aside.vue";
-import ContentVue from "./components/Content.vue";
-import FooterVue from "./components/Footer.vue";
-import HeaderVue from './components/Header.vue';
-import StudyVue from './components/Study.vue';
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: "App",
+  name: 'app',
   components: {
-    HeaderVue,
-    AsideVue,
-    ContentVue,
-    FooterVue,
-    StudyVue
-  },
-};
+    HelloWorld
+  }
+}
 </script>
 
-<style lang="scss">
+<style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  display: flex;
-  height: 100vh;
-  color: #fff;
-}
-body{
-  margin: 0;
-}
-.main{
-  width: 90%;
+  margin-top: 60px;
 }
 </style>
