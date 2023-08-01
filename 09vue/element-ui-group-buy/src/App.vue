@@ -10,7 +10,8 @@
         <!-- <good-vue></good-vue> -->
 
         <!-- <group-filter-vue></group-filter-vue> -->
-        <group-filters-vue></group-filters-vue>
+        <!-- <group-filters-vue></group-filters-vue> -->
+        <bialog></bialog>
         <!-- 尾部 -->
         <!-- <el-footer>Footer</el-footer> -->
       </el-container>
@@ -26,6 +27,8 @@ import GoodVue from './views/Good.vue';
 import GroupVue from './views/Group.vue';
 import GroupFilterVue from './views/GroupFilter.vue';
 import GroupFiltersVue from './views/GroupFilters.vue';
+import bialog from './views/模态框.vue'
+
 
 export default {
   name: "App",
@@ -37,6 +40,7 @@ export default {
     GoodVue,
     GroupFilterVue,
     GroupFiltersVue,
+    bialog,
   },
   props: {},
   data() {
