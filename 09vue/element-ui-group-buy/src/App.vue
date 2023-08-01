@@ -6,8 +6,11 @@
       <el-container direction="vertical">
         <!-- 头部 -->
         <header-vue></header-vue>
-        <group-vue></group-vue>
+        <!-- <group-vue></group-vue> -->
         <!-- <good-vue></good-vue> -->
+
+        <!-- <group-filter-vue></group-filter-vue> -->
+        <group-filters-vue></group-filters-vue>
         <!-- 尾部 -->
         <!-- <el-footer>Footer</el-footer> -->
       </el-container>
@@ -21,6 +24,8 @@ import AsideVue from './components/Aside.vue';
 import HeaderVue from './components/Header.vue';
 import GoodVue from './views/Good.vue';
 import GroupVue from './views/Group.vue';
+import GroupFilterVue from './views/GroupFilter.vue';
+import GroupFiltersVue from './views/GroupFilters.vue';
 
 export default {
   name: "App",
@@ -30,6 +35,8 @@ export default {
     HeaderVue,
     GroupVue,
     GoodVue,
+    GroupFilterVue,
+    GroupFiltersVue,
   },
   props: {},
   data() {

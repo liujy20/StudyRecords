@@ -37,7 +37,7 @@ export let spellGoods = [
     name: "小米家保温杯云米电热杯", //拼团商品名字
     price: 59, //原价
     spellPrice: 48, //拼团价格
-    spellPeople: 3, //拼团人数
+    spellPeople: 4, //拼团人数
     joinPeople: 6, //参与人数
     spellNumber: 2, //成团数量
     limit: 25, //限制数量
@@ -85,7 +85,7 @@ export let spellGoods = [
     name: "TOMFORD汤姆福特唇膏4色TF口红", //拼团商品名字
     price: 59, //原价
     spellPrice: 48, //拼团价格
-    spellPeople: 3, //拼团人数
+    spellPeople: 1, //拼团人数
     joinPeople: 6, //参与人数
     spellNumber: 2, //成团数量
     limit: 25, //限制数量
@@ -101,7 +101,7 @@ export let spellGoods = [
     name: "云麦体脂秤称重女智能精准成人脂肪测量仪", //拼团商品名字
     price: 59, //原价
     spellPrice: 48, //拼团价格
-    spellPeople: 3, //拼团人数
+    spellPeople: 2, //拼团人数
     joinPeople: 6, //参与人数
     spellNumber: 2, //成团数量
     limit: 25, //限制数量
@@ -117,7 +117,7 @@ export let spellGoods = [
     name: "本来设计挂钟原木时钟创意现代简约实木", //拼团商品名字
     price: 59, //原价
     spellPrice: 48, //拼团价格
-    spellPeople: 3, //拼团人数
+    spellPeople: 4, //拼团人数
     joinPeople: 6, //参与人数
     spellNumber: 2, //成团数量
     limit: 25, //限制数量
