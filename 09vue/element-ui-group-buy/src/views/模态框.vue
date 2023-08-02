@@ -135,6 +135,17 @@
     </el-pagination>
     <!-- 编辑对话框 -->
     <el-dialog title="编辑拼团" :visible.sync="showEditModal">
+      <el-upload
+        class="avatar-uploader"
+        action="http://124.70.54.24:3001/upload"
+        name="file"
+        :show-file-list="false"
+        :on-success="handleAvatarSuccess"
+        :before-upload="beforeAvatarUpload"
+      >
+        <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+      </el-upload>
       <el-form label-width="120px" :model="editGood">
         <el-form-item label="开团团长">
           <el-input v-model="editGood.name" autocomplete="off"></el-input>
@@ -175,6 +186,7 @@
 </template>
 
 <script>
+import getTimeString from "../util/time";
 export default {
   data() {
     return {
@@ -323,6 +335,8 @@ export default {
       editGood: {
         product: {},
       },
+      // 图片
+      imageUrl: "",
     };
   },
   watch: {
@@ -401,39 +415,57 @@ export default {
         }
       }
 
-      console.log("result", result);
+      // console.log("result", result);
       //返回筛选之后的数据
       return result;
     },
   },
   methods: {
+    // 删除数据
     delGood(row) {
       this.products = this.products.filter((g) => g.id != row.id);
+      this.$message({
+        message: "删除成功",
+        // type主要控制样式主题 success error  info
+        type: "success",
+      });
     },
+    // 打开修改数据
     editGoodInfo(row) {
       let s = new Date(row.beginTime);
       s = s.toISOString();
       let e = new Date(row.endTime);
       e = e.toISOString();
       row.time = [s, e];
-      console.log(row);
+      console.log("row", row);
       this.showEditModal = true;
       this.editGood = JSON.parse(JSON.stringify(row));
+      this.imageUrl = this.editGood.img;
     },
+    // 修改数据
     changeInfo() {
-      // this.editGood.beginTime = new Date(this.editGood.time[0]).toLocaleString();
-      // this.editGood.endTime = new Date(this.editGood.time[1]).toLocaleString();
+      this.editGood.beginTime = getTimeString(
+        "YYYY-MM-DD hh:mm:ss",
+        new Date(this.editGood.time[0])
+      );
+      this.editGood.endTime = getTimeString(
+        "YYYY-MM-DD hh:mm:ss",
+        new Date(this.editGood.time[1])
+      );
       // console.log( this.editGood.id);
       if (
         !this.products.find((item) => {
           return item.id == this.editGood.id;
         })
       ) {
-        this.editGood={
+        this.editGood = {
           id: this.editGood.id,
-          img: "https://woniuxy.com/static/woniuopen/img/image-gongzhonghao.png", //图片
+          img: this.editGood.img, //图片
           name: this.editGood.name, //开团团长
-          beginTime: new Date(this.editGood.time[0]).toLocaleString(), //
+          beginTime: getTimeString(
+            "YYYY-MM-DD hh:mm:ss",
+            new Date(this.editGood.time[0])
+          ), //
           product: {
             // 商品信息
             img: require("../assets/images/5.jpg"), //图片
@@ -443,13 +475,21 @@ export default {
           spellPeople: this.editGood.spellPeople, //拼团人数
           joinPeople: 2, //参与人数
           status: this.editGood.status, //状态
-          endTime: new Date(this.editGood.time[1]).toLocaleString(), //结束时间
+          endTime: getTimeString(
+            "YYYY-MM-DD hh:mm:ss",
+            new Date(this.editGood.time[1])
+          ), //结束时间
           isChoose: false, //表示是否被勾选
-          time:this.editGood.time
-        }
+          time: this.editGood.time,
+        };
         this.products.push(this.editGood);
         console.log(this.products);
         this.showEditModal = false;
+        this.$message({
+          message: "添加成功",
+          // type主要控制样式主题 success error  info
+          type: "success",
+        });
         return;
       }
       this.products = this.products.map((item) => {
@@ -460,9 +500,16 @@ export default {
       });
       console.log(this.products);
       this.showEditModal = false;
+      this.$message({
+        message: "修改成功",
+        // type主要控制样式主题 success error  info
+        type: "success",
+      });
     },
+    // 添加数据
     addGood() {
       this.showEditModal = true;
+      this.imageUrl = "";
       this.editGood = {
         id: this.products[this.products.length - 1].id + 1,
         product: {},
@@ -475,6 +522,25 @@ export default {
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
       this.pageNum = val;
+    },
+    // 上传成功
+    handleAvatarSuccess(res, file) {
+      this.imageUrl = res.data;
+      this.editGood.img = res.data;
+    },
+    // 上传之前预处理
+    beforeAvatarUpload(file) {
+      const reg=/(jpg|jpeg|png|gif)$/
+      const isJPG = reg.test(file.type);
+      const isLt2M = file.size / 1024 / 1024 < 2;
+
+      if (!isJPG) {
+        this.$message.error("上传头像图片只能是图片格式!");
+      }
+      if (!isLt2M) {
+        this.$message.error("上传头像图片大小不能超过 2MB!");
+      }
+      return isJPG && isLt2M;
     },
   },
   filters: {
@@ -518,7 +584,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .search-input {
   width: 200px !important;
 }
@@ -540,5 +606,37 @@ export default {
 } */
 #main {
   overflow-y: auto;
+  .el-dialog {
+    .el-input {
+      // width: 400px ;
+      input {
+        width: 400px;
+      }
+    }
+  }
+
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409eff;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
 }
 </style>
