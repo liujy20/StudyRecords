@@ -1,22 +1,26 @@
 <template>
   <div id="app">
-    <!-- <user-control></user-control> -->
-  <student-vue></student-vue>
+      <Student></Student>
   </div>
 </template>
 
 <script>
-import StudentVue from './views/Student/Student.vue'
-import UserControl from './views/UserControl/UserControl.vue'
-
+import Student from './views/Student/Student.vue';
 export default {
   name: 'app',
   components: {
-    UserControl,
-    StudentVue,
+    Student
   }
 }
 </script>
 
 <style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>

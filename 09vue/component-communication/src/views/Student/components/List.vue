@@ -1,7 +1,7 @@
 <template>
   <div class="tab" style="display: block">
-    <input type="text" id="search" v-model="search"/>
-    <input type="button" value="查询" id="search-btn" />
+    <input type="text" id="search" v-model="temp"/>
+    <input type="button" value="查询" id="search-btn" @click="search=temp"/>
     <table>
       <!-- 表格的头部 -->
       <thead>
@@ -38,7 +38,8 @@ export default {
   props:['students'],
   data(){
     return {
-      search:''
+      search:'',
+      temp:''
     }
   },
   methods:{
@@ -47,12 +48,10 @@ export default {
     }
   },
   computed:{
-    searchList(){
+    searchList(){ 
       return this.students.filter(item=>{
-        return Object.keys(item).some(val=>{
-          console.log(toString(item[val]).includes(this.search));
-          return toString(item[val]).includes(this.search)
-          
+        return Object.values(item).some(val=>{
+          return String(val).includes(this.search)
         })
       })
     }
