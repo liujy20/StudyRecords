@@ -4,10 +4,13 @@
     <slot name="main" :val1="wg1" :val2="wg2"></slot>
     <slot name="footer"></slot>
   </div> -->
-  <div>
+  <!-- <div>
     info: {{info}} <br>
     phone: {{phone}} <br>
     <input type="text" v-model="info.name">
+  </div> -->
+  <div>
+    <input type="text" name="" id="" :value="value" @input="demo">
   </div>
 </template>
 
@@ -27,13 +30,19 @@ export default {
   //     }
   //   }
   // },
-  props:['phone','info'],
+  // props:['phone','info'],
+  props:['value'],
   data() {
     return {
       wg1: "xwg",
       wg2: "dwg",
     };
   },
+  methods:{
+    demo(e){
+      this.$emit('input',e.target.value)
+    }
+  }
 };
 </script>
 

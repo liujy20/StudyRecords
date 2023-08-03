@@ -12,9 +12,12 @@
       <h3>footer</h3>
     </template>
   </son-vue> -->
-    <son-vue :info="info" :phone="phone"></son-vue>
-    <el-button @click="change" size="mini">修改</el-button>
-    {{phone}}
+    <!-- <son-vue :info="info" :phone="phone"></son-vue> -->
+    <!-- <el-button @click="change" size="mini">修改</el-button>
+    {{phone}} -->
+    <son-vue v-model="userValue"></son-vue>
+    userValue: {{userValue}}
+
   </div>
 </template>
 
@@ -23,6 +26,7 @@ import SonVue from "./Son.vue";
 export default {
   data(){
     return{
+      userValue:'',
       info:{
         name:"",
         age:0
