@@ -65,7 +65,7 @@ export default {
         { name: "唐伯虎", age: 28, sex: "男", snum: "006" },
       ],
       currentTab: "list",
-      student:'',
+      student: "",
       nullStudent: {
         name: "",
         age: "",
@@ -84,8 +84,18 @@ export default {
         return item.snum != value.snum;
       });
     },
-    editUser() {},
     addStudent(value) {
+      if (
+        this.students.some((item) => {
+          return item.snum == value.snum;
+        })
+      ) {
+        this.$message({
+          message: "添加失败, 用户存在",
+          type: "error",
+        });
+        return
+      }
       this.students.push(value);
       this.$message({
         message: "添加成功",
@@ -106,13 +116,12 @@ export default {
       });
     },
   },
-  mounted(){
-    bus.$on('info',value=>{
-      this.student=value
-      this.chooseTab('update');
-    })
-    
-  }
+  mounted() {
+    bus.$on("info", (value) => {
+      this.student = value;
+      this.chooseTab("update");
+    });
+  },
 };
 </script>
 
