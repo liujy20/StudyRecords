@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import { users } from "../data/users";
+import { users } from "../../data/users";
 export default {
   data() {
     return {

@@ -6,7 +6,9 @@
       <el-container direction="vertical">
         <!-- 头部 -->
         <header-vue></header-vue>
-        <content-vue></content-vue>
+        <OrderVue></OrderVue>
+        <!-- <content-vue></content-vue> -->
+
       </el-container>
     </el-container>
   </div>
@@ -16,7 +18,8 @@
 
 import AsideVue from './components/Aside.vue';
 import HeaderVue from './components/Header.vue';
-import ContentVue from './views/Content.vue';
+import ContentVue from './views/Content/Content.vue';
+import OrderVue from './views/Order/Order.vue';
 
 export default {
   name: "App",
@@ -24,8 +27,9 @@ export default {
   components: {
     AsideVue,
     HeaderVue,
-    ContentVue
-  },
+    ContentVue,
+    OrderVue,
+},
   props: {},
   data() {
     return {
