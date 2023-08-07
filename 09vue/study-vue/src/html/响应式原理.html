@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>姓名：<span id="showname">{{name}}</span></h1>
+      修改名字: <input type="text" id="nameinput" /> 显示年龄:
+      <p id="showage">{{age}}</p>
+      修改年龄 : <input type="text" id="ageinput" />
+    </div>
+    <script>
+      // vm 是vueComponent的简写
+      let vm = {
+        el: "#app",
+        data: {
+          name: "张三",
+          age: 13,
+        },
+        //1. 完成data数据的劫持
+        create() {
+          let data = this.data;
+          for (const key in data) {
+            let val = data[key]; //保存该属性当前状态下的数据
+            let dep = {
+              watchers: [], //包含了依赖该数据的所有watcher对象
+              //添加watcher
+              addDependency(watcher) {
+                if (this.watchers && !this.watchers.includes(watcher)) {
+                  //if是为了避免同一个watcher对象重复添加。
+                  //收集依赖
+                  this.watchers.push(watcher);
+                }
+              },
+              notify() {
+                //通知所有的watcher对象，进行更新
+                this.watchers.forEach((watcher) => {
+                  if (watcher[key]) {
+                    //为true就表示该watcher监听了这个属性,就调用render更新该watcher对应组件的页面标签
+                    watcher[key].render();
+                  }
+                });
+              },
+            }; //每个数据都有一个dep对象，包含了依赖该数据的所有watcher对象以及两个方法
+
+            Object.defineProperty(this, key, {
+              get() {
+                //收集使用该数据的watcher
+                dep.addDependency(vmwatcher);
+                return val;
+              },
+              set(value) {
+                //数据发生变化时就需要进行通知更新
+                dep.notify();
+                val = value;
+              },
+            });
+          }
+        },
+        //模拟第二阶段：html代码的编译和初次挂载
+        compile() {
+          /*模拟第二阶段的编译html以及挂载
+                1. 遍历挂载节点的所有子节点，利用正则表达式来判断遍历的子标签是否带有{{}},如果有则将其替换为对象的对应属性的值，再利用innerHTML进行挂载
+                */
+          let $el = document.querySelector(this.el);
+          //console.log([...$el.children]);//获取el标签的所有子标签
+          [...$el.children].forEach((elem) => {
+            if (elem.innerHTML.match(/{{\w+}}/)) {
+              //获取该标签匹配的{{数据}}部分字符串
+              console.log(elem.innerHTML.match(/{{\w+}}/)[0]);
+              //获取匹配字符串{{key}}里的key
+              let key = elem.innerHTML.match(/{{\w+}}/)[0].replace(/[{}]/g, "");
+              console.log(key, this[key]);
+              //将属性的值替换掉innerHTML里的{{属性名}}，比如{{name}}替换为name属性的值
+              elem.innerHTML = elem.innerHTML.replace(`{{${key}}}`, this[key]);
+            }
+          });
+          console.log(
+            "进行第二阶段，完成html代码的编译，编译中就会发现组件需要访问data里的数据，编译后就通过虚拟dom完成组件初次渲染",
+            this.name,
+            this.age
+          );
+        },
+      };
+      //2. watcher：当前组件的watcher对象，当依赖的数据发生变化时，就会重新渲染组件里的标签
+      let vmwatcher = {
+        age: {
+          render() {
+            console.log("更新使用了age数据的对应的标签");
+            //dom操作
+          },
+        },
+        name: {
+          render() {
+            console.log("更新使用了name数据的对应的标签");
+          },
+        },
+      };
+
+      /*
+        根据生命周期的大概执行流程
+        1. 完成data属性的劫持：生命周期第一阶段
+        2. 完成html的编译和数据访问后就初步渲染
+        3. 数据变化时通知组件进行更新
+        */
+      vm.create();
+      vm.compile();
+    </script>
+  </body>
+</html>

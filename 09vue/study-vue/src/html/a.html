@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>用户名:{{name}}</h2>
+      <h2>年龄:{{age}}</h2>
+    </div>
+    <script>
+      let vm = {
+        el: "#app",
+        data: {
+          name: "xwg",
+          age: 12,
+        },
+        create() {
+          let data = this.data;
+          for (let key in data) {
+            let val = data[key];
+            let dep = {
+              watchers: [],
+              dependency(watcher) {
+                if (!this.watchers.includes(watcher)) {
+                  this.watchers.push(watcher);
+                }
+              },
+              notify() {
+                this.watchers.forEach((watcher) => {
+                  if (watcher[key]) {
+                    watcher[key].render();
+                  }
+                });
+              },
+            };
+            Object.defineProperty(this, key, {
+              get() {
+                dep.dependency(watcher);
+                console.log("访问变量" + key);
+                return val;
+              },
+              set(NewValue) {
+                dep.notify();
+                console.log("修改变量" + key);
+                val = NewValue;
+              },
+            });
+          }
+        },
+        compile() {
+          let $el = document.querySelector(this.el);
+          [...$el.children].forEach((item) => {
+            if(item.innerHTML.match(/{{\w+}}/)){
+              let key = item.innerHTML.match(/{{\w+}}/)[0].replace(/[{}]/g, "");
+              console.log(key, this[key]);
+              item.innerHTML = item.innerHTML.replace(`{{${key}}}`, this[key]);
+            }
+          });
+        }
+      };
+      let watcher = {
+        name: {
+          render() {
+            console.log("渲染name");
+          },
+        },
+        age: {
+          render() {
+            console.log("渲染age");
+          },
+        },
+      };
+      vm.create();
+      vm.compile()
+    </script>
+  </body>
+</html>

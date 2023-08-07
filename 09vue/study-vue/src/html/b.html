@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>name:{{name}}</h2>
+    <h2>age:{{age}}</h2>
+  </div>
+  <script>
+    let vm={
+      el:'#app',
+      data:{
+        name:'xm',
+        age:12
+      },
+      create(){
+        let data=this.data
+        for(let key in data){
+          let val=data[key]
+          let dep={
+            watchers:[],
+            dependency(watcher){
+              if(!this.watchers.includes(watcher)){
+                this.watchers.push(watcher)
+              }
+            },
+            notify(){
+              this.watchers.forEach(watcher=>{
+                if(watcher[key]){
+                  watcher[key].render()
+                }
+              })
+            }
+          }
+          Object.defineProperty(this,key,{
+            get(){
+              dep.dependency(watcher)
+              return val
+            },
+            set(value){
+              val=value
+              dep.notify()
+            }
+          })
+        }
+      },
+      compile(){
+        let $el=document.querySelector(this.el)
+        let children=[...$el.children]
+        children.forEach(item=>{
+          if(item.innerHTML.match(/{{\w+}}/)){
+            let key = item.innerHTML.match(/{{\w+}}/)[0].replace(/[{}]/g,"")
+            item.innerHTML=item.innerHTML.replace(`{{${key}}}`,this[key])
+          }
+        })
+      }
+    }
+    let watcher={
+      name:{
+        render(){
+          console.log('name update');
+        }
+      },
+      age:{
+        render(){
+          console.log('age update');
+        }
+      }
+    }
+    vm.create()
+    vm.compile()
+  </script>
+</body>
+</html>
