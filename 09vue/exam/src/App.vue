@@ -7,7 +7,6 @@
         <!-- 头部 -->
         <header-vue></header-vue>
         <OrderVue></OrderVue>
-        <!-- <content-vue></content-vue> -->
 
       </el-container>
     </el-container>
