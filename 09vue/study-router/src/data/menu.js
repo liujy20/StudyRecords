@@ -1,0 +1,41 @@
+export default  [
+    {
+        name:"拼团管理",
+        path:"/list",
+        children:[
+            {
+                name:"拼团商品",
+                path:"/list/good",
+            },
+            {
+                name:"拼团列表",
+                path:"/list/group",
+            },
+        ]
+    },
+    {
+        name:"用户管理",
+        path:"/user",
+        children:[
+            {
+                name:"用户列表",
+                path:"/user/content",
+            },
+            {
+                name:"添加用户",
+                path:"/user/content",
+            },
+        ]
+    },
+    {
+        name:"订单管理",
+        path:"/order",
+        children:[
+            {
+                name:"订单列表",
+                path:"/order/index",
+            },
+           
+        ]
+    },
+]

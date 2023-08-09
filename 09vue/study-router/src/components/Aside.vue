@@ -9,20 +9,29 @@
       :unique-opened="true"
       text-color="#fff"
       background-color="#304156"
+      router
     >
       <el-menu-item>
         <span slot="title">
           <img :src="logo" alt="" />
         </span>
       </el-menu-item>
-      <el-submenu index="1">
+      <el-submenu v-for="(item,index) in menus" :key="item.name" :index="String(index+1)">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span slot="title">{{item.name}}</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item v-for="val in item.children" :key="val.name" :index="val.path">{{val.name}}</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+      <!-- <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
           <span slot="title">用户</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="1-1" @click="toContent">用户管理</el-menu-item>
-          <el-menu-item index="1-2">用户分组</el-menu-item>
+          <el-menu-item index="/user/content">用户管理</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       <el-submenu index="2">
@@ -31,8 +40,7 @@
           <span slot="title">订单</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="2-1" @click="toOrder">订单</el-menu-item>
-          <el-menu-item index="2-2">选项2</el-menu-item>
+          <el-menu-item index="/order/index">订单</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       <el-submenu index="3">
@@ -41,22 +49,23 @@
           <span slot="title">拼团</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="3-1" @click="toGood">拼团商品</el-menu-item>
-          <el-menu-item index="3-2" @click="toGroup">拼团列表</el-menu-item>
+          <el-menu-item index="/list/good">拼团商品</el-menu-item>
+          <el-menu-item index="/list/group">拼团列表</el-menu-item>
         </el-menu-item-group>
-      </el-submenu>
-      
+      </el-submenu> -->
     </el-menu>
   </el-aside>
 </template>
 
 <script>
-import logo from "../assets/images/woniu.png";
+import logo from "@/assets/images/woniu.png";
+import menus from '@/data/menu.js'
 export default {
   data() {
     return {
       logo,
       isCollapse: false,
+      menus,
     };
   },
   methods: {
@@ -65,27 +74,6 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
-    },
-    toContent() {
-      this.$router.push({
-        path: "/user/content",
-      });
-    },
-    toOrder() {
-      this.$router.push({
-        path: "/user/order",
-      });
-    },
-    toGood() {
-      this.$router.push({
-        path: "/user/good",
-      });
-    },
-    toGroup() {
-      this.$router.push({
-        path: "/user/group",
-      });
-      console.log(this.$router);
     },
   },
 };

@@ -135,8 +135,8 @@
 </template>
 
 <script>
-import { products } from "../data/team";
-import img from "../assets/用户分析.png";
+import { products } from "@/data/team";
+import img from "@/assets/用户分析.png";
 export default {
   data() {
     return {

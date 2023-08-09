@@ -125,7 +125,7 @@
 </template>
 
 <script>
-import { spellGoods } from "../data/spellgoods";
+import { spellGoods } from "../../data/spellgoods";
 export default {
   data() {
     return {

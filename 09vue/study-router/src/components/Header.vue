@@ -10,14 +10,13 @@
       <i class="el-icon-search"></i>
       <i class="el-icon-full-screen"></i>
       <i class="el-icon-bell"></i>
-      <el-dropdown>
+      <el-dropdown @command="handleCommand">
         <span class="el-dropdown-link">
-          {{userName}}<i class="el-icon-arrow-down el-icon--right"></i>
+          {{ name }}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>黄金糕</el-dropdown-item>
-          <el-dropdown-item>狮子头</el-dropdown-item>
-          <el-dropdown-item>螺蛳粉</el-dropdown-item>
+          <el-dropdown-item command="modifyUser">修改用户</el-dropdown-item>
+          <el-dropdown-item command="quit">退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -32,6 +31,7 @@
 
 <script>
 export default {
+  props: ["name"],
   data() {
     return {
       tags: [
@@ -40,12 +40,27 @@ export default {
         { name: "标签三", type: "info" },
         { name: "标签四", type: "warning" },
       ],
-      userName:''
     };
   },
-  created(){
-    this.userName=this.$route.query.user
-  }
+  methods: {
+    handleCommand(val) {
+      switch (val) {
+        case "quit":
+          localStorage.removeItem('user');
+          this.$router.push({
+            name:'good',
+          });
+          break;
+        case "modifyUser":
+          this.$router.push({
+            name: "modify",
+          });
+          break;
+        default:
+          break;
+      }
+    },
+  },
 };
 </script>
 

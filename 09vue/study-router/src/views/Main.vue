@@ -5,15 +5,15 @@
       <aside-vue></aside-vue>
       <el-container direction="vertical">
         <!-- 头部 -->
-        <header-vue></header-vue>
+        <header-vue :name="userName"></header-vue>
         <router-view></router-view>
-
       </el-container>
     </el-container>
   </div>
 </template>
 
 <script>
+import bus from '@/util/bus.js'
 
 import AsideVue from '../components/Aside.vue';
 import HeaderVue from '../components/Header.vue';
@@ -28,16 +28,16 @@ export default {
   props: {},
   data() {
     return {
-     
+     userName:''
     };
   },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {
-    
-  },
+  created(){
+    // console.log(this.$route.params);
+    this.userName=this.$route.params.user
+    bus.$on('user',(val)=>{
+      this.userName=val
+    })
+  }
 };
 </script>
 
@@ -51,15 +51,7 @@ body {
   text-align: center;
   line-height: 60px;
 }
-
-
-
-
-
-
 body > .el-container {
   margin-bottom: 40px;
 }
-
-
 </style>

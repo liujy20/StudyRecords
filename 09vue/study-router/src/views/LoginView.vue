@@ -50,10 +50,7 @@ export default {
       id: "",
       pwd: "",
       code: "",
-      user: {
-        id: "xwg123",
-        pwd: "123qwe",
-      },
+      user: {},
     };
   },
   methods: {
@@ -69,20 +66,24 @@ export default {
             message: "密码错误",
             type: "error",
           });
-        }else{
+        } else {
           this.$message({
             message: "登陆成功",
             type: "success",
           });
+          localStorage.setItem("user", this.user.name);
           this.$router.push({
-            path:'/user/order',
-            query:{
-              user:this.user.id
-            }
-          })
+            name: "content",
+            params: {
+              user: this.user.name,
+            },
+          });
         }
       }
     },
+  },
+  created() {
+    this.user = JSON.parse(localStorage.getItem("userInfo"));
   },
 };
 </script>
