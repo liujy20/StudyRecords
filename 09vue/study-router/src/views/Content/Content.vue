@@ -196,16 +196,12 @@ export default {
     //     return item.uid != index;
     //   });
     // },
-    async deleteRow(id){
-      let res = await axios({
-        url: "http://localhost:4001/admin/delete",
-        method: "post",
-        data: {
-          _id:id
-        },
+    async deleteRow(id) {
+      let res = await await this.$http.userHttp.delUser({
+        _id: id,
       });
       console.log(res.data);
-      await this.getInfo()
+      await this.getInfo();
     },
     // 搜索
     search() {
@@ -249,22 +245,14 @@ export default {
     },
     // 后端数据
     async getInfo() {
-      let res = await axios({
-        url: "http://localhost:4001/admin/get",
-        method: "post",
-        data: {
-          page: this.currentPage,
-          limit: this.pageSize,
-        },
+      let res = await this.$http.userHttp.getUser({
+        page: this.currentPage,
+        limit: this.pageSize,
       });
       console.log(res.data.data);
       this.getList = res.data.data;
       // 总页面
-      let num = await axios({
-        url: "http://localhost:4001/admin/get",
-        method: "post",
-        data: {},
-      });
+      let num = await await this.$http.userHttp.getAllPage({});
       this.totalUser = num.data.data.length;
     },
   },

@@ -17,7 +17,7 @@ import bus from "@/util/bus.js";
 
 import AsideVue from "../components/Aside.vue";
 import HeaderVue from "../components/Header.vue";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   name: "App",
@@ -32,21 +32,18 @@ export default {
       user: {},
     };
   },
-  methods:{
-    async info(){
-      let res = await axios.get("http://localhost:4001/admin/getUserInfo", {
-      headers: { Authorization: localStorage.getItem("token") },
-    });
-    console.log(res.data.userInfo);
-    this.user = res.data.userInfo;
-    }
+  methods: {
+    async info() {
+      let res = await this.$http.userHttp.getUserInfo();
+      console.log(res.data.userInfo);
+      this.user = res.data.userInfo;
+    },
   },
   created() {
-    this.info()
-    bus.$on('user',()=>{
-      this.info()
-    })
-
+    this.info();
+    bus.$on("user", () => {
+      this.info();
+    });
   },
 };
 </script>

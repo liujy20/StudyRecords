@@ -52,11 +52,7 @@ export default {
       this.user.realName = this.newName;
       this.user.pwd = this.newPwd1;
       console.log(this.user);
-      let res = await axios({
-        url: "http://localhost:4001/admin/set",
-        method: "post",
-        data: this.user,
-      });
+      let res = await this.$http.userHttp.modifyUser(this.user);
       console.log(res.data);
       if (res.status == 200) {
         bus.$emit("user");

@@ -48,11 +48,7 @@ export default {
         roles: "63bbaee5597cec08b02b6937",
         status: true,
       };
-      let res=await axios({
-        url:'http://localhost:4001/admin/add',
-        method:'post',
-        data:user
-      })
+      let res=await this.$http.userHttp.addUser(user)
       console.log(res);
       if(res.status==200){
         this.$message({

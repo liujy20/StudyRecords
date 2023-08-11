@@ -82,14 +82,12 @@ export default {
       //     });
       //   }
       // }
-      let res = await axios({
-        url: "http://localhost:4001/admin/login",
-        method: "post",
-        data: {
-          account: this.id,
-          pwd: this.pwd,
-        },
+
+      let res = await this.$http.userHttp.login({
+        account: this.id,
+        pwd: this.pwd,
       });
+      console.log(res);
       if (res.data.code == 200) {
         localStorage.setItem("token", res.data.token);
         this.$message({
@@ -99,7 +97,7 @@ export default {
         this.$router.push({
           name: "content",
         });
-      }else{
+      } else {
         this.$message({
           message: res.data.msg,
           type: "warning",
