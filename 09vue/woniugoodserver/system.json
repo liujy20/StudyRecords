@@ -1,0 +1,1108 @@
+{
+    "RECORDS": [
+        {
+            "_id": {
+                "$oid": "63bb7c0e597cec08b02b689f"
+            },
+            "component": "/store",
+            "create_time": "2023-01-09 10:29:34",
+            "icon": "s-goods",
+            "isShow": true,
+            "menuType": "M",
+            "name": "商品",
+            "perms": null,
+            "pid": "0",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb7c88597cec08b02b68a1"
+            },
+            "component": "/store/index",
+            "create_time": "2023-01-09 10:31:36",
+            "icon": null,
+            "isShow": true,
+            "menuType": "C",
+            "name": "商品管理",
+            "perms": "admin:product:list",
+            "pid": "63bb7c0e597cec08b02b689f",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb7cf2597cec08b02b68a3"
+            },
+            "component": "api/admin/store/product/stock",
+            "create_time": "2023-01-09 10:33:22",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "库存变动",
+            "perms": "",
+            "pid": "63bb7c88597cec08b02b68a1",
+            "show": true,
+            "sort": "9999",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb7e95597cec08b02b68a5"
+            },
+            "component": "api/admin/store/product/ficti",
+            "create_time": "2023-01-09 10:40:21",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "虚拟销量",
+            "perms": "",
+            "pid": "63bb7c88597cec08b02b68a1",
+            "show": true,
+            "sort": "9999",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb7ebf597cec08b02b68a7"
+            },
+            "component": "admin:product:save",
+            "create_time": "2023-01-09 10:41:03",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "商品添加",
+            "perms": "",
+            "pid": "63bb7c88597cec08b02b68a1",
+            "show": true,
+            "sort": "9999",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb7ed8597cec08b02b68a9"
+            },
+            "component": "admin:product:update",
+            "create_time": "2023-01-09 10:41:28",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "商品修改",
+            "perms": "",
+            "pid": "63bb7c88597cec08b02b68a1",
+            "show": true,
+            "sort": "9999",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb7ef0597cec08b02b68ab"
+            },
+            "component": "admin:product:delete",
+            "create_time": "2023-01-09 10:41:52",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "商品删除",
+            "perms": "",
+            "pid": "63bb7c88597cec08b02b68a1",
+            "show": true,
+            "sort": "9999",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb7f08597cec08b02b68ad"
+            },
+            "component": "admin:product:up",
+            "create_time": "2023-01-09 10:42:16",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "商品上架",
+            "perms": "",
+            "pid": "63bb7c88597cec08b02b68a1",
+            "show": true,
+            "sort": "9999",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb7f1c597cec08b02b68af"
+            },
+            "component": "admin:product:down",
+            "create_time": "2023-01-09 10:42:36",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "商品下架",
+            "perms": "",
+            "pid": "63bb7c88597cec08b02b68a1",
+            "show": true,
+            "sort": "9999",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb7f30597cec08b02b68b1"
+            },
+            "component": "admin:export:excel:product",
+            "create_time": "2023-01-09 10:42:56",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "商品导出",
+            "perms": "",
+            "pid": "63bb7c88597cec08b02b68a1",
+            "show": true,
+            "sort": "9999",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb7f4e597cec08b02b68b3"
+            },
+            "component": "admin:product:info",
+            "create_time": "2023-01-09 10:43:26",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "商品详情",
+            "perms": "",
+            "pid": "63bb7c88597cec08b02b68a1",
+            "show": true,
+            "sort": "9999",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb7f93597cec08b02b68b5"
+            },
+            "component": "/store/sort",
+            "create_time": "2023-01-09 10:44:35",
+            "icon": null,
+            "isShow": true,
+            "menuType": "C",
+            "name": "商品分类",
+            "perms": "",
+            "pid": "63bb7c0e597cec08b02b689f",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb7ff2597cec08b02b68b8"
+            },
+            "component": "/order",
+            "create_time": "2023-01-09 10:46:10",
+            "icon": "s-order",
+            "isShow": true,
+            "menuType": "M",
+            "name": "订单",
+            "perms": null,
+            "pid": "0",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb802f597cec08b02b68bb"
+            },
+            "component": "/order/index",
+            "create_time": "2023-01-09 10:47:11",
+            "icon": null,
+            "isShow": true,
+            "menuType": "C",
+            "name": "订单",
+            "perms": "admin:order:list",
+            "pid": "63bb7ff2597cec08b02b68b8",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8075597cec08b02b68bd"
+            },
+            "component": "api/admin/store/order/update",
+            "create_time": "2023-01-09 10:48:21",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "订单更新",
+            "perms": "",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "99999",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb809e597cec08b02b68c0"
+            },
+            "component": "",
+            "create_time": "2023-01-09 10:49:02",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "订单删除",
+            "perms": "admin:order:delete",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb80bf597cec08b02b68c2"
+            },
+            "component": "",
+            "create_time": "2023-01-09 10:49:35",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "订单备注",
+            "perms": "admin:order:mark",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb80f7597cec08b02b68c5"
+            },
+            "component": "",
+            "create_time": "2023-01-09 10:50:31",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "订单退款",
+            "perms": "admin:order:refund",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8114597cec08b02b68c7"
+            },
+            "component": "",
+            "create_time": "2023-01-09 10:51:00",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "订单拒绝退款",
+            "perms": "admin:order:refund:refuse",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb812b597cec08b02b68c9"
+            },
+            "component": "",
+            "create_time": "2023-01-09 10:51:23",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "订单发货",
+            "perms": "admin:order:send",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8148597cec08b02b68cb"
+            },
+            "component": "",
+            "create_time": "2023-01-09 10:51:52",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "订单导出",
+            "perms": "admin:export:excel:order",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb815f597cec08b02b68cd"
+            },
+            "component": "",
+            "create_time": "2023-01-09 10:52:15",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "订单改价",
+            "perms": "admin:order:update:price",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8175597cec08b02b68cf"
+            },
+            "component": "",
+            "create_time": "2023-01-09 10:52:37",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "物流查询",
+            "perms": "admin:order:logistics:info",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb818c597cec08b02b68d1"
+            },
+            "component": "",
+            "create_time": "2023-01-09 10:53:00",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "订单各状态数量",
+            "perms": "admin:order:status:num",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb81a6597cec08b02b68d3"
+            },
+            "component": "",
+            "create_time": "2023-01-09 10:53:26",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "订单详情",
+            "perms": "admin:order:info",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb81bb597cec08b02b68d5"
+            },
+            "component": "",
+            "create_time": "2023-01-09 10:53:47",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "订单操作记录列表",
+            "perms": "admin:order:status:list",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb81d2597cec08b02b68d7"
+            },
+            "component": "",
+            "create_time": "2023-01-09 10:54:10",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "订单核销",
+            "perms": "admin:order:write:update",
+            "pid": "63bb802f597cec08b02b68bb",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8385597cec08b02b68d9"
+            },
+            "component": "/operation",
+            "create_time": "2023-01-09 11:01:25",
+            "icon": "s-tools",
+            "isShow": true,
+            "menuType": "M",
+            "name": "设置",
+            "perms": null,
+            "pid": "0",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb83e7597cec08b02b68dc"
+            },
+            "component": "/operation/roleManager",
+            "create_time": "2023-01-09 11:03:03",
+            "icon": null,
+            "isShow": true,
+            "menuType": "M",
+            "name": "管理权限",
+            "perms": "",
+            "pid": "63bb8385597cec08b02b68d9",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8422597cec08b02b68de"
+            },
+            "component": "/operation//roleManager/identityManager",
+            "create_time": "2023-01-09 11:04:02",
+            "icon": null,
+            "isShow": true,
+            "menuType": "C",
+            "name": "角色管理",
+            "perms": "admin:system:role:list",
+            "pid": "63bb83e7597cec08b02b68dc",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8450597cec08b02b68e0"
+            },
+            "component": "/operation//roleManager/adminList",
+            "create_time": "2023-01-09 11:04:48",
+            "icon": null,
+            "isShow": true,
+            "menuType": "C",
+            "name": "管理员列表",
+            "perms": "admin:system:admin:list",
+            "pid": "63bb83e7597cec08b02b68dc",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb846b597cec08b02b68e2"
+            },
+            "component": "/operation//roleManager/promiseRules",
+            "create_time": "2023-01-09 11:05:15",
+            "icon": null,
+            "isShow": true,
+            "menuType": "C",
+            "name": "权限规则",
+            "perms": "admin:system:menu:list",
+            "pid": "63bb83e7597cec08b02b68dc",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb84a4597cec08b02b68e4"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:06:12",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "修改角色状态",
+            "perms": "admin:system:role:update:status",
+            "pid": "63bb8422597cec08b02b68de",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb84c7597cec08b02b68e7"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:06:47",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "角色详情",
+            "perms": "admin:system:role:info",
+            "pid": "63bb8422597cec08b02b68de",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb84da597cec08b02b68e9"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:07:06",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "身份修改",
+            "perms": "admin:system:role:update",
+            "pid": "63bb8422597cec08b02b68de",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb84ef597cec08b02b68eb"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:07:27",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "身份删除",
+            "perms": "admin:system:role:delete",
+            "pid": "63bb8422597cec08b02b68de",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8506597cec08b02b68ed"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:07:50",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "身份添加",
+            "perms": "admin:system:role:save",
+            "pid": "63bb8422597cec08b02b68de",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8523597cec08b02b68ef"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:08:19",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "是否接收状态",
+            "perms": "admin:system:admin:update:sms",
+            "pid": "63bb8450597cec08b02b68e0",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8539597cec08b02b68f1"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:08:41",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "管理员详情",
+            "perms": "admin:system:admin:info",
+            "pid": "63bb8450597cec08b02b68e0",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb854f597cec08b02b68f3"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:09:03",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "管理员状态更新",
+            "perms": "admin:system:admin:update:status",
+            "pid": "63bb8450597cec08b02b68e0",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8563597cec08b02b68f5"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:09:23",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "管理员删除",
+            "perms": "admin:system:admin:delete",
+            "pid": "63bb8450597cec08b02b68e0",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8578597cec08b02b68f7"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:09:44",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "管理员修改",
+            "perms": "admin:system:admin:update",
+            "pid": "63bb8450597cec08b02b68e0",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb858d597cec08b02b68f9"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:10:05",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "管理员添加",
+            "perms": "admin:system:admin:save",
+            "pid": "63bb8450597cec08b02b68e0",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb85a9597cec08b02b68fb"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:10:33",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "权限新增",
+            "perms": "admin:system:menu:add",
+            "pid": "63bb846b597cec08b02b68e2",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb85be597cec08b02b68fd"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:10:54",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "权限删除",
+            "perms": "admin:system:menu:delete",
+            "pid": "63bb846b597cec08b02b68e2",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb85ce597cec08b02b68ff"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:11:10",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "权限更新",
+            "perms": "admin:system:menu:update",
+            "pid": "63bb846b597cec08b02b68e2",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb85de597cec08b02b6901"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:11:26",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "更新权限状态",
+            "perms": "admin:system:menu:show:status",
+            "pid": "63bb846b597cec08b02b68e2",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb85ec597cec08b02b6903"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:11:40",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "菜单详情",
+            "perms": "admin:system:menu:info",
+            "pid": "63bb846b597cec08b02b68e2",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb85fa597cec08b02b6905"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:11:54",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "菜单缓存树",
+            "perms": "admin:system:menu:cache:tree",
+            "pid": "63bb846b597cec08b02b68e2",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb866f597cec08b02b6907"
+            },
+            "component": "/marketing",
+            "create_time": "2023-01-09 11:13:51",
+            "icon": "s-marketing",
+            "isShow": true,
+            "menuType": "M",
+            "name": "营销",
+            "perms": null,
+            "pid": "0",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb86ac597cec08b02b6909"
+            },
+            "component": "/marketing/groupBuy",
+            "create_time": "2023-01-09 11:14:52",
+            "icon": null,
+            "isShow": true,
+            "menuType": "M",
+            "name": "拼团管理",
+            "perms": "",
+            "pid": "63bb866f597cec08b02b6907",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb86db597cec08b02b690c"
+            },
+            "component": "/marketing/coupon",
+            "create_time": "2023-01-09 11:15:39",
+            "icon": null,
+            "isShow": true,
+            "menuType": "M",
+            "name": "优惠券",
+            "perms": "",
+            "pid": "63bb866f597cec08b02b6907",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb872f597cec08b02b690e"
+            },
+            "component": "/marketing/coupon/list",
+            "create_time": "2023-01-09 11:17:03",
+            "icon": null,
+            "isShow": true,
+            "menuType": "C",
+            "name": "优惠券",
+            "perms": "admin:coupon:list",
+            "pid": "63bb86db597cec08b02b690c",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb874c597cec08b02b6910"
+            },
+            "component": "/marketing/coupon/record",
+            "create_time": "2023-01-09 11:17:32",
+            "icon": null,
+            "isShow": true,
+            "menuType": "C",
+            "name": "领取记录",
+            "perms": "admin:coupon:user:list",
+            "pid": "63bb86db597cec08b02b690c",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8779597cec08b02b6912"
+            },
+            "component": "/marketing/groupBuy/groupGoods",
+            "create_time": "2023-01-09 11:18:17",
+            "icon": null,
+            "isShow": true,
+            "menuType": "C",
+            "name": "拼团商品",
+            "perms": "admin:combination:list",
+            "pid": "63bb86ac597cec08b02b6909",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb879d597cec08b02b6914"
+            },
+            "component": "/marketing/groupBuy/groupList",
+            "create_time": "2023-01-09 11:18:53",
+            "icon": null,
+            "isShow": true,
+            "menuType": "C",
+            "name": "拼团列表",
+            "perms": "admin:combination:combine:list",
+            "pid": "63bb86ac597cec08b02b6909",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb87d6597cec08b02b6916"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:19:50",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "优惠券添加",
+            "perms": "admin:coupon:save",
+            "pid": "63bb872f597cec08b02b690e",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb87e4597cec08b02b6918"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:20:04",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "优惠券状态更新",
+            "perms": "admin:coupon:update:status",
+            "pid": "63bb872f597cec08b02b690e",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb87f4597cec08b02b691a"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:20:20",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "复制",
+            "perms": "admin:coupon:info",
+            "pid": "63bb872f597cec08b02b690e",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb880b597cec08b02b691c"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:20:43",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "删除优惠券",
+            "perms": "admin:coupon:delete",
+            "pid": "63bb872f597cec08b02b690e",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8833597cec08b02b691e"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:21:23",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "领取优惠券",
+            "perms": "",
+            "pid": "63bb874c597cec08b02b6910",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8859597cec08b02b6920"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:22:01",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "新增拼团商品",
+            "perms": "admin:combination:save",
+            "pid": "63bb8779597cec08b02b6912",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb88ba597cec08b02b6922"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:23:38",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "拼团商品删除",
+            "perms": "admin:combination:delete",
+            "pid": "63bb8779597cec08b02b6912",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb88d0597cec08b02b6924"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:24:00",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "拼团商品修改",
+            "perms": "admin:combination:update",
+            "pid": "63bb8779597cec08b02b6912",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb88e0597cec08b02b6926"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:24:16",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "拼团商品详情",
+            "perms": "admin:combination:info",
+            "pid": "63bb8779597cec08b02b6912",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb88f3597cec08b02b6928"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:24:35",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "修改拼团商品状态",
+            "perms": "admin:combination:update:status",
+            "pid": "63bb8779597cec08b02b6912",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8901597cec08b02b692a"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:24:49",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "拼团商品导出",
+            "perms": "admin:export:excel:combiantion",
+            "pid": "63bb8779597cec08b02b6912",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb8994597cec08b02b692c"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:27:16",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "拼团统计",
+            "perms": "admin:combination:statistics",
+            "pid": "63bb879d597cec08b02b6914",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        },
+        {
+            "_id": {
+                "$oid": "63bb89a2597cec08b02b692e"
+            },
+            "component": "",
+            "create_time": "2023-01-09 11:27:30",
+            "icon": null,
+            "isShow": true,
+            "menuType": "A",
+            "name": "拼团订单列表",
+            "perms": "admin:combination:order:pink",
+            "pid": "63bb879d597cec08b02b6914",
+            "show": true,
+            "sort": "1",
+            "system_data": true
+        }
+    ]
+}
