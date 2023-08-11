@@ -46,7 +46,7 @@ export default {
     handleCommand(val) {
       switch (val) {
         case "quit":
-          localStorage.removeItem('user');
+          localStorage.removeItem('token');
           this.$router.push({
             name:'good',
           });

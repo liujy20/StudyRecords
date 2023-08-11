@@ -23,7 +23,50 @@
     <div class="table">
       <el-table
         ref="multipleTable"
-        :data="currentList"
+        :data="getList"
+        tooltip-effect="dark"
+        style="width: 100%"
+        @selection-change="handleSelectionChange"
+      >
+        <el-table-column type="selection" width="55"> </el-table-column>
+
+        <el-table-column prop="account" label="ID" width="120">
+        </el-table-column>
+        <el-table-column prop="avatar" label="头像" width="120">
+          <template slot-scope="scope">
+            <img width="30" :src="scope.row.avatar" alt="" />
+          </template>
+        </el-table-column>
+        <el-table-column prop="realName" label="姓名" width="120">
+        </el-table-column>
+        <el-table-column prop="create_time" label="创建时间" width="300">
+        </el-table-column>
+        <el-table-column prop="phone" label="手机号" width="120">
+          <template slot-scope="scope">
+            <span
+              >{{ scope.row.phone.slice(0, 4) }}****{{
+                scope.row.phone.slice(-4)
+              }}</span
+            >
+          </template>
+        </el-table-column>
+
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button type="text" size="small"> 编辑 </el-button>
+            <el-button
+              @click.native.prevent="deleteRow(scope.row._id)"
+              type="text"
+              size="small"
+            >
+              删除
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <!-- <el-table
+        ref="multipleTable"
+        :data="users"
         tooltip-effect="dark"
         style="width: 100%"
         @selection-change="handleSelectionChange"
@@ -72,7 +115,7 @@
             </el-button>
           </template>
         </el-table-column>
-      </el-table>
+      </el-table> -->
       <!-- <div style="margin-top: 20px">
         <el-button @click="toggleSelection([tableData[1], tableData[2]])"
           >切换第二、第三行的选中状态</el-button
@@ -101,6 +144,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import { users } from "../../data/users";
 export default {
   data() {
@@ -115,6 +159,8 @@ export default {
       currentPage: 1,
       // 页面大小
       pageSize: 5,
+      getList: [],
+      totalUser: 1,
     };
   },
   computed: {
@@ -138,17 +184,28 @@ export default {
       return this.typeList.slice(start, start + this.pageSize);
     },
     // 总数据数量
-    totalUser() {
-      return this.typeList.length;
-    },
+    // totalUser() {
+    //   return this.typeList.length;
+    // },
   },
   methods: {
     // 删除
-    deleteRow(index, row) {
-      console.log(index, row);
-      this.users = this.users.filter((item) => {
-        return item.uid != index;
+    // deleteRow(index, row) {
+    //   console.log(index, row);
+    //   this.users = this.users.filter((item) => {
+    //     return item.uid != index;
+    //   });
+    // },
+    async deleteRow(id){
+      let res = await axios({
+        url: "http://localhost:4001/admin/delete",
+        method: "post",
+        data: {
+          _id:id
+        },
       });
+      console.log(res.data);
+      await this.getInfo()
     },
     // 搜索
     search() {
@@ -190,6 +247,26 @@ export default {
         });
       });
     },
+    // 后端数据
+    async getInfo() {
+      let res = await axios({
+        url: "http://localhost:4001/admin/get",
+        method: "post",
+        data: {
+          page: this.currentPage,
+          limit: this.pageSize,
+        },
+      });
+      console.log(res.data.data);
+      this.getList = res.data.data;
+      // 总页面
+      let num = await axios({
+        url: "http://localhost:4001/admin/get",
+        method: "post",
+        data: {},
+      });
+      this.totalUser = num.data.data.length;
+    },
   },
   watch: {
     // 监听删除
@@ -199,14 +276,20 @@ export default {
           return item.nickname.includes(this.input);
         });
       },
-      deep:true
+      deep: true,
     },
     // 删除数据 页面判断
-    currentList(){
-      let endPage=Math.ceil(this.typeList.length/this.pageSize)
-      // 如果currentPage大于真实页数,渲染List为空,需要将currentPage-1
-      if(this.currentPage>endPage&&this.currentPage!=1)
-      this.currentPage-=1
+    // currentList() {
+    //   let endPage = Math.ceil(this.typeList.length / this.pageSize);
+    //   // 如果currentPage大于真实页数,渲染List为空,需要将currentPage-1
+    //   if (this.currentPage > endPage && this.currentPage != 1)
+    //     this.currentPage -= 1;
+    // },
+    currentList: {
+      async handler() {
+        await this.getInfo();
+      },
+      immediate: true,
     },
     currentPage() {
       console.log(this.currentPage);

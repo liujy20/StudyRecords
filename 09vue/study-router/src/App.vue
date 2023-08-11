@@ -19,7 +19,6 @@ export default {
 #app {
   height: 100vh;
   overflow: hidden;
-  background-color: #050328;
-  background-image: url("./assets/bg.png");
+  text-align: center;
 }
 </style>

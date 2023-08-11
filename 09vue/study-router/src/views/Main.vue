@@ -5,7 +5,7 @@
       <aside-vue></aside-vue>
       <el-container direction="vertical">
         <!-- 头部 -->
-        <header-vue :name="userName"></header-vue>
+        <header-vue :name="user.realName"></header-vue>
         <router-view></router-view>
       </el-container>
     </el-container>
@@ -13,10 +13,11 @@
 </template>
 
 <script>
-import bus from '@/util/bus.js'
+import bus from "@/util/bus.js";
 
-import AsideVue from '../components/Aside.vue';
-import HeaderVue from '../components/Header.vue';
+import AsideVue from "../components/Aside.vue";
+import HeaderVue from "../components/Header.vue";
+import axios from 'axios';
 
 export default {
   name: "App",
@@ -24,20 +25,29 @@ export default {
   components: {
     AsideVue,
     HeaderVue,
-},
+  },
   props: {},
   data() {
     return {
-     userName:''
+      user: {},
     };
   },
-  created(){
-    // console.log(this.$route.params);
-    this.userName=this.$route.params.user
-    bus.$on('user',(val)=>{
-      this.userName=val
+  methods:{
+    async info(){
+      let res = await axios.get("http://localhost:4001/admin/getUserInfo", {
+      headers: { Authorization: localStorage.getItem("token") },
+    });
+    console.log(res.data.userInfo);
+    this.user = res.data.userInfo;
+    }
+  },
+  created() {
+    this.info()
+    bus.$on('user',()=>{
+      this.info()
     })
-  }
+
+  },
 };
 </script>
 

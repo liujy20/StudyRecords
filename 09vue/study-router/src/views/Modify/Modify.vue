@@ -9,7 +9,7 @@
         <div class="name"><span>*</span>管理员姓名</div>
         <el-input v-model="newName"></el-input>
       </div>
-      <div class="item">
+      <div class="item" v-if="null">
         <div class="name"><span>*</span>原始密码</div>
         <el-input v-model="oldPwd"></el-input>
       </div>
@@ -17,7 +17,7 @@
         <div class="name"><span>*</span>新密码</div>
         <el-input v-model="newPwd1"></el-input>
       </div>
-      <div class="item" v-if="newPwd1 != ''">
+      <div class="item" v-if="null && newPwd1 != ''">
         <div class="name"><span>*</span>确认新密码</div>
         <el-input v-model="newPwd2"></el-input>
       </div>
@@ -32,6 +32,7 @@
 
 <script>
 import bus from "@/util/bus";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -43,59 +44,28 @@ export default {
 
       pwd: "",
       name: "",
+      user: {},
     };
   },
   methods: {
-    submit() {
-      if (
-        this.newName != this.name &&
-        this.oldPwd == "" &&
-        this.newPwd1 == "" &&
-        this.newPwd2 == ""
-      ) {
-        let user = {
-          id: this.id,
-          name: this.newName,
-          pwd: this.pwd,
-        };
-        this.name = this.newName;
-        localStorage.setItem("userInfo", JSON.stringify(user));
-        bus.$emit("user", this.newName);
+    async submit() {
+      this.user.realName = this.newName;
+      this.user.pwd = this.newPwd1;
+      console.log(this.user);
+      let res = await axios({
+        url: "http://localhost:4001/admin/set",
+        method: "post",
+        data: this.user,
+      });
+      console.log(res.data);
+      if (res.status == 200) {
+        bus.$emit("user");
         this.$message({
-          message: "用户名修改成功",
+          message: "修改成功",
           type: "success",
         });
-        return;
+        this.info();
       }
-      if (this.oldPwd != this.pwd) {
-        this.$message({
-          message: "密码错误",
-          type: "warning",
-        });
-        return;
-      }
-      if (this.newPwd1 != this.newPwd2) {
-        this.$message({
-          message: "两次输入密码不同",
-          type: "warning",
-        });
-      }
-      if (this.newName == "" || this.newPwd1 == "" || this.newPwd2 == "") {
-        this.$message({
-          message: "输入不能为空",
-          type: "warning",
-        });
-      }
-      let user = {
-        id: this.id,
-        name: this.newName,
-        pwd: this.newPwd1,
-      };
-      localStorage.setItem("userInfo", JSON.stringify(user));
-      localStorage.removeItem("user");
-      this.$router.push({
-        name: "content",
-      });
     },
     cancel() {
       this.oldPwd = "";
@@ -103,13 +73,23 @@ export default {
       this.newPwd2 = "";
       this.newName = this.name;
     },
+    async info() {
+      let res = await axios.get("http://localhost:4001/admin/getUserInfo", {
+        headers: { Authorization: localStorage.getItem("token") },
+      });
+      console.log(res.data.userInfo);
+      this.user = res.data.userInfo;
+      this.id = this.user.account;
+      this.pwd = this.user.pwd;
+      this.name = this.user.realName;
+      this.newName = this.user.realName;
+      this.oldPwd = "";
+      this.newPwd1 = "";
+      this.newPwd2 = "";
+    },
   },
   created() {
-    let user = JSON.parse(localStorage.getItem("userInfo"));
-    this.id = user.id;
-    this.pwd = user.pwd;
-    this.name = user.name;
-    this.newName = user.name;
+    this.info();
   },
   beforeRouteLeave(to, from, next) {
     if (
@@ -129,8 +109,8 @@ export default {
         .catch(() => {
           next(false);
         });
-    }else{
-      next()
+    } else {
+      next();
     }
   },
 };

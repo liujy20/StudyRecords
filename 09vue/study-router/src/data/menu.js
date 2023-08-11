@@ -23,7 +23,7 @@ export default  [
             },
             {
                 name:"添加用户",
-                path:"/user/content",
+                path:"/user/addUser",
             },
         ]
     },

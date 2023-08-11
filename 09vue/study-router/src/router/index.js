@@ -1,3 +1,4 @@
+import axios from "axios";
 import Vue from "vue";
 import VueRouter from "vue-router";
 
@@ -14,12 +15,14 @@ const routes = [
     path: "/",
     redirect: "/login",
   },
+  // login
   {
     path: "/login",
     name: "login",
     // component:LoginView
     component: () => import("@/views/LoginView.vue"),
   },
+  // default
   {
     path: "*",
     name: "about",
@@ -29,6 +32,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "@/views/AboutView.vue"),
   },
+  // user
   {
     path: "/user",
     name: "user",
@@ -40,12 +44,18 @@ const routes = [
         component: () => import("@/views/Content/Content.vue"),
       },
       {
+        path: "addUser",
+        name: "addUser",
+        component: () => import("@/views/AddUser/AddUser.vue"),
+      },
+      {
         path: "modify",
         name: "modify",
         component: () => import("@/views/Modify/Modify.vue"),
       },
     ],
   },
+  // order
   {
     path: "/order",
     name: "order",
@@ -58,6 +68,7 @@ const routes = [
       },
     ],
   },
+  // list
   {
     path: "/list",
     name: "list",
@@ -75,6 +86,12 @@ const routes = [
       },
     ],
   },
+  // axios
+  {
+    path:'/axios',
+    name:'axios',
+    component:()=>import('@/views/Axios.vue')
+  }
 ];
 
 const router = new VueRouter({
@@ -87,7 +104,7 @@ const router = new VueRouter({
 
 router.beforeEach((to,from,next)=>{
   console.log(to);
-  if(localStorage.getItem('user')||to.path=='/login'){
+  if(localStorage.getItem('token')||to.path=='/login'){
     next()
   }else{
     console.log('未登录');
