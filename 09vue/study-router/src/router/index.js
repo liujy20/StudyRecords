@@ -1,6 +1,7 @@
-import axios from "axios";
+import http from "@/http";
 import Vue from "vue";
 import VueRouter from "vue-router";
+import $http from "@/http/index";
 
 Vue.use(VueRouter);
 
@@ -25,13 +26,28 @@ const routes = [
   // default
   {
     path: "*",
-    name: "about",
+    name: "*",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "@/views/AboutView.vue"),
   },
+  // home
+  {
+    path: "/home",
+    name: "home",
+    component: () => import("@/views/Main.vue"),
+    children: [
+      {
+        path: "index",
+        name: "homeIndex",
+        component: () => import("@/views/home.vue"),
+      },
+    ],
+  },
+];
+const userRouter = [
   // user
   {
     path: "/user",
@@ -88,10 +104,10 @@ const routes = [
   },
   // axios
   {
-    path:'/axios',
-    name:'axios',
-    component:()=>import('@/views/Axios.vue')
-  }
+    path: "/axios",
+    name: "axios",
+    component: () => import("@/views/Axios.vue"),
+  },
 ];
 
 const router = new VueRouter({
@@ -100,16 +116,31 @@ const router = new VueRouter({
   routes,
   name: "zs",
 });
-
-
-router.beforeEach((to,from,next)=>{
+let isHas = false;
+router.beforeEach(async (to, from, next) => {
   console.log(to);
-  if(localStorage.getItem('token')||to.path=='/login'){
-    next()
-  }else{
-    console.log('未登录');
-    next('/')
+  if (to.path == "/login") {
+    next();
+  } else {
+    if (!localStorage.getItem("token")) {
+      console.log("未登录");
+      next("/");
+    } else {
+      next();
+      if (!isHas) {
+        isHas = !isHas;
+        let res1 = await $http.userHttp.getUserInfo();
+        // console.log(res);
+        let _id = res1.data.userInfo.roles[0]._id;
+        let res2 = await $http.userHttp.getRightById({ _id });
+        let menus = res2.data.data.menu;
+        console.log(menus);
+        userRouter.forEach((item) => {
+          router.addRoute(item);
+        });
+      }
+    }
   }
-})
+});
 
 export default router;

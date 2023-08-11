@@ -21,10 +21,10 @@ export default {
   methods: {
     async common() {
       let res = await axios({
-        url: "http://localhost:4001/admin/login",
+        url: "/admin/login",
         method: "post",
         data: {
-          account: "admin3217",
+          account: "admin",
           pwd: "123456",
         },
       });
@@ -32,7 +32,7 @@ export default {
       this.token = res.data;
     },
     async getAxios() {
-      let res = await axios.get("http://localhost:4001/admin/getUserInfo", {
+      let res = await axios.get("/admin/getUserInfo", {
         headers:{Authorization: localStorage.getItem("token"),}
       });
       console.log(res.data);

@@ -95,7 +95,7 @@ export default {
           type: "success",
         });
         this.$router.push({
-          name: "content",
+          path: "/home/index",
         });
       } else {
         this.$message({

@@ -16,14 +16,33 @@
           <img :src="logo" alt="" />
         </span>
       </el-menu-item>
-      <el-submenu v-for="(item,index) in menus" :key="item.name" :index="String(index+1)">
+      <el-submenu
+        v-for="item in menus"
+        :key="item.name"
+        :index="item._id"
+      >
         <template slot="title">
-          <i class="el-icon-location"></i>
-          <span slot="title">{{item.name}}</span>
+          <i :class="`el-icon-${item.icon}`"></i>
+          <span slot="title">{{ item.name }}</span>
         </template>
-        <el-menu-item-group>
-          <el-menu-item v-for="val in item.children" :key="val.name" :index="val.path">{{val.name}}</el-menu-item>
-        </el-menu-item-group>
+
+        <el-submenu
+          v-for="val in item.children"
+          :key="val.name"
+          :index="val._id"
+        >
+          <template slot="title">
+            <i :class="`el-icon-${val.icon}`"></i>
+            <span slot="title">{{ val.name }}</span>
+          </template>
+
+          <el-menu-item
+            v-for="info in val.children"
+            :key="info.name"
+            :index="info.component"
+            >{{ info.name }}</el-menu-item
+          >
+        </el-submenu>
       </el-submenu>
       <!-- <el-submenu index="1">
         <template slot="title">
@@ -59,13 +78,12 @@
 
 <script>
 import logo from "@/assets/images/woniu.png";
-import menus from '@/data/menu.js'
 export default {
+  props: ["menus"],
   data() {
     return {
       logo,
       isCollapse: false,
-      menus,
     };
   },
   methods: {

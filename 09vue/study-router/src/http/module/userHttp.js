@@ -50,7 +50,7 @@ class UserHttp {
 
   /**
    * 登录
-   * @param {*} data {account="",pwd=""}
+   * @param {*} data {account:"",pwd:""}
    * @returns 
    */
   login(data){
@@ -59,6 +59,19 @@ class UserHttp {
       method: "post",
       data,
     });
+  }
+
+  /**
+   * 获取用户权限
+   * @param {*} data {_id:""}
+   * @returns 
+   */
+  getRightById(data){
+    return axios({
+      url:'/systemUser/getById',
+      method:'post',
+      data
+    })
   }
 
   /**

@@ -2,7 +2,7 @@
   <div class="App">
     <el-container>
       <!-- 侧边栏 -->
-      <aside-vue></aside-vue>
+      <aside-vue :menus="menuList"></aside-vue>
       <el-container direction="vertical">
         <!-- 头部 -->
         <header-vue :name="user.realName"></header-vue>
@@ -17,7 +17,6 @@ import bus from "@/util/bus.js";
 
 import AsideVue from "../components/Aside.vue";
 import HeaderVue from "../components/Header.vue";
-import axios from "axios";
 
 export default {
   name: "App",
@@ -30,13 +29,18 @@ export default {
   data() {
     return {
       user: {},
+      menuList:[]
     };
   },
   methods: {
     async info() {
-      let res = await this.$http.userHttp.getUserInfo();
-      console.log(res.data.userInfo);
-      this.user = res.data.userInfo;
+      let res1 = await this.$http.userHttp.getUserInfo();
+      console.log(res1.data.userInfo);
+      this.user = res1.data.userInfo;
+      console.log(this.user.roles[0]._id);
+      let res2=await this.$http.userHttp.getRightById({_id:this.user.roles[0]._id})
+      console.log(res2.data.data.menu);
+      this.menuList=res2.data.data.menu
     },
   },
   created() {
