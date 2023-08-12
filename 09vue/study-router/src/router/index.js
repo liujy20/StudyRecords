@@ -55,20 +55,52 @@ const userRouter = [
     component: () => import("@/views/Main.vue"),
     children: [
       {
+        // 用户列表
         path: "content",
-        name: "content",
+        name: "usercontent",
         component: () => import("@/views/Content/Content.vue"),
+      },
+      
+    ],
+  },
+  // role
+  {
+    path: "/role",
+    name: "role",
+    component: () => import("@/views/Main.vue"),
+    children: [
+      {
+        // 用户列表
+        path: "list",
+        name: "rolelist",
+        component: () => import("@/views/RoleList/RoleList.vue"),
+      },
+      
+    ],
+  },
+  // admin
+  {
+    path: "/admin",
+    name: "admin",
+    component: () => import("@/views/Main.vue"),
+    children: [
+      {
+        // 管理员
+        path: "list",
+        name: "adminlist",
+        component: () => import("@/views/AdminList/AdminList.vue"),
       },
       {
         path: "addUser",
-        name: "addUser",
+        name: "adminaddUser",
         component: () => import("@/views/AddUser/AddUser.vue"),
       },
       {
         path: "modify",
-        name: "modify",
+        name: "adminmodify",
         component: () => import("@/views/Modify/Modify.vue"),
       },
+      
     ],
   },
   // order
@@ -79,7 +111,7 @@ const userRouter = [
     children: [
       {
         path: "index",
-        name: "index",
+        name: "orderindex",
         component: () => import("@/views/Order/Order.vue"),
       },
     ],
@@ -92,12 +124,12 @@ const userRouter = [
     children: [
       {
         path: "good",
-        name: "good",
+        name: "listgood",
         component: () => import("@/views/Good/Good.vue"),
       },
       {
         path: "group",
-        name: "group",
+        name: "listgroup",
         component: () => import("@/views/Group/Group.vue"),
       },
     ],
@@ -116,6 +148,7 @@ const router = new VueRouter({
   routes,
   name: "zs",
 });
+
 let isHas = false;
 router.beforeEach(async (to, from, next) => {
   console.log(to);
@@ -130,11 +163,14 @@ router.beforeEach(async (to, from, next) => {
       if (!isHas) {
         isHas = !isHas;
         let res1 = await $http.userHttp.getUserInfo();
-        // console.log(res);
+        console.log(res1);
         let _id = res1.data.userInfo.roles[0]._id;
         let res2 = await $http.userHttp.getRightById({ _id });
-        let menus = res2.data.data.menu;
-        console.log(menus);
+        // let menus = res2.data.data.menu;
+        // console.log(menus);
+        // getRouters(menus).forEach((item) => {
+        //   router.addRoute(item);
+        // });
         userRouter.forEach((item) => {
           router.addRoute(item);
         });
@@ -142,5 +178,18 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 });
+
+function getRouters(arr) {
+  if (!arr) return [];
+  arr = arr.map((item) => {
+    return {
+      path: item.component,
+      name: item.filePath.replace(/\//g, ""),
+      component: () => import(`@/views${item.filePath}.vue`),
+      children: getRouters(item.children),
+    };
+  });
+  return arr;
+}
 
 export default router;

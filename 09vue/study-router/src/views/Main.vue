@@ -35,11 +35,11 @@ export default {
   methods: {
     async info() {
       let res1 = await this.$http.userHttp.getUserInfo();
-      console.log(res1.data.userInfo);
+      // console.log(res1.data.userInfo);
       this.user = res1.data.userInfo;
-      console.log(this.user.roles[0]._id);
+      // console.log(this.user.roles[0]._id);
       let res2=await this.$http.userHttp.getRightById({_id:this.user.roles[0]._id})
-      console.log(res2.data.data.menu);
+      // console.log(res2.data.data.menu);
       this.menuList=res2.data.data.menu
     },
   },

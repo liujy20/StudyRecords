@@ -40,7 +40,7 @@ class UserHttp {
 
   /**
    * token获取用户信息
-   * @returns 
+   * @returns
    */
   getUserInfo() {
     return axios.get("/admin/getUserInfo", {
@@ -51,9 +51,9 @@ class UserHttp {
   /**
    * 登录
    * @param {*} data {account:"",pwd:""}
-   * @returns 
+   * @returns
    */
-  login(data){
+  login(data) {
     return axios({
       url: "/admin/login",
       method: "post",
@@ -64,22 +64,22 @@ class UserHttp {
   /**
    * 获取用户权限
    * @param {*} data {_id:""}
-   * @returns 
+   * @returns
    */
-  getRightById(data){
+  getRightById(data) {
     return axios({
-      url:'/systemUser/getById',
-      method:'post',
-      data
-    })
+      url: "/systemUser/getById",
+      method: "post",
+      data,
+    });
   }
 
   /**
    * 修改用户信息
    * @param {*} data user
-   * @returns 
+   * @returns
    */
-  modifyUser(data){
+  modifyUser(data) {
     return axios({
       url: "/admin/set",
       method: "post",
@@ -90,14 +90,51 @@ class UserHttp {
   /**
    * 创建用户
    * @param {*} adta user
+   * @returns
+   */
+  addUser(data) {
+    return axios({
+      url: "/admin/add",
+      method: "post",
+      data,
+    });
+  }
+
+  /**
+   * 获取管理员类型列表
+   * @returns
+   */
+  getSystemUser() {
+    return axios({
+      url: "/systemUser/get",
+      method: "post",
+      data: {},
+    });
+  }
+
+  /**
+   * 获取规则
+   * @returns
+   */
+  getSystemRule() {
+    return axios({
+      url: "/system/get",
+      method: "post",
+      data: {},
+    });
+  }
+
+  /**
+   * 添加角色
+   * @param {*} data {"roleName": "","status": "","rules": ""}
    * @returns 
    */
-  addUser(data){
+  addSystemUser(data) {
     return axios({
-      url:'/admin/add',
-      method:'post',
-      data
-    })
+      url: "/systemUser/add",
+      method: "post",
+      data,
+    });
   }
 }
 
