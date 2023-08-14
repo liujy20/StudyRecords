@@ -1,4 +1,3 @@
-import http from "@/http";
 import Vue from "vue";
 import VueRouter from "vue-router";
 import $http from "@/http/index";
