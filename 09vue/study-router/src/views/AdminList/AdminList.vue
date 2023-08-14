@@ -20,9 +20,6 @@
       <el-button type="primary" size="default" @click="openAddBox"
         >添加管理员</el-button
       >
-
-      <!-- <el-button type="danger" @click="deleteMore">批量删除</el-button>
-      <el-button>批量设置分组</el-button> -->
     </div>
     <div class="table">
       <el-table
@@ -88,64 +85,6 @@
           </template>
         </el-table-column>
       </el-table>
-      <!-- <el-table
-        ref="multipleTable"
-        :data="users"
-        tooltip-effect="dark"
-        style="width: 100%"
-        @selection-change="handleSelectionChange"
-      >
-        <el-table-column type="selection" width="55"> </el-table-column>
-
-        <el-table-column prop="uid" label="ID" width="120"> </el-table-column>
-        <el-table-column prop="avatar" label="头像" width="120">
-          <template slot-scope="scope">
-            <img width="30" :src="scope.row.avatar" alt="" />
-          </template>
-        </el-table-column>
-        <el-table-column prop="nickname" label="姓名" width="120">
-        </el-table-column>
-        <el-table-column prop="level" label="用户等级" width="120">
-          <template slot-scope="scope">
-            <span>{{ scope.row.level ? "精品用户" : "普通用户" }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column prop="groupId" label="分组" width="120">
-        </el-table-column>
-        <el-table-column prop="partnerId" label="推荐人" width="120">
-        </el-table-column>
-        <el-table-column prop="phone" label="手机号" width="120">
-          <template slot-scope="scope">
-            <span
-              >{{ scope.row.phone.slice(0, 4) }}****{{
-                scope.row.phone.slice(-4)
-              }}</span
-            >
-          </template>
-        </el-table-column>
-        <el-table-column prop="nowMoney" label="余额" width="120">
-        </el-table-column>
-        <el-table-column prop="integral" label="积分" width="120">
-        </el-table-column>
-        <el-table-column label="操作">
-          <template slot-scope="scope">
-            <el-button type="text" size="small"> 编辑 </el-button>
-            <el-button
-              @click.native.prevent="deleteRow(scope.row.uid, users)"
-              type="text"
-              size="small"
-            >
-              删除
-            </el-button>
-          </template>
-        </el-table-column>
-      </el-table> -->
-      <!-- <div style="margin-top: 20px">
-        <el-button @click="toggleSelection([tableData[1], tableData[2]])"
-          >切换第二、第三行的选中状态</el-button
-        >
-        <el-button @click="toggleSelection()">取消选择</el-button>
-      </div> -->
       <div class="block">
         <el-pagination
           @size-change="handleSizeChange"

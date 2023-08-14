@@ -107,6 +107,40 @@
         <el-button type="primary" @click="confirmForm">确 定</el-button>
       </div>
     </el-dialog>
+    <el-dialog title="修改角色" :visible.sync="editFormVisible" @opened='initEdit'>
+      <el-form :model="form">
+        <el-form-item label="角色名称" label-width="120px">
+          <el-input v-model="form.roleName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="状态" label-width="120px">
+          <el-switch
+            v-model="form.status"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            active-text="开启"
+            inactive-text="关闭"
+          >
+          </el-switch>
+        </el-form-item>
+        <el-form-item label="菜单权限" label-width="120px">
+          <el-checkbox v-model="isExpend" @change="changeExpendStatus">展开/折叠</el-checkbox>
+          
+          <el-tree
+            :data="rules"
+            show-checkbox
+            node-key="_id"
+            ref="tree"
+            :props="defaultProps"
+            :default-expanded-keys="expendNodes"
+          >
+          </el-tree>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="cancelEditForm">取 消</el-button>
+        <el-button type="primary" @click="confirmEditForm">确 定</el-button>
+      </div>
+    </el-dialog>
   </el-main>
 </template>
 
@@ -129,7 +163,8 @@ export default {
       totalUser: 1,
       // 添加框
       dialogFormVisible: false,
-
+      isExpend:false,
+      expendNodes:[],
       rules: [],
       form: {
         rules: "",
@@ -178,6 +213,17 @@ export default {
     //   });
     // },
     deleteRow(id) {},
+    changeExpendStatus(){
+      if(this.isExpend){
+        this.expendNodes=this.rules.map(item=>{
+          return item._id
+        })
+        console.log(this.expendNodes);
+      }else{
+        this.expendNodes=
+        console.log(111);
+      }
+    },
     //==============================
     // 打开From表单
     openAddBox() {
@@ -193,7 +239,7 @@ export default {
     async confirmForm() {
       this.form.rules = this.$refs.tree.getCheckedKeys().join(",");
       console.log(this.form);
-      let res = await this.$http.userHttp.addSystemUser(this.form);
+      let res = await this.$http.roleHttp.addSystemUser(this.form);
       console.log(res);
       if (res.data.meta.status == 200) {
         this.$message({
@@ -215,18 +261,21 @@ export default {
       console.log(this.$refs.tree.getCheckedKeys(), this.form);
     },
     //==============================
-    // 修改数据
+    // 打开修改框
     openEditRow(val) {
       this.editFormVisible = true;
       this.form = { ...val };
-      this.form.roles = this.form.roles.map((item) => {
-        return item._id;
-      });
+      console.log(this.form);
+    },
+    // 渲染原数据
+    initEdit(){
+       this.$refs.tree.setCheckedKeys(this.form.rules.split(","));
     },
     // 提交表单
     async confirmEditForm() {
-      this.form.roles.sort();
-      let res = await this.$http.userHttp.modifyUser(this.form);
+      this.form.rules = this.$refs.tree.getCheckedKeys().join(",");
+      console.log(this.form);
+      let res = await this.$http.roleHttp.modifySystemUser(this.form);
       console.log(res.data);
       if (res.data.meta.status == 200) {
         this.$message({
@@ -237,7 +286,7 @@ export default {
         this.editFormVisible = false;
       } else {
         this.$message({
-          message: "修改失败",
+          message: res.data.meta.msg,
           type: "warning",
         });
       }
@@ -289,7 +338,7 @@ export default {
     },
     // 后端数据
     async getInfo() {
-      let res = await this.$http.userHttp.getSystemUser();
+      let res = await this.$http.roleHttp.getSystemUser();
       console.log(res.data.data);
       this.getList = res.data.data;
       // 总页数
@@ -297,7 +346,7 @@ export default {
     },
     // 获取权限
     async getRule() {
-      let res = await this.$http.userHttp.getSystemRule();
+      let res = await this.$http.roleHttp.getSystemRule();
       console.log(res.data.data);
       this.rules = res.data.data;
     },
