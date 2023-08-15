@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import $http from "@/http/index";
+import $store from "@/store";
 
 Vue.use(VueRouter);
 
@@ -21,16 +22,6 @@ const routes = [
     name: "login",
     // component:LoginView
     component: () => import("@/views/LoginView.vue"),
-  },
-  // default
-  {
-    path: "*",
-    name: "*",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "@/views/AboutView.vue"),
   },
   // home
   {
@@ -59,7 +50,6 @@ const userRouter = [
         name: "usercontent",
         component: () => import("@/views/Content/Content.vue"),
       },
-      
     ],
   },
   // role
@@ -69,12 +59,14 @@ const userRouter = [
     component: () => import("@/views/Main.vue"),
     children: [
       {
-        // 用户列表
+        // 角色列表
         path: "list",
         name: "rolelist",
         component: () => import("@/views/RoleList/RoleList.vue"),
+        meta: {
+          isKeepAlive: true,
+        },
       },
-      
     ],
   },
   // admin
@@ -84,22 +76,26 @@ const userRouter = [
     component: () => import("@/views/Main.vue"),
     children: [
       {
-        // 管理员
+        // 管理员列表
         path: "list",
         name: "adminlist",
         component: () => import("@/views/AdminList/AdminList.vue"),
+        meta: {
+          isKeepAlive: true,
+        },
       },
       {
+        // 添加管理员
         path: "addUser",
         name: "adminaddUser",
         component: () => import("@/views/AddUser/AddUser.vue"),
       },
       {
+        // 修改管理员
         path: "modify",
         name: "adminmodify",
         component: () => import("@/views/Modify/Modify.vue"),
       },
-      
     ],
   },
   // order
@@ -139,6 +135,36 @@ const userRouter = [
     name: "axios",
     component: () => import("@/views/Axios.vue"),
   },
+  {
+    path: "/axios1",
+    name: "axios1",
+    component: () => import("@/views/Axios.vue"),
+  },
+  {
+    path: "/axios2",
+    name: "axios2",
+    component: () => import("@/views/Axios.vue"),
+  },
+  {
+    path: "/axios3",
+    name: "axios3",
+    component: () => import("@/views/Axios.vue"),
+  },
+  {
+    path: "/axios4",
+    name: "axios4",
+    component: () => import("@/views/Axios.vue"),
+  },
+  {
+    path: "/axios5",
+    name: "axios5",
+    component: () => import("@/views/Axios.vue"),
+  },
+  {
+    path: "/axios6",
+    name: "axios6",
+    component: () => import("@/views/Axios.vue"),
+  },
 ];
 
 const router = new VueRouter({
@@ -150,7 +176,7 @@ const router = new VueRouter({
 
 let isHas = false;
 router.beforeEach(async (to, from, next) => {
-  console.log(to);
+  // console.log(to);
   if (to.path == "/login") {
     next();
   } else {
@@ -161,24 +187,69 @@ router.beforeEach(async (to, from, next) => {
       next();
       if (!isHas) {
         isHas = !isHas;
-        let res1 = await $http.userHttp.getUserInfo();
-        console.log(res1);
-        let _id = res1.data.userInfo.roles[0]._id;
-        let res2 = await $http.userHttp.getRightById({ _id });
+        // let res1 = await $http.userHttp.getUserInfo();
+        // console.log(res1);
+        // let _id = res1.data.userInfo.roles[0]._id;
+        // let res2 = await $http.userHttp.getRightById({ _id });
         // let menus = res2.data.data.menu;
         // console.log(menus);
         // getRouters(menus).forEach((item) => {
         //   router.addRoute(item);
         // });
-        userRouter.forEach((item) => {
+        getRouters().forEach((item) => {
           router.addRoute(item);
+          // console.log(111);
+        });
+        router.addRoute({
+          path: "*",
+          name: "notfound",
+          component: () => import("@/views/AboutView.vue"),
         });
       }
     }
   }
 });
 
+// 后置守卫
+router.afterEach((to, from) => {
+  // console.log(to);
+  // console.log("routervue", $store.getters.getBreadcrumb);
+  renderBreadcrumbByPath(to.fullPath);
+});
+// 生成面包屑
+function renderBreadcrumbByPath(fullPath) {
+  setTimeout(() => {
+    // 初始化面包屑导航
+    $store.commit("clearBreadcrumb");
+    let menus = $store.getters.getMenus;
+    findPath(menus, fullPath);
+  }, 300);
+}
+
+// 获取路径
+function findPath(arr, fullPath) {
+  for (let item of arr) {
+    let res = false;
+    if (item.children) {
+      res = findPath(item.children, fullPath);
+    }
+    if (item.component == fullPath || res) {
+      $store.commit("addBreadcrumb", item.name);
+      console.log(item.name);
+      return true;
+    }
+    // if (res) {
+    //   $store.commit("addBreadcrumb", item.name);
+    //   console.log(item.name);
+    //   return true;
+    // }
+  }
+  return false;
+}
+
+// 获取路由对象数组
 function getRouters(arr) {
+  return userRouter;
   if (!arr) return [];
   arr = arr.map((item) => {
     return {

@@ -5,6 +5,7 @@ import store from './store'
 import './plugins/element.js'
 import '@/config/axios.config'
 import http from '@/http/index'
+import '@/util/directive'
 
 // 全局引用
 Vue.prototype.$http=http

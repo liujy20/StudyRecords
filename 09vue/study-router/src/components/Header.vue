@@ -3,16 +3,19 @@
     <div class="top">
       <i class="el-icon-s-fold"></i>
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item><a href="/">营销</a></el-breadcrumb-item>
-        <el-breadcrumb-item>拼团管理</el-breadcrumb-item>
+        <el-breadcrumb-item
+          v-for="item in $store.getters.getBreadcrumb"
+          :key="item"
+          >{{ item }}</el-breadcrumb-item
+        >
       </el-breadcrumb>
       <i class="el-icon-search"></i>
       <i class="el-icon-full-screen"></i>
       <i class="el-icon-bell"></i>
       <el-dropdown @command="handleCommand">
         <span class="el-dropdown-link">
-          {{ name }}<i class="el-icon-arrow-down el-icon--right"></i>
+          {{ $store.getters.getUser.realName
+          }}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="modifyUser">修改用户</el-dropdown-item>
@@ -46,14 +49,14 @@ export default {
     handleCommand(val) {
       switch (val) {
         case "quit":
-          localStorage.removeItem('token');
+          localStorage.removeItem("token");
           this.$router.push({
-            name:'good',
+            name: "good",
           });
           break;
         case "modifyUser":
           this.$router.push({
-            name: "modify",
+            name: "adminmodify",
           });
           break;
         default:

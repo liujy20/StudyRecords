@@ -2,11 +2,14 @@
   <div class="App">
     <el-container>
       <!-- 侧边栏 -->
-      <aside-vue :menus="menuList"></aside-vue>
+      <aside-vue></aside-vue>
       <el-container direction="vertical">
         <!-- 头部 -->
-        <header-vue :name="user.realName"></header-vue>
-        <router-view></router-view>
+        <header-vue></header-vue>
+        <keep-alive>
+          <router-view v-if="$route.meta.isKeepAlive"></router-view>
+        </keep-alive>
+        <router-view v-if="!$route.meta.isKeepAlive"></router-view>
       </el-container>
     </el-container>
   </div>
@@ -43,11 +46,13 @@ export default {
       this.menuList=res2.data.data.menu
     },
   },
-  created() {
-    this.info();
-    bus.$on("user", () => {
-      this.info();
-    });
+  async created() {
+    // this.info();
+    // bus.$on("user", () => {
+    //   this.info();
+    // });
+    await this.$store.dispatch('reqInfo')
+    this.$store.dispatch('reqMenus',this.$store.getters.getUserID)
   },
 };
 </script>

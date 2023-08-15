@@ -39,7 +39,7 @@
         <el-table-column prop="roleName" label="角色昵称"> </el-table-column>
         <el-table-column prop="create_time" label="创建时间"> </el-table-column>
 
-        <el-table-column label="操作" width="100">
+        <el-table-column label="操作" width="150">
           <template slot-scope="scope">
             <el-button
               @click.native.prevent="openEditRow(scope.row)"
@@ -54,6 +54,15 @@
               size="small"
             >
               删除
+            </el-button>
+            <!-- 按钮级别权限控制 自定义方法 通过value获取插入数据 -->
+            <el-button
+              @click.native.prevent="deleteRow(scope.row._id)"
+              type="text"
+              size="small"
+              v-super="scope.row"
+            >
+              彻底删除
             </el-button>
           </template>
         </el-table-column>

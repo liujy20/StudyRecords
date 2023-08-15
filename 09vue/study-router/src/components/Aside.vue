@@ -17,7 +17,7 @@
         </span>
       </el-menu-item>
       <el-submenu
-        v-for="item in menus"
+        v-for="item in $store.getters.getMenus"
         :key="item.name"
         :index="item._id"
       >
@@ -79,7 +79,6 @@
 <script>
 import logo from "@/assets/images/woniu.png";
 export default {
-  props: ["menus"],
   data() {
     return {
       logo,
