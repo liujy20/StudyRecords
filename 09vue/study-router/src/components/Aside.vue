@@ -17,7 +17,7 @@
         </span>
       </el-menu-item>
       <el-submenu
-        v-for="item in $store.getters.getMenus"
+        v-for="item in getMenus"
         :key="item.name"
         :index="item._id"
       >
@@ -39,7 +39,7 @@
           <el-menu-item
             v-for="info in val.children"
             :key="info.name"
-            :index="info.component"
+            @click="saveTag(info)"
             >{{ info.name }}</el-menu-item
           >
         </el-submenu>
@@ -78,12 +78,16 @@
 
 <script>
 import logo from "@/assets/images/woniu.png";
+import {mapGetters} from 'vuex'
 export default {
   data() {
     return {
       logo,
       isCollapse: false,
     };
+  },
+  computed:{
+    ...mapGetters(['getMenus'])
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -92,6 +96,16 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
+    saveTag(info){
+      console.log('info',info);
+      this.$router.push({
+        path:info.component
+      })
+      if(info.component){
+        console.log('保存Tag数据');
+        localStorage.setItem('tag',JSON.stringify(info))
+      }
+    }
   },
 };
 </script>

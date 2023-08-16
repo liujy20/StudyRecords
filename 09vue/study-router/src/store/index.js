@@ -9,6 +9,9 @@ export default new Vuex.Store({
     user:{},
     menus:[],
     breadcrumb:['首页'],
+    tags:[
+      { name: "首页",isClosable:false,path:'/home/index' },
+    ],
   },
   getters: {
     getUserID(state){
@@ -22,21 +25,37 @@ export default new Vuex.Store({
     },
     getBreadcrumb(state){
       return state.breadcrumb
+    },
+    getTags(state){
+      return state.tags
     }
   },
   mutations: {
-    setInfo(Store,payload){
-      Store.user=payload
+    setInfo(state,payload){
+      state.user=payload
     },
-    setMenus(Store,payload){
-      Store.menus=payload
+    setMenus(state,payload){
+      state.menus=payload
     },
-    addBreadcrumb(store,payload){
-      store.breadcrumb.unshift(payload)
+    addBreadcrumb(state,payload){
+      state.breadcrumb.unshift(payload)
     },
-    clearBreadcrumb(store){
-      store.breadcrumb.splice(0)
+    clearBreadcrumb(state){
+      state.breadcrumb.splice(0)
     },
+    addTag(state,payload){
+      if(!state.tags.some(item=>item.name==payload.name)){
+        state.tags.push({
+          name:payload.name,
+          path:payload.component?payload.component:payload.path,
+          isClosable:true
+        })
+      }
+    },
+    delTag(state,payload){
+      state.tags=state.tags.filter(item=>item!=payload)
+    }
+    
   },
   actions: {
     async reqInfo(context) {

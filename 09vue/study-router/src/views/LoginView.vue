@@ -90,12 +90,12 @@ export default {
       console.log(res);
       if (res.data.code == 200) {
         localStorage.setItem("token", res.data.token);
+        this.$router.push({
+          path: "/home/index",
+        });
         this.$message({
           message: res.data.msg,
           type: "success",
-        });
-        this.$router.push({
-          path: "/home/index",
         });
       } else {
         this.$message({

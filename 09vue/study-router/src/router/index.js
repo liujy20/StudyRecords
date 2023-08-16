@@ -215,6 +215,9 @@ router.afterEach((to, from) => {
   // console.log(to);
   // console.log("routervue", $store.getters.getBreadcrumb);
   renderBreadcrumbByPath(to.fullPath);
+  let tag=JSON.parse(localStorage.getItem('tag'))
+  console.log('获取Tag',tag);
+  $store.commit('addTag',tag)
 });
 // 生成面包屑
 function renderBreadcrumbByPath(fullPath) {
@@ -235,7 +238,7 @@ function findPath(arr, fullPath) {
     }
     if (item.component == fullPath || res) {
       $store.commit("addBreadcrumb", item.name);
-      console.log(item.name);
+      // console.log(item.name);
       return true;
     }
     // if (res) {

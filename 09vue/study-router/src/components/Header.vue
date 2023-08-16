@@ -3,18 +3,18 @@
     <div class="top">
       <i class="el-icon-s-fold"></i>
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item
-          v-for="item in $store.getters.getBreadcrumb"
-          :key="item"
-          >{{ item }}</el-breadcrumb-item
-        >
+        <transition-group>
+          <el-breadcrumb-item v-for="item in getBreadcrumb" :key="item">{{
+            item
+          }}</el-breadcrumb-item>
+        </transition-group>
       </el-breadcrumb>
       <i class="el-icon-search"></i>
       <i class="el-icon-full-screen"></i>
       <i class="el-icon-bell"></i>
       <el-dropdown @command="handleCommand">
         <span class="el-dropdown-link">
-          {{ $store.getters.getUser.realName
+          {{ getUser.realName
           }}<i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
@@ -24,8 +24,14 @@
       </el-dropdown>
     </div>
     <div class="bottom">
-      <el-tag>标签一</el-tag>
-      <el-tag v-for="tag in tags" :key="tag.name" closable :type="tag.type">
+      <el-tag
+        v-for="(tag, index) in getTags"
+        :key="tag.name"
+        :closable="tag.isClosable"
+        :type="tag.path == $route.path ? '' : 'info'"
+        @click="changePath(tag)"
+        @close="closeTag(tag, index)"
+      >
         {{ tag.name }}
       </el-tag>
     </div>
@@ -33,17 +39,14 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 export default {
   props: ["name"],
   data() {
-    return {
-      tags: [
-        { name: "标签一", type: "danger" },
-        { name: "标签二", type: "success" },
-        { name: "标签三", type: "info" },
-        { name: "标签四", type: "warning" },
-      ],
-    };
+    return {};
+  },
+  computed: {
+    ...mapGetters(["getBreadcrumb", "getUser", "getTags"]),
   },
   methods: {
     handleCommand(val) {
@@ -63,6 +66,20 @@ export default {
           break;
       }
     },
+    changePath(tag) {
+      this.$router.push({
+        path:tag.path
+      });
+      localStorage.setItem('tag',JSON.stringify(tag))
+    },
+    closeTag(tag,index) {
+      this.delTag(tag);
+      if(index==this.getTags.length)
+        this.$router.push({
+          path: this.getTags[this.getTags.length-1].path,
+      });
+    },
+    ...mapMutations(["delTag"]),
   },
 };
 </script>
