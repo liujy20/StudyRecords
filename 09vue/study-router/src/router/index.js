@@ -32,6 +32,7 @@ const routes = [
       {
         path: "index",
         name: "homeIndex",
+        // component: () => import("@/views/DashboardTeach.vue"),
         component: () => import("@/views/home.vue"),
       },
     ],

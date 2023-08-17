@@ -112,33 +112,14 @@
         ><div class="card2">
           <div class="tit">快捷入口</div>
           <div class="content">
-            <div class="item">
+            <div
+              class="item"
+              v-for="item in shortcutList"
+              :key="item.path"
+              @click="toPath(item.path)"
+            >
               <img :src="subNav" alt="" />
-              <p>用户管理</p>
-            </div>
-            <div class="item">
-              <img :src="subNav" alt="" />
-              <p>用户管理</p>
-            </div>
-            <div class="item">
-              <img :src="subNav" alt="" />
-              <p>用户管理</p>
-            </div>
-            <div class="item">
-              <img :src="subNav" alt="" />
-              <p>用户管理</p>
-            </div>
-            <div class="item">
-              <img :src="subNav" alt="" />
-              <p>用户管理</p>
-            </div>
-            <div class="item">
-              <img :src="subNav" alt="" />
-              <p>用户管理</p>
-            </div>
-            <div class="item">
-              <img :src="subNav" alt="" />
-              <p>用户管理</p>
+              <p>{{ item.name }}</p>
             </div>
           </div>
         </div></el-col
@@ -228,12 +209,14 @@
 <script>
 import subNav from "@/assets/subNav.jpg";
 import * as echarts from "echarts";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       subNav,
       time: "昨天",
       timeValue: "",
+      shortcutList: [],
     };
   },
   methods: {
@@ -278,9 +261,35 @@ export default {
       };
       mychart.setOption(option);
     },
+    shortcut() {
+      this.getMenus.forEach((i) => {
+        if(i.children)
+        i.children.forEach((j) => {
+      if(j.children)
+          j.children.forEach((k) => {
+            if (k.component) {
+              this.shortcutList.push({ path: k.component, name: k.name });
+            }
+          });
+        });
+      });
+    },
+    toPath(path){
+      this.$router.push({
+        path
+      })
+    }
   },
+  computed: {
+    ...mapGetters(["getMenus"]),
+  },
+  async created() {},
   mounted() {
     this.getChart1();
+    setTimeout(() => {
+      console.log(this.getMenus);
+    this.shortcut();
+    }, 200);
   },
 };
 </script>
@@ -384,7 +393,7 @@ export default {
         text-align: left;
         font-weight: 600;
       }
-      #myChart1{
+      #myChart1 {
         width: 100%;
         height: 370px;
       }
