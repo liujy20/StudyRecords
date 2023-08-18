@@ -1,7 +1,9 @@
 import App from './App'
+import http from '@/http/index.js'
 
 // #ifndef VUE3
 import Vue from 'vue'
+Vue.prototype.$http=http
 Vue.config.productionTip = false
 App.mpType = 'app'
 

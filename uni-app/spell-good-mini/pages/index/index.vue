@@ -86,15 +86,9 @@
 		onLoad() {
 
 		},
-		created() {
-			uni.request({
-				url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
-				method: 'GET',
-				success: (res) => {
-					console.log('请求成功', res.data.message);
-					this.swiperArr = res.data.message
-				}
-			});
+		async created() {
+			let swiperRes=await this.$http.httpCommon.getSwiper()
+			this.swiperArr = swiperRes.message
 			uni.request({
 				url: 'http://localhost:4001/home/groupGoods/get',
 				method: 'POST',
