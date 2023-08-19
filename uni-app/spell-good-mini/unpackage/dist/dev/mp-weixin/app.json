@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/mine/mine",
     "pages/car/car",
-    "pages/category/category"
+    "pages/category/category",
+    "pages/goodsList/goodsList",
+    "pages/groupList/groupList"
   ],
   "subPackages": [],
   "window": {

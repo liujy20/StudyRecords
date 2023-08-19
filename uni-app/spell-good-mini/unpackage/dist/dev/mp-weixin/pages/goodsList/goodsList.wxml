@@ -1,0 +1,1 @@
+<view class="bg"><view class="goods"><block wx:for="{{goodsArr}}" wx:for-item="item" wx:for-index="__i0__"><view class="item"><image src="{{item.mainImg}}" mode></image><view class="name _div">{{item.intro}}</view><view class="old">{{"$"+item.price}}</view><view class="new">$999</view></view></block></view></view>

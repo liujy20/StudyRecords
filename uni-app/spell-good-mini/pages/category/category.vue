@@ -3,30 +3,24 @@
 		<view class="nav">
 			<scroll-view scroll-y="true" class="scroll-view">
 
-				<view class="scroll-view-item">
-					家电2
-				</view>
-				<view class="scroll-view-item">
-					家电3
-				</view>
-				<view class="scroll-view-item">
-					家电4
+				<view class="scroll-view-item" :class="index==curIndex?'active':''" v-for="(item,index) in categories"
+					:key="item._id" @click="changeCur(index)">
+					{{item.title}}
 				</view>
 			</scroll-view>
 		</view>
 
 		<view class="list-box">
-			<scroll-view class="scroll-right" :scroll-y="true" :scroll-into-view="scrollItemId"
+			<scroll-view @scroll="scrollChange" class="scroll-right" :scroll-y="true" :scroll-into-view="scrollItemId"
 				scroll-with-animation="true">
-				<view class="category-item-list">
+				<view class="category-item-list" v-for="(item,index) in categories" :key="item._id" :id="'item-'+index">
 					<view class="list-title">
-						数码
+						{{item.title}}
 					</view>
 					<view>
-
-						<view class="list">
-							<image width="30" class="item-img" src="../../static/logo.png"></image>
-							<view>冰箱2</view>
+						<view class="list" v-for="val in item.children" :key="val._id">
+							<image width="30" class="item-img" :src="val.img"></image>
+							<view>{{val.item}}</view>
 						</view>
 					</view>
 				</view>
@@ -45,9 +39,31 @@
 			}
 		},
 		async created() {
-
+			let categories = await this.$http.httpCategory.getCategory()
+			console.log(categories)
+			this.categories = categories.data
 		},
-		methods: {}
+		methods: {
+			changeCur(index) {
+				this.curIndex = index;
+				this.scrollItemId = 'item-' + index
+			},
+			scrollChange({detail}) {
+				console.log('scroll',detail);
+				let query = uni.createSelectorQuery().in(this)
+				query.selectAll('.category-item-list').boundingClientRect(data => {
+					console.log(data);
+					let allTop=0
+					for(let i in data){
+						allTop+=data[i].height
+						if(allTop>detail.scrollTop){
+							this.curIndex=i
+							break
+						}
+					}
+				}).exec()
+			}
+		}
 	}
 </script>
 
@@ -70,7 +86,7 @@
 				font-weight: 500;
 
 				&.active {
-					background-color: red;
+					background-color: #1cb3fb;
 				}
 			}
 

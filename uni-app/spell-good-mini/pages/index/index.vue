@@ -89,14 +89,8 @@
 		async created() {
 			let swiperRes=await this.$http.httpCommon.getSwiper()
 			this.swiperArr = swiperRes.message
-			uni.request({
-				url: 'http://localhost:4001/home/groupGoods/get',
-				method: 'POST',
-				success: (res) => {
-					console.log('请求成功', res.data.data);
-					this.goodsArr = res.data.data
-				}
-			});
+			let groupGoods=await this.$http.httpSpellGoods.getGroupGoods()
+			this.goodsArr = groupGoods.data
 		},
 		methods: {
 

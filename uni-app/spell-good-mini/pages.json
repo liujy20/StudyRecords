@@ -28,6 +28,20 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/goodsList/goodsList",
+			"style": {
+				"navigationBarTitleText": "商品列表",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/groupList/groupList",
+			"style": {
+				"navigationBarTitleText": "拼团列表",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	],
 	"globalStyle": {
@@ -44,13 +58,13 @@
 				"selectedIconPath": "static/images/tabbar/home_selected.png",
 				"text": "首页"
 			},
-			
+
 			{
 				"pagePath": "pages/car/car",
 				"iconPath": "static/images/tabbar/car.png",
 				"selectedIconPath": "static/images/tabbar/car_selected.png",
 				"text": "购物车"
-			}, 
+			},
 			{
 				"pagePath": "pages/category/category",
 				"iconPath": "static/images/tabbar/category.png",
