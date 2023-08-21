@@ -1,0 +1,170 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.bg {
+  background-color: #f5f5f5;
+  height: 100vh;
+  overflow: auto;
+}
+.bg .tags {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f5f5f5;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.bg .tags .tag {
+  color: #818181;
+}
+.bg .tags .tag image {
+  width: 22rpx;
+  height: 22rpx;
+}
+.bg .tags .tag text {
+  font-size: 20rpx;
+}
+.bg .tit {
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  background-color: white;
+}
+.bg .tit .sub-left .count {
+  color: #1cb3fb;
+}
+.bg .tit .sub-right {
+  width: 110rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  border: 1rpx solid #333;
+  text-align: center;
+}
+.bg .car {
+  margin-bottom: 100rpx;
+}
+.bg .car .item {
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx 30rpx;
+  display: flex;
+  align-items: center;
+  margin: 20rpx 0;
+}
+.bg .car .item image {
+  width: 200rpx;
+  height: 200rpx;
+}
+.bg .car .item .info {
+  width: 430rpx;
+  flex-grow: 1;
+}
+.bg .car .item .info .name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bg .car .item .info .tag {
+  margin: 20rpx 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #999;
+}
+.bg .car .item .info .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bg .car .item .info .content .price {
+  margin: 20rpx;
+}
+.bg .car .item .info .content .price .old {
+  color: #999;
+  text-decoration: line-through;
+  font-size: 20rpx;
+}
+.bg .car .item .info .content .price .new {
+  color: #1cb3fb;
+  font-size: 30rpx;
+}
+.bg .car .item .info .content .btn {
+  display: flex;
+  text-align: center;
+  line-height: 50rpx;
+}
+.bg .car .item .info .content .btn .sub {
+  width: 60rpx;
+  height: 50rpx;
+  color: #999;
+  border: 1rpx solid #999;
+}
+.bg .car .item .info .content .btn .num {
+  width: 60rpx;
+  height: 50rpx;
+  border: 1rpx solid #999;
+}
+.bg .car .item .info .content .btn .add {
+  width: 60rpx;
+  height: 50rpx;
+  color: #999;
+  border: 1rpx solid #999;
+}
+.bg .all {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  padding: 15rpx 40rpx;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  border-top: 1rpx solid #ccc;
+  background-color: #fafafa;
+}
+.bg .all .choose-all {
+  margin-right: 20rpx;
+}
+.bg .all .all-num {
+  flex-grow: 1;
+}
+.bg .all .all-price {
+  margin-right: 20rpx;
+  color: lightcoral;
+}
+.bg .all .to-pay {
+  background-color: #1cb3fb;
+  border-radius: 30rpx;
+  width: 220rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: white;
+  text-align: center;
+}
+

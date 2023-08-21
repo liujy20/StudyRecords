@@ -18,9 +18,9 @@
 						{{item.title}}
 					</view>
 					<view>
-						<view class="list" v-for="val in item.children" :key="val._id">
+						<view class="list" v-for="val in item.children" :key="val._id" @click="chooseType" :id="val._id">
 							<image width="30" class="item-img" :src="val.img"></image>
-							<view>{{val.item}}</view>
+							<view>{{val.title}}</view>
 						</view>
 					</view>
 				</view>
@@ -62,6 +62,12 @@
 						}
 					}
 				}).exec()
+			},
+			chooseType({currentTarget}){
+				uni.navigateTo({
+					url:'/pages/goodsList/goodsList?id='+currentTarget.id
+				})
+				
 			}
 		}
 	}

@@ -40,29 +40,29 @@
       </div>
       <div class="body">
         <el-table :data="currentList" style="width: 100%; font-size: 12px">
-          <el-table-column prop="id" label="ID" width="50"> </el-table-column>
+          <el-table-column prop="_id" label="ID" width="250"> </el-table-column>
           <el-table-column prop="img" label="图片" width="60">
             <template slot-scope="scope">
-              <img style="width: 30px; height: 30px" :src="scope.row.img" />
+              <img style="width: 30px; height: 30px" :src="scope.row.mainImg" />
             </template>
           </el-table-column>
-          <el-table-column prop="name" label="拼团名称" width="300">
+          <el-table-column prop="intro" label="拼团名称" width="300">
           </el-table-column>
           <el-table-column prop="price" label="原价" width="100">
           </el-table-column>
-          <el-table-column prop="spellPrice" label="拼团价" width="100">
+          <el-table-column prop="price" label="拼团价" width="100">
           </el-table-column>
-          <el-table-column prop="spellPeople" label="拼团人数" width="100">
+          <el-table-column prop="peopleNum" label="拼团人数" width="100">
           </el-table-column>
-          <el-table-column prop="joinPeople" label="参与人数" width="100">
+          <el-table-column prop="num" label="参与人数" width="100">
           </el-table-column>
-          <el-table-column prop="spellNumber" label="成团数量" width="100">
+          <el-table-column prop="num" label="成团数量" width="100">
           </el-table-column>
-          <el-table-column prop="limit" label="限量" width="100">
+          <el-table-column prop="aging" label="限量" width="100">
           </el-table-column>
-          <el-table-column prop="residue" label="剩余数量" width="100">
+          <el-table-column prop="freight" label="剩余数量" width="100">
           </el-table-column>
-          <el-table-column prop="endTime" label="结束时间" width="140">
+          <el-table-column prop="time[1]" label="结束时间" width="140">
           </el-table-column>
           <el-table-column
             fixed="right"
@@ -125,11 +125,11 @@
 </template>
 
 <script>
-import { spellGoods } from "../../data/spellgoods";
+// import { spellGoods } from "../../data/spellgoods";
 export default {
   data() {
     return {
-      spellGoods,
+      spellGoods: [],
       // 状态
       statusArr: [
         {
@@ -153,7 +153,7 @@ export default {
       // 每页大小
       pageSize: 5,
       // 搜索结果
-      searchList: spellGoods,
+      searchList: [],
     };
   },
   methods: {
@@ -168,20 +168,28 @@ export default {
       console.log(index, row);
     },
     // 表格删除
-    handleDelete(index, row) {
+    async handleDelete(index, row) {
       console.log(index, row);
-      spellGoods.splice(index, 1);
+      let res = await this.$http.groupGoodHttp.delGood({ _id: row._id });
+      console.log(res);
+      this.getInfo()
     },
     // 页面大小
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
       this.pageSize = val;
-      this.currentPage=1
+      this.currentPage = 1;
     },
     // 当前页数
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
       this.currentPage = val;
+    },
+    // 获取后台数据
+    async getInfo() {
+      let res = await this.$http.groupGoodHttp.getGroupGoods();
+      this.spellGoods = res.data.data;
+      this.searchList = res.data.data;
     },
   },
   computed: {
@@ -218,13 +226,16 @@ export default {
         });
       }
       let start = (this.currentPage - 1) * this.pageSize;
-      if(start>=result.length){
-        this.currentPage=1
+      if (start >= result.length) {
+        this.currentPage = 1;
         return result.slice(0, 0 + this.pageSize);
       }
       console.log("开始-结束下标", start, start + this.pageSize);
       return result.slice(start, start + this.pageSize);
     },
+  },
+  async created() {
+    this.getInfo();
   },
 };
 </script>

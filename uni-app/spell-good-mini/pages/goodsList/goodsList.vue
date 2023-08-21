@@ -1,18 +1,17 @@
 <template>
 	<view class="bg">
 		<view class="goods">
-			<view class="item" v-for="item in goodsArr">
-				<image :src="item.mainImg" mode=""></image>
-				<div class="name">{{item.intro}}</div>
-				<view class="old">${{item.price}}</view>
-				<view class="new">$999</view>
+			<view class="item" v-for="item in goodsArr" :key="item._id">
+				<image :src="item.slider_image" mode=""></image>
+				<div class="name">{{item.title}}</div>
+				<view class="old">${{item.stockes[0].original||1999}}</view>
+				<view class="new">${{item.stockes[0].price||999}}</view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-import { create } from 'domain';
 	export default {
 		data() {
 			return {
@@ -20,8 +19,12 @@ import { create } from 'domain';
 			};
 		},
 		async created(){
-			let groupGoods=await this.$http.httpSpellGoods.getGroupGoods()
-			this.goodsArr = groupGoods.data
+			// let groupGoods=await this.$http.httpSpellGoods.getGroupGoods()
+			// this.goodsArr = groupGoods.data
+		},
+		async onLoad(data) {
+			let goodsArr=await this.$http.httpSpellGoods.getGoodLIst(data)
+			this.goodsArr = goodsArr.data
 		}
 	}
 </script>
@@ -30,14 +33,13 @@ import { create } from 'domain';
 	.bg{
 		background-color: #f5f5f5;
 		height: 100vh;
-		overflow: hidden;
+		overflow: auto;
 	}
 	.goods {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
 		margin: 20rpx;
-
 		.item {
 			margin: 10rpx 0;
 			padding: 0 0 20rpx;
