@@ -7,39 +7,52 @@
 				"backgroundColor": "#ccc",
 				"enablePullDownRefresh": true
 			}
-		}, {
+		},
+		{
 			"path": "pages/mine/mine",
 			"style": {
 				"navigationBarTitleText": "用户界面",
 				"enablePullDownRefresh": false
 			}
 
-		}, {
+		},
+		{
 			"path": "pages/car/car",
 			"style": {
 				"navigationBarTitleText": "购物车",
 				"enablePullDownRefresh": false
 			}
 
-		}, {
+		},
+		{
 			"path": "pages/category/category",
 			"style": {
 				"navigationBarTitleText": "分类",
 				"enablePullDownRefresh": false
 			}
 
-		}, {
+		},
+		{
 			"path": "pages/goodsList/goodsList",
 			"style": {
 				"navigationBarTitleText": "商品列表",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": true
 			}
 
-		}, {
+		},
+		{
 			"path": "pages/groupList/groupList",
 			"style": {
 				"navigationBarTitleText": "拼团列表",
 				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/submitOrder/submitOrder",
+			"style": {
+				"navigationBarTitleText": "提交订单",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#fff"
 			}
 
 		}

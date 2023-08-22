@@ -1,0 +1,1 @@
+<view><view class="name"><text>姓名</text><text>{{name}}</text></view><view class="img"><text>头像</text><image src="../../static/logo.png" mode></image></view></view>

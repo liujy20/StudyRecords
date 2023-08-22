@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -210,14 +210,49 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
   data: function data() {
     return {
-      title: '用户界面'
+      title: '用户界面',
+      userInfo: {}
     };
+  },
+  onLoad: function onLoad() {
+    var _this = this;
+    var userInfo = uni.getStorageSync('userInfo');
+    if (userInfo) {
+      this.userInfo = userInfo;
+    } else {
+      uni.getUserInfo({
+        success: function success(res) {
+          console.log(res);
+          _this.userInfo = res.userInfo;
+        }
+      });
+    }
+  },
+  methods: {
+    changeImg: function changeImg() {
+      var _this2 = this;
+      uni.chooseImage({
+        success: function success(res) {
+          // console.log(res);
+          uni.getFileSystemManager().saveFile({
+            tempFilePath: res.tempFilePaths[0],
+            success: function success(data) {
+              console.log(data);
+              _this2.userInfo.avatarUrl = data.savedFilePath;
+              uni.setStorageSync('userInfo', _this2.userInfo);
+            }
+          });
+        }
+      });
+    }
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

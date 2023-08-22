@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/pageA/pageA",
-    "pages/tabBar/tabA/tabA"
+    "pages/tabBar/tabA/tabA",
+    "pages/pageB/pageB"
   ],
   "subPackages": [],
   "window": {

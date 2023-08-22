@@ -1,0 +1,1 @@
+<view><text>pageB</text><navigator url="../pageA/pageA.vue" open-type="navigate"><button>navigate跳转pageA</button></navigator><navigator url="../index/index" open-type="switchTab"><button>switchTab-跳转index</button></navigator></view>

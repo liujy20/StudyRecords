@@ -157,7 +157,18 @@ var _default = {
       title: 'Hello'
     };
   },
-  onLoad: function onLoad() {},
+  onLoad: function onLoad() {
+    console.log('index load');
+  },
+  onUnload: function onUnload() {
+    console.log('index unload');
+  },
+  onShow: function onShow() {
+    console.log('index show');
+  },
+  onHide: function onHide() {
+    console.log('index hide');
+  },
   methods: {}
 };
 exports.default = _default;

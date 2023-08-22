@@ -1,1 +1,1 @@
-<view><text>pageA</text></view>
+<view><text>pageA</text><navigator url="../index/index" open-type="switchTab"><button>switchTab-跳转index</button></navigator><navigator url="../pageB/pageB" open-type="navigate"><button>navigate-跳转pageB</button></navigator></view>

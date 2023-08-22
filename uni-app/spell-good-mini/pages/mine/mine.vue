@@ -3,9 +3,9 @@
 		<view class="user-bg">
 			<view class="content">
 				<view class="top">
-					<image class="avatar" src="../../static/images/我的/头像.png" mode=""></image>
+					<image class="avatar" :src="userInfo.avatarUrl" mode="" @click="changeImg"></image>
 					<view class="info">
-						<view class="name">用户</view>
+						<view class="name">{{userInfo.nickName}}</view>
 						<view class="phone">123****321</view>
 
 					</view>
@@ -56,7 +56,8 @@
 					<view class="name">
 						<text>待评价</text>
 					</view>
-				</view><view class="item">
+				</view>
+				<view class="item">
 					<image src="../../static/images/我的/退款.png" mode=""></image>
 					<view class="name">
 						<text>退款</text>
@@ -71,17 +72,52 @@
 	export default {
 		data() {
 			return {
-				title: '用户界面'
+				title: '用户界面',
+				userInfo: {}
 			};
+		},
+		onLoad() {
+			let userInfo = uni.getStorageSync('userInfo')
+			if (userInfo) {
+				this.userInfo = userInfo
+			} else {
+				uni.getUserInfo({
+					success: (res) => {
+						console.log(res);
+						this.userInfo = res.userInfo
+
+					}
+				})
+			}
+
+
+		},
+		methods: {
+			changeImg() {
+				uni.chooseImage({
+					success: (res) => {
+						// console.log(res);
+						uni.getFileSystemManager().saveFile({
+							tempFilePath: res.tempFilePaths[0],
+							success: (data) => {
+								console.log(data);
+								this.userInfo.avatarUrl = data.savedFilePath
+								uni.setStorageSync('userInfo', this.userInfo)
+							}
+						})
+					}
+				})
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	.bg{
+	.bg {
 		height: 100vh;
 		background-color: #f5f5f5;
 	}
+
 	.user-bg {
 		background-color: #1cb3fb;
 		height: 380rpx;
@@ -101,6 +137,7 @@
 				.avatar {
 					width: 120rpx;
 					height: 120rpx;
+					border-radius: 50%;
 				}
 
 				.info {
@@ -147,31 +184,37 @@
 		margin-top: -80rpx;
 		padding: 40rpx 40rpx 25rpx;
 		border-radius: 10rpx;
-		.tit{
+
+		.tit {
 			display: flex;
 			justify-content: space-between;
 			margin-bottom: 50rpx;
-			.main{
+
+			.main {
 				font-size: 34rpx;
 				font-weight: bold;
 			}
-			.more{
+
+			.more {
 				font-size: 22rpx;
 				color: #ccc;
 			}
 		}
-		.content{
+
+		.content {
 			display: flex;
 			justify-content: space-around;
-			
-			.item{
+
+			.item {
 				text-align: center;
-				image{
+
+				image {
 					width: 45rpx;
 					height: 45rpx;
 				}
-				.name{
-					
+
+				.name {
+
 					font-size: 20rpx;
 				}
 			}

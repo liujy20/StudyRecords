@@ -11,6 +11,18 @@
 				
 			}
 		},
+		onLoad() {
+			console.log('tabA load');
+		},
+		onUnload() {
+			console.log('tabA unload');
+		},
+		onShow(){
+			console.log('tabA show');
+		},
+		onHide(){
+			console.log('tabA hide');
+		},
 		methods: {
 			
 		}

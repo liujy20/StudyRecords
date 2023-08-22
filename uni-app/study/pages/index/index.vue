@@ -16,7 +16,16 @@
 			}
 		},
 		onLoad() {
-
+			console.log('index load');
+		},
+		onUnload() {
+			console.log('index unload');
+		},
+		onShow(){
+			console.log('index show');
+		},
+		onHide(){
+			console.log('index hide');
 		},
 		methods: {
 

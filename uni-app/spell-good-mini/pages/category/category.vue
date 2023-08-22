@@ -65,7 +65,7 @@
 			},
 			chooseType({currentTarget}){
 				uni.navigateTo({
-					url:'/pages/goodsList/goodsList?id='+currentTarget.id
+					url:`/pages/goodsList/goodsList?id=${currentTarget.id}&title=${currentTarget.title}`
 				})
 				
 			}

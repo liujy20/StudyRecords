@@ -42,6 +42,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "提交订单",
+          "pathName": "pages/submitOrder/submitOrder",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
