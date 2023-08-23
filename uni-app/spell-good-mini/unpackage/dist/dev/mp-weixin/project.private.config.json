@@ -49,6 +49,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "我的订单",
+          "pathName": "pages/orderList/orderList",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

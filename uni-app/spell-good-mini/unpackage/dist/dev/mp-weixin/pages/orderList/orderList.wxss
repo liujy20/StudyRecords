@@ -1,0 +1,129 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.bg {
+  background-color: #f5f5f5;
+  height: 100vh;
+}
+.bg .tit-bg {
+  background-color: #1cb3fb;
+  padding: 40rpx 30rpx 110rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.bg .tit-bg .con {
+  color: white;
+}
+.bg .tit-bg .con .tit {
+  font-size: 34rpx;
+}
+.bg .tit-bg .con .info {
+  font-size: 26rpx;
+}
+.bg .tit-bg image {
+  width: 110rpx;
+  height: 110rpx;
+}
+.bg .wrap {
+  position: relative;
+  margin-top: -100rpx;
+}
+.bg .wrap .tits {
+  margin: 30rpx;
+  margin-bottom: 0;
+  padding: 30rpx;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.bg .wrap .tits .tit {
+  padding-bottom: 20rpx;
+}
+.bg .wrap .con {
+  margin: 30rpx;
+  margin-top: 0;
+  padding: 20rpx 0;
+}
+.bg .wrap .con .top {
+  background-color: white;
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rpx;
+}
+.bg .wrap .con .top .status {
+  color: red;
+}
+.bg .wrap .con .bottom .item .main {
+  display: flex;
+  padding: 20rpx;
+  background-color: white;
+}
+.bg .wrap .con .bottom .item .main image {
+  width: 120rpx;
+  height: 120rpx;
+}
+.bg .wrap .con .bottom .item .main .info {
+  flex-grow: 1;
+}
+.bg .wrap .con .bottom .item .main .info text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 380rpx;
+}
+.bg .wrap .con .bottom .item .main .num {
+  color: #ccc;
+  text-align: right;
+}
+.bg .wrap .con .bottom .item .all {
+  margin-bottom: 1rpx;
+  padding: 0 20rpx 30rpx 0;
+  text-align: right;
+  background-color: white;
+}
+.bg .wrap .con .bottom .item .all .all-price {
+  color: red;
+}
+.bg .wrap .con .bottom .item .more {
+  padding: 20rpx;
+  display: flex;
+  justify-content: flex-end;
+  background-color: white;
+}
+.bg .wrap .con .bottom .item .more .btn {
+  width: 175rpx;
+  height: 55rpx;
+  background-color: #1cb3fb;
+  line-height: 55rpx;
+  border-radius: 27rpx;
+  color: white;
+  text-align: center;
+}
+

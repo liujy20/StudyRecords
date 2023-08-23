@@ -85,13 +85,36 @@
 			<view class="all">
 				<text class="total">合计</text>
 				<text class="price">$10</text>
-				<view class="pay">
+				<view class="pay" @click="show=true">
 					立即支付
 				</view>
 			</view>
 			<view class="top">
 				
 			</view>
+			<u-popup v-model="show" mode="bottom" closeable="true" close-icon-pos="top-left">
+				<view class="wrap">
+					<view class="title">
+						<text>请输入支付密码</text>
+					</view>
+						<view class="name">
+							快团团
+						</view>
+						<view class="price">
+							$100.00
+						</view>
+						<view class="type">
+							<text class="tag">支付方式</text>
+							<text class="bank">中国农业银行&gt;</text>
+						</view>
+						<view class="inp">
+							<u-message-input mode="bottomLine" :maxlength="6"></u-message-input>
+						</view>
+						<view class="keyboard">
+							<u-keyboard :mask="false" ref="uKeyboard" mode="number" v-model="show"></u-keyboard>
+						</view>
+				</view>
+				</u-popup>
 	</view>
 </template>
 
@@ -99,7 +122,8 @@
 	export default {
 		data() {
 			return {
-			note:''
+			note:'',
+			show:true
 			}
 		},
 		methods: {
@@ -298,6 +322,32 @@
 		width: 	80rpx;
 		height: 80rpx;
 		border-radius: 50%;
+	}
+	
+	.wrap{
+		text-align: center;
+		height: 1100rpx;
+		.title{
+			height: 100rpx;
+			line-height: 100rpx;
+			font-weight: bold;
+		}
+		.name{
+			margin: 40rpx 0 20rpx;
+		}
+		.price{
+			font-weight: bold;
+			font-size: 50rpx;
+			margin-bottom: 50rpx;
+		}
+		.type{
+			display: flex;
+			justify-content: space-between;
+			padding: 20rpx;
+		}
+		.inp{
+			margin: 40rpx 0;
+		}
 	}
 	}
 </style>

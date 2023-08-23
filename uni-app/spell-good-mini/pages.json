@@ -1,4 +1,8 @@
 {
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/index/index",
@@ -55,6 +59,13 @@
 				"navigationBarBackgroundColor": "#fff"
 			}
 
+		}, 
+		{
+			"path": "pages/orderList/orderList",
+			"style": {
+				"navigationBarTitleText": "我的订单",
+				"enablePullDownRefresh": false
+			}
 		}
 	],
 	"globalStyle": {

@@ -194,4 +194,29 @@
   height: 80rpx;
   border-radius: 50%;
 }
+.bg .wrap {
+  text-align: center;
+  height: 1100rpx;
+}
+.bg .wrap .title {
+  height: 100rpx;
+  line-height: 100rpx;
+  font-weight: bold;
+}
+.bg .wrap .name {
+  margin: 40rpx 0 20rpx;
+}
+.bg .wrap .price {
+  font-weight: bold;
+  font-size: 50rpx;
+  margin-bottom: 50rpx;
+}
+.bg .wrap .type {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx;
+}
+.bg .wrap .inp {
+  margin: 40rpx 0;
+}
 

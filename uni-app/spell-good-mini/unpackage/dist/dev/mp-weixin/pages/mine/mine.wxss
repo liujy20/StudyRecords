@@ -101,7 +101,21 @@
   justify-content: space-around;
 }
 .order .content .item {
+  position: relative;
   text-align: center;
+}
+.order .content .item .icon {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background-color: red;
+  color: white;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 30rpx;
+  border-radius: 50%;
 }
 .order .content .item image {
   width: 45rpx;

@@ -3,11 +3,15 @@
 		<view class="user-bg">
 			<view class="content">
 				<view class="top">
-					<image class="avatar" :src="userInfo.avatarUrl" mode="" @click="changeImg"></image>
-					<view class="info">
-						<view class="name">{{userInfo.nickName}}</view>
-						<view class="phone">123****321</view>
-
+					<template v-if="isLogin">
+						<image class="avatar" :src="userInfo.avatarUrl" mode="" @click="changeImg"></image>
+						<view class="info">
+							<view class="name">{{userInfo.nickName}}</view>
+							<view class="phone">123****321</view>
+						</view>
+					</template>
+					<view class="btn" v-else>
+						<button @click="loginUser">登录/注册</button>
 					</view>
 					<image class="sign-out" src="../../static/images/我的/退款.png" mode=""></image>
 				</view>
@@ -34,12 +38,18 @@
 			</div>
 			<div class="content">
 				<view class="item">
+					<view class="icon">
+						<text>2</text>
+					</view>
 					<image src="../../static/images/我的/待付款.png" mode=""></image>
 					<view class="name">
 						<text>待付款</text>
 					</view>
 				</view>
 				<view class="item">
+					<view class="icon">
+						<text>12</text>
+					</view>
 					<image src="../../static/images/我的/待发货.png" mode=""></image>
 					<view class="name">
 						<text>待发货</text>
@@ -69,43 +79,77 @@
 </template>
 
 <script>
+	import {
+		createNamespacedHelpers
+	} from 'vuex';
+	const {mapState,mapMutations} = createNamespacedHelpers("user"); 
 	export default {
 		data() {
 			return {
 				title: '用户界面',
-				userInfo: {}
+				
+				isLogin: false
 			};
 		},
+		computed:{
+			...mapState(['userInfo'])
+		},
 		onLoad() {
-			let userInfo = uni.getStorageSync('userInfo')
-			if (userInfo) {
-				this.userInfo = userInfo
-			} else {
-				uni.getUserInfo({
-					success: (res) => {
-						console.log(res);
-						this.userInfo = res.userInfo
-
-					}
-				})
+			let token = uni.getStorageSync('token');
+			if (token) {
+				this.loginUser()
 			}
-
 
 		},
 		methods: {
+			...mapMutations(['setUserInfo']),
+			changeName() {
+
+			},
 			changeImg() {
 				uni.chooseImage({
-					success: (res) => {
-						// console.log(res);
-						uni.getFileSystemManager().saveFile({
-							tempFilePath: res.tempFilePaths[0],
-							success: (data) => {
-								console.log(data);
-								this.userInfo.avatarUrl = data.savedFilePath
-								uni.setStorageSync('userInfo', this.userInfo)
+					success: ({
+						tempFilePaths
+					}) => {
+						uni.uploadFile({
+							url: 'http://124.70.54.24:3001/upload',
+							filePath: tempFilePaths[0],
+							name: 'file',
+							success: async (uploadFileRes) => {
+								let uploadRes = JSON.parse(uploadFileRes.data)
+								console.log(uploadRes.data);
+								this.userInfo.avatarUrl = uploadRes.data;
+								let setRes = await this.$http.httpUser.setUserInfo(this.userInfo);
+								console.log(setRes);
 							}
 						})
 					}
+				})
+			},
+			loginUser() {
+				uni.login({
+					success: async (res) => {
+						console.log(res);
+						let resToken = await this.$http.httpUser.login(res.code)
+						uni.setStorageSync('token', resToken.token)
+						let userInfo = await this.$http.httpUser.getUserInfo()
+						console.log('userInfo', userInfo.user);
+
+						if (!userInfo.user.nickName) {
+							let obj = {
+								nickName: 'xwg',
+								avatarUrl: '../../static/logo.png'
+							}
+							this.setUserInfo(obj)
+						} else {
+							let obj = {
+								nickName: userInfo.user.nickName,
+								avatarUrl: userInfo.user.avatarUrl
+							}
+							this.setUserInfo(obj)
+						}
+						this.isLogin = true
+					},
 				})
 			}
 		}
@@ -206,7 +250,22 @@
 			justify-content: space-around;
 
 			.item {
+				position: relative;
 				text-align: center;
+
+				.icon {
+					position: absolute;
+					top: -10rpx;
+					right: -10rpx;
+					width: 30rpx;
+					height: 30rpx;
+					background-color: red;
+					color: white;
+					font-size: 20rpx;
+					text-align: center;
+					line-height: 30rpx;
+					border-radius: 50%;
+				}
 
 				image {
 					width: 45rpx;

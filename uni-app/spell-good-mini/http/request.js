@@ -13,6 +13,11 @@ export default function request(option={}){
 			success(res){
 				resolve(res.data)
 			},
+			fail: (res) => {
+				console.log('fail',res);
+				reject(res)
+				
+			},
 			complete() {
 				uni.hideLoading()
 			}
