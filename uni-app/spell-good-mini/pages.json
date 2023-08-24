@@ -59,13 +59,21 @@
 				"navigationBarBackgroundColor": "#fff"
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/orderList/orderList",
 			"style": {
 				"navigationBarTitleText": "我的订单",
 				"enablePullDownRefresh": false
 			}
+		}, 
+		{
+			"path": "pages/address/address",
+			"style": {
+				"navigationBarTitleText": "收货地址",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	],
 	"globalStyle": {

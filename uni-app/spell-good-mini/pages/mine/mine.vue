@@ -75,6 +75,16 @@
 				</view>
 			</div>
 		</view>
+		<view class="charts-box">
+			<qiun-data-charts type="column" :chartData="chartData1" />
+		</view>
+		  <view class="charts-box">
+		    <qiun-data-charts 
+		      type="pie"
+		      :opts="opts"
+		      :chartData="chartData2"
+		    />
+		  </view>
 	</view>
 </template>
 
@@ -90,8 +100,27 @@
 		data() {
 			return {
 				title: '用户界面',
-
-				isLogin: false
+				isLogin: false,
+				chartData1: {},
+				chartData2: {},
+				opts: {
+					color: ["#1890FF", "#91CB74", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4",
+						"#ea7ccc"
+					],
+					padding: [5, 5, 5, 5],
+					enableScroll: false,
+					extra: {
+						pie: {
+							activeOpacity: 0.5,
+							activeRadius: 10,
+							offsetAngle: 0,
+							labelWidth: 15,
+							border: false,
+							borderWidth: 3,
+							borderColor: "#FFFFFF"
+						}
+					}
+				}
 			};
 		},
 		computed: {
@@ -117,7 +146,10 @@
 				}
 			}
 
+			this.getServerData1()
+			this.getServerData2()
 		},
+
 		methods: {
 			...mapMutations(['setUserInfo']),
 			changeName() {
@@ -168,6 +200,67 @@
 						this.isLogin = true
 					},
 				})
+			},
+
+			getServerData1() {
+				//模拟从服务器获取数据时的延时
+				setTimeout(() => {
+					let res = {
+						categories: ["2016", "2017", "2018", "2019", "2020", "2021"],
+						series: [{
+								name: "目标值",
+								data: [35, 36, 31, 33, 13, 34]
+							},
+							{
+								name: "完成量",
+								data: [18, 27, 21, 24, 6, 28]
+							}
+						]
+					};
+					this.chartData1 = JSON.parse(JSON.stringify(res));
+				}, 500);
+			},
+
+			async getServerData2() {
+				let orderListRes = await this.$http.httpOrder.getOrderList({})
+				console.log(orderListRes.data);
+				let data=orderListRes.data.reduce((arr,order)=>{
+					let currentOrder=arr.find(item=>item.order_type==order.order_type)
+					if(!currentOrder){
+						arr.push({
+							name:order.order_type?'已付款':'未付款',
+							order_type:order.order_type,
+							value:1
+						})
+					}else{
+						currentOrder.value++
+					}
+					return arr
+				},[])
+				console.log(data);
+				let res = {
+					series: [{
+						// 数据格式
+						/*data: [{
+							"name": "一班",
+							"value": 50
+						}, {
+							"name": "二班",
+							"value": 30
+						}, {
+							"name": "三班",
+							"value": 20
+						}, {
+							"name": "四班",
+							"value": 18
+						}, {
+							"name": "五班",
+							"value": 8
+						}],*/
+						data
+					}]
+				};
+				this.chartData2 = JSON.parse(JSON.stringify(res));
 			}
 		}
 	}
@@ -295,5 +388,10 @@
 				}
 			}
 		}
+	}
+
+	.charts-box {
+		width: 100%;
+		height: 300px;
 	}
 </style>

@@ -124,4 +124,8 @@
 .order .content .item .name {
   font-size: 20rpx;
 }
+.charts-box {
+  width: 100%;
+  height: 300px;
+}
 
