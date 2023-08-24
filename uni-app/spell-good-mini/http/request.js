@@ -11,6 +11,7 @@ export default function request(option={}){
 			},
 			...option,
 			success(res){
+				console.log('success',res);
 				resolve(res.data)
 			},
 			fail: (res) => {
@@ -18,7 +19,8 @@ export default function request(option={}){
 				reject(res)
 				
 			},
-			complete() {
+			complete(res) {
+				console.log('complete',res);
 				uni.hideLoading()
 			}
 		})

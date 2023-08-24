@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
@@ -229,7 +229,7 @@ var _default = {
       var num = 0;
       this.carArr.forEach(function (item) {
         if (item.checked) {
-          return num += item.type - 0;
+          return num += item.count - 0;
         }
       });
       return num;
@@ -237,7 +237,7 @@ var _default = {
     allCount: function allCount() {
       var num = 0;
       this.carArr.forEach(function (item) {
-        return num += item.type - 0;
+        return num += item.count - 0;
       });
       return num;
     },
@@ -245,7 +245,7 @@ var _default = {
       var num = 0;
       this.carArr.forEach(function (item) {
         if (item.checked) {
-          return num += (item.type - 0) * item.stock;
+          return num += (item.count - 0) * item.price;
         }
       });
       return num;
@@ -262,11 +262,11 @@ var _default = {
       console.log(data);
     },
     addNum: function addNum(data) {
-      data.type++;
+      data.count++;
     },
     subNum: function subNum(data) {
-      if (data.type > 1) {
-        data.type--;
+      if (data.count > 1) {
+        data.count--;
       }
     },
     chooseAll: function chooseAll() {
@@ -275,37 +275,75 @@ var _default = {
       this.carArr.forEach(function (item) {
         return item.checked = !f;
       });
+    },
+    toPay: function toPay() {
+      var _this = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var payList, arr, res;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                payList = _this.carArr.filter(function (item) {
+                  return item.checked;
+                });
+                console.log(payList);
+                uni.setStorageSync('payList', payList);
+                arr = payList.map(function (item) {
+                  return {
+                    _id: item._id,
+                    count: item.count
+                  };
+                });
+                _context.next = 6;
+                return _this.$http.httpOrder.prepayOrder({
+                  "car": JSON.stringify(arr)
+                });
+              case 6:
+                res = _context.sent;
+                console.log('prepare', res);
+                uni.setStorageSync('prepare_id', res.data.prepare_id);
+                uni.navigateTo({
+                  url: '/pages/submitOrder/submitOrder'
+                });
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   },
   created: function created() {
-    var _this = this;
-    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+    var _this2 = this;
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
       var carRes;
-      return _regenerator.default.wrap(function _callee$(_context) {
+      return _regenerator.default.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
-              _context.next = 2;
-              return _this.$http.httpSpellGoods.getGoodLIst({
-                id: "63198eb7d44e7d32dc711ee0"
-              });
+              _context2.next = 2;
+              return _this2.$http.httpOrder.getCarList();
             case 2:
-              carRes = _context.sent;
+              carRes = _context2.sent;
               console.log(carRes.data);
-              _this.carArr = carRes.data.map(function (item) {
+              _this2.carArr = carRes.data.map(function (item) {
                 item.checked = false;
+                item.count = 1;
                 return item;
               });
             case 5:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee);
+      }, _callee2);
     }))();
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

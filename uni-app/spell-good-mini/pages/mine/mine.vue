@@ -82,22 +82,39 @@
 	import {
 		createNamespacedHelpers
 	} from 'vuex';
-	const {mapState,mapMutations} = createNamespacedHelpers("user"); 
+	const {
+		mapState,
+		mapMutations
+	} = createNamespacedHelpers("user");
 	export default {
 		data() {
 			return {
 				title: '用户界面',
-				
+
 				isLogin: false
 			};
 		},
-		computed:{
+		computed: {
 			...mapState(['userInfo'])
 		},
-		onLoad() {
+		async onLoad() {
 			let token = uni.getStorageSync('token');
 			if (token) {
-				this.loginUser()
+				// this.loginUser()
+				let userInfo = await this.$http.httpUser.getUserInfo()
+				if (userInfo.user == undefined) {
+					uni.showToast({
+						title: "401"
+					})
+				} else {
+					this.isLogin = true
+					console.log('userInfo', userInfo.user);
+					let obj = {
+						nickName: userInfo.user.nickName,
+						avatarUrl: userInfo.user.avatarUrl
+					}
+					this.setUserInfo(obj)
+				}
 			}
 
 		},

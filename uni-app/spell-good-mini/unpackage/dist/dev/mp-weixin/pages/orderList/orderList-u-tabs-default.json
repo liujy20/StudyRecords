@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "orderList-u-tabs-default": "/pages/orderList/orderList-u-tabs-default"
-  }
-}

@@ -101,13 +101,13 @@ var components
 try {
   components = {
     uPopup: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-popup/u-popup */ "uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-popup/u-popup.vue */ 136))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-popup/u-popup */ "uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-popup/u-popup.vue */ 135))
     },
     uMessageInput: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-message-input/u-message-input */ "uview-ui/components/u-message-input/u-message-input").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-message-input/u-message-input.vue */ 189))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-message-input/u-message-input */ "uview-ui/components/u-message-input/u-message-input").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-message-input/u-message-input.vue */ 142))
     },
     uKeyboard: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-keyboard/u-keyboard */ "uview-ui/components/u-keyboard/u-keyboard").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-keyboard/u-keyboard.vue */ 168))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-keyboard/u-keyboard */ "uview-ui/components/u-keyboard/u-keyboard").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-keyboard/u-keyboard.vue */ 149))
     },
   }
 } catch (e) {
@@ -131,11 +131,6 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  if (!_vm._isMounted) {
-    _vm.e0 = function ($event) {
-      _vm.show = true
-    }
-  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -169,12 +164,16 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
 
-
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 44));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 46));
+//
 //
 //
 //
@@ -299,12 +298,81 @@ var _default = {
   data: function data() {
     return {
       note: '',
-      show: true
+      show: false,
+      payList: []
     };
   },
-  methods: {}
+  computed: {
+    allCount: function allCount() {
+      var all = 0;
+      this.payList.forEach(function (item) {
+        all += item.count;
+      });
+      return all;
+    },
+    allPrice: function allPrice() {
+      var all = 0;
+      this.payList.forEach(function (item) {
+        console.log('item', item);
+        all += item.count * item.price;
+      });
+      return all;
+    }
+  },
+  methods: {
+    pay: function pay() {
+      this.show = true;
+    },
+    inpPwd: function inpPwd(val) {
+      this.note += val;
+    },
+    // 退格键被点击
+    backspace: function backspace() {
+      // 删除value的最后一个字符
+      if (this.note.length) this.note = this.note.slice(0, this.note.length - 1);
+    },
+    submit: function submit() {
+      var _this = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var id, res;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                id = uni.getStorageSync('prepare_id');
+                _context.next = 3;
+                return _this.$http.httpOrder.submitOrder({
+                  prepare_id: id,
+                  password: _this.note
+                });
+              case 3:
+                res = _context.sent;
+                console.log('submit', res);
+                if (res.code == 200) {
+                  uni.showToast({
+                    title: res.message
+                  });
+                  uni.navigateTo({
+                    url: '/pages/orderList/orderList'
+                  });
+                }
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  created: function created() {
+    var payList = uni.getStorageSync('payList');
+    // console.log(payList);
+    this.payList = payList;
+  }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

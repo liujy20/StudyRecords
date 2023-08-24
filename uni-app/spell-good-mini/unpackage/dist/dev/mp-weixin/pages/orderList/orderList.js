@@ -102,6 +102,22 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.orderList, function (item, __i1__) {
+    var $orig = _vm.__get_orig(item)
+    var g0 = item.goods.length
+    return {
+      $orig: $orig,
+      g0: g0,
+    }
+  })
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -137,11 +153,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-//
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 44));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 46));
 //
 //
 //
@@ -207,9 +225,49 @@ exports.default = void 0;
 //
 var _default = {
   data: function data() {
-    return {};
+    return {
+      tabArr: [{
+        title: '待付款',
+        num: 0
+      }, {
+        title: '待发货',
+        num: 2
+      }, {
+        title: '待收货',
+        num: 0
+      }, {
+        title: '待评价',
+        num: 1
+      }, {
+        title: '已完成',
+        num: 0
+      }],
+      orderList: []
+    };
   },
-  methods: {}
+  methods: {},
+  created: function created() {
+    var _this = this;
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var orderRes;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.$http.httpOrder.getOrderList({});
+            case 2:
+              orderRes = _context.sent;
+              console.log(orderRes.data);
+              _this.orderList = orderRes.data;
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  }
 };
 exports.default = _default;
 

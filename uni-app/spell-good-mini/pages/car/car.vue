@@ -29,24 +29,24 @@
 				<label class="radio">
 					<radio :checked="item.checked" @click="chooseGood(item)"/>
 				</label>
-				<image :src="item.slider_image[0]" mode=""></image>
+				<image :src="item.imgSrc" mode=""></image>
 				<view class="info">
 					<view class="name">
-						<text>{{item.title}}</text>
+						<text>{{item.name}}</text>
 					</view>
 					<view class="tag">
-						<text>属性:{{item.content}}</text>
+						<text>属性:{{item.type}}</text>
 					</view>
 					<view class="content">
 						<view class="price">
-							<view class="new">${{item.stock*item.type}}</view>
+							<view class="new">${{item.price*item.count}}</view>
 						</view>
 						<view class="btn">
 							<view class="sub" @click="subNum(item)">
 								-
 							</view>
 							<view class="num">
-								{{item.type}}
+								{{item.count}}
 							</view>
 							<view class="add" @click="addNum(item)">
 								+
@@ -65,7 +65,7 @@
 			</view>
 			<text class="all-num">全选({{allCount}})</text>
 			<text class="all-price">${{allPrice}}</text>
-			<view class="to-pay">
+			<view class="to-pay" @click="toPay">
 				立即下单
 			</view>
 		</view>
@@ -85,7 +85,7 @@
 				let num=0
 				this.carArr.forEach(item=>{
 					if(item.checked){
-						return num+=item.type-0
+						return num+=item.count-0
 					}
 				})
 				return num
@@ -93,7 +93,7 @@
 			allCount(){
 				let num=0
 				this.carArr.forEach(item=>{
-						return num+=item.type-0
+						return num+=item.count-0
 				})
 				return num
 			},
@@ -101,7 +101,7 @@
 				let num=0
 				this.carArr.forEach(item=>{
 					if(item.checked){
-						return num+=(item.type-0 )*item.stock
+						return num+=(item.count-0 )*item.price
 					}
 				})
 				return num
@@ -116,29 +116,47 @@
 				console.log(data);
 			},
 			addNum(data){
-				data.type++;
+				data.count++;
 			},
 			subNum(data){
-				if(data.type>1){
-					data.type--;
+				if(data.count>1){
+					data.count--;
 				}
 			},
 			chooseAll(){
 				console.log(this.allChecked);
 				let f=this.allChecked
 				this.carArr.forEach(item=>item.checked=!f)
+			},
+			async toPay(){
+				let payList=this.carArr.filter(item=>item.checked)
+				console.log(payList);
+				uni.setStorageSync('payList',payList)
+				let arr=payList.map(item=>{
+					return {
+						_id:item._id,
+						count:item.count
+					}
+				})
+				let res=await this.$http.httpOrder.prepayOrder(
+					{
+					    "car":JSON.stringify(arr)
+					}
+				)
+				console.log('prepare',res);
+				uni.setStorageSync('prepare_id',res.data.prepare_id)
+				uni.navigateTo({
+					url:'/pages/submitOrder/submitOrder'
+				})
 			}
 			
 		},
 		async created() {
-			let carRes=await this.$http.httpSpellGoods.getGoodLIst(
-				{
-				    id: "63198eb7d44e7d32dc711ee0"
-				}
-			)
+			let carRes=await this.$http.httpOrder.getCarList()
 			console.log(carRes.data);
 			this.carArr=carRes.data.map(item=>{
 				item.checked=false
+				item.count=1
 				return item
 			})
 		},

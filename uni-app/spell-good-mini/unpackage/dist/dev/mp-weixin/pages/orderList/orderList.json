@@ -1,7 +1,5 @@
 {
   "navigationBarTitleText": "我的订单",
   "enablePullDownRefresh": false,
-  "usingComponents": {
-    "orderList-u-tabs-default": "/pages/orderList/orderList-u-tabs-default"
-  }
+  "usingComponents": {}
 }

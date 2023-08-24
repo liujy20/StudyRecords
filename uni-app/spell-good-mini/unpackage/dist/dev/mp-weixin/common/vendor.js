@@ -13210,11 +13210,13 @@ var _httpCommon = _interopRequireDefault(__webpack_require__(/*! @/http/modules/
 var _httpSpellGoods = _interopRequireDefault(__webpack_require__(/*! @/http/modules/httpSpellGoods.js */ 68));
 var _httpCategory = _interopRequireDefault(__webpack_require__(/*! @/http/modules/httpCategory.js */ 69));
 var _httpUser = _interopRequireDefault(__webpack_require__(/*! @/http/modules/httpUser.js */ 70));
+var _httpOrder = _interopRequireDefault(__webpack_require__(/*! @/http/modules/httpOrder.js */ 200));
 var _default = {
   httpCommon: _httpCommon.default,
   httpSpellGoods: _httpSpellGoods.default,
   httpCategory: _httpCategory.default,
-  httpUser: _httpUser.default
+  httpUser: _httpUser.default,
+  httpOrder: _httpOrder.default
 };
 exports.default = _default;
 
@@ -13287,13 +13289,15 @@ function request() {
       }
     }, option), {}, {
       success: function success(res) {
+        console.log('success', res);
         resolve(res.data);
       },
       fail: function fail(res) {
         console.log('fail', res);
         reject(res);
       },
-      complete: function complete() {
+      complete: function complete(res) {
+        console.log('complete', res);
         uni.hideLoading();
       }
     }));
@@ -13442,6 +13446,197 @@ var HttpUser = /*#__PURE__*/function () {
   return HttpUser;
 }();
 var _default = new HttpUser();
+exports.default = _default;
+
+/***/ }),
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */
+/*!*************************************************************************!*\
+  !*** C:/StudyRecords/uni-app/spell-good-mini/http/modules/httpOrder.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+var _request = _interopRequireDefault(__webpack_require__(/*! @/http/request.js */ 67));
+var HttpOrder = /*#__PURE__*/function () {
+  function HttpOrder() {
+    (0, _classCallCheck2.default)(this, HttpOrder);
+  }
+  (0, _createClass2.default)(HttpOrder, [{
+    key: "getCarList",
+    value: function getCarList() {
+      return (0, _request.default)({
+        url: 'http://124.70.54.24:3006/payment/getAllgoods'
+      });
+    }
+  }, {
+    key: "prepayOrder",
+    value: function prepayOrder(data) {
+      return (0, _request.default)({
+        url: 'http://124.70.54.24:3006/payment/prepare',
+        method: 'POST',
+        data: data
+      });
+    }
+  }, {
+    key: "submitOrder",
+    value: function submitOrder(data) {
+      return (0, _request.default)({
+        url: 'http://124.70.54.24:3006/payment/pay',
+        method: 'POST',
+        data: data
+      });
+    }
+  }, {
+    key: "getOrderList",
+    value: function getOrderList(data) {
+      return (0, _request.default)({
+        url: 'http://124.70.54.24:3006/payment/getOrders',
+        data: data
+      });
+    }
+  }]);
+  return HttpOrder;
+}();
+var _default = new HttpOrder();
 exports.default = _default;
 
 /***/ })

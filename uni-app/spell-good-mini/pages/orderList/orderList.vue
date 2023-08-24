@@ -14,41 +14,40 @@
 
 		<view class="wrap">
 			<view class="tits">
-				<view class="item" v-for="i in 5">
+				<view class="item" v-for="item in tabArr" :key="item.title">
 					<view class="tit">
-						代付款
+						{{item.title}}
 					</view>
-
 					<view class="num">
-						1
+						{{item.num}}
 					</view>
 				</view>
 			</view>
-			<view class="con">
+			<view class="con" v-for="item in orderList" :key="item.create_time">
 				<view class="top">
-					<text class="time">2023-1-01 09:20:10</text>
+					<text class="time">{{item.create_time}}</text>
 					<text class="status">待发货</text>
 				</view>
 				<view class="bottom">
 					<view class="item">
-						<view class="main">
-							<image src="../../static/images/首页/6c2338ffd2dd6def7b72ba8fceb2bf6f.jpg" mode=""></image>
+						<view class="main" v-for="val in item.goods">
+							<image :src="val.good.imgSrc" mode=""></image>
 							<view class="info">
 								<text>
-									机械键盘机械键盘机械键盘机械键盘机械键盘机械键盘机械键盘机械键盘机械键盘机械键盘机械键盘机械键盘机械键盘机械键盘
+									{{val.good.name}}
 								</text>
 							</view>
 							<view class="num">
 								<view class="price">
-									$100
+									${{val.good.price}}
 								</view>
 								<view class="count">
-									x10
+									x{{val.count}}
 								</view>
 							</view>
 						</view>
 						<view class="all">
-							<text>共1件商品, 总金额</text><text class="all-price">$100</text>
+							<text>共{{item.goods.length}}件商品, 总金额</text><text class="all-price">$100</text>
 						</view>
 						<div class="more">
 							<view class="btn">
@@ -65,16 +64,41 @@
 <script>
 	export default {
 		data() {
-			return {}
+			return {
+				tabArr:[
+					{
+						title:'待付款',
+						num:0
+					},{
+						title:'待发货',
+						num:2
+					},{
+						title:'待收货',
+						num:0
+					},{
+						title:'待评价',
+						num:1
+					},{
+						title:'已完成',
+						num:0
+					},
+				],
+					orderList:[]
+			}
 		},
-		methods: {}
+		methods: {},
+		async created() {
+			let orderRes=await this.$http.httpOrder.getOrderList({})
+			console.log(orderRes.data);
+			this.orderList=orderRes.data
+		}
 	}
 </script>
 
 <style lang="scss">
 	.bg {
 		background-color: #f5f5f5;
-		height: 100vh;
+		min-height: 100vh;
 
 		.tit-bg {
 			background-color: #1cb3fb;
@@ -119,7 +143,7 @@
 			}
 
 			.con {
-				margin: 30rpx;
+				margin: 0 30rpx;
 				margin-top: 0;
 				padding: 20rpx 0;
 
