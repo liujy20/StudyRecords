@@ -288,20 +288,24 @@ var _default = {
       uni.login({
         success: function () {
           var _success2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(res) {
-            var resToken, userInfo, obj, _obj;
+            var appInfo, data, resToken, userInfo, obj, _obj;
             return _regenerator.default.wrap(function _callee3$(_context3) {
               while (1) {
                 switch (_context3.prev = _context3.next) {
                   case 0:
                     console.log(res);
-                    _context3.next = 3;
-                    return _this3.$http.httpUser.login(res.code);
-                  case 3:
+                    appInfo = JSON.parse(uni.getStorageSync('APPInfo'));
+                    data = _objectSpread({
+                      code: res.code
+                    }, appInfo);
+                    _context3.next = 5;
+                    return _this3.$http.httpUser.login(data);
+                  case 5:
                     resToken = _context3.sent;
                     uni.setStorageSync('token', resToken.token);
-                    _context3.next = 7;
+                    _context3.next = 9;
                     return _this3.$http.httpUser.getUserInfo();
-                  case 7:
+                  case 9:
                     userInfo = _context3.sent;
                     console.log('userInfo', userInfo.user);
                     if (!userInfo.user.nickName) {
@@ -318,7 +322,7 @@ var _default = {
                       _this3.setUserInfo(_obj);
                     }
                     _this3.isLogin = true;
-                  case 11:
+                  case 13:
                   case "end":
                     return _context3.stop();
                 }

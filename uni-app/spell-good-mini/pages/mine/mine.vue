@@ -179,7 +179,12 @@
 				uni.login({
 					success: async (res) => {
 						console.log(res);
-						let resToken = await this.$http.httpUser.login(res.code)
+						let appInfo=JSON.parse(uni.getStorageSync('APPInfo'));
+						let data={
+							code:res.code,
+							...appInfo,
+						}
+						let resToken = await this.$http.httpUser.login(data)
 						uni.setStorageSync('token', resToken.token)
 						let userInfo = await this.$http.httpUser.getUserInfo()
 						console.log('userInfo', userInfo.user);
