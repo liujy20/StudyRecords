@@ -1,0 +1,46 @@
+<view class="bg">
+  <view class="head">
+    <view class="nav">
+      <text class="active">附近门店</text>
+      <text>收藏门店</text>
+
+    </view>
+    <view class="search">
+      <image src="../../assets/icons/search.jpg" mode="" />
+      <input type="text" placeholder="搜索" />
+    </view>
+  </view>
+
+  <view class="map-box card">
+    <map longitude="104.0668 " latitude="30.5728" />
+    <view class="close">
+      收起地图 ∧
+    </view>
+  </view>
+
+  <view class="card store" wx:for="{{5}}">
+    <view class="info">
+      <view class="tit">
+        <image src="../../assets/icons/star.jpg" mode="" />
+        <text>茶百道孵化园店</text>
+      </view>
+      <view class="address">
+        <image src="../../assets/icons/address-info.jpg" mode="" />
+        <text>四川省成都市武侯区新南路四维村1号1层4号</text>
+      </view>
+      <view class="time">
+        <image src="../../assets/icons/time.jpg" mode="" />
+        <text>10:00-22:00</text>
+      </view>
+      <view class="status"><text>营业中</text></view>
+    </view>
+    <view class="option">
+      <view class="to-pay"><text>去下单</text></view>
+      <view class="distance"><text>距离20M</text></view>
+      <view class="link">
+        <image src="../../assets/icons/phone.jpg" mode="" />
+        <image src="../../assets/icons/address.jpg" mode="" />
+      </view>
+    </view>
+  </view>
+</view>

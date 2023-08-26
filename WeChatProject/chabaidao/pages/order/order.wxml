@@ -1,0 +1,58 @@
+<!--pages/milktea/milktea.wxml-->
+<view class="list-page">
+  <view class="list-head">
+    <view class="map">
+      <view class="name"><text>茶百道孵化园店 ></text></view>
+      <view class="distance">
+        <text>距离您17m</text>
+      </view>
+    </view>
+    <view class="type">
+      <!-- <switch checked="{{switchChecked}}"/> -->
+      <view class="box">
+        <view class="text">
+          <text class="active">自取</text>
+          <text>外卖</text>
+        </view>
+        <view class="slider"></view>
+      </view>
+    </view>
+  </view>
+  <view class="list">
+    <scroll-view class="scroll-left" scroll-y>
+      <view class="{{index==0?'active':''}}" wx:for="{{type}}" wx:key="_id">
+        <image src="{{item.imgUrl}}" class="category-image"></image>
+        <text>{{item.name}}</text>
+      </view>
+
+    </scroll-view>
+
+
+    <scroll-view class="scroll-right" scroll-with-animation scroll-y>
+      <view class="list-box" wx:for="{{type}}" wx:key="_id">
+        <view class="list-title">{{item.name}}</view>
+        <view class="tea-list">
+          <!-- 每个产品 -->
+          <view class="milktea" wx:for="{{item.products}}" wx:key="_id" wx:for-item="child" wx:for-index='childindex'>
+            <image class="milktee-image" src="../../assets/teas/milktea1.webp"></image>
+            <view class="content">
+              <view class="content-title">
+                {{child.name}}
+              </view>
+              <view class="content-des">
+                <view class="des-text">
+                  {{child.desc}}
+                </view>
+                <view class="price-box">
+                  <text class="price">￥{{child.price}}</text>
+                  <text class="choose">选规格</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </scroll-view>
+  </view>
+</view>

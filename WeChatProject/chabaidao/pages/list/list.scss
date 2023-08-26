@@ -1,0 +1,135 @@
+.bg {
+  background-color: #f5f5ff;
+  height: 100vh;
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100rpx;
+    padding: 30rpx;
+    background-color: #fff;
+
+    .nav {
+      display: flex;
+
+      text {
+        display: block;
+        margin: 10rpx;
+        line-height: 100rpx;
+      }
+
+      .active {
+        border-bottom: 2rpx solid #001767;
+        color: #001767;
+      }
+    }
+
+    .search {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10rpx;
+      background-color: #f5f8f8;
+      width: 140rpx;
+      height: 70rpx;
+      border-radius: 35rpx;
+      box-sizing: border-box;
+
+      image {
+        width: 30rpx;
+        height: 35rpx;
+      }
+
+      input {
+        width: 70rpx;
+      }
+    }
+  }
+
+  .card {
+    margin: 20rpx;
+    background-color: #fff;
+  }
+
+  .map-box {
+    map {
+      height: 400rpx;
+      width: 100%;
+    }
+
+    .close {
+      text-align: center;
+      height: 60rpx;
+      line-height: 60rpx;
+    }
+  }
+
+
+  .store {
+    display: flex;
+    justify-content: space-between;
+    padding: 30rpx;
+
+    .info {
+      color: #5b5e5e;
+      border-right: 1rpx solid #ccc;
+      padding-right: 80rpx;
+      .tit {
+        font-weight: bold;
+        font-size: 30rpx;
+        color: #020505;
+      }
+      .address{
+        display: flex;
+        font-size: 22rpx;
+        margin: 20rpx 0 ;
+      }
+
+      .time{
+        font-size: 22rpx;
+      }
+      .status{
+        margin-top: 30rpx;
+        width: 90rpx;
+        height: 40rpx;
+        font-size: 22rpx;
+        color: #001767;
+        border: 2rpx solid #001767;
+        text-align: center;
+        line-height: 40rpx;
+        border-radius: 8rpx;
+        font-weight: bold;
+      }
+      image {
+        width: 20rpx;
+        height: 20rpx;
+        margin-right: 20rpx;
+      }
+
+    }
+
+    .option {
+      width: 180rpx;
+      padding: 40rpx 20rpx 20rpx;
+      .to-pay{
+        color: #001767;
+        font-size: 24rpx;
+        text-align: center;
+      }
+      .distance{
+        font-size: 18rpx;
+        text-align: center;
+        margin: 20rpx 0 40rpx;
+      }
+      .link {
+        display: flex;
+        justify-content: space-between;
+        image {
+          width: 65rpx;
+          height: 65rpx;
+        }
+      }
+    }
+  }
+}

@@ -101,13 +101,13 @@ var components
 try {
   components = {
     uPopup: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-popup/u-popup */ "uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-popup/u-popup.vue */ 162))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-popup/u-popup */ "uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-popup/u-popup.vue */ 163))
     },
     uMessageInput: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-message-input/u-message-input */ "uview-ui/components/u-message-input/u-message-input").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-message-input/u-message-input.vue */ 169))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-message-input/u-message-input */ "uview-ui/components/u-message-input/u-message-input").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-message-input/u-message-input.vue */ 170))
     },
     uKeyboard: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-keyboard/u-keyboard */ "uview-ui/components/u-keyboard/u-keyboard").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-keyboard/u-keyboard.vue */ 176))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-keyboard/u-keyboard */ "uview-ui/components/u-keyboard/u-keyboard").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-keyboard/u-keyboard.vue */ 177))
     },
   }
 } catch (e) {

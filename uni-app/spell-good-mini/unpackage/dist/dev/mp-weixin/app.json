@@ -45,5 +45,14 @@
       }
     ]
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取用户位置"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
   "usingComponents": {}
 }

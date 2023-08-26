@@ -1,0 +1,139 @@
+.bg {
+  background-color: #f5f5ff;
+  height: 100vh;
+}
+
+.bg .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100rpx;
+  padding: 30rpx;
+  background-color: #fff;
+}
+
+.bg .head .nav {
+  display: flex;
+}
+
+.bg .head .nav text {
+  display: block;
+  margin: 10rpx;
+  line-height: 100rpx;
+}
+
+.bg .head .nav .active {
+  border-bottom: 2rpx solid #001767;
+  color: #001767;
+}
+
+.bg .head .search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10rpx;
+  background-color: #f5f8f8;
+  width: 140rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  box-sizing: border-box;
+}
+
+.bg .head .search image {
+  width: 30rpx;
+  height: 35rpx;
+}
+
+.bg .head .search input {
+  width: 70rpx;
+}
+
+.bg .card {
+  margin: 20rpx;
+  background-color: #fff;
+}
+
+.bg .map-box map {
+  height: 400rpx;
+  width: 100%;
+}
+
+.bg .map-box .close {
+  text-align: center;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.bg .store {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx;
+}
+
+.bg .store .info {
+  color: #5b5e5e;
+  border-right: 1rpx solid #ccc;
+  padding-right: 80rpx;
+}
+
+.bg .store .info .tit {
+  font-weight: bold;
+  font-size: 30rpx;
+  color: #020505;
+}
+
+.bg .store .info .address {
+  display: flex;
+  font-size: 22rpx;
+  margin: 20rpx 0;
+}
+
+.bg .store .info .time {
+  font-size: 22rpx;
+}
+
+.bg .store .info .status {
+  margin-top: 30rpx;
+  width: 90rpx;
+  height: 40rpx;
+  font-size: 22rpx;
+  color: #001767;
+  border: 2rpx solid #001767;
+  text-align: center;
+  line-height: 40rpx;
+  border-radius: 8rpx;
+  font-weight: bold;
+}
+
+.bg .store .info image {
+  width: 20rpx;
+  height: 20rpx;
+  margin-right: 20rpx;
+}
+
+.bg .store .option {
+  width: 180rpx;
+  padding: 40rpx 20rpx 20rpx;
+}
+
+.bg .store .option .to-pay {
+  color: #001767;
+  font-size: 24rpx;
+  text-align: center;
+}
+
+.bg .store .option .distance {
+  font-size: 18rpx;
+  text-align: center;
+  margin: 20rpx 0 40rpx;
+}
+
+.bg .store .option .link {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bg .store .option .link image {
+  width: 65rpx;
+  height: 65rpx;
+}

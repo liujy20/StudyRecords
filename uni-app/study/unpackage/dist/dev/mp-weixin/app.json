@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/pageA/pageA",
     "pages/tabBar/tabA/tabA",
-    "pages/pageB/pageB"
+    "pages/pageB/pageB",
+    "pages/code/code",
+    "pages/share/share"
   ],
   "subPackages": [],
   "window": {

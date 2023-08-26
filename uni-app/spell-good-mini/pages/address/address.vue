@@ -1,11 +1,11 @@
 <template>
 	<view class="bg">
-		<u-card :show-head="false">
+		<!-- <u-card :show-head="false">
 			<view class="card1-body" slot="body">
 				<u-input v-model="value" type="textarea" height="150" />
 				<u-button type="error" shape="circle" size="mini">粘贴并识别</u-button>
 			</view>
-		</u-card>
+		</u-card> -->
 		<u-card :head-border-bottom="false">
 			<view class="card2-head" slot="head">
 				联系人信息
@@ -17,19 +17,19 @@
 					<u-input class="tag" v-model="tag" type="type" :border="border" placeholder="分机号" />
 				</view>
 				<view class="address u-border-bottom" @click="show=true">
-					<text>省市区</text>
+					<text>{{address1}}</text>
 					<text>&gt;</text>
 				</view>
 				<view class="address-sub  u-border-bottom">
-					<text>详细地址(例如**街**号*)</text>
-					<view class="icon">
+					<text class="info">{{address2}}</text>
+					<view class="icon" @click="chooseAddress">
 						<u-icon name="map-fill" color="red"></u-icon>
 						<text>定位</text>
 					</view>
 				</view>
 				<view class="company  u-border-bottom">
 					<u-input v-model="company" type="type" :border="border" placeholder="公司名称(选填)" />
-					
+
 				</view>
 				<view class="def-address">
 					<u-checkbox v-model="checked" shape="circle"></u-checkbox>
@@ -38,11 +38,18 @@
 				</view>
 			</view>
 		</u-card>
-				<u-picker mode="region" v-model="show"></u-picker>
+		<map class="map" :latitude="userAddress.latitude" :longitude="userAddress.longitude"
+			@click="chooseAddress"></map>
+		<u-picker mode="region" v-model="show"></u-picker>
 	</view>
 </template>
 
 <script>
+	import QQMapWX from '@/util/qqmap-wx-jssdk.min.js'
+	// 实例化API核心类
+	var qqmapsdk = new QQMapWX({
+		key: 'LZ5BZ-5JP34-KWJU4-K2WEC-U7ARO-BTBST' // 必填
+	});
 	export default {
 		data() {
 			return {
@@ -50,69 +57,65 @@
 				name: '',
 				phone: '',
 				tag: '',
+				address1: '省市区',
+				address2: '详细地址(例如**街**号*)',
 				show: false,
-				list: [{
-						value: 1,
-						label: '中国',
-						children: [{
-								value: 2,
-								label: '广东',
-								children: [{
-										value: 3,
-										label: '深圳'
-									},
-									{
-										value: 4,
-										label: '广州'
-									}
-								]
-							},
-							{
-								value: 5,
-								label: '广西',
-								children: [{
-										value: 6,
-										label: '南宁'
-									},
-									{
-										value: 7,
-										label: '桂林'
-									}
-								]
-							}
-						]
-					},
-					{
-						value: 8,
-						label: '美国',
-						children: [{
-							value: 9,
-							label: '纽约',
-							children: [{
-								value: 10,
-								label: '皇后街区'
-							}]
-						}]
-					}
-				],
-				checked:false,
-				company:'',
+				checked: false,
+				company: '',
+				userAddress: {
+					latitude: "30.573687",
+					longitude: "104.063919"
+				}
 			}
 		},
 		methods: {
 			confirm(e) {
 				console.log(e);
+			},
+			chooseAddress(event) {
+				// console.log('clickChoose',event);
+				uni.chooseLocation({
+					latitude: event.detail.latitude || '',
+					longitude: event.detail.longitude || '',
+					success: (res) => {
+						console.log('choose', res)
+						this.userAddress.latitude = res.latitude
+						this.userAddress.longitude = res.longitude
+						let index = res.address.indexOf('市')
+						this.address1 = res.address.slice(0, index + 1)
+						this.address2 = res.address.slice(index + 1) + res.name
+					}
+				})
 			}
+		},
+		onLoad() {
+			uni.getLocation({
+				type: 'gcj-02',
+				success: (res) => {
+					console.log(res)
+				},
+				fail: (res) => {
+					console.log('fail', res);
+				}
+			})
+
+
 		}
 	}
 </script>
 
 <style lang="scss">
+	.map {
+		width: 100%;
+		height: 300px;
+	}
+
 	.bg {
 		min-height: 100vh;
 		background-color: #f5f5f5;
 		overflow: auto;
 
+		// display: none;
 		.card1-body {
 			text-align: right;
 		}
@@ -153,7 +156,15 @@
 				justify-content: space-between;
 				color: #999;
 				line-height: 100rpx;
-				.icon{
+
+				.info {
+					width: 500rpx;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				.icon {
 					display: flex;
 					flex-direction: column;
 					justify-content: center;
