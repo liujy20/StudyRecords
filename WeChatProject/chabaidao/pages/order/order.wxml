@@ -20,20 +20,19 @@
   </view>
   <view class="list">
     <scroll-view class="scroll-left" scroll-y>
-      <view class="{{index==0?'active':''}}" wx:for="{{type}}" wx:key="_id">
+      <view bindtap="changeIndex" data-index="{{index}}" class="{{index==curIndex?'active':''}}" wx:for="{{type}}" wx:key="_id">
         <image src="{{item.imgUrl}}" class="category-image"></image>
         <text>{{item.name}}</text>
       </view>
-
     </scroll-view>
 
 
-    <scroll-view class="scroll-right" scroll-with-animation scroll-y>
-      <view class="list-box" wx:for="{{type}}" wx:key="_id">
+    <scroll-view class="scroll-right" scroll-with-animation scroll-y scroll-into-view="{{curId}}" 	bind:scroll="changeScroll">
+      <view class="list-box" wx:for="{{type}}" wx:key="_id"  id="item-{{index}}">
         <view class="list-title">{{item.name}}</view>
         <view class="tea-list">
           <!-- 每个产品 -->
-          <view class="milktea" wx:for="{{item.products}}" wx:key="_id" wx:for-item="child" wx:for-index='childindex'>
+          <view class="milktea" wx:for="{{item.products}}" wx:key="_id" wx:for-item="child" wx:for-index='childindex' bindtap="goMap" data-name="{{child.name}}">
             <image class="milktee-image" src="../../assets/teas/milktea1.webp"></image>
             <view class="content">
               <view class="content-title">

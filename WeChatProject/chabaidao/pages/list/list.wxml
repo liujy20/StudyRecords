@@ -12,21 +12,21 @@
   </view>
 
   <view class="map-box card">
-    <map longitude="104.0668 " latitude="30.5728" />
-    <view class="close">
+    <map class="{{isClose?'close-map':''}}" longitude="{{userLocation.lng}}" latitude="{{userLocation.lat}}" markers="{{markers}}" scale="14"/>
+    <view class="close" bindtap="closeMap">
       收起地图 ∧
     </view>
   </view>
 
-  <view class="card store" wx:for="{{5}}">
+  <view class="card store" wx:for="{{stopList}}" wx:key="id">
     <view class="info">
       <view class="tit">
         <image src="../../assets/icons/star.jpg" mode="" />
-        <text>茶百道孵化园店</text>
+        <text>{{item.title}}</text>
       </view>
       <view class="address">
         <image src="../../assets/icons/address-info.jpg" mode="" />
-        <text>四川省成都市武侯区新南路四维村1号1层4号</text>
+        <text>{{item.address}}</text>
       </view>
       <view class="time">
         <image src="../../assets/icons/time.jpg" mode="" />
@@ -36,7 +36,7 @@
     </view>
     <view class="option">
       <view class="to-pay"><text>去下单</text></view>
-      <view class="distance"><text>距离20M</text></view>
+      <view class="distance"><text>距离{{item._distance}}</text></view>
       <view class="link">
         <image src="../../assets/icons/phone.jpg" mode="" />
         <image src="../../assets/icons/address.jpg" mode="" />

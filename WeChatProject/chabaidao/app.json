@@ -40,6 +40,12 @@
       }
     ]
   },
+  "requiredPrivateInfos": ["getLocation","chooseLocation"],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取当前位置附近的门店"
+    }
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

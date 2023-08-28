@@ -58,6 +58,10 @@
   width: 100%;
 }
 
+.bg .map-box .close-map {
+  height: 0rpx;
+}
+
 .bg .map-box .close {
   text-align: center;
   height: 60rpx;
@@ -114,6 +118,7 @@
 .bg .store .option {
   width: 180rpx;
   padding: 40rpx 20rpx 20rpx;
+  flex-shrink: 0;
 }
 
 .bg .store .option .to-pay {
