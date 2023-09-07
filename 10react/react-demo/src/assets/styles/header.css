@@ -1,0 +1,13 @@
+.container{
+  display: flex;
+  justify-content: space-between;
+  background-color: lightblue;
+  padding: 20px;
+}
+.container .logo{
+  width: 100px;
+  background-color: lightcyan;
+}
+.container .logo img{
+  width: 100%;
+}

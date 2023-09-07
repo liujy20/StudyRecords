@@ -1,0 +1,44 @@
+.container{
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+.container .top{
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  
+}
+.container .top select{
+  width: 200px;
+  height: 24px;
+  margin-right: 20px;
+}
+.container .top input{
+  width: 200px;
+  height: 20px;
+  margin-right: 20px;
+}
+.container .top button{
+  background-color: #323232;
+  color: #fff;
+}
+.container .bottom .table .tHead{
+  background-color: #323232;
+  color: #fff;
+}
+.container .bottom table{
+  width: 100%;
+  border-collapse: collapse;
+}
+td, th {
+  border: 1px solid #d5d5d5;
+   padding: 5px;
+}
+.container .bottom .tBody .item{
+  background-color: #f8f8f8;
+}
+.container .bottom .tBody .item button{
+  background-color: #323232;
+  color: #fff;
+  margin-right: 5px;
+}
