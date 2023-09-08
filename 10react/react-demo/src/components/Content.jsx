@@ -8,11 +8,13 @@ export default class Content extends Component {
   state = {
     active: "TabA",
   };
-  check(val) {
+  check(event,val) {
+    console.log(event.target);
     this.setState({
       active: val,
     });
   }
+
   show() {
     let { active } = this.state;
     switch(active){
@@ -32,23 +34,23 @@ export default class Content extends Component {
         <div className="menu">
           <ul>
             <li
-              onClick={() => {
-                this.check("TabA");
+              onClick={(event) => {
+                this.check(event,"TabA");
               }}
               className="active"
             >
               拼团商品
             </li>
             <li
-              onClick={() => {
-                this.check("TabB");
+              onClick={(event) => {
+                this.check(event,"TabB");
               }}
             >
               拼团列表
             </li>
             <li
-              onClick={() => {
-                this.check("TabC");
+              onClick={(event) => {
+                this.check(event,"TabC");
               }}
             >
               更多
