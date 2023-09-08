@@ -26,6 +26,11 @@
   background-color: #323232;
   color: #fff;
 }
+.container .bottom .tHead .item button{
+  background-color: #6b6b6b;
+  color: #fff;
+  margin-right: 2px;
+}
 .container .bottom table{
   width: 100%;
   border-collapse: collapse;
@@ -36,6 +41,9 @@ td, th {
 }
 .container .bottom .tBody .item{
   background-color: #f8f8f8;
+}
+.container .bottom .tBody .item img{
+  width: 100px;
 }
 .container .bottom .tBody .item button{
   background-color: #323232;
