@@ -1,5 +1,6 @@
 .content{
-  margin-bottom: 50px;
+  height: calc(100vh - 76px);
+  overflow: auto;
 }
 .content .menu ul{
   list-style: none;

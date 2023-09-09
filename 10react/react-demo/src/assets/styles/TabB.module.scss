@@ -1,0 +1,55 @@
+.content {
+  margin: 20px 100px;
+  .shop {
+    .tit {
+      margin: 10px 0;
+      font-weight: bold;
+      font-size: 24px;
+    }
+    .list {
+      display: flex;
+      justify-content: space-between;
+      .item {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+        width: 250px;
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img {
+          width: 250px;
+          height: 250px;
+        }
+        p {
+          margin: 10px;
+        }
+      }
+    }
+  }
+  .car {
+    .tit {
+      margin: 10px 0;
+      font-weight: bold;
+      font-size: 24px;
+    }
+    .table {
+      padding: 0 100px;
+      table {
+        width: 100%;
+        tr {
+          td {
+           text-align: center;
+            img {
+              width: 60px;
+              height: 60px;
+            }
+          }
+        }
+      }
+      .allPrice{
+        text-align: right;
+      }
+    }
+    
+  }
+}

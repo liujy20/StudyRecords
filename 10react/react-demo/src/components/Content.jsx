@@ -4,9 +4,10 @@ import TabA from "./TabA";
 import TabB from "./TabB";
 import TabC from "./TabC";
 
+
 export default class Content extends Component {
   state = {
-    active: "TabA",
+    active: "TabB",
   };
   check(event,val) {
     console.log(event.target);
@@ -29,7 +30,9 @@ export default class Content extends Component {
     }
   }
   render() {
+    let {active}=this.state
     return (
+      
       <div className="content">
         <div className="menu">
           <ul>
@@ -37,7 +40,7 @@ export default class Content extends Component {
               onClick={(event) => {
                 this.check(event,"TabA");
               }}
-              className="active"
+              className={active==='TabA'?"active":''}
             >
               拼团商品
             </li>
@@ -45,6 +48,7 @@ export default class Content extends Component {
               onClick={(event) => {
                 this.check(event,"TabB");
               }}
+              className={active==='TabB'?"active":''}
             >
               拼团列表
             </li>
@@ -52,6 +56,7 @@ export default class Content extends Component {
               onClick={(event) => {
                 this.check(event,"TabC");
               }}
+              className={active==='TabC'?"active":''}
             >
               更多
             </li>
