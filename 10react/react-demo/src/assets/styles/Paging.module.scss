@@ -1,0 +1,20 @@
+.paging{
+  margin: 10px;
+  .size{
+    width: 60px;
+  }
+  input{
+    width: 20px;
+    margin: 0 10px;
+  }
+  .page{  
+    padding: 0 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+  }
+  .page.active{
+    background-color: lightcoral;
+    border: none;
+    color: #fff;
+  }
+}
