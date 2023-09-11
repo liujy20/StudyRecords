@@ -7,7 +7,7 @@ import TabC from "./TabC";
 
 export default class Content extends Component {
   state = {
-    active: "TabB",
+    active: "TabA",
   };
   check(event,val) {
     console.log(event.target);
