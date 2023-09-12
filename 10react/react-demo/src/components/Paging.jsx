@@ -42,7 +42,7 @@ export default class Paging extends Component {
           <option value="10">10</option>
         </select>
         <input />
-        <span onClick={this.getPage}>{this.showPage}</span>
+        <i onClick={this.getPage}>{this.showPage}</i>
       </div>
     );
   }

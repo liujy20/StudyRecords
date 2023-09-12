@@ -3,6 +3,7 @@ import "../assets/styles/content.css";
 import TabA from "./TabA";
 import TabB from "./TabB";
 import TabC from "./TabC";
+import TabD from "./TabD";
 
 
 export default class Content extends Component {
@@ -25,6 +26,8 @@ export default class Content extends Component {
         return <TabB></TabB>;
       case "TabC":
         return <TabC></TabC>;
+      case "TabD":
+        return <TabD></TabD>;
       default:
         return <TabA></TabA>; 
     }
@@ -59,6 +62,14 @@ export default class Content extends Component {
               className={active==='TabC'?"active":''}
             >
               更多
+            </li>
+            <li
+              onClick={(event) => {
+                this.check(event,"TabD");
+              }}
+              className={active==='TabD'?"active":''}
+            >
+              抽奖
             </li>
           </ul>
         </div>

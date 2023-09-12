@@ -115,6 +115,7 @@ export default class TabA extends Component {
     ystate: false,
     yimgSrc:
       "https://woniuimage.oss-cn-hangzhou.aliyuncs.com/woniuimage/user/icon/user-icon-default.png",
+    product: {},
   };
   /**
    * 渲染券类型
@@ -265,15 +266,27 @@ export default class TabA extends Component {
     });
   };
   /**
+   * 修改数据
+   */
+  modify = (id) => {
+    const { data } = this.state;
+    const obj = data.find((item) => item._id === id);
+    this.setState({
+      visible2: true,
+      product: obj,
+    });
+  };
+  /**
    * 关闭盒子
    */
   closeBox = () => {
     this.setState({
       visible1: false,
+      visible2: false,
     });
   };
   /**
-   * 提交数据
+   * 确认提交
    */
   submit = () => {
     let { ytitle, yreceiveType, yprice, yimgSrc, ytime, ystate, data } =
@@ -299,7 +312,7 @@ export default class TabA extends Component {
   };
   /**
    * 选择状态
-   * @param {*} e 
+   * @param {*} e
    */
   changeStatus = (e) => {
     console.log(e.target.value);
@@ -311,7 +324,7 @@ export default class TabA extends Component {
 
   /**
    * 选择时间
-   * @param {*} e 
+   * @param {*} e
    */
   changeTime = (e) => {
     let value = e.target.value;
@@ -327,15 +340,61 @@ export default class TabA extends Component {
       ytime,
     });
   };
+  /**
+   * 确认修改
+   */
+  edit = () => {
+    let { product,data } = this.state;
+    // console.log(this.title.value);
+    // console.log(this.receiveType.value);
+    // console.log(this.price.value);
+    // console.log(this.time1.value);
+    // console.log(this.time2.value);
+    // console.log(this.state1.value);
+    // console.log(this.state2.value);
+    let useTime=[]
+    if(this.time1.checked){
+      useTime.push(this.time1.value)
+    }
+    if(this.time2.checked){
+      useTime.push(this.time2.value)
+    }
+    let state=false
+    if(this.state1.checked){
+      state=JSON.parse(this.state1.value)
+    }else{
+      state=JSON.parse(this.state2.value)
+    }
+    let obj = {
+      ...product,
+      title: this.title.value,
+      receiveType: this.receiveType.value,
+      price: this.price.value,
+      useTime,
+      state
+    };
+    console.log(obj);
+    let index = data.findIndex(item=>
+      item._id===obj._id
+    )
+    data[index]=obj
+    this.setState({
+      data
+    })
+    this.closeBox()
+
+  };
   render() {
     let {
       currentPage,
       pageSize,
       visible1,
+      visible2,
       ytitle,
       yreceiveType,
       yprice,
       yimgSrc,
+      product,
     } = this.state;
     const start = (currentPage - 1) * pageSize;
     const end = start + pageSize;
@@ -427,7 +486,13 @@ export default class TabA extends Component {
                       >
                         删除
                       </button>
-                      <button>修改</button>
+                      <button
+                        onClick={() => {
+                          this.modify(item._id);
+                        }}
+                      >
+                        修改
+                      </button>
                     </td>
                   </tr>
                 );
@@ -508,6 +573,70 @@ export default class TabA extends Component {
             type="radio"
             name="status"
             onChange={this.changeStatus}
+            value={false}
+          />
+        </Dialog>
+        <Dialog
+          title="修改优惠券"
+          visible={visible2}
+          close={this.closeBox}
+          submit={this.edit}
+        >
+          <label htmlFor="">优惠券名称</label>
+          <input
+            type="text"
+            defaultValue={product.title}
+            ref={(event) => (this.title = event)}
+          />
+          <br />
+          <label htmlFor="">优惠券类型</label>
+          <select
+            defaultValue={product.receiveType}
+            ref={(event) => (this.receiveType = event)}
+          >
+            <option value="1">新人券</option>
+            <option value="2">满减券</option>
+            <option value="3">通用券</option>
+          </select>
+          <br />
+          <label htmlFor="">优惠券面值</label>
+          <input
+            type="text"
+            defaultValue={product.price}
+            ref={(event) => (this.price = event)}
+          />
+          <br />
+          <label htmlFor="">优惠券时间</label>
+          <span>2023-1-1</span>
+          <input
+            type="checkbox"
+            defaultChecked={product.useTime?.includes("2023-01-13 17:39:42")}
+            value="2023-01-13 17:39:42"
+            ref={(event) => (this.time1 = event)}
+          />
+          <span>2023-4-1</span>
+          <input
+            type="checkbox"
+            defaultChecked={product.useTime?.includes("2023-02-13 17:39:42")}
+            value="2023-02-13 17:39:42"
+            ref={(event) => (this.time2 = event)}
+          />
+          <br />
+          <label htmlFor="">是否开启</label>
+          <span>开启</span>
+          <input
+            type="radio"
+            name="status"
+            defaultChecked={product.state}
+            ref={(event) => (this.state1 = event)}
+            value={true}
+          />
+          <span>关闭</span>
+          <input
+            type="radio"
+            name="status"
+            defaultChecked={!product.state}
+            ref={(event) => (this.state2 = event)}
             value={false}
           />
         </Dialog>
