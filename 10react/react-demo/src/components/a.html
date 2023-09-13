@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <script>
+    let arr=[
+      {id:1,name:'总公司',pid:null},
+      {id:2,name:'子公司',pid:1},
+      {id:3,name:'子公司',pid:1},
+      {id:4,name:'财务部门',pid:2},
+    ]
+
+    function trans(data,id=null){
+      let children=[]
+      data.forEach(item=>{
+        if(item.pid==id){
+          children.push(item)
+          item.children=trans(data,item.id)
+        }
+      })
+      return children
+    }
+
+    console.log(trans(arr));
+  </script> -->
+  <script>
+    let obj={name:'xwg',age:12}
+    let newObj={...obj}
+    console.log(newObj==obj);
+  </script>
+</body>
+</html>
