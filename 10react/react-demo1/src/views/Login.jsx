@@ -1,4 +1,6 @@
 import React from "react";
+import style from '../assets/styles/Login.module.less'
+// import img from '../../public/logo192.png'
 import { Button, Checkbox, Form, Input, ConfigProvider } from "antd";
 const onFinish = (values) => {
   console.log("Success:", values);
@@ -12,11 +14,14 @@ export default function Login() {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: "#52c41a",
+          colorPrimary: "#030852",
         },
       }}
     >
-      <div>
+      <div className={style.bg}>
+        <img src='/logo192.png' alt="" />
+      <div className={style.login}>
+        <h2>Login</h2>
         <Form
           name="basic"
           labelCol={{
@@ -24,13 +29,6 @@ export default function Login() {
           }}
           wrapperCol={{
             span: 16,
-          }}
-          style={{
-            maxWidth: 500,
-            border: "1px solid #ccc",
-            padding: "50px 40px 20px",
-            margin: "100px auto",
-            borderRadius: "10px",
           }}
           initialValues={{
             remember: true,
@@ -87,6 +85,7 @@ export default function Login() {
             </Button>
           </Form.Item>
         </Form>
+      </div>
       </div>
     </ConfigProvider>
   );
