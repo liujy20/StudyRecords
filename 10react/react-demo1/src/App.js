@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Navigate,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import AntdComp from "./components/AntdComp";
 import TodoList from "./components/TodoList";
@@ -21,6 +16,7 @@ import Role from "./views/subs/Role";
 import Salary from "./views/subs/Salary";
 import Sale from "./views/subs/Sale";
 import Shop from "./views/subs/Shop";
+import AddGood from "./views/subs/AddGood";
 
 export default function App() {
   return (
@@ -30,8 +26,7 @@ export default function App() {
       {/* <Login></Login> */}
       <ConfigProvider
         theme={{
-          token: {
-          },
+          token: {},
         }}
       >
         <BrowserRouter>
@@ -56,6 +51,7 @@ export default function App() {
                   path="GoodCategory"
                   element={<GoodCategory></GoodCategory>}
                 ></Route>
+                <Route path="AddGood" element={<AddGood></AddGood>}></Route>
               </Route>
             </Route>
             <Route path="/todolist" element={<TodoList></TodoList>}></Route>

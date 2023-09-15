@@ -40,7 +40,7 @@ const item = [
   },
   {
     label: "商品管理",
-    key: "/home/finance",
+    key: "/home/good",
     icon: <DesktopOutlined />,
     children: [
       {
@@ -135,6 +135,7 @@ const Home = () => {
         <Menu
           theme="dark"
           defaultSelectedKeys={["/home/main"]}
+          defaultOpenKeys={['/home/good']}
           mode="inline"
           items={item}
         />
