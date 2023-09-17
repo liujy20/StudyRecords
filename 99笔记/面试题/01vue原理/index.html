@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./main.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>name:{{name}}</p>
+    <p>age:{{age}}</p>
+    </div>
+
+    <script>
+      const app =new Vue({
+        el:'#app',
+        data(){
+          return{
+            name:'小张',
+            age:20
+          }
+        }
+      })
+
+      console.log(app.name);
+      app.name='wg'
+    </script>
+  </body>
+</html>
