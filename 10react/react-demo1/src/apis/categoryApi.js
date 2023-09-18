@@ -32,3 +32,10 @@ export const addCategroy=(data)=>{
     data
   })
 }
+export const deleteCateGroy=(data)=>{
+  return axios({
+    url:'/categroy/deleteCateGroy',
+    method:'post',
+    data
+  })
+}

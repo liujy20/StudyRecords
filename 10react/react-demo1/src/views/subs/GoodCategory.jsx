@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Table, Space, Modal, Form, Input, Select } from "antd";
-import { addCategroy, findCategroy } from "../../apis/categoryApi";
+import { Button, Card, Table, Space, Modal, Form, Input, Select, message } from "antd";
+import { addCategroy, deleteCateGroy, findCategroy } from "../../apis/categoryApi";
 
 export default function GoodCategory() {
   const [form] = Form.useForm();
@@ -42,7 +42,7 @@ export default function GoodCategory() {
           {item.type ==='一级分类'?<Button type="primary" onClick={() => getSub(item)}>
             查看子分类
           </Button>:null}
-          <Button>删除</Button>
+          <Button onClick={()=>delCategory(item)}>删除</Button>
         </Space>
       ),
     },
@@ -59,6 +59,15 @@ export default function GoodCategory() {
     setData(res.data.data.data);
     setStatus(false);
   };
+  const delCategory=async (item)=>{
+    console.log('delID',item._id);
+    let res=await deleteCateGroy({id:item._id})
+    console.log(res.data);
+    if(res.data.code){
+      message.success(res.data.msg)
+      getCategory()
+    }
+  }
   const handleTypeChange = (value) => {
     console.log(`selected ${value}`);
     if (value === "二级分类") {
