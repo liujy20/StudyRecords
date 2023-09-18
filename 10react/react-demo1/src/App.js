@@ -1,7 +1,7 @@
-import React from "react";
+import React, { lazy } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ConfigProvider } from "antd";
-import AntdComp from "./components/AntdComp";
+// import AntdComp from "./components/AntdComp";
 import TodoList from "./components/TodoList";
 import Login from "./views/Login";
 import Home from "./views/Home";
@@ -18,6 +18,8 @@ import Sale from "./views/subs/Sale";
 import Shop from "./views/subs/Shop";
 import AddGood from "./views/subs/AddGood";
 
+// 懒加载
+let AntdComp=lazy(()=>import('@/components/AntdComp'))
 export default function App() {
   return (
     <div>
@@ -29,7 +31,8 @@ export default function App() {
           token: {},
         }}
       >
-        <BrowserRouter>
+        <React.Suspense>
+          <BrowserRouter>
           <Routes>
             <Route path="/" element={<Navigate to="/home"></Navigate>}></Route>
             <Route path="/login" element={<Login></Login>}></Route>
@@ -57,6 +60,8 @@ export default function App() {
             <Route path="/todolist" element={<TodoList></TodoList>}></Route>
           </Routes>
         </BrowserRouter>
+        </React.Suspense>
+        
       </ConfigProvider>
     </div>
   );
