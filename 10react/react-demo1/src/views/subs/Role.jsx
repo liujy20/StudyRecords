@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Table, Space, Modal, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import {} from "react-router-dom";
 import { addRoles, findRoles } from "../../apis/roleApi";
 import MyDrawer from "../../components/MyDrawer";
 
@@ -34,14 +34,8 @@ export default function Role() {
       title: "角色",
       dataIndex: "name",
     },
-    {title: "创建时间",
-    dataIndex: "createTime",
-
-    },
-    {title: "修改时间",
-    dataIndex: "authTime",
-
-    },
+    { title: "创建时间", dataIndex: "createTime" },
+    { title: "修改时间", dataIndex: "authTime" },
     {
       title: "操作",
       render: (_, item) => (
@@ -58,13 +52,13 @@ export default function Role() {
   const closeBox = () => {
     setVisible(false);
   };
-  const onFinish = async ({name}) => {
+  const onFinish = async ({ name }) => {
     console.log("Success:", name);
-let res=await addRoles({
-  name,
-  createTime:new Date().toLocaleString()
-})
-console.log(res);
+    let res = await addRoles({
+      name,
+      createTime: new Date().toLocaleString(),
+    });
+    console.log(res);
   };
   return (
     <React.Fragment>

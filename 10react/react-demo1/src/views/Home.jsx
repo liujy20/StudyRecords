@@ -1,117 +1,52 @@
 import React, { useState } from "react";
-import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-} from "@ant-design/icons";
+import MyMenu from "../components/MyMenu";
 import {
   Breadcrumb,
   Layout,
-  Menu,
   theme,
   Dropdown,
   Space,
   Col,
   Row,
 } from "antd";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
-const item = [
-  {
-    label: <Link to="/home/main">系统主页</Link>,
-    key: "/home/main",
-    icon: <PieChartOutlined />,
-  },
-  {
-    label: <Link to="/home/user">用户管理</Link>,
-    key: "/home/user",
-    icon: <DesktopOutlined />,
-  },
-  {
-    label: <Link to="/home/role">角色管理</Link>,
-    key: "/home/role",
-    icon: <TeamOutlined />,
-  },
-  {
-    label: <Link to="/home/shop">店铺管理</Link>,
-    key: "/home/shop",
-    icon: <FileOutlined />,
-  },
-  {
-    label: "商品管理",
-    key: "/home/good",
-    icon: <DesktopOutlined />,
-    children: [
-      {
-        label: <Link to="/home/good/goodlist">商品列表</Link>,
-        key: "/home/good/goodlist",
-      },
-      {
-        label: <Link to="/home/good/goodcategory">商品分类</Link>,
-        key: "/home/good/goodcategory",
-      },
-    ],
-  },
-  {
-    label: "财务管理",
-    key: "/home/Finance",
-    icon: <DesktopOutlined />,
-    children: [
-      {
-        label: <Link to="/home/Finance/salary">工资数据</Link>,
-        key: "/home/Finance/salary",
-      },
-      {
-        label: <Link to="/home/Finance/sale">销售数据</Link>,
-        key: "/home/Finance/sale",
-      },
-    ],
-  },
-];
-const DropDownitems = [
-  {
-    key: "1",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
-        1st menu item
-      </a>
-    ),
-  },
-  {
-    key: "2",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.aliyun.com"
-      >
-        2nd menu item
-      </a>
-    ),
-  },
-  {
-    key: "3",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.luohanacademy.com"
-      >
-        3rd menu item
-      </a>
-    ),
-  },
-];
+
 const Home = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate= useNavigate()
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const logOut=()=>{
+    localStorage.removeItem('token')
+    localStorage.removeItem('userInfo')
+    navigate('/login')
+  }
+  const DropDownitems = [
+    {
+      key: "1",
+      label: (
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.antgroup.com"
+        >
+          用户信息
+        </a>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <span onClick={logOut}
+        >
+          退出登录
+        </span>
+      ),
+    },
+  ];
+  
   return (
     <Layout
       style={{
@@ -132,13 +67,7 @@ const Home = () => {
             />
           )}
         </div>
-        <Menu
-          theme="dark"
-          defaultSelectedKeys={["/home/main"]}
-          defaultOpenKeys={['/home/good']}
-          mode="inline"
-          items={item}
-        />
+        <MyMenu></MyMenu>
       </Sider>
       <Layout>
         <Header
