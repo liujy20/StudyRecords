@@ -1,4 +1,4 @@
-import { PlusOutlined } from "@ant-design/icons";
+import MyUpload from "../../components/MyUpload";
 import React, { useEffect, useState } from "react";
 import {
   Button,
@@ -6,7 +6,6 @@ import {
   Form,
   Input,
   InputNumber,
-  Upload,
   message,
 } from "antd";
 import { findAllCategroy } from "../../apis/categoryApi";
@@ -121,9 +120,7 @@ export default function AddGood() {
           <TextArea rows={4} />
         </Form.Item>
         <Form.Item label="上传图片">
-          <Upload listType="picture-card">
-            <PlusOutlined />
-          </Upload>
+          <MyUpload></MyUpload>
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 6, span: 18 }}>
           <Button type="primary" htmlType="submit">
