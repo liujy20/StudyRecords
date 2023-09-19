@@ -37,12 +37,12 @@ const treeData = [
     children: [
       {
         title: '工资数据',
-        key: '/home/Finance/salary',
+        key: '/home/finance/salary',
         
       },
       {
         title: '销售数据',
-        key: '/home/Finance/sale',
+        key: '/home/finance/sale',
         
       },
     ],

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Drawer, Tree, Button, message } from "antd";
 import treeData from "../configs/treeData";
 import { addAuth } from "../apis/roleApi";
@@ -8,8 +8,8 @@ export default function MyDrawer({ open, onClose, info }) {
     setMenus(info.menus);
   }, [info.menus]);
   const onCheck = (checkedKeys, info) => {
-    setMenus(checkedKeys);
     console.log("onCheck", checkedKeys, info);
+    setMenus(checkedKeys);
   };
   const sumbit = async () => {
     console.log(menus);
@@ -20,9 +20,9 @@ export default function MyDrawer({ open, onClose, info }) {
       menus: menus,
     });
 
-    if(res.data.code){
-    message.success(res.data.msg)
-    onClose()
+    if (res.data.code) {
+      message.success(res.data.msg);
+      onClose();
     }
   };
   return (
