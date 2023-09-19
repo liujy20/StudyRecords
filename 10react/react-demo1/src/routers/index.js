@@ -13,6 +13,7 @@ import Salary from "../views/subs/Salary";
 import Sale from "../views/subs/Sale";
 import Shop from "../views/subs/Shop";
 import AddGood from "../views/subs/AddGood";
+import EditGood from '../views/subs/EditGood'
 
 const routerList = [
   { path: "/", element: <Home></Home> },
@@ -48,9 +49,14 @@ const routerList = [
           { path: "goodList", element: <GoodList></GoodList> },
           { path: "goodCategory", element: <GoodCategory></GoodCategory> },
           { path: "addGood", element: <AddGood></AddGood> },
+          { path: "editGood", element: <EditGood></EditGood> },
         ],
       },
     ],
+  },
+  {
+    path: "*",
+    element: <h1>404 not found</h1>,
   },
 ];
 

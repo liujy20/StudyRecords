@@ -62,14 +62,14 @@ export default function MyMenu() {
   ];
   const roleMenu = (arr, renderList = []) => {
     let menu = JSON.parse(localStorage.getItem("userInfo")).role.menus || [];
-    console.log(arr);
+    // console.log(arr);
     for (let item of arr) {
       if (!item.children) {
         if (menu.includes(item.key)) {
           renderList.push(item);
         }
       } else {
-        console.log(item);
+        // console.log(item);
         let children = roleMenu(item.children);
         if (children) {
           renderList.push({ ...item, children });
