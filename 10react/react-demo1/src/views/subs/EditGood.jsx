@@ -1,4 +1,3 @@
-import { PlusOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import {
   Button,
@@ -6,13 +5,13 @@ import {
   Form,
   Input,
   InputNumber,
-  Upload,
   message,
 } from "antd";
 import { findAllCategroy } from "../../apis/categoryApi";
 import { updateGoods } from "../../apis/goodApi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "antd/es/form/Form";
+import MyUpload from "../../components/MyUpload";
 const { TextArea } = Input;
 export default function AddGood() {
   const navigate = useNavigate()
@@ -25,7 +24,7 @@ export default function AddGood() {
   const [product, setProduct] = useState({});
   useEffect(() => {
     init()
-    // console.log(state);
+    console.log(state);
   }, []);
   useEffect(()=>{
     setProduct({
@@ -179,9 +178,7 @@ export default function AddGood() {
           <TextArea rows={4} disabled />
         </Form.Item>
         <Form.Item label="上传图片">
-          <Upload listType="picture-card" disabled>
-            <PlusOutlined />
-          </Upload>
+          <MyUpload action="http://localhost:8002/goods/fileUpload" imgSrc={`http://localhost:8002/images/goods/${state.imgSrc}`} fileName='imgSrc'></MyUpload>
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 6, span: 18 }}>
           <Button type="primary" htmlType="submit">

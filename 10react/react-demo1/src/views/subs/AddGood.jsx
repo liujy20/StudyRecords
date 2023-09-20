@@ -26,6 +26,9 @@ export default function AddGood() {
     console.log(value);
     setTypeID(value[1].id);
   };
+  const getSrc=(src)=>{
+    console.log('src',src);
+  }
   const onFinish = async (values) => {
     values.type = typeID;
     console.log("Success:", values);
@@ -120,7 +123,7 @@ export default function AddGood() {
           <TextArea rows={4} />
         </Form.Item>
         <Form.Item label="上传图片">
-          <MyUpload></MyUpload>
+          <MyUpload  action="http://localhost:8002/goods/fileUpload" fileName='imgSrc' getSrc={getSrc}></MyUpload>
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 6, span: 18 }}>
           <Button type="primary" htmlType="submit">

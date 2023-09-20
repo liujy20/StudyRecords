@@ -14,6 +14,7 @@ import Sale from "../views/subs/Sale";
 import Shop from "../views/subs/Shop";
 import AddGood from "../views/subs/AddGood";
 import EditGood from '../views/subs/EditGood'
+import RouterAuth from "./RouterAuth";
 
 const routerList = [
   { path: "/", element: <Home></Home> },
@@ -27,7 +28,7 @@ const routerList = [
   },
   {
     path: "/home",
-    element: <Home></Home>,
+    element: <RouterAuth><Home></Home></RouterAuth>,
     children: [
       { path: "main", element: <Main></Main> },
       { path: "user", element: <User></User> },
