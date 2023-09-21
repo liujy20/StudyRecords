@@ -60,7 +60,7 @@ export default function Home() {
                 // shadowOffsetY: 0,
                 // shadowBlur: 20,
                 // borderWidth: 0,
-                color:'#ffffff',
+                color:'#FFFFFF',
                 shadowColor: 'rgba(0, 0, 0, 0.5)',
               },
             },
@@ -83,5 +83,5 @@ export default function Home() {
   //echarts地图设置点击事件  点击时高亮关闭换成自定义颜色
 
 
-  return <div style={{ height: "950px", width: "80%" }} id="main"></div>;
+  return <div style={{ height: "600px", width: "600px" }} id="main"></div>;
 }

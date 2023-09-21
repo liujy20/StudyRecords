@@ -7,7 +7,14 @@ import {
   TeamOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addTab, toTab } from "../redux/actions";
+
 export default function MyMenu() {
+  const dispatch=useDispatch()
+  const defaultKey=useSelector((state)=>{
+    return state.tabStore.aliveKey
+  })
   const item = [
     {
       label: <Link to="/home/main">系统主页</Link>,
@@ -78,14 +85,25 @@ export default function MyMenu() {
     }
     return renderList;
   };
+  const menuClick=(e)=>{
+    console.log(e);
+    console.log(e.domEvent.target.innerText);
+    dispatch(addTab({
+      key:e.key,
+      name:e.domEvent.target.innerText
+    }))
+    dispatch(toTab(e.key))
+  }
   return (
     <div>
       <Menu
         theme="dark"
-        defaultSelectedKeys={["/home/main"]}
+        defaultSelectedKeys={defaultKey}
+        selectedKeys={defaultKey}
         defaultOpenKeys={["/home/good", "/home/finance"]}
         mode="inline"
         items={roleMenu(item)}
+        onClick={menuClick}
       />
     </div>
   );

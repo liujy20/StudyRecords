@@ -1,28 +1,21 @@
 import React, { useState } from "react";
 import MyMenu from "../components/MyMenu";
-import {
-  Breadcrumb,
-  Layout,
-  theme,
-  Dropdown,
-  Space,
-  Col,
-  Row,
-} from "antd";
+import { Breadcrumb, Layout, theme, Dropdown, Space, Col, Row } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
+import MyTabs from "../components/MyTabs";
 const { Header, Content, Footer, Sider } = Layout;
 
 const Home = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const logOut=()=>{
-    localStorage.removeItem('token')
-    localStorage.removeItem('userInfo')
-    navigate('/login')
-  }
+  const logOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userInfo");
+    navigate("/login");
+  };
   const DropDownitems = [
     {
       key: "1",
@@ -38,15 +31,10 @@ const Home = () => {
     },
     {
       key: "2",
-      label: (
-        <span onClick={logOut}
-        >
-          退出登录
-        </span>
-      ),
+      label: <span onClick={logOut}>退出登录</span>,
     },
   ];
-  
+
   return (
     <Layout
       style={{
@@ -80,7 +68,7 @@ const Home = () => {
             <Col offset={22} span={2}>
               <Dropdown
                 menu={{
-                  items:DropDownitems,
+                  items: DropDownitems,
                 }}
               >
                 <Space>欢迎[小明]登录!</Space>
@@ -101,6 +89,7 @@ const Home = () => {
             <Breadcrumb.Item>User</Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
           </Breadcrumb>
+          <MyTabs></MyTabs>
           <div
             style={{
               padding: 24,

@@ -13,52 +13,75 @@ import Salary from "../views/subs/Salary";
 import Sale from "../views/subs/Sale";
 import Shop from "../views/subs/Shop";
 import AddGood from "../views/subs/AddGood";
-import EditGood from '../views/subs/EditGood'
+import EditGood from "../views/subs/EditGood";
 import RouterAuth from "./RouterAuth";
-
-const routerList = [
-  { path: "/", element: <Home></Home> },
+export const defaultList = [
+  {
+    path: "*",
+    element: <h1>404 not found</h1>,
+    name: "404",
+  },
   {
     path: "/login",
     element: <Login></Login>,
+    name: "login",
   },
   {
     path: "/regiest",
     element: <AntdComp></AntdComp>,
+    name: "regiest",
   },
+];
+export const routerList = [
+  { path: "/", element: <Home></Home>, name: "home" },
+
   {
     path: "/home",
-    element: <RouterAuth><Home></Home></RouterAuth>,
+    element: (
+      <RouterAuth>
+        <Home></Home>
+      </RouterAuth>
+    ),
+    name: "home",
     children: [
-      { path: "main", element: <Main></Main> },
-      { path: "user", element: <User></User> },
-      { path: "edit", element: <Edit></Edit> },
-      { path: "role", element: <Role></Role> },
-      { path: "shop", element: <Shop></Shop> },
+      { index: true, element: <Main></Main>, name: "main" },
+      { path: "main", element: <Main></Main>, name: "main" },
+      { path: "user", element: <User></User>, name: "user" },
+      { path: "edit", element: <Edit></Edit>, name: "edit" },
+      { path: "role", element: <Role></Role>, name: "role" },
+      { path: "shop", element: <Shop></Shop>, name: "shop" },
       {
         path: "finance",
         element: <Finance></Finance>,
+        name: "finance",
         children: [
-          { path: "salary", element: <Salary></Salary> },
-          { path: "sale", element: <Sale></Sale> },
+          { path: "salary", element: <Salary></Salary>, name: "salary" },
+          { path: "sale", element: <Sale></Sale>, name: "sale" },
         ],
       },
       {
         path: "good",
         element: <Good></Good>,
+        name: "good",
         children: [
-          { path: "goodList", element: <GoodList></GoodList> },
-          { path: "goodCategory", element: <GoodCategory></GoodCategory> },
-          { path: "addGood", element: <AddGood></AddGood> },
-          { path: "editGood", element: <EditGood></EditGood> },
+          {
+            path: "goodList",
+            element: <GoodList></GoodList>,
+            name: "goodList",
+          },
+          {
+            path: "goodCategory",
+            element: <GoodCategory></GoodCategory>,
+            name: "goodCategory",
+          },
+          { path: "addGood", element: <AddGood></AddGood>, name: "addGood" },
+          {
+            path: "editGood",
+            element: <EditGood></EditGood>,
+            name: "editGood",
+          },
         ],
       },
     ],
   },
-  {
-    path: "*",
-    element: <h1>404 not found</h1>,
-  },
 ];
-
-export default routerList;
