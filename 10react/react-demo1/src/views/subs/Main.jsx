@@ -1,20 +1,20 @@
 import React,{useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { userChange } from '../../redux/actions'
+import { useSelector } from "react-redux";
+import useInit from "../../hooks/userHook";
 export default function Main() {
   const data = useSelector((state) => {
-    return state.userStore;
+    return state;
   });
-  const dispatch=useDispatch()
+  // const dispatch=useDispatch()
+  const {getGoods,delGood}=useInit()
   useEffect(() => {
-    // console.log(data);
-    // dispatch(userChange('llllllxwg'))
-    // console.log(data);
+    getGoods()
   }, [])
   return (
     <React.Fragment>
       <div>Main</div>
-      <p>{data.name}</p>
+      <p>{data.userStore.name}</p>
+      <p>goodsLength:{data.goodStore.goods.length}</p>
     </React.Fragment>
   );
 }

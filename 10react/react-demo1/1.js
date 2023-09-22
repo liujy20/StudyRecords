@@ -15,18 +15,3 @@ function getMaxNumber(array, k, m) {
   console.log(sum);
 }
 getMaxNumber(arr, 1, 3);
-
-function getMaxNumber1(array, k, m) {
-  // 将数组按照降序排列
-  const sortedArray = array.sort((a, b) => b - a);
-
-  // 获取第 k 大的数字和第 m 大的数字
-  const kthLargest = sortedArray[k - 1];
-  const mthLargest = sortedArray[m - 1];
-
-  // 计算总和
-  const sum = kthLargest + mthLargest;
-console.log(sum);
-  return sum;
-}
-getMaxNumber1(arr, 1, 3);
