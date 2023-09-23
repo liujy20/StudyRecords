@@ -3,11 +3,15 @@ import MyMenu from "../components/MyMenu";
 import { Breadcrumb, Layout, theme, Dropdown, Space, Col, Row } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
 import MyTabs from "../components/MyTabs";
+import { useSelector } from "react-redux";
 const { Header, Content, Footer, Sider } = Layout;
 
 const Home = () => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
+  const data=useSelector((state)=>{
+    return state.tabStore
+  })
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -86,8 +90,11 @@ const Home = () => {
               margin: "16px 0",
             }}
           >
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+           
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Breadcrumb.Item> {
+              data.list.find(item=>item.key===data.aliveKey).name
+            }</Breadcrumb.Item>
           </Breadcrumb>
           <MyTabs></MyTabs>
           <div

@@ -33,7 +33,15 @@ export const defaultList = [
   },
 ];
 export const routerList = [
-  { path: "/", element: <Home></Home>, name: "home" },
+  {
+    path: "/",
+    element: <Home></Home>,
+    name: "home",
+    children: [
+      { index: true, element: <Main></Main>, name: "main" },
+      { path: "main", element: <Main></Main>, name: "main" },
+    ],
+  },
 
   {
     path: "/home",
@@ -67,12 +75,12 @@ export const routerList = [
           {
             path: "goodList",
             element: <GoodList></GoodList>,
-            name: "goodList",
+            name: "goodlist",
           },
           {
             path: "goodCategory",
             element: <GoodCategory></GoodCategory>,
-            name: "goodCategory",
+            name: "goodcategory",
           },
           { path: "addGood", element: <AddGood></AddGood>, name: "addGood" },
           {
