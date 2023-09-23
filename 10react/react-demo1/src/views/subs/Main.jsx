@@ -1,20 +1,23 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import useInit from "../../hooks/userHook";
 export default function Main() {
-  const data = useSelector((state) => {
-    return state;
+  const userStore = useSelector((state) => {
+    return state.userStore;
+  });
+  const goodStore = useSelector((state) => {
+    return state.goodStore;
   });
   // const dispatch=useDispatch()
-  const {getGoods,delGood}=useInit()
+  const { getGoods, delGood } = useInit();
   useEffect(() => {
-    getGoods()
-  }, [])
+    getGoods();
+  }, []);
   return (
     <React.Fragment>
       <div>Main</div>
-      <p>{data.userStore.name}</p>
-      <p>goodsLength:{data.goodStore.goods.length}</p>
+      <p>{userStore.name}</p>
+      <p>goodsLength:{goodStore.goods.length}</p>
     </React.Fragment>
   );
 }
