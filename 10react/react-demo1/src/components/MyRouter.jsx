@@ -13,8 +13,8 @@ export default function MyRouter() {
       setData(defaultList);
       return;
     }
+    // 获取用户路由权限
     let info = JSON.parse(localStorage.getItem("userInfo")).role.menus;
-
     let role = info.map((item) => {
       let arr = item.split("/");
       // console.log(arr[arr.length - 1]);
@@ -25,6 +25,7 @@ export default function MyRouter() {
     console.log("arr", arr.concat(defaultList));
     setData(arr.concat(defaultList));
   };
+  // 递归获取路由
   const roleRouter = (role, arr, renderList = []) => {
     for (let item of arr) {
       if (!item.children) {
