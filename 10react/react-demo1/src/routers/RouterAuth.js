@@ -6,7 +6,7 @@ import {Navigate} from "react-router-dom"
  */
 export default function RouterAuth({ children }) {
     const token = localStorage.getItem('token')
-    console.log(111);
+    // console.log(111);
     if(token){
         return <>{children}</>
     }else{
