@@ -45,7 +45,7 @@ function classCount(stu) {
 }
 // console.log(classCount(students));
 function encryption(id, stu) {
-    let res = '';
+    let res = "";
     stu.forEach((item) => {
         if (id === item.id) {
             res = item.phone.replace(/(\d{4})\d{4}(\d{3})/, "$1****$2");

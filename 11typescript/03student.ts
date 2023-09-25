@@ -64,15 +64,12 @@ function classCount(stu: IUser[]): ICount[] | undefined {
 // console.log(classCount(students));
 
 function encryption(id: number, stu: IUser[]): string {
-  let res:string=''
+  let res: string = "";
   stu.forEach((item) => {
     if (id === item.id) {
-      res = item.phone.replace(
-        /(\d{4})\d{4}(\d{3})/,
-        "$1****$2"
-      );
+      res = item.phone.replace(/(\d{4})\d{4}(\d{3})/, "$1****$2");
     }
   });
-  return res||"";
+  return res || "";
 }
-console.log(encryption(2,students));
+console.log(encryption(2, students));
