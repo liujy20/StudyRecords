@@ -26,12 +26,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // 配置跨域访问
-app.use(function(req,res,next){
-  res.setHeader("Access-Control-Allow-Origin","*");
-  res.setHeader("Access-Control-Allow-Headers","content-type,token,x-requested-with");
-  res.setHeader('Access-Control-Allow-Methods',"DELETE")
-  next();
-});
+// app.use(function(req,res,next){
+//   res.setHeader("Access-Control-Allow-Origin","*");
+//   res.setHeader("Access-Control-Allow-Headers","content-type,token,x-requested-with");
+//   res.setHeader('Access-Control-Allow-Methods',"DELETE")
+//   next();
+// });
 
 // 异常测试
 // app.use(function(req, res, next) {
