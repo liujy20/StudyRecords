@@ -1,4 +1,5 @@
-import axios from '@/utils/axiosUtil'
-export const findAllGood=()=>{
-  return axios.get('/goods/findGoods')
-}
+import axios from "@/utils/axiosUtil";
+
+export const login = (data: string) => {
+  return axios.post("/login", data);
+};

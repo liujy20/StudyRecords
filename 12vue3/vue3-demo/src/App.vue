@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <Login></Login>
+  <router-view></router-view>
 </template>
 
 <style scoped></style>

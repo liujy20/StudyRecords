@@ -1,12 +1,22 @@
 <script lang='ts' setup>
 import { TabsPaneContext } from 'element-plus';
-import {  Search,User,Lock } from '@element-plus/icons-vue'
+import { Search, User, Lock } from '@element-plus/icons-vue'
+import {login} from '@/apis/userApi'
 const activeName = ref('first')
 const input1 = ref('')
 const input2 = ref('')
 
+const account =ref<string>('')
+const password =ref<string>('')
+
 const handleClick = (tab: TabsPaneContext, event: Event) => {
   console.log(tab, event)
+}
+
+const submit=async ()=>{
+  let res=await login(JSON.stringify({account,password}))
+  console.log(res);
+  
 }
 </script>
 
@@ -20,25 +30,24 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
         </div>
         <el-tabs :stretch="true" v-model="activeName" class="demo-tabs tab" @tab-click="handleClick">
           <el-tab-pane label="账户密码登录" name="first">
-            <el-input v-model="input1" placeholder="Please input" class="item" :prefix-icon="User"/>
-            <el-input v-model="input2" placeholder="Please input" class="item" :prefix-icon="Lock"/>
+            <el-input v-model="account" placeholder="Please input account" class="item" :prefix-icon="User" />
+            <el-input v-model="password" placeholder="Please input password" class="item" :prefix-icon="Lock" />
           </el-tab-pane>
           <el-tab-pane label="手机号登录" name="second">
-            <el-input v-model="input1" placeholder="Please input" class="item" :prefix-icon="Search"/>
+            <el-input v-model="input1" placeholder="Please input" class="item" :prefix-icon="Search" />
             <div class="code">
-              <el-input v-model="input2" placeholder="Please input" class="item inp" :prefix-icon="Search"/>
-              <el-button size="default" >获取验证码</el-button>
-              
+              <el-input v-model="input2" placeholder="Please input" class="item inp" :prefix-icon="Search" />
+              <el-button size="default">获取验证码</el-button>
             </div>
           </el-tab-pane>
         </el-tabs>
-        <el-button type="primary" size="default" class="login">登录</el-button>
-        <el-row  justify="space-between" class="more">
+        <el-button type="primary" size="default" class="login" @click="submit">登录</el-button>
+        <el-row justify="space-between" class="more">
           <el-col :span="6">
             <el-link type="primary" :underline="false">注册账户</el-link>
           </el-col>
           <el-col :span="6" class="span">
-            <el-link type="primary" :underline="false" >商家入住</el-link>
+            <el-link type="primary" :underline="false">商家入住</el-link>
           </el-col>
         </el-row>
       </div>
@@ -54,10 +63,11 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
   height: 100vh;
   width: 100%;
   background-image: url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg);
-overflow: auto;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   .wrap {
     padding: 116px 0 10px;
 
@@ -85,34 +95,40 @@ justify-content: space-between;
       }
 
       .tab {
-        .el-tabs__nav{
+        .el-tabs__nav {
           width: 100% !important;
         }
+
         .item {
           margin: 0 0 20px 0;
-          
+
         }
-        .code{
-            display: flex;
-            justify-content: space-between;
-            .inp{
-              margin-right: 20px;
-            }
+
+        .code {
+          display: flex;
+          justify-content: space-between;
+
+          .inp {
+            margin-right: 20px;
           }
+        }
       }
 
       .login {
         width: 100%;
       }
-      .more{
+
+      .more {
         margin-top: 20px;
-        .span{
+
+        .span {
           text-align: right;
         }
       }
     }
   }
-  .footer{
+
+  .footer {
     margin: 20px;
     display: flex;
     justify-content: center;
