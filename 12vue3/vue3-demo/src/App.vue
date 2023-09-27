@@ -3,6 +3,7 @@
 
 <template>
   <router-view></router-view>
+  <!-- <Study></Study> -->
 </template>
 
 <style scoped></style>

@@ -1,22 +1,33 @@
 <script lang='ts' setup>
 import { TabsPaneContext } from 'element-plus';
 import { Search, User, Lock } from '@element-plus/icons-vue'
-import {login} from '@/apis/userApi'
+import { login } from '@/apis/userApi'
+import { getMenu } from '@/apis/menuApi'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const activeName = ref('first')
 const input1 = ref('')
 const input2 = ref('')
 
-const account =ref<string>('')
-const password =ref<string>('')
+const account = ref<string>('')
+const password = ref<string>('')
 
 const handleClick = (tab: TabsPaneContext, event: Event) => {
   console.log(tab, event)
 }
 
-const submit=async ()=>{
-  let res=await login(JSON.stringify({account,password}))
+const submit = async () => {
+  let res = await login(JSON.stringify({ account, password }))
+  console.log(res);
+  const { user, token } = res.data.data
+  localStorage.setItem('user', JSON.stringify(user))
+  localStorage.setItem('token', token)
+  res = await getMenu(user.username)
+  const array = res.data[0].children
+  localStorage.setItem("menu", JSON.stringify(array))
   console.log(res);
   
+  router.push('/home')
 }
 </script>
 
@@ -136,4 +147,5 @@ const submit=async ()=>{
     font-size: 14px;
     color: #000073;
   }
-}</style>
+}
+</style>

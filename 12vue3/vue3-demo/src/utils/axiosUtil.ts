@@ -5,4 +5,9 @@ const newAxios=axios.create({
   timeout:5000
 })
 
+newAxios.interceptors.request.use((request)=>{
+  request.headers.Authentication=localStorage.getItem('token')
+  return request
+})
+
 export default newAxios

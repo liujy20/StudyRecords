@@ -3,7 +3,7 @@
     <el-icon>
       <Fold />
     </el-icon>
-    <el-dropdown>
+    <el-dropdown style="outline: none;">
       <span class="user">
         <img src="http://xawn.x3322.net:8002/distremote/static/avatar/default.jpg"/>
         <span class="name">bobo</span>

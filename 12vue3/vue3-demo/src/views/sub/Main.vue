@@ -1,7 +1,5 @@
 <template>
-  <div class="bg">
-    <div class="main">
-      <el-card class="box-card" shadow="never">
+  <el-card class="box-card" shadow="never">
         <div class="con">
           <el-row :gutter="20">
             <el-col :span="16" class="info">
@@ -70,29 +68,6 @@
                 <el-link type="primary" :underline="false">所有项目</el-link>
               </div>
             </template>
-            <!-- card body -->
-            <!-- <el-row>
-              <el-col :span="12" :offset="0">
-                <el-card shadow="never" :body-style="{ padding: '20px' }">
-
-                </el-card>
-              </el-col>
-              <el-col :span="12" :offset="0">
-                <el-card shadow="never" :body-style="{ padding: '20px' }">
-
-                </el-card></el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="12" :offset="0">
-                <el-card shadow="never" :body-style="{ padding: '20px' }">
-
-                </el-card>
-              </el-col>
-              <el-col :span="12" :offset="0">
-                <el-card shadow="never" :body-style="{ padding: '20px' }">
-
-                </el-card></el-col>
-            </el-row> -->
             <el-table :show-header="false" style="width: 100%">
               <el-table-column prop="date"  width="180" />
               <el-table-column prop="name"  width="180" />
@@ -100,34 +75,15 @@
           </el-card>
         </el-col>
       </el-row>
-    </div>
-    <div class="footer">
-      Copyright &copy; 2023
-      <el-link type="primary" :underline="false">admin</el-link>
-
-    </div>
-  </div>
 </template>
 
 <script lang='ts' setup>
-import { reactive } from 'vue';
 
 
 </script>
 
 <style lang='scss' scoped>
-.bg {
-  background-color: #eef0f3;
-  height: 100%;
-  overflow: auto;
-  padding: 20px;
-  box-sizing: border-box;
-
-  .main {
-    background-color: #fff;
-    padding: 16px 32px;
-
-    .box-card {
+.box-card {
       .con {
         padding: 24px;
 
@@ -181,18 +137,4 @@ import { reactive } from 'vue';
         justify-content: space-between;
       }
     }
-  }
-
-  .footer {
-    margin: 30px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-
-    .el-link {
-      margin-left: 5px;
-    }
-  }
-}
 </style>
