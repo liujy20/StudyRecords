@@ -3,14 +3,21 @@ import { TabsPaneContext } from 'element-plus';
 import { Search, User, Lock } from '@element-plus/icons-vue'
 import { login } from '@/apis/userApi'
 import { getMenu } from '@/apis/menuApi'
+import { menuStore } from '@/store/menuStore'
 import { useRouter } from 'vue-router'
+import type { FormInstance, FormRules } from 'element-plus'
+import { RuleForm } from '@/interfaces/settle.ts'
+const menu = menuStore()
 const router = useRouter()
+
 const activeName = ref('first')
 const input1 = ref('')
 const input2 = ref('')
 
 const account = ref<string>('')
 const password = ref<string>('')
+
+const isLogin = ref<boolean>(false)
 
 const handleClick = (tab: TabsPaneContext, event: Event) => {
   console.log(tab, event)
@@ -23,18 +30,96 @@ const submit = async () => {
   localStorage.setItem('user', JSON.stringify(user))
   localStorage.setItem('token', token)
   res = await getMenu(user.username)
-  const array = res.data[0].children
-  localStorage.setItem("menu", JSON.stringify(array))
   console.log(res);
-  
+  const array = res.data[0].children
+  // localStorage.setItem("menu", JSON.stringify(array))
+  menu.setMenu(array)
+
   router.push('/home')
+}
+
+const changeIsLogin = () => {
+  isLogin.value = !isLogin.value
+}
+
+// 表单
+const ruleFormRef = ref<FormInstance>()
+// 表单数据
+const ruleForm = reactive<RuleForm>({
+  shopName: '',
+  tel: '',
+  address: '',
+  idCard: '',
+  managerName: '',
+  licenceNo: '',
+  type: '',
+  licenceImg: '',
+  idCardImg: '',
+})
+// 规则
+const rules = reactive<FormRules<RuleForm>>({
+  shopName: [{ required: true }],
+  tel: [{ required: true }],
+  address: [{ required: true }],
+  idCard: [{ required: true }],
+  managerName: [{ required: true }],
+  licenceNo: [{ required: true }],
+  type: [{ required: true }],
+  licenceImg: [{ required: false }],
+  idCardImg: [{ required: false }],
+})
+// 提交
+const submitForm = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      console.log('submit!')
+    } else {
+      console.log('error submit!', fields)
+    }
+  })
+}
+
+// 图片上传
+import type { UploadProps } from 'element-plus'
+import { Plus } from '@element-plus/icons-vue'
+const idCardImgUrl = ref('')
+const licenceImgUrl = ref('')
+// 上传成功
+const idCardImgSuccess: UploadProps['onSuccess'] = (
+  response,
+  uploadFile
+) => {
+  console.log(response);
+  ruleForm.idCardImg=response.data[0]
+  
+  idCardImgUrl.value = URL.createObjectURL(uploadFile.raw!)
+}
+const licenceImgSuccess: UploadProps['onSuccess'] = (
+  response,
+  uploadFile
+) => {
+  ruleForm.licenceImg=response.data[0]
+
+  licenceImgUrl.value = URL.createObjectURL(uploadFile.raw!)
+}
+// 检查
+const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
+  if (rawFile.type !== 'image/jpeg') {
+    ElMessage.error('Avatar picture must be JPG format!')
+    return false
+  } else if (rawFile.size / 1024 / 1024 > 2) {
+    ElMessage.error('Avatar picture size can not exceed 2MB!')
+    return false
+  }
+  return true
 }
 </script>
 
 <template>
   <div class="bg">
     <div class="wrap">
-      <div class="main">
+      <div class="main" v-show="isLogin">
         <div class="tit">
           <el-image src="http://xawn.x3322.net:8002/distremote/static/img/logo.png" class="logo"></el-image>
           <div class="name">赤兔养车</div>
@@ -58,9 +143,66 @@ const submit = async () => {
             <el-link type="primary" :underline="false">注册账户</el-link>
           </el-col>
           <el-col :span="6" class="span">
-            <el-link type="primary" :underline="false">商家入住</el-link>
+            <el-link type="primary" :underline="false" @click="changeIsLogin">商家入住</el-link>
           </el-col>
         </el-row>
+      </div>
+      <div class="join" v-show="!isLogin">
+        <div class="tit">
+          <el-image src="http://xawn.x3322.net:8002/distremote/static/img/logo.png" class="logo"></el-image>
+          <div class="name">赤兔养车</div>
+        </div>
+        <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="120px" class="demo-ruleForm" status-icon>
+          <el-form-item label="商铺类型" prop="type">
+            <el-radio-group v-model="ruleForm.type">
+              <el-radio label="充电站" :value="0" />
+              <el-radio label="其他" :value="1" />
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="店铺名" prop="shopName">
+            <el-input v-model="ruleForm.shopName" />
+          </el-form-item>
+          <el-form-item label="手机号" prop="tel">
+            <el-input v-model="ruleForm.tel" />
+          </el-form-item>
+          <el-form-item label="地址" prop="address">
+            <el-input v-model="ruleForm.address" />
+          </el-form-item>
+          <el-form-item label="注册人" prop="managerName">
+            <el-input v-model="ruleForm.managerName" />
+          </el-form-item>
+          <el-form-item label="身份证号码" prop="idCard">
+            <el-input v-model="ruleForm.idCard" />
+          </el-form-item>
+          <el-form-item label="身份证照片" prop="idCardImg">
+            <el-upload class="avatar-uploader" action="http://47.98.128.191:3000/images/uploadImages" name="file"
+              :show-file-list="false" :on-success="idCardImgSuccess" :before-upload="beforeAvatarUpload">
+              <img v-if="idCardImgUrl" :src="idCardImgUrl" class="avatar" />
+              <el-icon v-else class="avatar-uploader-icon">
+                <Plus />
+              </el-icon>
+            </el-upload>
+          </el-form-item>
+          <el-form-item label="营业执照" prop="licenceNo">
+            <el-input v-model="ruleForm.licenceNo" />
+          </el-form-item>
+          <el-form-item label="营业执照照片" prop="licenceImg">
+            <el-upload class="avatar-uploader" action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+              :show-file-list="false" :on-success="licenceImgSuccess" :before-upload="beforeAvatarUpload">
+              <img v-if="licenceImgUrl" :src="licenceImgUrl" class="avatar" />
+              <el-icon v-else class="avatar-uploader-icon">
+                <Plus />
+              </el-icon>
+            </el-upload>
+          </el-form-item>
+
+          <el-form-item>
+            <el-button type="primary" @click="submitForm(ruleFormRef)">
+              Create
+            </el-button>
+            <el-button @click="">Reset</el-button>
+          </el-form-item>
+        </el-form>
       </div>
     </div>
     <div class="footer">
@@ -135,6 +277,57 @@ const submit = async () => {
         .span {
           text-align: right;
         }
+      }
+    }
+
+    .join {
+      margin: auto;
+      width: 400px;
+      // background-color: antiquewhite;
+
+      .tit {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+
+        .logo {
+          margin-right: 20px;
+          width: 40px;
+          height: 20px;
+        }
+
+        .name {
+          font-size: 28px;
+          font-weight: bold;
+        }
+      }
+
+      .avatar-uploader .avatar {
+        width: 80px;
+        height: 80px;
+        display: block;
+      }
+
+      .avatar-uploader  {
+        border: 1px dashed var(--el-border-color);
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: var(--el-transition-duration-fast);
+      }
+
+      .avatar-uploader:hover {
+        border-color: #40a9ff;
+      }
+
+      .el-icon.avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 80px;
+        height: 80px;
+        text-align: center;
       }
     }
   }
