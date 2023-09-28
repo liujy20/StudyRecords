@@ -7,15 +7,15 @@
       </el-header>
       <el-main>
         <div class="bg">
-    <div class="main">
-      <router-view></router-view>
-    </div>
-    <div class="footer">
-      Copyright &copy; 2023
-      <el-link type="primary" :underline="false">admin</el-link>
+          <div class="main">
+            <router-view></router-view>
+          </div>
+          <div class="footer">
+            Copyright &copy; 2023
+            <el-link type="primary" :underline="false">admin</el-link>
 
-    </div>
-  </div>
+          </div>
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -29,6 +29,7 @@
 .el-main {
   padding: 0;
 }
+
 .bg {
   background-color: #eef0f3;
   height: 100%;
@@ -40,7 +41,7 @@
     background-color: #fff;
     padding: 16px 32px;
 
-    
+
   }
 
   .footer {

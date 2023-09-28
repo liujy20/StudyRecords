@@ -6,23 +6,30 @@
   </el-breadcrumb>
   <el-form :inline="true" :model="form" class="demo-form-inline" style="margin: 20px 0;">
     <el-form-item label="名称">
-      <el-input v-model="name" placeholder="Approved by" clearable />
+      <el-input v-model="form.shopName" placeholder="Approved by" clearable />
     </el-form-item>
     <el-form-item label="手机号">
-      <el-input v-model="phone" placeholder="Approved by" clearable />
+      <el-input v-model="form.tel" placeholder="Approved by" clearable />
     </el-form-item>
     <el-form-item label="负责人">
-      <el-input v-model="persen" placeholder="Approved by" clearable />
+      <el-input v-model="form.managerName" placeholder="Approved by" clearable />
     </el-form-item>
-    <el-form-item label="">
-      <el-button type="primary" size="default" @click="">查询</el-button>
-    </el-form-item>
-    <el-form-item label="">
-      <el-button size="default" @click="">重置</el-button>
-    </el-form-item>
-    <el-form-item label="">
-      <el-link type="primary" :underline="false">展开</el-link>
-    </el-form-item>
+    <template v-if="isExpand">
+      <el-form-item label="身份证号">
+        <el-input v-model="form.idCard" clearable></el-input>
+      </el-form-item>
+    </template>
+    <template v-if="!isExpand">
+      <el-form-item label="">
+        <el-button type="primary" size="default" @click="submit">查询</el-button>
+      </el-form-item>
+      <el-form-item label="">
+        <el-button size="default" @click="clear">重置</el-button>
+      </el-form-item>
+      <el-form-item label="">
+        <el-link type="primary" :underline="false" @click="expand">展开</el-link>
+      </el-form-item>
+    </template>
 
 
   </el-form>
@@ -46,6 +53,19 @@
       </template>
     </el-dropdown>
   </el-space>
+  <el-space>
+    <template v-if="isExpand">
+      <el-form-item label="">
+        <el-button type="primary" size="default" @click="submit">查询</el-button>
+      </el-form-item>
+      <el-form-item label="">
+        <el-button size="default" @click="clear">重置</el-button>
+      </el-form-item>
+      <el-form-item label="">
+        <el-link type="primary" :underline="false" @click="expand">展开</el-link>
+      </el-form-item>
+    </template>
+  </el-space>
   <el-table :data="tableData" style="width: 100%;margin-top: 20px;">
     <el-table-column type="selection" width="55" />
     <el-table-column property="shopName" label="充电站名称" width="120"></el-table-column>
@@ -66,12 +86,12 @@
     <el-pagination
       v-model:current-page="currentPage"
       v-model:page-size="pageSize"
-      :page-sizes="[100, 200, 300, 400]"
+      :page-sizes="[5,10,20]"
       :small="small"
       :disabled="disabled"
       :background="background"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400"
+      :total="total"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
@@ -81,35 +101,66 @@
 <script lang='ts' setup>
 import { ArrowDown } from '@element-plus/icons-vue'
 import { getCharge } from '@/apis/applyApi'
-const form = ref<object>({})
-const name = ref<string>('')
-const phone = ref<string>('')
-const persen = ref<string>('')
+import {IFormCharge} from '@/interfaces/apply'
+// 表单
+const form = ref<IFormCharge>({
+  shopName: "",
+  tel: "",
+  managerName: "",
+  idCard: "",
+})
 const tableData = ref<any>([])
-
-
-const currentPage = ref(4)
-const pageSize = ref(100)
+// 状态
+const isExpand = ref<boolean>(false)
+// 分页
+const total = ref<number>(10)
+const currentPage = ref<number>(1)
+const pageSize = ref(10)
 const small = ref(false)
 const background = ref(false)
 const disabled = ref(false)
 
-const handleSizeChange = (val: number) => {
-  console.log(`${val} items per page`)
+const handleSizeChange = async (val: number) => {
+  // console.log(`${val} items per page`)
+  pageSize.value = val
+  let res = await getCharge(query.value)
+  // console.log(res);
+  tableData.value = res.data.rows
 }
-const handleCurrentChange = (val: number) => {
-  console.log(`current page: ${val}`)
+const handleCurrentChange = async (val: number) => {
+  // console.log(`current page: ${val}`)
+  currentPage.value = val
+  let res = await getCharge(query.value)
+  // console.log(res);
+  tableData.value = res.data.rows
+}
+
+const expand = () => {
+  isExpand.value = !isExpand.value
+}
+
+const query = computed(() => {
+  return { ...form.value, pageNum: String(currentPage.value), pageSize: String(pageSize.value) }
+})
+
+const submit = async () => {
+  console.log(query.value);
+  let res = await getCharge(query.value)
+  console.log(res);
+  tableData.value = res.data.rows
+}
+
+const clear = () => {
+  form.value = {
+    shopName: "",
+    tel: "",
+    managerName: "",
+    idCard: "",
+  }
 }
 
 onMounted(async () => {
-  let res = await getCharge({
-    pageSize: '10',
-    pageNum: '1',
-    shopName: '',
-    tel: '',
-    managerName: '',
-    idCard: '',
-  })
+  let res = await getCharge(query.value)
   console.log(res);
   tableData.value=res.data.rows
 })

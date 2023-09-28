@@ -2,6 +2,14 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "@/views/Home.vue";
 const routes: Array<RouteRecordRaw> = [
   {
+    path: "/home",
+    redirect: "/home/main",
+  },
+  {
+    path: "/",
+    redirect: "/home/main",
+  },
+  {
     path: "/login",
     name: "login",
     component: () => import("@/views/Login.vue"),
@@ -41,9 +49,10 @@ const routes: Array<RouteRecordRaw> = [
     ],
   },
   {
-    path: "/",
-    redirect: "/home/main",
-  },
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: ()=>import('@/components/NotFound.vue')
+  }
 ];
 
 const router = createRouter({

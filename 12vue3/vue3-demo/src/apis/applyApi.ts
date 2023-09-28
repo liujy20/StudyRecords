@@ -1,5 +1,5 @@
 import axios from '@/utils/axiosUtil'
-import {ICharge} from '@/interfaces/apply'
+import {ICharge, IShop} from '@/interfaces/apply'
 export const getCharge=(data:ICharge)=>{
   return axios.get(
     'gen/apply/charge',
@@ -8,7 +8,7 @@ export const getCharge=(data:ICharge)=>{
     }
   )
 }
-export const getShop=(data)=>{
+export const getShop=(data:IShop)=>{
   return axios.get(
     'gen/apply',
     {

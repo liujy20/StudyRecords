@@ -38,8 +38,8 @@ import {
   Menu as IconMenu,
 } from '@element-plus/icons-vue'
 import {IMenu} from '@/interfaces/menu'
-// import {useRouter} from 'vue-router'
-// const router=useRouter()
+import {menuStore} from '@/store/menuStore'
+const menu=menuStore()
 const myMenu = ref<IMenu[]>([])
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -47,15 +47,13 @@ const handleOpen = (key: string, keyPath: string[]) => {
 const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-// const handleSelect = (key: string, keyPath: string[]) => {
-//   console.log(key, keyPath)
-//   router.push(key)
-// }
 
 onMounted(() => {
-  const menus = JSON.parse(localStorage.getItem("menu") || "[]")
-  console.log(menus);
-  myMenu.value = menus
+  // const menus = JSON.parse(localStorage.getItem("menu") || "[]")
+  // console.log(menus);
+  console.log(menu.menu);
+  
+  myMenu.value = menu.menu
 })
 </script>
 
