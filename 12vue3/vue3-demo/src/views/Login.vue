@@ -1,11 +1,12 @@
 <script lang='ts' setup>
 import { TabsPaneContext } from 'element-plus';
-import { Search, User, Lock } from '@element-plus/icons-vue'
+import { Search, User, Lock, Plus } from '@element-plus/icons-vue'
 import { login } from '@/apis/userApi'
 import { getMenu } from '@/apis/menuApi'
+import { findName, findTel, register } from '@/apis/registerApi'
 import { menuStore } from '@/store/menuStore'
 import { useRouter } from 'vue-router'
-import type { FormInstance, FormRules } from 'element-plus'
+import type { FormInstance, FormRules, UploadProps } from 'element-plus'
 import { RuleForm } from '@/interfaces/settle.ts'
 const menu = menuStore()
 const router = useRouter()
@@ -13,7 +14,6 @@ const router = useRouter()
 const activeName = ref('first')
 const input1 = ref('')
 const input2 = ref('')
-
 const account = ref<string>('')
 const password = ref<string>('')
 
@@ -56,33 +56,90 @@ const ruleForm = reactive<RuleForm>({
   licenceImg: '',
   idCardImg: '',
 })
+
+// 自定义规则
+const validateName = (rule: any, value: any, callback: any) => {
+  if (!value) {
+    return callback(new Error('Please input the name'))
+  }
+  findNameFN(value, callback)
+}
+const findNameFN = async (value: string, callback: any) => {
+  let res = await findName(value)
+  console.log(res.data);
+  if (!res.data.boo) {
+    callback(new Error('Please change the name'))
+  } else {
+    callback()
+  }
+}
+
+const validateTel = (rule: any, value: any, callback: any) => {
+  if (!value) {
+    return callback(new Error('Please input the tel'))
+  }
+  findTelFN(value, callback)
+}
+const findTelFN = async (value: string, callback: any) => {
+  let res = await findTel(value)
+  console.log(res.data);
+  if (!res.data.boo) {
+    callback(new Error('Please input the correct tel'))
+  } else {
+    callback()
+  }
+}
+
+
 // 规则
 const rules = reactive<FormRules<RuleForm>>({
-  shopName: [{ required: true }],
-  tel: [{ required: true }],
+  shopName: [{ required: true }, { validator: validateName, trigger: 'blur' }],
+  tel: [{ required: true }, {
+    pattern: /^13\d{9}$/,
+    message: '手机号码格式不正确',
+    trigger: 'blur',
+  }, { validator: validateTel, trigger: 'blur' }],
   address: [{ required: true }],
-  idCard: [{ required: true }],
+  idCard: [{ required: true }, {
+    pattern: /^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/,
+    message: '身份证格式错误',
+    trigger: 'blur'
+  }],
   managerName: [{ required: true }],
   licenceNo: [{ required: true }],
   type: [{ required: true }],
   licenceImg: [{ required: false }],
   idCardImg: [{ required: false }],
 })
+
 // 提交
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  await formEl.validate((valid, fields) => {
+  await formEl.validate(async (valid, fields) => {
     if (valid) {
       console.log('submit!')
+      let res = await register(new URLSearchParams({ ...ruleForm }).toString())
+      console.log(res);
+      if (res.data.result) {
+        changeIsLogin()
+        ElMessage({
+          message: '添加成功',
+          type: 'success',
+        })
+      }else{
+        ElMessage({
+          message: '添加失败',
+          type: 'error',
+        })
+      }
     } else {
       console.log('error submit!', fields)
     }
   })
+  console.log(ruleForm);
 }
 
 // 图片上传
-import type { UploadProps } from 'element-plus'
-import { Plus } from '@element-plus/icons-vue'
 const idCardImgUrl = ref('')
 const licenceImgUrl = ref('')
 // 上传成功
@@ -91,15 +148,15 @@ const idCardImgSuccess: UploadProps['onSuccess'] = (
   uploadFile
 ) => {
   console.log(response);
-  ruleForm.idCardImg=response.data[0]
-  
+  ruleForm.idCardImg = response.data[0]
+
   idCardImgUrl.value = URL.createObjectURL(uploadFile.raw!)
 }
 const licenceImgSuccess: UploadProps['onSuccess'] = (
   response,
   uploadFile
 ) => {
-  ruleForm.licenceImg=response.data[0]
+  ruleForm.licenceImg = response.data[0]
 
   licenceImgUrl.value = URL.createObjectURL(uploadFile.raw!)
 }
@@ -155,8 +212,8 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
         <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="120px" class="demo-ruleForm" status-icon>
           <el-form-item label="商铺类型" prop="type">
             <el-radio-group v-model="ruleForm.type">
-              <el-radio label="充电站" :value="0" />
-              <el-radio label="其他" :value="1" />
+              <el-radio label="0">充电站</el-radio>
+              <el-radio label="1">其他</el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item label="店铺名" prop="shopName">
@@ -309,7 +366,7 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
         display: block;
       }
 
-      .avatar-uploader  {
+      .avatar-uploader {
         border: 1px dashed var(--el-border-color);
         border-radius: 6px;
         cursor: pointer;

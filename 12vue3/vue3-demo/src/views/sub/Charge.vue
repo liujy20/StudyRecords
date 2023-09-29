@@ -74,34 +74,32 @@
     <el-table-column property="idCard" label="身份证号" width="120"></el-table-column>
     <el-table-column property="managerName" label="负责人" width="120"></el-table-column>
     <el-table-column property="licenceNo" label="执照号" width="120"></el-table-column>
-    <el-table-column property="" label="状态" width="120">
-      <template #default="scope">{{ scope.row.type?'未通过':'通过' }}</template>
+    <el-table-column property="status" label="状态" width="120">
     </el-table-column>
     <el-table-column property="" label="图片" width="120">
-      <template #default="scope"><img :src="scope.row.idCardImg" alt=""></template>
+      <!-- <template #default="scope"><img :src="scope.row.idCardImg" alt=""></template> -->
     </el-table-column>
-    <el-table-column property="" label="操作" width="120"></el-table-column>
+    <el-table-column property="" label="操作" width="120">
+      <template #default="scope">
+        <el-space direction="vertical">
+          <el-button size="default" v-if="scope.row.status==='审核中'" @click="changeStatus(scope.row, '通过')">通过</el-button>
+          <el-button size="default" v-if="scope.row.status==='审核中'" @click="changeStatus(scope.row, '拒绝')">驳回</el-button>
+        </el-space>
+      </template>
+    </el-table-column>
   </el-table>
   <div class="pagin">
-    <el-pagination
-      v-model:current-page="currentPage"
-      v-model:page-size="pageSize"
-      :page-sizes="[5,10,20]"
-      :small="small"
-      :disabled="disabled"
-      :background="background"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="total"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-    />
+    <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[5, 10, 20]"
+      :small="small" :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
+      :total="total" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
   </div>
 </template>
 
 <script lang='ts' setup>
 import { ArrowDown } from '@element-plus/icons-vue'
 import { getCharge } from '@/apis/applyApi'
-import {IFormCharge} from '@/interfaces/apply'
+import {changeChargeStatus} from '@/apis/applyApi'
+import { IFormCharge } from '@/interfaces/apply'
 // 表单
 const form = ref<IFormCharge>({
   shopName: "",
@@ -135,6 +133,18 @@ const handleCurrentChange = async (val: number) => {
   tableData.value = res.data.rows
 }
 
+const changeStatus= async(row:any, status:string)=>{
+  row.status=status
+  row={...row}
+  Object.keys(row).forEach(item=>{
+    row[item]=String(row[item])
+  })
+  console.log(row);
+  let res=await changeChargeStatus(new URLSearchParams(row).toString())
+  console.log(res);
+  
+}
+
 const expand = () => {
   isExpand.value = !isExpand.value
 }
@@ -148,6 +158,7 @@ const submit = async () => {
   let res = await getCharge(query.value)
   console.log(res);
   tableData.value = res.data.rows
+  total.value = res.data.total
 }
 
 const clear = () => {
@@ -162,14 +173,16 @@ const clear = () => {
 onMounted(async () => {
   let res = await getCharge(query.value)
   console.log(res);
-  tableData.value=res.data.rows
+  tableData.value = res.data.rows
+  total.value = res.data.total
 })
 
 </script>
 
 <style lang='scss' scoped>
-.pagin{
+.pagin {
   margin: 20px;
   display: flex;
   justify-content: flex-end;
-}</style>
+}
+</style>

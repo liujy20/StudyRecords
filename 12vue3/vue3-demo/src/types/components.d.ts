@@ -56,10 +56,13 @@ declare module 'vue' {
     Home: typeof import('./../views/Home.vue')['default']
     Login: typeof import('./../views/Login.vue')['default']
     Main: typeof import('./../views/sub/Main.vue')['default']
+    Menu: typeof import('./../views/sub/Menu.vue')['default']
     NotFound: typeof import('./../components/NotFound.vue')['default']
     Register: typeof import('./../views/Register.vue')['default']
+    Role: typeof import('./../views/sub/Role.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Study: typeof import('./../components/Study.vue')['default']
+    User: typeof import('./../views/sub/User.vue')['default']
   }
 }
