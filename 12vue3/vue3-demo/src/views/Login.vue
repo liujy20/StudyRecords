@@ -17,12 +17,13 @@ const input2 = ref('')
 const account = ref<string>('')
 const password = ref<string>('')
 
-const isLogin = ref<boolean>(false)
+const isLogin = ref<boolean>(true)
 
 const handleClick = (tab: TabsPaneContext, event: Event) => {
   console.log(tab, event)
 }
 
+// 登录
 const submit = async () => {
   let res = await login(JSON.stringify({ account, password }))
   console.log(res);
@@ -126,7 +127,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
           message: '添加成功',
           type: 'success',
         })
-      }else{
+      } else {
         ElMessage({
           message: '添加失败',
           type: 'error',
@@ -156,6 +157,7 @@ const licenceImgSuccess: UploadProps['onSuccess'] = (
   response,
   uploadFile
 ) => {
+  console.log(response);
   ruleForm.licenceImg = response.data[0]
 
   licenceImgUrl.value = URL.createObjectURL(uploadFile.raw!)
@@ -184,7 +186,7 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
         <el-tabs :stretch="true" v-model="activeName" class="demo-tabs tab" @tab-click="handleClick">
           <el-tab-pane label="账户密码登录" name="first">
             <el-input v-model="account" placeholder="Please input account" class="item" :prefix-icon="User" />
-            <el-input v-model="password" placeholder="Please input password" class="item" :prefix-icon="Lock" />
+            <el-input v-model="password" placeholder="Please input password" class="item" :prefix-icon="Lock"  type="password"/>
           </el-tab-pane>
           <el-tab-pane label="手机号登录" name="second">
             <el-input v-model="input1" placeholder="Please input" class="item" :prefix-icon="Search" />
@@ -244,7 +246,7 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
             <el-input v-model="ruleForm.licenceNo" />
           </el-form-item>
           <el-form-item label="营业执照照片" prop="licenceImg">
-            <el-upload class="avatar-uploader" action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+            <el-upload class="avatar-uploader" action="http://47.98.128.191:3000/images/uploadImages" name="file"
               :show-file-list="false" :on-success="licenceImgSuccess" :before-upload="beforeAvatarUpload">
               <img v-if="licenceImgUrl" :src="licenceImgUrl" class="avatar" />
               <el-icon v-else class="avatar-uploader-icon">
@@ -255,9 +257,9 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
 
           <el-form-item>
             <el-button type="primary" @click="submitForm(ruleFormRef)">
-              Create
+              立即申请
             </el-button>
-            <el-button @click="">Reset</el-button>
+            <el-button @click="changeIsLogin">使用已有账户登录</el-button>
           </el-form-item>
         </el-form>
       </div>

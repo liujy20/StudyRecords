@@ -49,6 +49,28 @@ const routes: Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: "/system",
+    name: "system",
+    component: Home,
+    children: [
+      {
+        path: "user",
+        name: "user",
+        component: () => import("@/views/sub/User.vue"),
+      },
+      {
+        path: "role",
+        name: "role",
+        component: () => import("@/views/sub/Role.vue"),
+      },
+      {
+        path: "menu",
+        name: "menu",
+        component: () => import("@/views/sub/Menu.vue"),
+      },
+    ],
+  },
+  {
     path: '/:catchAll(.*)',
     name: 'NotFound',
     component: ()=>import('@/components/NotFound.vue')
