@@ -36,7 +36,7 @@
   <el-space>
     <el-button type="primary" size="default" plain @click="addClick">新增</el-button>
     <el-button size="default" plain @click="delClick">删除</el-button>
-    <el-dropdown>
+    <el-dropdown @command="handleCommand">
       <span>
         <el-button size="default" @click="">
           更多操作
@@ -49,7 +49,7 @@
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item>密码重置</el-dropdown-item>
-          <el-dropdown-item>导出Excel</el-dropdown-item>
+          <el-dropdown-item command="out">导出Excel</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -316,6 +316,7 @@ import { IUserItem, IUserSearch } from '@/interfaces/user'
 import { getUser, changeUser, addUser, delUser } from '@/apis/userApi';
 import type { FormInstance, FormRules, ElTable } from 'element-plus'
 import { RuleForm, RuleFormAdd } from '@/interfaces/user'
+import { exportToExcel } from '@/utils/excel'
 // add用户表单
 const ruleFormRefAdd = ref<FormInstance>()
 const ruleFormAdd = reactive<RuleFormAdd>({
@@ -644,8 +645,8 @@ const handleSelectionChange = (val: IUserItem[]) => {
   multipleSelection.value = val
   // console.log(multipleSelection.value);
 }
-
-const delClick =async () => {
+// 删除用户
+const delClick = async () => {
   multipleSelection.value.forEach(async item => {
     console.log(item.userId);
     let res = await delUser(String(item.userId))
@@ -653,15 +654,21 @@ const delClick =async () => {
   })
 
   let res = await getUser(query.value)
-      console.log(res);
-      tableData.value = res.data.rows
-      total.value = res.data.total
-
-
+  console.log(res);
+  tableData.value = res.data.rows
+  total.value = res.data.total
 }
 
+const handleCommand =async (command: string | number | object) => {
+  if (command === "out") {
+    let res = await getUser({...query.value,pageNum: '1', pageSize:'1000'})
+    console.log(res.data.rows);
 
+    exportToExcel(res.data.rows)
+    console.log(111);
 
+  }
+}
 
 onMounted(async () => {
   let res = await getUser(query.value)

@@ -27,6 +27,12 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
 const submit = async () => {
   let res = await login(JSON.stringify({ account, password }))
   console.log(res);
+  if(res.status===500){
+    ElMessage({
+      message:res.data.message,
+      type:'error'
+    })
+  }
   const { user, token } = res.data.data
   localStorage.setItem('user', JSON.stringify(user))
   localStorage.setItem('token', token)
@@ -59,7 +65,7 @@ const ruleForm = reactive<RuleForm>({
 })
 
 // 自定义规则
-const validateName = (rule: any, value: any, callback: any) => {
+const validateName = (_: any, value: any, callback: any) => {
   if (!value) {
     return callback(new Error('Please input the name'))
   }
@@ -75,7 +81,7 @@ const findNameFN = async (value: string, callback: any) => {
   }
 }
 
-const validateTel = (rule: any, value: any, callback: any) => {
+const validateTel = (_:any, value: any, callback: any) => {
   if (!value) {
     return callback(new Error('Please input the tel'))
   }
