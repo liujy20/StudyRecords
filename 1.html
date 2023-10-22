@@ -5,35 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      .box1{
-        width: 500px;
-        height: 500px;
-        background-color: bisque;
-        position: relative;
-      }
-      .box2{
-        width: 200px;
-        height: 200px;
-        background-color: aliceblue;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-      }
+     .container div {
+      float: left;
+     }
+     .left{
+      background-color: aqua;
+      width: 200px;
+      margin-left: -100%;
+     }
+     .right{
+      width: 200px;
+      background-color: beige;
+      margin-left: -200px;
+     }
+     .main{
+      width: 100%;
+      background-color: blue;
+     }
     </style>
   </head>
   <body>
-    <div class="box1">
-      <div class="box2"></div>
+    <div class="container">
+      <div class="main">主内容区</div>
+      <div class="left">左侧栏</div>
+      <div class="right">右侧栏</div>
     </div>
-    <script>
-      function fn(a,b,c){
-        console.log(fn.length,arguments.length,arguments.callee===fn,arguments[2]);
-      }
-      fn(1,2)
-
-    </script>
   </body>
 </html>
